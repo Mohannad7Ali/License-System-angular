@@ -1,71 +1,84 @@
-import { Component, DestroyRef, inject } from '@angular/core';
-import { License, ShortLicense } from '../../../../../models/license.model';
-import { Driver_View } from '../../../../../models/driver.model';
-import { ActivatedRoute, RouterLink } from '@angular/router';
+import { Component, OnInit, inject, signal } from '@angular/core';
+import { CommonModule, DatePipe, Location } from '@angular/common';
+import { ActivatedRoute } from '@angular/router';
 import { LicenseService } from '../../../../../services/license.service';
-import { NotificationService } from '../../../../../services/notification.service';
+import { PersonService } from '../../../../../services/person.service';
 import { DriverService } from '../../../../../services/driver.service';
-import { switchMap, tap } from 'rxjs';
-import { DatePipe, Location } from '@angular/common';
-import { NotificationComponent } from '../../../../../shared/notification/notification.component';
+import { License } from '../../../../../models/license.model';
+import { Person } from '../../../../../models/person.model';
+import { NotificationService } from '../../../../../services/notification.service';
 import { DialogWrapperComponent } from '../../../../../shared/dialog-wrapper/dialog-wrapper.component';
+
 @Component({
   selector: 'app-preview-license',
   standalone: true,
-  imports: [NotificationComponent, DialogWrapperComponent, DatePipe],
+  imports: [CommonModule, DatePipe, DialogWrapperComponent],
   templateUrl: './preview-license.component.html',
   styleUrl: './preview-license.component.css',
 })
-export class PreviewLicenseComponent {
-  licenseID: number | null = null;
-  current_license: License | undefined = undefined;
-  current_driver: Driver_View | undefined = undefined;
-  private destroyRef = inject(DestroyRef);
-  constructor(
-    private location: Location,
-    private route: ActivatedRoute,
-    private licenseService: LicenseService,
-    private driverService: DriverService,
-    private notifyServ: NotificationService
-  ) {}
+export class PreviewLicenseComponent implements OnInit {
+  licenseId: number | null = null;
+  license = signal<License | null>(null);
+  person = signal<Person | null>(null);
+  loading = signal<boolean>(true);
+
+  private route = inject(ActivatedRoute);
+  private licenseService = inject(LicenseService);
+  private personService = inject(PersonService);
+  private driverService = inject(DriverService);
+  private notify = inject(NotificationService);
+  private location = inject(Location);
 
   ngOnInit(): void {
     this.route.queryParams.subscribe((params) => {
-      this.licenseID = params['id'];
+      this.licenseId = +params['id'];
+      if (this.licenseId) {
+        this.loadLicenseData();
+      }
     });
-
-    this.loadTest();
   }
 
-  loadTest() {
-    if (this.licenseID) {
-      const subscription = this.licenseService
-        .read(this.licenseID!)
-        .pipe(
-          tap((response) => {
-            if (response) {
-              this.current_license = response;
-            }
-          }),
-          switchMap((response) => {
-            return this.driverService
-              .read(response.driverID)
-              .pipe(tap((response) => (this.current_driver = response)));
-          })
-        )
-        .subscribe({
-          error: (error) => {
-            this.notifyServ.showMessage({
-              message: error.message,
-              status: 'failed',
-            });
+  loadLicenseData() {
+    this.licenseService.read(this.licenseId!).subscribe({
+      next: (licenseData) => {
+        this.license.set(licenseData);
+        // بعد جلب الرخصة، نحتاج جلب بيانات السائق لمعرفة الـ PersonID
+        this.loadPersonData(licenseData.driverID);
+      },
+      error: () => {
+        this.notify.showMessage({
+          message: 'تعذر العثور على بيانات الرخصة',
+          status: 'failed',
+        });
+        this.loading.set(false);
+      },
+    });
+  }
+
+  loadPersonData(driverId: number) {
+    this.driverService.getDriverById(driverId).subscribe({
+      next: (driver) => {
+        this.personService.read(driver.personID).subscribe({
+          next: (personData) => {
+            this.person.set(personData);
+            this.loading.set(false);
           },
         });
-      this.destroyRef.onDestroy(() => subscription.unsubscribe());
-    }
+      },
+    });
   }
 
-  onClose() {
+  getIssueReason(reasonId: number): string {
+    const reasons: any = {
+      1: 'إصدار أول مرة',
+      2: 'تجديد',
+      3: 'بدل تالف',
+      4: 'بدل فاقد',
+    };
+    return reasons[reasonId] || 'غير معروف';
+  }
+
+  onBack() {
     this.location.back();
   }
 }

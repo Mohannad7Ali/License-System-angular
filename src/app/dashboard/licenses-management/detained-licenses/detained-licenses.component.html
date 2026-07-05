@@ -1,89 +1,124 @@
 <app-confirmation-dialog
   [isVisible]="isDialogVisible()"
-  title="Confirm"
-  message="Are your sure you want to release this license?"
+  title="فك حجز الرخصة"
+  message="هل أنت متأكد من رغبتك في فك الحجز عن هذه الرخصة؟ سيتم تسجيل عملية الدفع والإفراج."
   (confirmed)="onDialogResult($event)"
 ></app-confirmation-dialog>
-<div class="container">
-  <form class="filteration">
-    <div class="flex">
-      <input
-        id="table-filtering-search"
-        type="text"
-        [formControl]="filter"
-        placeholder="Full Text Search..."
-      />
-      <div class="add-btn">
-        <button routerLink="" class="button">+ Detain License</button>
+
+<app-notification />
+
+<div class="la-container" dir="rtl">
+  <header class="la-page-header">
+    <div class="la-title-section">
+      <div class="la-icon-circle"><i class="fa fa-hand-holding-slash"></i></div>
+      <div>
+        <h2>إدارة الرخص المحتجزة</h2>
+        <p class="la-subtitle">
+          عرض الرخص التي تم حجزها وفك الحجز عنها بعد دفع الغرامات.
+        </p>
       </div>
     </div>
-  </form>
+  </header>
 
-  <table>
-    <thead>
-      <tr>
-        <th scope="col">ID</th>
-        <th scope="col">License ID</th>
-        <th scope="col">National ID</th>
-        <th scope="col">Full Name</th>
-        <th scope="col">Detain Date</th>
-        <th scope="col">is Released</th>
-        <th scope="col">Fine Fees</th>
-        <th scope="col">Release Date</th>
-        <th scope="col">Actions</th>
-      </tr>
-    </thead>
-    <tbody>
-      @for (detain of displayedData; track $index) {
-      <tr>
-        <td>{{ detain.id }}</td>
-        <td>{{ detain.licenseID }}</td>
-        <td>{{ detain.nationalNo }}</td>
-        <td>{{ detain.fullName }}</td>
-        <td>{{ detain.detainDate | date : "EEE, MMM d, yyyy" }}</td>
-        <td>
-          <input
-            style="pointer-events: none"
-            type="checkbox"
-            [checked]="detain.isReleased"
-          />
-        </td>
-        <td>{{ detain.fineFees | currency }}</td>
-        <td>{{ detain.releaseDate | date : "EEE, MMM d, yyyy" }}</td>
-        <td>
-          <button
-            [disabled]="detain.isReleased"
-            class="button"
-            (click)="onRelease(detain.licenseID)"
-          >
-            Release
-          </button>
-        </td>
-      </tr>
-      } @empty {
-      <tr>
-        <td colspan="10" style="text-align: center">
-          No Detained Licenses found
-        </td>
-      </tr>
-      }
-    </tbody>
-  </table>
-
-  <div class="pagination">
-    <button
-      class="prev-btn"
-      (click)="onPrevious()"
-      [disabled]="currentPage === 1"
-    >
-      Previous
-    </button>
-    <button
-      class="next-btn"
-      (click)="onNext()"
-      [disabled]="currentPage * pageSize > filteredList.length"
-    >
-      Next
+  <div class="la-action-bar">
+    <div class="la-search-box">
+      <i class="fa fa-search"></i>
+      <input
+        type="text"
+        [formControl]="filter"
+        placeholder="ابحث بالاسم، الرقم الوطني أو رقم الرخصة..."
+      />
+    </div>
+    <button class="la-btn-primary" routerLink="/dashboard/services/release-app">
+      <i class="fa fa-unlock"></i> فك حجز رخصة جديدة
     </button>
   </div>
+
+  <div class="la-table-card">
+    <table class="la-modern-table">
+      <thead>
+        <tr>
+          <th>ID الحجز</th>
+          <th>رقم الرخصة</th>
+          <th>اسم السائق</th>
+          <th>تاريخ الحجز</th>
+          <th>الغرامة ($)</th>
+          <th>الحالة</th>
+          <th style="text-align: center">الإجراءات</th>
+        </tr>
+      </thead>
+      <tbody>
+        @for (item of displayedData; track item.id) {
+          <tr>
+            <td>
+              <span class="la-id-badge">{{ item.id }}</span>
+            </td>
+            <td>
+              <b>{{ item.licenseID }}</b>
+            </td>
+            <td class="la-name-cell">{{ item.fullName }}</td>
+            <td>{{ item.detainDate | date: "dd/MM/yyyy" }}</td>
+            <td style="color: #e53e3e; font-weight: bold">
+              {{ item.fineFees | currency }}
+            </td>
+            <td>
+              <span
+                class="la-status-badge"
+                [attr.data-status]="item.isReleased ? 'Active' : 'Locked'"
+              >
+                {{ item.isReleased ? "مفرج عنها" : "محتجزة حالياً" }}
+              </span>
+            </td>
+            <td class="la-actions">
+              <button
+                class="btn-release"
+                *ngIf="!item.isReleased"
+                (click)="onRelease(item.licenseID)"
+              >
+                <i class="fa fa-unlock-alt"></i> فك الحجز
+              </button>
+              <button
+                class="la-btn-icon view"
+                title="عرض الرخصة"
+                [routerLink]="['../drivers/licenses-history/preview-license']"
+                [queryParams]="{ id: item.licenseID }"
+              >
+                <i class="fa fa-id-card"></i>
+              </button>
+            </td>
+          </tr>
+        } @empty {
+          <tr>
+            <td colspan="7" class="la-empty-state">
+              <i class="fa fa-shield-slash"></i>
+              <p>لا توجد رخص محتجزة حالياً</p>
+            </td>
+          </tr>
+        }
+      </tbody>
+    </table>
+  </div>
+
+  <footer class="la-pagination-area">
+    <div class="la-results-info">
+      إجمالي السجلات: <b>{{ filteredList.length }}</b>
+    </div>
+    <div class="la-nav-btns">
+      <button
+        class="la-nav-btn"
+        (click)="onPrevious()"
+        [disabled]="currentPage === 1"
+      >
+        السابق
+      </button>
+      <span class="la-page-num">صفحة {{ currentPage }}</span>
+      <button
+        class="la-nav-btn"
+        (click)="onNext()"
+        [disabled]="currentPage * pageSize >= filteredList.length"
+      >
+        التالي
+      </button>
+    </div>
+  </footer>
 </div>

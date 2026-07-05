@@ -1,136 +1,141 @@
-import {
-  Component,
-  DestroyRef,
-  Inject,
-  inject,
-  PLATFORM_ID,
-  signal,
-} from '@angular/core';
-import { DetainedLicense } from '../../../models/detained-license.model';
+import { Component, OnInit, inject, signal, DestroyRef } from '@angular/core'; // تم التصحيح لـ @angular/core ✅
+import { CommonModule, CurrencyPipe, DatePipe } from '@angular/common';
 import { FormControl, ReactiveFormsModule } from '@angular/forms';
+import { RouterLink } from '@angular/router'; // تم التأكد من مكان الاستيراد
+import { tap, debounceTime } from 'rxjs';
+
 import { DetainedLicenseService } from '../../../services/detained-license.service';
-import { tap } from 'rxjs';
-import { CurrencyPipe, DatePipe, isPlatformBrowser } from '@angular/common';
 import { LicenseService } from '../../../services/license.service';
 import { NotificationService } from '../../../services/notification.service';
 import { ConfirmationDialogComponent } from '../../../shared/confirmation-dialog/confirmation-dialog.component';
+import { NotificationComponent } from '../../../shared/notification/notification.component';
 
 @Component({
   selector: 'app-detained-licenses',
   standalone: true,
   imports: [
+    CommonModule,
     ReactiveFormsModule,
     DatePipe,
     CurrencyPipe,
     ConfirmationDialogComponent,
+    NotificationComponent,
+    RouterLink,
   ],
   templateUrl: './detained-licenses.component.html',
   styleUrl: './detained-licenses.component.css',
 })
-export class DetainedLicensesComponent {
-  current_user_id: number | null = null;
+export class DetainedLicensesComponent implements OnInit {
+  // الخدمات
+  private detainedService = inject(DetainedLicenseService);
+  private licenseService = inject(LicenseService);
+  private notify = inject(NotificationService);
+  private destroyRef = inject(DestroyRef);
+
+  // البيانات
+  list: any[] = [];
+  filteredList: any[] = [];
+  displayedData: any[] = [];
+
+  // التحكم
   currentPage = 1;
   pageSize = 6;
-  list: DetainedLicense[] = [];
-  filteredList: DetainedLicense[] = [];
-  displayedData: DetainedLicense[] = [];
-  private destroyRef = inject(DestroyRef);
   filter = new FormControl('', { nonNullable: true });
-  isDialogVisible = signal<boolean>(false);
+  isDialogVisible = signal(false);
   licenseID: number | undefined = undefined;
-  constructor(
-    @Inject(PLATFORM_ID) private platformId: Object,
-    private detainedlicenseServ: DetainedLicenseService,
-    private licenseServ: LicenseService,
-    private notifyServ: NotificationService
-  ) {}
+  current_user_id: number | null = null;
 
   ngOnInit(): void {
-    if (isPlatformBrowser(this.platformId)) {
-      const current_user = window.localStorage.getItem('current-user');
-      if (current_user) {
-        try {
-          const user = JSON.parse(current_user);
-          this.current_user_id = user.id;
-        } catch (error) {
-          console.error('Error parsing user data from local storage:', error);
-        }
-      }
+    // جلب بيانات المستخدم من LocalStorage
+    const userData = localStorage.getItem('current-user');
+    if (userData) {
+      this.current_user_id = JSON.parse(userData).id;
     }
+
     this.loadData();
-    this.filter.valueChanges
-      .pipe(tap((response) => this.applyFilter(response)))
+
+    // مراقبة البحث
+    const filterSub = this.filter.valueChanges
+      .pipe(
+        debounceTime(300),
+        tap((val) => this.applyFilter(val)),
+      )
       .subscribe();
+
+    this.destroyRef.onDestroy(() => filterSub.unsubscribe());
   }
 
   loadData() {
-    const subscription = this.detainedlicenseServ
-      .all()
-      .pipe(
-        tap((response) => {
-          this.list = response;
-          this.filteredList = response;
-          this.updateDisplayedData();
-        })
-      )
-      .subscribe();
-
-    this.destroyRef.onDestroy(() => subscription.unsubscribe());
+    const sub = this.detainedService.all().subscribe({
+      next: (res: any[]) => {
+        // ✅ تم تحديد النوع هنا لحل خطأ "implicitly has any type"
+        this.list = res;
+        this.filteredList = res;
+        this.updateDisplayedData();
+      },
+      error: () =>
+        this.notify.showMessage({
+          message: 'فشل تحميل قائمة الرخص المحتجزة',
+          status: 'failed',
+        }),
+    });
+    this.destroyRef.onDestroy(() => sub.unsubscribe());
   }
+
   applyFilter(value: string) {
-    const lowerCaseValue = value;
-    this.filteredList = this.list.filter((item) =>
-      Object.values(item).some((val) =>
-        String(val).toLowerCase().includes(lowerCaseValue)
-      )
+    const search = value.toLowerCase().trim();
+    this.filteredList = this.list.filter(
+      (item) =>
+        item.fullName.toLowerCase().includes(search) ||
+        item.nationalNo.toLowerCase().includes(search) ||
+        item.licenseID.toString().includes(search),
     );
     this.currentPage = 1;
     this.updateDisplayedData();
   }
+
   updateDisplayedData() {
-    const startIndex = (this.currentPage - 1) * this.pageSize;
-    const endIndex = startIndex + this.pageSize;
-    this.displayedData = this.filteredList.slice(startIndex, endIndex);
+    const start = (this.currentPage - 1) * this.pageSize;
+    this.displayedData = this.filteredList.slice(start, start + this.pageSize);
   }
+
+  onRelease(id: number) {
+    this.licenseID = id;
+    this.isDialogVisible.set(true);
+  }
+
+  onDialogResult(confirmed: boolean) {
+    this.isDialogVisible.set(false);
+    if (confirmed && this.licenseID && this.current_user_id) {
+      this.licenseService
+        .release(this.licenseID, this.current_user_id)
+        .subscribe({
+          next: () => {
+            this.notify.showMessage({
+              message: `تم فك حجز الرخصة رقم ${this.licenseID} بنجاح`,
+              status: 'success',
+            });
+            this.loadData();
+          },
+          error: (err: any) =>
+            this.notify.showMessage({
+              message: 'فشل فك الحجز: ' + err.message,
+              status: 'failed',
+            }),
+        });
+    }
+  }
+
   onNext() {
-    if (this.currentPage * this.pageSize < this.list.length) {
+    if (this.currentPage * this.pageSize < this.filteredList.length) {
       this.currentPage++;
       this.updateDisplayedData();
     }
   }
   onPrevious() {
-    if ((this, this.currentPage > 1)) {
+    if (this.currentPage > 1) {
       this.currentPage--;
       this.updateDisplayedData();
     }
-  }
-
-  onDialogResult(confirmed: boolean) {
-    this.isDialogVisible.set(false);
-    if (confirmed) {
-      const subscription = this.licenseServ
-        .release(this.licenseID!, this.current_user_id!)
-
-        .subscribe((response) => {
-          if (response) {
-            this.notifyServ.showMessage({
-              message: ` licese ${this.licenseID} released successfully`,
-              status: 'success',
-            });
-            this.loadData();
-          } else {
-            this.notifyServ.showMessage({
-              message: `Something went wrong, please try again later!`,
-              status: 'failed',
-            });
-          }
-        });
-
-      this.destroyRef.onDestroy(() => subscription.unsubscribe());
-    }
-  }
-  onRelease(licenseID: number) {
-    this.licenseID = licenseID;
-    this.isDialogVisible.set(true);
   }
 }

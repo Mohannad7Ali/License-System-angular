@@ -1,0 +1,31 @@
+/* استخدم نفس التنسيقات الموحدة التي أرسلتها لك في صفحة المواعيد (Manage Appointments) */
+/* سأضيف فقط تنسيق زر فك الحجز الخاص */
+
+.btn-release {
+  background-color: #5a67ba;
+  color: white;
+  border: none;
+  padding: 6px 15px;
+  border-radius: 8px;
+  font-size: 0.8rem;
+  font-weight: 700;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  transition: 0.3s;
+}
+
+.btn-release:hover {
+  background-color: #434190;
+  transform: translateY(-2px);
+}
+
+.la-status-badge[data-status="Locked"] {
+  background: #fee2e2;
+  color: #b91c1c;
+}
+.la-status-badge[data-status="Active"] {
+  background: #dcfce7;
+  color: #15803d;
+}
