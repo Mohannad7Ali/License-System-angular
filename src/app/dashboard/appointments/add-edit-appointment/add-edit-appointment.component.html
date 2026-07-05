@@ -1,0 +1,16 @@
+<!-- src/app/dashboard/appointments/add-edit-appointment/add-edit-appointment.component.html -->
+
+<app-dialog-wrapper
+  [title]="
+    'المواعيد > ' + (mode === 'تعديل' ? 'تعديل موعد اختبار' : 'حجز موعد جديد')
+  "
+>
+  <div class="appointment-wrapper" dir="rtl">
+    <!-- استدعاء المكون الابن وتمرير المعرفات له -->
+    <app-make-appointment
+      [applicationID]="application_id"
+      [appointmentID_to_edit]="appointment_id"
+      (closed)="onClose($event)"
+    ></app-make-appointment>
+  </div>
+</app-dialog-wrapper>

@@ -1,0 +1,116 @@
+<app-notification />
+
+<div class="appointment-page" dir="rtl">
+  <!-- قسم البحث -->
+  <div class="search-card card">
+    <header class="section-header">
+      <div class="icon-badge"><i class="fa fa-search"></i></div>
+      <h3>البحث عن طلب</h3>
+    </header>
+    <div class="search-form">
+      <div class="search-input-group">
+        <input
+          id="filter-element"
+          [readonly]="appointments_mode === enMode.edit"
+          type="number"
+          [formControl]="filter"
+          placeholder="أدخل رقم الطلب المحلي (ID)..."
+        />
+        <button
+          class="btn-search"
+          type="button"
+          [disabled]="appointments_mode === enMode.edit"
+          (click)="onSearch()"
+        >
+          <i class="fa fa-magnifying-glass"></i> بحث
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- تفاصيل الطلب -->
+  <div class="info-card card">
+    <header class="section-header">
+      <div class="icon-badge"><i class="fa fa-file-invoice"></i></div>
+      <h3>معلومات الطلب</h3>
+    </header>
+
+    <div class="info-grid">
+      <div class="info-item">
+        <label>اسم المتقدم</label>
+        <p>{{ applicantName() || "جاري البحث..." }}</p>
+      </div>
+      <div class="info-item">
+        <label>المعرف المحلي</label>
+        <p>{{ current_local_application()?.id || "N/A" }}</p>
+      </div>
+      <div class="info-item">
+        <label>الاختبارات الناجحة</label>
+        <p class="count-badge">{{ testCount() }} / 3</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- جدولة الموعد -->
+  <div class="schedule-card card highlight-border">
+    <header class="section-header">
+      <div class="icon-badge special"><i class="fa fa-calendar-check"></i></div>
+      <h3>
+        {{
+          appointments_mode === enMode.edit
+            ? "تعديل تاريخ الموعد"
+            : "جدولة موعد جديد"
+        }}
+      </h3>
+    </header>
+
+    <div class="schedule-grid">
+      <div class="info-item">
+        <label>نوع الاختبار</label>
+        <p class="test-type-display">
+          {{
+            testTypeID() !== undefined && testTypes[testTypeID()!]
+              ? testTypes[testTypeID()!].testTypeTitle
+              : "---"
+          }}
+        </p>
+      </div>
+      <div class="info-item">
+        <label for="schadule-date">اختر التاريخ</label>
+        <input
+          type="date"
+          id="schadule-date"
+          [attr.min]="current_date.toISOString().split('T')[0]"
+          [formControl]="appointmentDate"
+          class="date-picker"
+        />
+      </div>
+    </div>
+
+    <div class="form-actions">
+      <button
+        class="btn-reset"
+        [disabled]="appointments_mode === enMode.edit"
+        (click)="onReset()"
+      >
+        مسح
+      </button>
+
+      <div class="main-actions">
+        <!-- تم إصلاح اسم الدالة هنا لتطابق الـ TS -->
+        <button type="button" class="btn-cancel" (click)="onClosed()">
+          إلغاء
+        </button>
+        <button
+          class="btn-primary"
+          [disabled]="schadualed()"
+          (click)="onSchedule()"
+        >
+          {{
+            appointments_mode === enMode.edit ? "تحديث التاريخ" : "حفظ الموعد"
+          }}
+        </button>
+      </div>
+    </div>
+  </div>
+</div>

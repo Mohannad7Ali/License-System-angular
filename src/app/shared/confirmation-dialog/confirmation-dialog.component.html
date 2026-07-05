@@ -1,0 +1,27 @@
+@if (isVisible) {
+  <div class="dialog-wrapper" dir="rtl">
+    <div class="backdrop" (click)="cancel()"></div>
+
+    <div class="dialog-card">
+      <header class="dialog-header">
+        <div class="icon-warning">
+          <i class="fa fa-exclamation-triangle"></i>
+        </div>
+        <h3>{{ title }}</h3>
+      </header>
+
+      <div class="dialog-body">
+        <p>{{ message }}</p>
+      </div>
+
+      <footer class="dialog-actions">
+        <button class="btn btn-secondary" (click)="cancel()">
+          <i class="fa fa-times"></i> لا، إلغاء
+        </button>
+        <button class="btn btn-primary" (click)="confirm()">
+          <i class="fa fa-check"></i> نعم، متأكد
+        </button>
+      </footer>
+    </div>
+  </div>
+}

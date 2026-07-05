@@ -1,0 +1,13571 @@
+{
+"openapi": "3.0.1",
+"info": {
+"title": "api-layer",
+"version": "1.0"
+},
+"paths": {
+"/api/application/{id}": {
+"get": {
+"tags": [
+"application"
+],
+"operationId": "ReadApplicationByID",
+"parameters": [
+{
+"name": "id",
+"in": "path",
+"required": true,
+"schema": {
+"type": "integer",
+"format": "int32"
+}
+}
+],
+"responses": {
+"200": {
+"description": "OK",
+"content": {
+"text/plain": {
+"schema": {
+"$ref": "#/components/schemas/_Application"
+}
+},
+"application/json": {
+"schema": {
+"$ref": "#/components/schemas/_Application"
+}
+},
+"text/json": {
+"schema": {
+"$ref": "#/components/schemas/_Application"
+}
+}
+}
+},
+"201": {
+"description": "Created",
+"content": {
+"text/plain": {
+"schema": {
+"$ref": "#/components/schemas/_Application"
+}
+},
+"application/json": {
+"schema": {
+"$ref": "#/components/schemas/_Application"
+}
+},
+"text/json": {
+"schema": {
+"$ref": "#/components/schemas/_Application"
+}
+}
+}
+},
+"400": {
+"description": "Bad Request",
+"content": {
+"text/plain": {
+"schema": {
+"$ref": "#/components/schemas/ProblemDetails"
+}
+},
+"application/json": {
+"schema": {
+"$ref": "#/components/schemas/ProblemDetails"
+}
+},
+"text/json": {
+"schema": {
+"$ref": "#/components/schemas/ProblemDetails"
+}
+}
+}
+},
+"404": {
+"description": "Not Found",
+"content": {
+"text/plain": {
+"schema": {
+"$ref": "#/components/schemas/ProblemDetails"
+}
+},
+"application/json": {
+"schema": {
+"$ref": "#/components/schemas/ProblemDetails"
+}
+},
+"text/json": {
+"schema": {
+"$ref": "#/components/schemas/ProblemDetails"
+}
+}
+}
+},
+"500": {
+"description": "Internal Server Error"
+}
+}
+},
+"put": {
+"tags": [
+"application"
+],
+"operationId": "UpdateApplication",
+"parameters": [
+{
+"name": "id",
+"in": "path",
+"required": true,
+"schema": {
+"type": "integer",
+"format": "int32"
+}
+}
+],
+"requestBody": {
+"content": {
+"application/json": {
+"schema": {
+"$ref": "#/components/schemas/_Application"
+}
+},
+"text/json": {
+"schema": {
+"$ref": "#/components/schemas/_Application"
+}
+},
+"application/*+json": {
+"schema": {
+"$ref": "#/components/schemas/_Application"
+}
+}
+}
+},
+"responses": {
+"200": {
+"description": "OK",
+"content": {
+"text/plain": {
+"schema": {
+"$ref": "#/components/schemas/_Application"
+}
+},
+"application/json": {
+"schema": {
+"$ref": "#/components/schemas/_Application"
+}
+},
+"text/json": {
+"schema": {
+"$ref": "#/components/schemas/_Application"
+}
+}
+}
+},
+"201": {
+"description": "Created",
+"content": {
+"text/plain": {
+"schema": {
+"$ref": "#/components/schemas/_Application"
+}
+},
+"application/json": {
+"schema": {
+"$ref": "#/components/schemas/_Application"
+}
+},
+"text/json": {
+"schema": {
+"$ref": "#/components/schemas/_Application"
+}
+}
+}
+},
+"400": {
+"description": "Bad Request",
+"content": {
+"text/plain": {
+"schema": {
+"$ref": "#/components/schemas/ProblemDetails"
+}
+},
+"application/json": {
+"schema": {
+"$ref": "#/components/schemas/ProblemDetails"
+}
+},
+"text/json": {
+"schema": {
+"$ref": "#/components/schemas/ProblemDetails"
+}
+}
+}
+},
+"404": {
+"description": "Not Found",
+"content": {
+"text/plain": {
+"schema": {
+"$ref": "#/components/schemas/ProblemDetails"
+}
+},
+"application/json": {
+"schema": {
+"$ref": "#/components/schemas/ProblemDetails"
+}
+},
+"text/json": {
+"schema": {
+"$ref": "#/components/schemas/ProblemDetails"
+}
+}
+}
+},
+"500": {
+"description": "Internal Server Error"
+}
+}
+},
+"delete": {
+"tags": [
+"application"
+],
+"operationId": "DeleteApplication",
+"parameters": [
+{
+"name": "id",
+"in": "path",
+"required": true,
+"schema": {
+"type": "integer",
+"format": "int32"
+}
+}
+],
+"responses": {
+"200": {
+"description": "OK"
+},
+"201": {
+"description": "Created"
+},
+"400": {
+"description": "Bad Request",
+"content": {
+"text/plain": {
+"schema": {
+"$ref": "#/components/schemas/ProblemDetails"
+}
+},
+"application/json": {
+"schema": {
+"$ref": "#/components/schemas/ProblemDetails"
+}
+},
+"text/json": {
+"schema": {
+"$ref": "#/components/schemas/ProblemDetails"
+}
+}
+}
+},
+"404": {
+"description": "Not Found",
+"content": {
+"text/plain": {
+"schema": {
+"$ref": "#/components/schemas/ProblemDetails"
+}
+},
+"application/json": {
+"schema": {
+"$ref": "#/components/schemas/ProblemDetails"
+}
+},
+"text/json": {
+"schema": {
+"$ref": "#/components/schemas/ProblemDetails"
+}
+}
+}
+},
+"500": {
+"description": "Internal Server Error"
+}
+}
+}
+},
+"/api/application": {
+"post": {
+"tags": [
+"application"
+],
+"operationId": "CreateApplication",
+"requestBody": {
+"content": {
+"application/json": {
+"schema": {
+"$ref": "#/components/schemas/_Application"
+}
+},
+"text/json": {
+"schema": {
+"$ref": "#/components/schemas/_Application"
+}
+},
+"application/*+json": {
+"schema": {
+"$ref": "#/components/schemas/_Application"
+}
+}
+}
+},
+"responses": {
+"200": {
+"description": "OK",
+"content": {
+"text/plain": {
+"schema": {
+"$ref": "#/components/schemas/_Application"
+}
+},
+"application/json": {
+"schema": {
+"$ref": "#/components/schemas/_Application"
+}
+},
+"text/json": {
+"schema": {
+"$ref": "#/components/schemas/_Application"
+}
+}
+}
+},
+"201": {
+"description": "Created",
+"content": {
+"text/plain": {
+"schema": {
+"$ref": "#/components/schemas/_Application"
+}
+},
+"application/json": {
+"schema": {
+"$ref": "#/components/schemas/_Application"
+}
+},
+"text/json": {
+"schema": {
+"$ref": "#/components/schemas/_Application"
+}
+}
+}
+},
+"400": {
+"description": "Bad Request",
+"content": {
+"text/plain": {
+"schema": {
+"$ref": "#/components/schemas/ProblemDetails"
+}
+},
+"application/json": {
+"schema": {
+"$ref": "#/components/schemas/ProblemDetails"
+}
+},
+"text/json": {
+"schema": {
+"$ref": "#/components/schemas/ProblemDetails"
+}
+}
+}
+},
+"404": {
+"description": "Not Found",
+"content": {
+"text/plain": {
+"schema": {
+"$ref": "#/components/schemas/ProblemDetails"
+}
+},
+"application/json": {
+"schema": {
+"$ref": "#/components/schemas/ProblemDetails"
+}
+},
+"text/json": {
+"schema": {
+"$ref": "#/components/schemas/ProblemDetails"
+}
+}
+}
+},
+"500": {
+"description": "Internal Server Error"
+}
+}
+}
+},
+"/api/application/{id}/complete": {
+"patch": {
+"tags": [
+"application"
+],
+"operationId": "CompleteApplication",
+"parameters": [
+{
+"name": "id",
+"in": "path",
+"required": true,
+"schema": {
+"type": "integer",
+"format": "int32"
+}
+}
+],
+"responses": {
+"200": {
+"description": "OK",
+"content": {
+"text/plain": {
+"schema": {
+"type": "boolean"
+}
+},
+"application/json": {
+"schema": {
+"type": "boolean"
+}
+},
+"text/json": {
+"schema": {
+"type": "boolean"
+}
+}
+}
+},
+"201": {
+"description": "Created",
+"content": {
+"text/plain": {
+"schema": {
+"type": "boolean"
+}
+},
+"application/json": {
+"schema": {
+"type": "boolean"
+}
+},
+"text/json": {
+"schema": {
+"type": "boolean"
+}
+}
+}
+},
+"400": {
+"description": "Bad Request",
+"content": {
+"text/plain": {
+"schema": {
+"$ref": "#/components/schemas/ProblemDetails"
+}
+},
+"application/json": {
+"schema": {
+"$ref": "#/components/schemas/ProblemDetails"
+}
+},
+"text/json": {
+"schema": {
+"$ref": "#/components/schemas/ProblemDetails"
+}
+}
+}
+},
+"404": {
+"description": "Not Found",
+"content": {
+"text/plain": {
+"schema": {
+"$ref": "#/components/schemas/ProblemDetails"
+}
+},
+"application/json": {
+"schema": {
+"$ref": "#/components/schemas/ProblemDetails"
+}
+},
+"text/json": {
+"schema": {
+"$ref": "#/components/schemas/ProblemDetails"
+}
+}
+}
+},
+"500": {
+"description": "Internal Server Error"
+}
+}
+}
+},
+"/api/application/{id}/cancel": {
+"patch": {
+"tags": [
+"application"
+],
+"operationId": "CancelApplication",
+"parameters": [
+{
+"name": "id",
+"in": "path",
+"required": true,
+"schema": {
+"type": "integer",
+"format": "int32"
+}
+}
+],
+"responses": {
+"200": {
+"description": "OK",
+"content": {
+"text/plain": {
+"schema": {
+"type": "boolean"
+}
+},
+"application/json": {
+"schema": {
+"type": "boolean"
+}
+},
+"text/json": {
+"schema": {
+"type": "boolean"
+}
+}
+}
+},
+"201": {
+"description": "Created",
+"content": {
+"text/plain": {
+"schema": {
+"type": "boolean"
+}
+},
+"application/json": {
+"schema": {
+"type": "boolean"
+}
+},
+"text/json": {
+"schema": {
+"type": "boolean"
+}
+}
+}
+},
+"400": {
+"description": "Bad Request",
+"content": {
+"text/plain": {
+"schema": {
+"$ref": "#/components/schemas/ProblemDetails"
+}
+},
+"application/json": {
+"schema": {
+"$ref": "#/components/schemas/ProblemDetails"
+}
+},
+"text/json": {
+"schema": {
+"$ref": "#/components/schemas/ProblemDetails"
+}
+}
+}
+},
+"404": {
+"description": "Not Found",
+"content": {
+"text/plain": {
+"schema": {
+"$ref": "#/components/schemas/ProblemDetails"
+}
+},
+"application/json": {
+"schema": {
+"$ref": "#/components/schemas/ProblemDetails"
+}
+},
+"text/json": {
+"schema": {
+"$ref": "#/components/schemas/ProblemDetails"
+}
+}
+}
+},
+"500": {
+"description": "Internal Server Error"
+}
+}
+}
+},
+"/api/application/{id}/paid-fees": {
+"get": {
+"tags": [
+"application"
+],
+"operationId": "GetApplicationPaidFees",
+"parameters": [
+{
+"name": "id",
+"in": "path",
+"required": true,
+"schema": {
+"type": "integer",
+"format": "int32"
+}
+}
+],
+"responses": {
+"200": {
+"description": "OK",
+"content": {
+"text/plain": {
+"schema": {
+"type": "number",
+"format": "double"
+}
+},
+"application/json": {
+"schema": {
+"type": "number",
+"format": "double"
+}
+},
+"text/json": {
+"schema": {
+"type": "number",
+"format": "double"
+}
+}
+}
+},
+"201": {
+"description": "Created",
+"content": {
+"text/plain": {
+"schema": {
+"type": "number",
+"format": "double"
+}
+},
+"application/json": {
+"schema": {
+"type": "number",
+"format": "double"
+}
+},
+"text/json": {
+"schema": {
+"type": "number",
+"format": "double"
+}
+}
+}
+},
+"400": {
+"description": "Bad Request",
+"content": {
+"text/plain": {
+"schema": {
+"$ref": "#/components/schemas/ProblemDetails"
+}
+},
+"application/json": {
+"schema": {
+"$ref": "#/components/schemas/ProblemDetails"
+}
+},
+"text/json": {
+"schema": {
+"$ref": "#/components/schemas/ProblemDetails"
+}
+}
+}
+},
+"404": {
+"description": "Not Found",
+"content": {
+"text/plain": {
+"schema": {
+"$ref": "#/components/schemas/ProblemDetails"
+}
+},
+"application/json": {
+"schema": {
+"$ref": "#/components/schemas/ProblemDetails"
+}
+},
+"text/json": {
+"schema": {
+"$ref": "#/components/schemas/ProblemDetails"
+}
+}
+}
+},
+"500": {
+"description": "Internal Server Error"
+}
+}
+}
+},
+"/api/application/count": {
+"get": {
+"tags": [
+"application"
+],
+"operationId": "ApplicationsCount",
+"responses": {
+"200": {
+"description": "OK",
+"content": {
+"text/plain": {
+"schema": {
+"type": "integer",
+"format": "int32"
+}
+},
+"application/json": {
+"schema": {
+"type": "integer",
+"format": "int32"
+}
+},
+"text/json": {
+"schema": {
+"type": "integer",
+"format": "int32"
+}
+}
+}
+},
+"201": {
+"description": "Created",
+"content": {
+"text/plain": {
+"schema": {
+"type": "integer",
+"format": "int32"
+}
+},
+"application/json": {
+"schema": {
+"type": "integer",
+"format": "int32"
+}
+},
+"text/json": {
+"schema": {
+"type": "integer",
+"format": "int32"
+}
+}
+}
+},
+"400": {
+"description": "Bad Request",
+"content": {
+"text/plain": {
+"schema": {
+"$ref": "#/components/schemas/ProblemDetails"
+}
+},
+"application/json": {
+"schema": {
+"$ref": "#/components/schemas/ProblemDetails"
+}
+},
+"text/json": {
+"schema": {
+"$ref": "#/components/schemas/ProblemDetails"
+}
+}
+}
+},
+"404": {
+"description": "Not Found",
+"content": {
+"text/plain": {
+"schema": {
+"$ref": "#/components/schemas/ProblemDetails"
+}
+},
+"application/json": {
+"schema": {
+"$ref": "#/components/schemas/ProblemDetails"
+}
+},
+"text/json": {
+"schema": {
+"$ref": "#/components/schemas/ProblemDetails"
+}
+}
+}
+},
+"500": {
+"description": "Internal Server Error"
+}
+}
+}
+},
+"/api/applicationType/application-types": {
+"get": {
+"tags": [
+"applicationType"
+],
+"operationId": "GetApplicationTypes",
+"responses": {
+"200": {
+"description": "OK",
+"content": {
+"text/plain": {
+"schema": {
+"type": "array",
+"items": {
+"$ref": "#/components/schemas/ApplicationType"
+}
+}
+},
+"application/json": {
+"schema": {
+"type": "array",
+"items": {
+"$ref": "#/components/schemas/ApplicationType"
+}
+}
+},
+"text/json": {
+"schema": {
+"type": "array",
+"items": {
+"$ref": "#/components/schemas/ApplicationType"
+}
+}
+}
+}
+},
+"201": {
+"description": "Created",
+"content": {
+"text/plain": {
+"schema": {
+"type": "array",
+"items": {
+"$ref": "#/components/schemas/ApplicationType"
+}
+}
+},
+"application/json": {
+"schema": {
+"type": "array",
+"items": {
+"$ref": "#/components/schemas/ApplicationType"
+}
+}
+},
+"text/json": {
+"schema": {
+"type": "array",
+"items": {
+"$ref": "#/components/schemas/ApplicationType"
+}
+}
+}
+}
+},
+"400": {
+"description": "Bad Request",
+"content": {
+"text/plain": {
+"schema": {
+"$ref": "#/components/schemas/ProblemDetails"
+}
+},
+"application/json": {
+"schema": {
+"$ref": "#/components/schemas/ProblemDetails"
+}
+},
+"text/json": {
+"schema": {
+"$ref": "#/components/schemas/ProblemDetails"
+}
+}
+}
+},
+"404": {
+"description": "Not Found",
+"content": {
+"text/plain": {
+"schema": {
+"$ref": "#/components/schemas/ProblemDetails"
+}
+},
+"application/json": {
+"schema": {
+"$ref": "#/components/schemas/ProblemDetails"
+}
+},
+"text/json": {
+"schema": {
+"$ref": "#/components/schemas/ProblemDetails"
+}
+}
+}
+},
+"500": {
+"description": "Internal Server Error"
+}
+}
+}
+},
+"/api/applicationType/{id}": {
+"get": {
+"tags": [
+"applicationType"
+],
+"operationId": "ReadApplicationTypeByID",
+"parameters": [
+{
+"name": "id",
+"in": "path",
+"required": true,
+"schema": {
+"type": "integer",
+"format": "int32"
+}
+}
+],
+"responses": {
+"200": {
+"description": "OK",
+"content": {
+"text/plain": {
+"schema": {
+"$ref": "#/components/schemas/ApplicationType"
+}
+},
+"application/json": {
+"schema": {
+"$ref": "#/components/schemas/ApplicationType"
+}
+},
+"text/json": {
+"schema": {
+"$ref": "#/components/schemas/ApplicationType"
+}
+}
+}
+},
+"201": {
+"description": "Created",
+"content": {
+"text/plain": {
+"schema": {
+"$ref": "#/components/schemas/ApplicationType"
+}
+},
+"application/json": {
+"schema": {
+"$ref": "#/components/schemas/ApplicationType"
+}
+},
+"text/json": {
+"schema": {
+"$ref": "#/components/schemas/ApplicationType"
+}
+}
+}
+},
+"400": {
+"description": "Bad Request",
+"content": {
+"text/plain": {
+"schema": {
+"$ref": "#/components/schemas/ProblemDetails"
+}
+},
+"application/json": {
+"schema": {
+"$ref": "#/components/schemas/ProblemDetails"
+}
+},
+"text/json": {
+"schema": {
+"$ref": "#/components/schemas/ProblemDetails"
+}
+}
+}
+},
+"404": {
+"description": "Not Found",
+"content": {
+"text/plain": {
+"schema": {
+"$ref": "#/components/schemas/ProblemDetails"
+}
+},
+"application/json": {
+"schema": {
+"$ref": "#/components/schemas/ProblemDetails"
+}
+},
+"text/json": {
+"schema": {
+"$ref": "#/components/schemas/ProblemDetails"
+}
+}
+}
+},
+"500": {
+"description": "Internal Server Error"
+}
+}
+},
+"put": {
+"tags": [
+"applicationType"
+],
+"operationId": "UpdateApplicationType",
+"parameters": [
+{
+"name": "id",
+"in": "path",
+"required": true,
+"schema": {
+"type": "integer",
+"format": "int32"
+}
+}
+],
+"requestBody": {
+"content": {
+"application/json": {
+"schema": {
+"$ref": "#/components/schemas/ApplicationType"
+}
+},
+"text/json": {
+"schema": {
+"$ref": "#/components/schemas/ApplicationType"
+}
+},
+"application/*+json": {
+"schema": {
+"$ref": "#/components/schemas/ApplicationType"
+}
+}
+}
+},
+"responses": {
+"200": {
+"description": "OK",
+"content": {
+"text/plain": {
+"schema": {
+"$ref": "#/components/schemas/ApplicationType"
+}
+},
+"application/json": {
+"schema": {
+"$ref": "#/components/schemas/ApplicationType"
+}
+},
+"text/json": {
+"schema": {
+"$ref": "#/components/schemas/ApplicationType"
+}
+}
+}
+},
+"201": {
+"description": "Created",
+"content": {
+"text/plain": {
+"schema": {
+"$ref": "#/components/schemas/ApplicationType"
+}
+},
+"application/json": {
+"schema": {
+"$ref": "#/components/schemas/ApplicationType"
+}
+},
+"text/json": {
+"schema": {
+"$ref": "#/components/schemas/ApplicationType"
+}
+}
+}
+},
+"400": {
+"description": "Bad Request",
+"content": {
+"text/plain": {
+"schema": {
+"$ref": "#/components/schemas/ProblemDetails"
+}
+},
+"application/json": {
+"schema": {
+"$ref": "#/components/schemas/ProblemDetails"
+}
+},
+"text/json": {
+"schema": {
+"$ref": "#/components/schemas/ProblemDetails"
+}
+}
+}
+},
+"404": {
+"description": "Not Found",
+"content": {
+"text/plain": {
+"schema": {
+"$ref": "#/components/schemas/ProblemDetails"
+}
+},
+"application/json": {
+"schema": {
+"$ref": "#/components/schemas/ProblemDetails"
+}
+},
+"text/json": {
+"schema": {
+"$ref": "#/components/schemas/ProblemDetails"
+}
+}
+}
+},
+"500": {
+"description": "Internal Server Error"
+}
+}
+},
+"delete": {
+"tags": [
+"applicationType"
+],
+"operationId": "DeleteApplicationType",
+"parameters": [
+{
+"name": "id",
+"in": "path",
+"required": true,
+"schema": {
+"type": "integer",
+"format": "int32"
+}
+}
+],
+"responses": {
+"200": {
+"description": "OK",
+"content": {
+"text/plain": {
+"schema": {
+"type": "boolean"
+}
+},
+"application/json": {
+"schema": {
+"type": "boolean"
+}
+},
+"text/json": {
+"schema": {
+"type": "boolean"
+}
+}
+}
+},
+"201": {
+"description": "Created",
+"content": {
+"text/plain": {
+"schema": {
+"type": "boolean"
+}
+},
+"application/json": {
+"schema": {
+"type": "boolean"
+}
+},
+"text/json": {
+"schema": {
+"type": "boolean"
+}
+}
+}
+},
+"400": {
+"description": "Bad Request",
+"content": {
+"text/plain": {
+"schema": {
+"$ref": "#/components/schemas/ProblemDetails"
+}
+},
+"application/json": {
+"schema": {
+"$ref": "#/components/schemas/ProblemDetails"
+}
+},
+"text/json": {
+"schema": {
+"$ref": "#/components/schemas/ProblemDetails"
+}
+}
+}
+},
+"404": {
+"description": "Not Found",
+"content": {
+"text/plain": {
+"schema": {
+"$ref": "#/components/schemas/ProblemDetails"
+}
+},
+"application/json": {
+"schema": {
+"$ref": "#/components/schemas/ProblemDetails"
+}
+},
+"text/json": {
+"schema": {
+"$ref": "#/components/schemas/ProblemDetails"
+}
+}
+}
+},
+"500": {
+"description": "Internal Server Error"
+}
+}
+}
+},
+"/api/applicationType": {
+"post": {
+"tags": [
+"applicationType"
+],
+"operationId": "CreateApplicationType",
+"requestBody": {
+"content": {
+"application/json": {
+"schema": {
+"$ref": "#/components/schemas/ApplicationType"
+}
+},
+"text/json": {
+"schema": {
+"$ref": "#/components/schemas/ApplicationType"
+}
+},
+"application/*+json": {
+"schema": {
+"$ref": "#/components/schemas/ApplicationType"
+}
+}
+}
+},
+"responses": {
+"200": {
+"description": "OK",
+"content": {
+"text/plain": {
+"schema": {
+"$ref": "#/components/schemas/ApplicationType"
+}
+},
+"application/json": {
+"schema": {
+"$ref": "#/components/schemas/ApplicationType"
+}
+},
+"text/json": {
+"schema": {
+"$ref": "#/components/schemas/ApplicationType"
+}
+}
+}
+},
+"201": {
+"description": "Created",
+"content": {
+"text/plain": {
+"schema": {
+"$ref": "#/components/schemas/ApplicationType"
+}
+},
+"application/json": {
+"schema": {
+"$ref": "#/components/schemas/ApplicationType"
+}
+},
+"text/json": {
+"schema": {
+"$ref": "#/components/schemas/ApplicationType"
+}
+}
+}
+},
+"400": {
+"description": "Bad Request",
+"content": {
+"text/plain": {
+"schema": {
+"$ref": "#/components/schemas/ProblemDetails"
+}
+},
+"application/json": {
+"schema": {
+"$ref": "#/components/schemas/ProblemDetails"
+}
+},
+"text/json": {
+"schema": {
+"$ref": "#/components/schemas/ProblemDetails"
+}
+}
+}
+},
+"404": {
+"description": "Not Found",
+"content": {
+"text/plain": {
+"schema": {
+"$ref": "#/components/schemas/ProblemDetails"
+}
+},
+"application/json": {
+"schema": {
+"$ref": "#/components/schemas/ProblemDetails"
+}
+},
+"text/json": {
+"schema": {
+"$ref": "#/components/schemas/ProblemDetails"
+}
+}
+}
+},
+"500": {
+"description": "Internal Server Error"
+}
+}
+}
+},
+"/api/applicationType/{id}/application-type-fees": {
+"get": {
+"tags": [
+"applicationType"
+],
+"operationId": "GetApplicationTypeFees",
+"parameters": [
+{
+"name": "id",
+"in": "path",
+"required": true,
+"schema": {
+"$ref": "#/components/schemas/enApplicationType"
+}
+}
+],
+"responses": {
+"200": {
+"description": "OK",
+"content": {
+"text/plain": {
+"schema": {
+"type": "number",
+"format": "double"
+}
+},
+"application/json": {
+"schema": {
+"type": "number",
+"format": "double"
+}
+},
+"text/json": {
+"schema": {
+"type": "number",
+"format": "double"
+}
+}
+}
+},
+"201": {
+"description": "Created",
+"content": {
+"text/plain": {
+"schema": {
+"type": "number",
+"format": "double"
+}
+},
+"application/json": {
+"schema": {
+"type": "number",
+"format": "double"
+}
+},
+"text/json": {
+"schema": {
+"type": "number",
+"format": "double"
+}
+}
+}
+},
+"400": {
+"description": "Bad Request",
+"content": {
+"text/plain": {
+"schema": {
+"$ref": "#/components/schemas/ProblemDetails"
+}
+},
+"application/json": {
+"schema": {
+"$ref": "#/components/schemas/ProblemDetails"
+}
+},
+"text/json": {
+"schema": {
+"$ref": "#/components/schemas/ProblemDetails"
+}
+}
+}
+},
+"404": {
+"description": "Not Found",
+"content": {
+"text/plain": {
+"schema": {
+"$ref": "#/components/schemas/ProblemDetails"
+}
+},
+"application/json": {
+"schema": {
+"$ref": "#/components/schemas/ProblemDetails"
+}
+},
+"text/json": {
+"schema": {
+"$ref": "#/components/schemas/ProblemDetails"
+}
+}
+}
+},
+"500": {
+"description": "Internal Server Error"
+}
+}
+}
+},
+"/api/Appointment/{id}": {
+"get": {
+"tags": [
+"Appointment"
+],
+"operationId": "ReadAppointmentByID",
+"parameters": [
+{
+"name": "id",
+"in": "path",
+"required": true,
+"schema": {
+"type": "integer",
+"format": "int32"
+}
+}
+],
+"responses": {
+"200": {
+"description": "OK",
+"content": {
+"text/plain": {
+"schema": {
+"$ref": "#/components/schemas/AppointmentDTO"
+}
+},
+"application/json": {
+"schema": {
+"$ref": "#/components/schemas/AppointmentDTO"
+}
+},
+"text/json": {
+"schema": {
+"$ref": "#/components/schemas/AppointmentDTO"
+}
+}
+}
+},
+"400": {
+"description": "Bad Request",
+"content": {
+"text/plain": {
+"schema": {
+"$ref": "#/components/schemas/ProblemDetails"
+}
+},
+"application/json": {
+"schema": {
+"$ref": "#/components/schemas/ProblemDetails"
+}
+},
+"text/json": {
+"schema": {
+"$ref": "#/components/schemas/ProblemDetails"
+}
+}
+}
+},
+"404": {
+"description": "Not Found",
+"content": {
+"text/plain": {
+"schema": {
+"$ref": "#/components/schemas/ProblemDetails"
+}
+},
+"application/json": {
+"schema": {
+"$ref": "#/components/schemas/ProblemDetails"
+}
+},
+"text/json": {
+"schema": {
+"$ref": "#/components/schemas/ProblemDetails"
+}
+}
+}
+},
+"500": {
+"description": "Internal Server Error"
+}
+}
+},
+"put": {
+"tags": [
+"Appointment"
+],
+"operationId": "UpdateAppointment",
+"parameters": [
+{
+"name": "id",
+"in": "path",
+"required": true,
+"schema": {
+"type": "integer",
+"format": "int32"
+}
+}
+],
+"requestBody": {
+"content": {
+"application/json": {
+"schema": {
+"$ref": "#/components/schemas/AppointmentDTO"
+}
+},
+"text/json": {
+"schema": {
+"$ref": "#/components/schemas/AppointmentDTO"
+}
+},
+"application/*+json": {
+"schema": {
+"$ref": "#/components/schemas/AppointmentDTO"
+}
+}
+}
+},
+"responses": {
+"200": {
+"description": "OK",
+"content": {
+"text/plain": {
+"schema": {
+"$ref": "#/components/schemas/AppointmentDTO"
+}
+},
+"application/json": {
+"schema": {
+"$ref": "#/components/schemas/AppointmentDTO"
+}
+},
+"text/json": {
+"schema": {
+"$ref": "#/components/schemas/AppointmentDTO"
+}
+}
+}
+},
+"400": {
+"description": "Bad Request",
+"content": {
+"text/plain": {
+"schema": {
+"$ref": "#/components/schemas/ProblemDetails"
+}
+},
+"application/json": {
+"schema": {
+"$ref": "#/components/schemas/ProblemDetails"
+}
+},
+"text/json": {
+"schema": {
+"$ref": "#/components/schemas/ProblemDetails"
+}
+}
+}
+},
+"404": {
+"description": "Not Found",
+"content": {
+"text/plain": {
+"schema": {
+"$ref": "#/components/schemas/ProblemDetails"
+}
+},
+"application/json": {
+"schema": {
+"$ref": "#/components/schemas/ProblemDetails"
+}
+},
+"text/json": {
+"schema": {
+"$ref": "#/components/schemas/ProblemDetails"
+}
+}
+}
+},
+"500": {
+"description": "Internal Server Error"
+}
+}
+},
+"delete": {
+"tags": [
+"Appointment"
+],
+"operationId": "DeleteAppointment",
+"parameters": [
+{
+"name": "id",
+"in": "path",
+"required": true,
+"schema": {
+"type": "integer",
+"format": "int32"
+}
+}
+],
+"responses": {
+"200": {
+"description": "OK"
+},
+"400": {
+"description": "Bad Request",
+"content": {
+"text/plain": {
+"schema": {
+"$ref": "#/components/schemas/ProblemDetails"
+}
+},
+"application/json": {
+"schema": {
+"$ref": "#/components/schemas/ProblemDetails"
+}
+},
+"text/json": {
+"schema": {
+"$ref": "#/components/schemas/ProblemDetails"
+}
+}
+}
+},
+"404": {
+"description": "Not Found",
+"content": {
+"text/plain": {
+"schema": {
+"$ref": "#/components/schemas/ProblemDetails"
+}
+},
+"application/json": {
+"schema": {
+"$ref": "#/components/schemas/ProblemDetails"
+}
+},
+"text/json": {
+"schema": {
+"$ref": "#/components/schemas/ProblemDetails"
+}
+}
+}
+},
+"500": {
+"description": "Internal Server Error"
+}
+}
+}
+},
+"/api/Appointment/appointment-view/{id}": {
+"get": {
+"tags": [
+"Appointment"
+],
+"operationId": "ReadAppointmentView",
+"parameters": [
+{
+"name": "id",
+"in": "path",
+"required": true,
+"schema": {
+"type": "integer",
+"format": "int32"
+}
+}
+],
+"responses": {
+"200": {
+"description": "OK",
+"content": {
+"text/plain": {
+"schema": {
+"$ref": "#/components/schemas/AppointmentViewDTO"
+}
+},
+"application/json": {
+"schema": {
+"$ref": "#/components/schemas/AppointmentViewDTO"
+}
+},
+"text/json": {
+"schema": {
+"$ref": "#/components/schemas/AppointmentViewDTO"
+}
+}
+}
+},
+"400": {
+"description": "Bad Request",
+"content": {
+"text/plain": {
+"schema": {
+"$ref": "#/components/schemas/ProblemDetails"
+}
+},
+"application/json": {
+"schema": {
+"$ref": "#/components/schemas/ProblemDetails"
+}
+},
+"text/json": {
+"schema": {
+"$ref": "#/components/schemas/ProblemDetails"
+}
+}
+}
+},
+"404": {
+"description": "Not Found",
+"content": {
+"text/plain": {
+"schema": {
+"$ref": "#/components/schemas/ProblemDetails"
+}
+},
+"application/json": {
+"schema": {
+"$ref": "#/components/schemas/ProblemDetails"
+}
+},
+"text/json": {
+"schema": {
+"$ref": "#/components/schemas/ProblemDetails"
+}
+}
+}
+},
+"500": {
+"description": "Internal Server Error"
+}
+}
+}
+},
+"/api/Appointment": {
+"post": {
+"tags": [
+"Appointment"
+],
+"operationId": "CreateAppointment",
+"requestBody": {
+"content": {
+"application/json": {
+"schema": {
+"$ref": "#/components/schemas/AppointmentDTO"
+}
+},
+"text/json": {
+"schema": {
+"$ref": "#/components/schemas/AppointmentDTO"
+}
+},
+"application/*+json": {
+"schema": {
+"$ref": "#/components/schemas/AppointmentDTO"
+}
+}
+}
+},
+"responses": {
+"200": {
+"description": "OK",
+"content": {
+"text/plain": {
+"schema": {
+"$ref": "#/components/schemas/AppointmentDTO"
+}
+},
+"application/json": {
+"schema": {
+"$ref": "#/components/schemas/AppointmentDTO"
+}
+},
+"text/json": {
+"schema": {
+"$ref": "#/components/schemas/AppointmentDTO"
+}
+}
+}
+},
+"201": {
+"description": "Created",
+"content": {
+"text/plain": {
+"schema": {
+"$ref": "#/components/schemas/AppointmentDTO"
+}
+},
+"application/json": {
+"schema": {
+"$ref": "#/components/schemas/AppointmentDTO"
+}
+},
+"text/json": {
+"schema": {
+"$ref": "#/components/schemas/AppointmentDTO"
+}
+}
+}
+},
+"400": {
+"description": "Bad Request",
+"content": {
+"text/plain": {
+"schema": {
+"$ref": "#/components/schemas/ProblemDetails"
+}
+},
+"application/json": {
+"schema": {
+"$ref": "#/components/schemas/ProblemDetails"
+}
+},
+"text/json": {
+"schema": {
+"$ref": "#/components/schemas/ProblemDetails"
+}
+}
+}
+},
+"404": {
+"description": "Not Found",
+"content": {
+"text/plain": {
+"schema": {
+"$ref": "#/components/schemas/ProblemDetails"
+}
+},
+"application/json": {
+"schema": {
+"$ref": "#/components/schemas/ProblemDetails"
+}
+},
+"text/json": {
+"schema": {
+"$ref": "#/components/schemas/ProblemDetails"
+}
+}
+}
+},
+"500": {
+"description": "Internal Server Error"
+}
+}
+}
+},
+"/api/Appointment/active-appointments-exist/by-test-type/{testType}/local-app/{localAppId}": {
+"get": {
+"tags": [
+"Appointment"
+],
+"operationId": "FindActiveAppointments",
+"parameters": [
+{
+"name": "localAppId",
+"in": "path",
+"required": true,
+"schema": {
+"type": "integer",
+"format": "int32"
+}
+},
+{
+"name": "testType",
+"in": "path",
+"required": true,
+"schema": {
+"type": "integer",
+"format": "int32"
+}
+}
+],
+"responses": {
+"200": {
+"description": "OK",
+"content": {
+"text/plain": {
+"schema": {
+"type": "boolean"
+}
+},
+"application/json": {
+"schema": {
+"type": "boolean"
+}
+},
+"text/json": {
+"schema": {
+"type": "boolean"
+}
+}
+}
+},
+"400": {
+"description": "Bad Request",
+"content": {
+"text/plain": {
+"schema": {
+"$ref": "#/components/schemas/ProblemDetails"
+}
+},
+"application/json": {
+"schema": {
+"$ref": "#/components/schemas/ProblemDetails"
+}
+},
+"text/json": {
+"schema": {
+"$ref": "#/components/schemas/ProblemDetails"
+}
+}
+}
+},
+"404": {
+"description": "Not Found",
+"content": {
+"text/plain": {
+"schema": {
+"$ref": "#/components/schemas/ProblemDetails"
+}
+},
+"application/json": {
+"schema": {
+"$ref": "#/components/schemas/ProblemDetails"
+}
+},
+"text/json": {
+"schema": {
+"$ref": "#/components/schemas/ProblemDetails"
+}
+}
+}
+},
+"500": {
+"description": "Internal Server Error"
+}
+}
+}
+},
+"/api/Appointment/appointments/by-test-type/{testType}/local-app/{localAppId}": {
+"get": {
+"tags": [
+"Appointment"
+],
+"operationId": "AllAppointmentsPerTestType",
+"parameters": [
+{
+"name": "localAppId",
+"in": "path",
+"required": true,
+"schema": {
+"type": "integer",
+"format": "int32"
+}
+},
+{
+"name": "testType",
+"in": "path",
+"required": true,
+"schema": {
+"type": "integer",
+"format": "int32"
+}
+}
+],
+"responses": {
+"200": {
+"description": "OK",
+"content": {
+"text/plain": {
+"schema": {
+"type": "array",
+"items": {
+"$ref": "#/components/schemas/TestAppointmentDTO"
+}
+}
+},
+"application/json": {
+"schema": {
+"type": "array",
+"items": {
+"$ref": "#/components/schemas/TestAppointmentDTO"
+}
+}
+},
+"text/json": {
+"schema": {
+"type": "array",
+"items": {
+"$ref": "#/components/schemas/TestAppointmentDTO"
+}
+}
+}
+}
+},
+"400": {
+"description": "Bad Request",
+"content": {
+"text/plain": {
+"schema": {
+"$ref": "#/components/schemas/ProblemDetails"
+}
+},
+"application/json": {
+"schema": {
+"$ref": "#/components/schemas/ProblemDetails"
+}
+},
+"text/json": {
+"schema": {
+"$ref": "#/components/schemas/ProblemDetails"
+}
+}
+}
+},
+"404": {
+"description": "Not Found",
+"content": {
+"text/plain": {
+"schema": {
+"$ref": "#/components/schemas/ProblemDetails"
+}
+},
+"application/json": {
+"schema": {
+"$ref": "#/components/schemas/ProblemDetails"
+}
+},
+"text/json": {
+"schema": {
+"$ref": "#/components/schemas/ProblemDetails"
+}
+}
+}
+},
+"500": {
+"description": "Internal Server Error"
+}
+}
+}
+},
+"/api/Appointment/appointments-view": {
+"get": {
+"tags": [
+"Appointment"
+],
+"operationId": "AllAppointments",
+"responses": {
+"200": {
+"description": "OK",
+"content": {
+"text/plain": {
+"schema": {
+"type": "array",
+"items": {
+"$ref": "#/components/schemas/AppointmentViewDTO"
+}
+}
+},
+"application/json": {
+"schema": {
+"type": "array",
+"items": {
+"$ref": "#/components/schemas/AppointmentViewDTO"
+}
+}
+},
+"text/json": {
+"schema": {
+"type": "array",
+"items": {
+"$ref": "#/components/schemas/AppointmentViewDTO"
+}
+}
+}
+}
+},
+"400": {
+"description": "Bad Request",
+"content": {
+"text/plain": {
+"schema": {
+"$ref": "#/components/schemas/ProblemDetails"
+}
+},
+"application/json": {
+"schema": {
+"$ref": "#/components/schemas/ProblemDetails"
+}
+},
+"text/json": {
+"schema": {
+"$ref": "#/components/schemas/ProblemDetails"
+}
+}
+}
+},
+"404": {
+"description": "Not Found",
+"content": {
+"text/plain": {
+"schema": {
+"$ref": "#/components/schemas/ProblemDetails"
+}
+},
+"application/json": {
+"schema": {
+"$ref": "#/components/schemas/ProblemDetails"
+}
+},
+"text/json": {
+"schema": {
+"$ref": "#/components/schemas/ProblemDetails"
+}
+}
+}
+},
+"500": {
+"description": "Internal Server Error"
+}
+}
+}
+},
+"/api/Appointment/test-type/{testType}/local-app/{localAppId}": {
+"get": {
+"tags": [
+"Appointment"
+],
+"operationId": "ReadAppointment",
+"parameters": [
+{
+"name": "localAppId",
+"in": "path",
+"required": true,
+"schema": {
+"type": "integer",
+"format": "int32"
+}
+},
+{
+"name": "testType",
+"in": "path",
+"required": true,
+"schema": {
+"type": "integer",
+"format": "int32"
+}
+}
+],
+"responses": {
+"200": {
+"description": "OK",
+"content": {
+"text/plain": {
+"schema": {
+"$ref": "#/components/schemas/AppointmentDTO"
+}
+},
+"application/json": {
+"schema": {
+"$ref": "#/components/schemas/AppointmentDTO"
+}
+},
+"text/json": {
+"schema": {
+"$ref": "#/components/schemas/AppointmentDTO"
+}
+}
+}
+},
+"400": {
+"description": "Bad Request",
+"content": {
+"text/plain": {
+"schema": {
+"$ref": "#/components/schemas/ProblemDetails"
+}
+},
+"application/json": {
+"schema": {
+"$ref": "#/components/schemas/ProblemDetails"
+}
+},
+"text/json": {
+"schema": {
+"$ref": "#/components/schemas/ProblemDetails"
+}
+}
+}
+},
+"404": {
+"description": "Not Found",
+"content": {
+"text/plain": {
+"schema": {
+"$ref": "#/components/schemas/ProblemDetails"
+}
+},
+"application/json": {
+"schema": {
+"$ref": "#/components/schemas/ProblemDetails"
+}
+},
+"text/json": {
+"schema": {
+"$ref": "#/components/schemas/ProblemDetails"
+}
+}
+}
+},
+"500": {
+"description": "Internal Server Error"
+}
+}
+}
+},
+"/api/Appointment/{id}/update-date/{newDate}": {
+"put": {
+"tags": [
+"Appointment"
+],
+"operationId": "UpdateAppointmentDate",
+"parameters": [
+{
+"name": "id",
+"in": "path",
+"required": true,
+"schema": {
+"type": "integer",
+"format": "int32"
+}
+},
+{
+"name": "newDate",
+"in": "path",
+"required": true,
+"schema": {
+"type": "string",
+"format": "date-time"
+}
+}
+],
+"responses": {
+"200": {
+"description": "OK",
+"content": {
+"text/plain": {
+"schema": {
+"type": "boolean"
+}
+},
+"application/json": {
+"schema": {
+"type": "boolean"
+}
+},
+"text/json": {
+"schema": {
+"type": "boolean"
+}
+}
+}
+},
+"400": {
+"description": "Bad Request",
+"content": {
+"text/plain": {
+"schema": {
+"$ref": "#/components/schemas/ProblemDetails"
+}
+},
+"application/json": {
+"schema": {
+"$ref": "#/components/schemas/ProblemDetails"
+}
+},
+"text/json": {
+"schema": {
+"$ref": "#/components/schemas/ProblemDetails"
+}
+}
+}
+},
+"404": {
+"description": "Not Found",
+"content": {
+"text/plain": {
+"schema": {
+"$ref": "#/components/schemas/ProblemDetails"
+}
+},
+"application/json": {
+"schema": {
+"$ref": "#/components/schemas/ProblemDetails"
+}
+},
+"text/json": {
+"schema": {
+"$ref": "#/components/schemas/ProblemDetails"
+}
+}
+}
+},
+"500": {
+"description": "Internal Server Error"
+}
+}
+}
+},
+"/api/country/countries": {
+"get": {
+"tags": [
+"country"
+],
+"operationId": "GetCountries",
+"responses": {
+"200": {
+"description": "OK",
+"content": {
+"text/plain": {
+"schema": {
+"type": "array",
+"items": {}
+}
+},
+"application/json": {
+"schema": {
+"type": "array",
+"items": {}
+}
+},
+"text/json": {
+"schema": {
+"type": "array",
+"items": {}
+}
+}
+}
+},
+"204": {
+"description": "No Content"
+},
+"400": {
+"description": "Bad Request",
+"content": {
+"text/plain": {
+"schema": {
+"$ref": "#/components/schemas/ProblemDetails"
+}
+},
+"application/json": {
+"schema": {
+"$ref": "#/components/schemas/ProblemDetails"
+}
+},
+"text/json": {
+"schema": {
+"$ref": "#/components/schemas/ProblemDetails"
+}
+}
+}
+},
+"404": {
+"description": "Not Found",
+"content": {
+"text/plain": {
+"schema": {
+"$ref": "#/components/schemas/ProblemDetails"
+}
+},
+"application/json": {
+"schema": {
+"$ref": "#/components/schemas/ProblemDetails"
+}
+},
+"text/json": {
+"schema": {
+"$ref": "#/components/schemas/ProblemDetails"
+}
+}
+}
+},
+"500": {
+"description": "Internal Server Error"
+}
+}
+}
+},
+"/api/DetainedLicense/detained-licenses": {
+"get": {
+"tags": [
+"DetainedLicense"
+],
+"operationId": "AllDetainedLicenses",
+"responses": {
+"200": {
+"description": "OK",
+"content": {
+"text/plain": {
+"schema": {
+"type": "array",
+"items": {
+"$ref": "#/components/schemas/DetainedLicense_View"
+}
+}
+},
+"application/json": {
+"schema": {
+"type": "array",
+"items": {
+"$ref": "#/components/schemas/DetainedLicense_View"
+}
+}
+},
+"text/json": {
+"schema": {
+"type": "array",
+"items": {
+"$ref": "#/components/schemas/DetainedLicense_View"
+}
+}
+}
+}
+},
+"201": {
+"description": "Created",
+"content": {
+"text/plain": {
+"schema": {
+"type": "array",
+"items": {
+"$ref": "#/components/schemas/DetainedLicense_View"
+}
+}
+},
+"application/json": {
+"schema": {
+"type": "array",
+"items": {
+"$ref": "#/components/schemas/DetainedLicense_View"
+}
+}
+},
+"text/json": {
+"schema": {
+"type": "array",
+"items": {
+"$ref": "#/components/schemas/DetainedLicense_View"
+}
+}
+}
+}
+},
+"400": {
+"description": "Bad Request",
+"content": {
+"text/plain": {
+"schema": {
+"$ref": "#/components/schemas/ProblemDetails"
+}
+},
+"application/json": {
+"schema": {
+"$ref": "#/components/schemas/ProblemDetails"
+}
+},
+"text/json": {
+"schema": {
+"$ref": "#/components/schemas/ProblemDetails"
+}
+}
+}
+},
+"404": {
+"description": "Not Found",
+"content": {
+"text/plain": {
+"schema": {
+"$ref": "#/components/schemas/ProblemDetails"
+}
+},
+"application/json": {
+"schema": {
+"$ref": "#/components/schemas/ProblemDetails"
+}
+},
+"text/json": {
+"schema": {
+"$ref": "#/components/schemas/ProblemDetails"
+}
+}
+}
+},
+"500": {
+"description": "Internal Server Error"
+}
+}
+}
+},
+"/api/DetainedLicense/{id}": {
+"get": {
+"tags": [
+"DetainedLicense"
+],
+"operationId": "ReadDetainByID",
+"parameters": [
+{
+"name": "id",
+"in": "path",
+"required": true,
+"schema": {
+"type": "integer",
+"format": "int32"
+}
+}
+],
+"responses": {
+"200": {
+"description": "OK",
+"content": {
+"text/plain": {
+"schema": {
+"$ref": "#/components/schemas/DetainedLicense"
+}
+},
+"application/json": {
+"schema": {
+"$ref": "#/components/schemas/DetainedLicense"
+}
+},
+"text/json": {
+"schema": {
+"$ref": "#/components/schemas/DetainedLicense"
+}
+}
+}
+},
+"201": {
+"description": "Created",
+"content": {
+"text/plain": {
+"schema": {
+"$ref": "#/components/schemas/DetainedLicense"
+}
+},
+"application/json": {
+"schema": {
+"$ref": "#/components/schemas/DetainedLicense"
+}
+},
+"text/json": {
+"schema": {
+"$ref": "#/components/schemas/DetainedLicense"
+}
+}
+}
+},
+"400": {
+"description": "Bad Request",
+"content": {
+"text/plain": {
+"schema": {
+"$ref": "#/components/schemas/ProblemDetails"
+}
+},
+"application/json": {
+"schema": {
+"$ref": "#/components/schemas/ProblemDetails"
+}
+},
+"text/json": {
+"schema": {
+"$ref": "#/components/schemas/ProblemDetails"
+}
+}
+}
+},
+"404": {
+"description": "Not Found",
+"content": {
+"text/plain": {
+"schema": {
+"$ref": "#/components/schemas/ProblemDetails"
+}
+},
+"application/json": {
+"schema": {
+"$ref": "#/components/schemas/ProblemDetails"
+}
+},
+"text/json": {
+"schema": {
+"$ref": "#/components/schemas/ProblemDetails"
+}
+}
+}
+},
+"500": {
+"description": "Internal Server Error"
+}
+}
+},
+"put": {
+"tags": [
+"DetainedLicense"
+],
+"operationId": "UpdateDetain",
+"parameters": [
+{
+"name": "id",
+"in": "path",
+"required": true,
+"schema": {
+"type": "integer",
+"format": "int32"
+}
+}
+],
+"requestBody": {
+"content": {
+"application/json": {
+"schema": {
+"$ref": "#/components/schemas/DetainedLicense"
+}
+},
+"text/json": {
+"schema": {
+"$ref": "#/components/schemas/DetainedLicense"
+}
+},
+"application/*+json": {
+"schema": {
+"$ref": "#/components/schemas/DetainedLicense"
+}
+}
+}
+},
+"responses": {
+"200": {
+"description": "OK",
+"content": {
+"text/plain": {
+"schema": {
+"$ref": "#/components/schemas/DetainedLicense"
+}
+},
+"application/json": {
+"schema": {
+"$ref": "#/components/schemas/DetainedLicense"
+}
+},
+"text/json": {
+"schema": {
+"$ref": "#/components/schemas/DetainedLicense"
+}
+}
+}
+},
+"201": {
+"description": "Created",
+"content": {
+"text/plain": {
+"schema": {
+"$ref": "#/components/schemas/DetainedLicense"
+}
+},
+"application/json": {
+"schema": {
+"$ref": "#/components/schemas/DetainedLicense"
+}
+},
+"text/json": {
+"schema": {
+"$ref": "#/components/schemas/DetainedLicense"
+}
+}
+}
+},
+"400": {
+"description": "Bad Request",
+"content": {
+"text/plain": {
+"schema": {
+"$ref": "#/components/schemas/ProblemDetails"
+}
+},
+"application/json": {
+"schema": {
+"$ref": "#/components/schemas/ProblemDetails"
+}
+},
+"text/json": {
+"schema": {
+"$ref": "#/components/schemas/ProblemDetails"
+}
+}
+}
+},
+"404": {
+"description": "Not Found",
+"content": {
+"text/plain": {
+"schema": {
+"$ref": "#/components/schemas/ProblemDetails"
+}
+},
+"application/json": {
+"schema": {
+"$ref": "#/components/schemas/ProblemDetails"
+}
+},
+"text/json": {
+"schema": {
+"$ref": "#/components/schemas/ProblemDetails"
+}
+}
+}
+},
+"500": {
+"description": "Internal Server Error"
+}
+}
+},
+"delete": {
+"tags": [
+"DetainedLicense"
+],
+"operationId": "DeleteDetain",
+"parameters": [
+{
+"name": "id",
+"in": "path",
+"required": true,
+"schema": {
+"type": "integer",
+"format": "int32"
+}
+}
+],
+"responses": {
+"200": {
+"description": "OK"
+},
+"201": {
+"description": "Created"
+},
+"400": {
+"description": "Bad Request",
+"content": {
+"text/plain": {
+"schema": {
+"$ref": "#/components/schemas/ProblemDetails"
+}
+},
+"application/json": {
+"schema": {
+"$ref": "#/components/schemas/ProblemDetails"
+}
+},
+"text/json": {
+"schema": {
+"$ref": "#/components/schemas/ProblemDetails"
+}
+}
+}
+},
+"404": {
+"description": "Not Found",
+"content": {
+"text/plain": {
+"schema": {
+"$ref": "#/components/schemas/ProblemDetails"
+}
+},
+"application/json": {
+"schema": {
+"$ref": "#/components/schemas/ProblemDetails"
+}
+},
+"text/json": {
+"schema": {
+"$ref": "#/components/schemas/ProblemDetails"
+}
+}
+}
+},
+"500": {
+"description": "Internal Server Error"
+}
+}
+}
+},
+"/api/DetainedLicense/by-license-id/{licenseID}": {
+"get": {
+"tags": [
+"DetainedLicense"
+],
+"operationId": "ReadDetainByLicenseID",
+"parameters": [
+{
+"name": "licenseID",
+"in": "path",
+"required": true,
+"schema": {
+"type": "integer",
+"format": "int32"
+}
+}
+],
+"responses": {
+"200": {
+"description": "OK",
+"content": {
+"text/plain": {
+"schema": {
+"$ref": "#/components/schemas/DetainedLicense"
+}
+},
+"application/json": {
+"schema": {
+"$ref": "#/components/schemas/DetainedLicense"
+}
+},
+"text/json": {
+"schema": {
+"$ref": "#/components/schemas/DetainedLicense"
+}
+}
+}
+},
+"201": {
+"description": "Created",
+"content": {
+"text/plain": {
+"schema": {
+"$ref": "#/components/schemas/DetainedLicense"
+}
+},
+"application/json": {
+"schema": {
+"$ref": "#/components/schemas/DetainedLicense"
+}
+},
+"text/json": {
+"schema": {
+"$ref": "#/components/schemas/DetainedLicense"
+}
+}
+}
+},
+"400": {
+"description": "Bad Request",
+"content": {
+"text/plain": {
+"schema": {
+"$ref": "#/components/schemas/ProblemDetails"
+}
+},
+"application/json": {
+"schema": {
+"$ref": "#/components/schemas/ProblemDetails"
+}
+},
+"text/json": {
+"schema": {
+"$ref": "#/components/schemas/ProblemDetails"
+}
+}
+}
+},
+"404": {
+"description": "Not Found",
+"content": {
+"text/plain": {
+"schema": {
+"$ref": "#/components/schemas/ProblemDetails"
+}
+},
+"application/json": {
+"schema": {
+"$ref": "#/components/schemas/ProblemDetails"
+}
+},
+"text/json": {
+"schema": {
+"$ref": "#/components/schemas/ProblemDetails"
+}
+}
+}
+},
+"500": {
+"description": "Internal Server Error"
+}
+}
+}
+},
+"/api/DetainedLicense": {
+"post": {
+"tags": [
+"DetainedLicense"
+],
+"operationId": "CreateDetain",
+"requestBody": {
+"content": {
+"application/json": {
+"schema": {
+"$ref": "#/components/schemas/DetainedLicense"
+}
+},
+"text/json": {
+"schema": {
+"$ref": "#/components/schemas/DetainedLicense"
+}
+},
+"application/*+json": {
+"schema": {
+"$ref": "#/components/schemas/DetainedLicense"
+}
+}
+}
+},
+"responses": {
+"200": {
+"description": "OK",
+"content": {
+"text/plain": {
+"schema": {
+"$ref": "#/components/schemas/DetainedLicense"
+}
+},
+"application/json": {
+"schema": {
+"$ref": "#/components/schemas/DetainedLicense"
+}
+},
+"text/json": {
+"schema": {
+"$ref": "#/components/schemas/DetainedLicense"
+}
+}
+}
+},
+"201": {
+"description": "Created",
+"content": {
+"text/plain": {
+"schema": {
+"$ref": "#/components/schemas/DetainedLicense"
+}
+},
+"application/json": {
+"schema": {
+"$ref": "#/components/schemas/DetainedLicense"
+}
+},
+"text/json": {
+"schema": {
+"$ref": "#/components/schemas/DetainedLicense"
+}
+}
+}
+},
+"400": {
+"description": "Bad Request",
+"content": {
+"text/plain": {
+"schema": {
+"$ref": "#/components/schemas/ProblemDetails"
+}
+},
+"application/json": {
+"schema": {
+"$ref": "#/components/schemas/ProblemDetails"
+}
+},
+"text/json": {
+"schema": {
+"$ref": "#/components/schemas/ProblemDetails"
+}
+}
+}
+},
+"404": {
+"description": "Not Found",
+"content": {
+"text/plain": {
+"schema": {
+"$ref": "#/components/schemas/ProblemDetails"
+}
+},
+"application/json": {
+"schema": {
+"$ref": "#/components/schemas/ProblemDetails"
+}
+},
+"text/json": {
+"schema": {
+"$ref": "#/components/schemas/ProblemDetails"
+}
+}
+}
+},
+"500": {
+"description": "Internal Server Error"
+}
+}
+}
+},
+"/api/driver/drivers": {
+"get": {
+"tags": [
+"driver"
+],
+"operationId": "AllDrivers",
+"responses": {
+"200": {
+"description": "OK",
+"content": {
+"text/plain": {
+"schema": {
+"type": "array",
+"items": {
+"$ref": "#/components/schemas/Driver_View"
+}
+}
+},
+"application/json": {
+"schema": {
+"type": "array",
+"items": {
+"$ref": "#/components/schemas/Driver_View"
+}
+}
+},
+"text/json": {
+"schema": {
+"type": "array",
+"items": {
+"$ref": "#/components/schemas/Driver_View"
+}
+}
+}
+}
+},
+"201": {
+"description": "Created",
+"content": {
+"text/plain": {
+"schema": {
+"type": "array",
+"items": {
+"$ref": "#/components/schemas/Driver_View"
+}
+}
+},
+"application/json": {
+"schema": {
+"type": "array",
+"items": {
+"$ref": "#/components/schemas/Driver_View"
+}
+}
+},
+"text/json": {
+"schema": {
+"type": "array",
+"items": {
+"$ref": "#/components/schemas/Driver_View"
+}
+}
+}
+}
+},
+"400": {
+"description": "Bad Request",
+"content": {
+"text/plain": {
+"schema": {
+"$ref": "#/components/schemas/ProblemDetails"
+}
+},
+"application/json": {
+"schema": {
+"$ref": "#/components/schemas/ProblemDetails"
+}
+},
+"text/json": {
+"schema": {
+"$ref": "#/components/schemas/ProblemDetails"
+}
+}
+}
+},
+"404": {
+"description": "Not Found",
+"content": {
+"text/plain": {
+"schema": {
+"$ref": "#/components/schemas/ProblemDetails"
+}
+},
+"application/json": {
+"schema": {
+"$ref": "#/components/schemas/ProblemDetails"
+}
+},
+"text/json": {
+"schema": {
+"$ref": "#/components/schemas/ProblemDetails"
+}
+}
+}
+},
+"500": {
+"description": "Internal Server Error"
+}
+}
+}
+},
+"/api/driver/{id}": {
+"get": {
+"tags": [
+"driver"
+],
+"operationId": "ReadDriverByID",
+"parameters": [
+{
+"name": "id",
+"in": "path",
+"required": true,
+"schema": {
+"type": "integer",
+"format": "int32"
+}
+}
+],
+"responses": {
+"200": {
+"description": "OK",
+"content": {
+"text/plain": {
+"schema": {
+"$ref": "#/components/schemas/Driver"
+}
+},
+"application/json": {
+"schema": {
+"$ref": "#/components/schemas/Driver"
+}
+},
+"text/json": {
+"schema": {
+"$ref": "#/components/schemas/Driver"
+}
+}
+}
+},
+"201": {
+"description": "Created",
+"content": {
+"text/plain": {
+"schema": {
+"$ref": "#/components/schemas/Driver"
+}
+},
+"application/json": {
+"schema": {
+"$ref": "#/components/schemas/Driver"
+}
+},
+"text/json": {
+"schema": {
+"$ref": "#/components/schemas/Driver"
+}
+}
+}
+},
+"400": {
+"description": "Bad Request",
+"content": {
+"text/plain": {
+"schema": {
+"$ref": "#/components/schemas/ProblemDetails"
+}
+},
+"application/json": {
+"schema": {
+"$ref": "#/components/schemas/ProblemDetails"
+}
+},
+"text/json": {
+"schema": {
+"$ref": "#/components/schemas/ProblemDetails"
+}
+}
+}
+},
+"404": {
+"description": "Not Found",
+"content": {
+"text/plain": {
+"schema": {
+"$ref": "#/components/schemas/ProblemDetails"
+}
+},
+"application/json": {
+"schema": {
+"$ref": "#/components/schemas/ProblemDetails"
+}
+},
+"text/json": {
+"schema": {
+"$ref": "#/components/schemas/ProblemDetails"
+}
+}
+}
+},
+"500": {
+"description": "Internal Server Error"
+}
+}
+},
+"put": {
+"tags": [
+"driver"
+],
+"operationId": "UpdateDriver",
+"parameters": [
+{
+"name": "id",
+"in": "path",
+"required": true,
+"schema": {
+"type": "integer",
+"format": "int32"
+}
+}
+],
+"requestBody": {
+"content": {
+"application/json": {
+"schema": {
+"$ref": "#/components/schemas/Driver"
+}
+},
+"text/json": {
+"schema": {
+"$ref": "#/components/schemas/Driver"
+}
+},
+"application/*+json": {
+"schema": {
+"$ref": "#/components/schemas/Driver"
+}
+}
+}
+},
+"responses": {
+"200": {
+"description": "OK",
+"content": {
+"text/plain": {
+"schema": {
+"$ref": "#/components/schemas/Driver"
+}
+},
+"application/json": {
+"schema": {
+"$ref": "#/components/schemas/Driver"
+}
+},
+"text/json": {
+"schema": {
+"$ref": "#/components/schemas/Driver"
+}
+}
+}
+},
+"201": {
+"description": "Created",
+"content": {
+"text/plain": {
+"schema": {
+"$ref": "#/components/schemas/Driver"
+}
+},
+"application/json": {
+"schema": {
+"$ref": "#/components/schemas/Driver"
+}
+},
+"text/json": {
+"schema": {
+"$ref": "#/components/schemas/Driver"
+}
+}
+}
+},
+"400": {
+"description": "Bad Request",
+"content": {
+"text/plain": {
+"schema": {
+"$ref": "#/components/schemas/ProblemDetails"
+}
+},
+"application/json": {
+"schema": {
+"$ref": "#/components/schemas/ProblemDetails"
+}
+},
+"text/json": {
+"schema": {
+"$ref": "#/components/schemas/ProblemDetails"
+}
+}
+}
+},
+"404": {
+"description": "Not Found",
+"content": {
+"text/plain": {
+"schema": {
+"$ref": "#/components/schemas/ProblemDetails"
+}
+},
+"application/json": {
+"schema": {
+"$ref": "#/components/schemas/ProblemDetails"
+}
+},
+"text/json": {
+"schema": {
+"$ref": "#/components/schemas/ProblemDetails"
+}
+}
+}
+},
+"500": {
+"description": "Internal Server Error"
+}
+}
+},
+"delete": {
+"tags": [
+"driver"
+],
+"operationId": "DeleteDriver",
+"parameters": [
+{
+"name": "id",
+"in": "path",
+"required": true,
+"schema": {
+"type": "integer",
+"format": "int32"
+}
+}
+],
+"responses": {
+"200": {
+"description": "OK"
+},
+"201": {
+"description": "Created"
+},
+"400": {
+"description": "Bad Request",
+"content": {
+"text/plain": {
+"schema": {
+"$ref": "#/components/schemas/ProblemDetails"
+}
+},
+"application/json": {
+"schema": {
+"$ref": "#/components/schemas/ProblemDetails"
+}
+},
+"text/json": {
+"schema": {
+"$ref": "#/components/schemas/ProblemDetails"
+}
+}
+}
+},
+"404": {
+"description": "Not Found",
+"content": {
+"text/plain": {
+"schema": {
+"$ref": "#/components/schemas/ProblemDetails"
+}
+},
+"application/json": {
+"schema": {
+"$ref": "#/components/schemas/ProblemDetails"
+}
+},
+"text/json": {
+"schema": {
+"$ref": "#/components/schemas/ProblemDetails"
+}
+}
+}
+},
+"500": {
+"description": "Internal Server Error"
+}
+}
+}
+},
+"/api/driver/{id}/driver-view": {
+"get": {
+"tags": [
+"driver"
+],
+"operationId": "ReadDriverView",
+"parameters": [
+{
+"name": "id",
+"in": "path",
+"required": true,
+"schema": {
+"type": "integer",
+"format": "int32"
+}
+}
+],
+"responses": {
+"200": {
+"description": "OK",
+"content": {
+"text/plain": {
+"schema": {
+"$ref": "#/components/schemas/Driver_View"
+}
+},
+"application/json": {
+"schema": {
+"$ref": "#/components/schemas/Driver_View"
+}
+},
+"text/json": {
+"schema": {
+"$ref": "#/components/schemas/Driver_View"
+}
+}
+}
+},
+"201": {
+"description": "Created",
+"content": {
+"text/plain": {
+"schema": {
+"$ref": "#/components/schemas/Driver_View"
+}
+},
+"application/json": {
+"schema": {
+"$ref": "#/components/schemas/Driver_View"
+}
+},
+"text/json": {
+"schema": {
+"$ref": "#/components/schemas/Driver_View"
+}
+}
+}
+},
+"400": {
+"description": "Bad Request",
+"content": {
+"text/plain": {
+"schema": {
+"$ref": "#/components/schemas/ProblemDetails"
+}
+},
+"application/json": {
+"schema": {
+"$ref": "#/components/schemas/ProblemDetails"
+}
+},
+"text/json": {
+"schema": {
+"$ref": "#/components/schemas/ProblemDetails"
+}
+}
+}
+},
+"404": {
+"description": "Not Found",
+"content": {
+"text/plain": {
+"schema": {
+"$ref": "#/components/schemas/ProblemDetails"
+}
+},
+"application/json": {
+"schema": {
+"$ref": "#/components/schemas/ProblemDetails"
+}
+},
+"text/json": {
+"schema": {
+"$ref": "#/components/schemas/ProblemDetails"
+}
+}
+}
+},
+"500": {
+"description": "Internal Server Error"
+}
+}
+}
+},
+"/api/driver": {
+"post": {
+"tags": [
+"driver"
+],
+"operationId": "CreateDriver",
+"requestBody": {
+"content": {
+"application/json": {
+"schema": {
+"$ref": "#/components/schemas/Driver"
+}
+},
+"text/json": {
+"schema": {
+"$ref": "#/components/schemas/Driver"
+}
+},
+"application/*+json": {
+"schema": {
+"$ref": "#/components/schemas/Driver"
+}
+}
+}
+},
+"responses": {
+"200": {
+"description": "OK",
+"content": {
+"text/plain": {
+"schema": {
+"$ref": "#/components/schemas/Driver"
+}
+},
+"application/json": {
+"schema": {
+"$ref": "#/components/schemas/Driver"
+}
+},
+"text/json": {
+"schema": {
+"$ref": "#/components/schemas/Driver"
+}
+}
+}
+},
+"201": {
+"description": "Created",
+"content": {
+"text/plain": {
+"schema": {
+"$ref": "#/components/schemas/Driver"
+}
+},
+"application/json": {
+"schema": {
+"$ref": "#/components/schemas/Driver"
+}
+},
+"text/json": {
+"schema": {
+"$ref": "#/components/schemas/Driver"
+}
+}
+}
+},
+"400": {
+"description": "Bad Request",
+"content": {
+"text/plain": {
+"schema": {
+"$ref": "#/components/schemas/ProblemDetails"
+}
+},
+"application/json": {
+"schema": {
+"$ref": "#/components/schemas/ProblemDetails"
+}
+},
+"text/json": {
+"schema": {
+"$ref": "#/components/schemas/ProblemDetails"
+}
+}
+}
+},
+"404": {
+"description": "Not Found",
+"content": {
+"text/plain": {
+"schema": {
+"$ref": "#/components/schemas/ProblemDetails"
+}
+},
+"application/json": {
+"schema": {
+"$ref": "#/components/schemas/ProblemDetails"
+}
+},
+"text/json": {
+"schema": {
+"$ref": "#/components/schemas/ProblemDetails"
+}
+}
+}
+},
+"500": {
+"description": "Internal Server Error"
+}
+}
+}
+},
+"/api/driver/{id}/local-licenses": {
+"get": {
+"tags": [
+"driver"
+],
+"operationId": "DriverLocalLicenses",
+"parameters": [
+{
+"name": "id",
+"in": "path",
+"required": true,
+"schema": {
+"type": "integer",
+"format": "int32"
+}
+}
+],
+"responses": {
+"200": {
+"description": "OK",
+"content": {
+"text/plain": {
+"schema": {
+"type": "array",
+"items": {
+"$ref": "#/components/schemas/ActiveLicense"
+}
+}
+},
+"application/json": {
+"schema": {
+"type": "array",
+"items": {
+"$ref": "#/components/schemas/ActiveLicense"
+}
+}
+},
+"text/json": {
+"schema": {
+"type": "array",
+"items": {
+"$ref": "#/components/schemas/ActiveLicense"
+}
+}
+}
+}
+},
+"201": {
+"description": "Created",
+"content": {
+"text/plain": {
+"schema": {
+"type": "array",
+"items": {
+"$ref": "#/components/schemas/ActiveLicense"
+}
+}
+},
+"application/json": {
+"schema": {
+"type": "array",
+"items": {
+"$ref": "#/components/schemas/ActiveLicense"
+}
+}
+},
+"text/json": {
+"schema": {
+"type": "array",
+"items": {
+"$ref": "#/components/schemas/ActiveLicense"
+}
+}
+}
+}
+},
+"400": {
+"description": "Bad Request",
+"content": {
+"text/plain": {
+"schema": {
+"$ref": "#/components/schemas/ProblemDetails"
+}
+},
+"application/json": {
+"schema": {
+"$ref": "#/components/schemas/ProblemDetails"
+}
+},
+"text/json": {
+"schema": {
+"$ref": "#/components/schemas/ProblemDetails"
+}
+}
+}
+},
+"404": {
+"description": "Not Found",
+"content": {
+"text/plain": {
+"schema": {
+"$ref": "#/components/schemas/ProblemDetails"
+}
+},
+"application/json": {
+"schema": {
+"$ref": "#/components/schemas/ProblemDetails"
+}
+},
+"text/json": {
+"schema": {
+"$ref": "#/components/schemas/ProblemDetails"
+}
+}
+}
+},
+"500": {
+"description": "Internal Server Error"
+}
+}
+}
+},
+"/api/driver/{id}/international-licenses": {
+"get": {
+"tags": [
+"driver"
+],
+"operationId": "DriverInternationalLicenses",
+"parameters": [
+{
+"name": "id",
+"in": "path",
+"required": true,
+"schema": {
+"type": "integer",
+"format": "int32"
+}
+}
+],
+"responses": {
+"200": {
+"description": "OK",
+"content": {
+"text/plain": {
+"schema": {
+"type": "array",
+"items": {
+"$ref": "#/components/schemas/DriverInterNationalLicense"
+}
+}
+},
+"application/json": {
+"schema": {
+"type": "array",
+"items": {
+"$ref": "#/components/schemas/DriverInterNationalLicense"
+}
+}
+},
+"text/json": {
+"schema": {
+"type": "array",
+"items": {
+"$ref": "#/components/schemas/DriverInterNationalLicense"
+}
+}
+}
+}
+},
+"201": {
+"description": "Created",
+"content": {
+"text/plain": {
+"schema": {
+"type": "array",
+"items": {
+"$ref": "#/components/schemas/DriverInterNationalLicense"
+}
+}
+},
+"application/json": {
+"schema": {
+"type": "array",
+"items": {
+"$ref": "#/components/schemas/DriverInterNationalLicense"
+}
+}
+},
+"text/json": {
+"schema": {
+"type": "array",
+"items": {
+"$ref": "#/components/schemas/DriverInterNationalLicense"
+}
+}
+}
+}
+},
+"400": {
+"description": "Bad Request",
+"content": {
+"text/plain": {
+"schema": {
+"$ref": "#/components/schemas/ProblemDetails"
+}
+},
+"application/json": {
+"schema": {
+"$ref": "#/components/schemas/ProblemDetails"
+}
+},
+"text/json": {
+"schema": {
+"$ref": "#/components/schemas/ProblemDetails"
+}
+}
+}
+},
+"404": {
+"description": "Not Found",
+"content": {
+"text/plain": {
+"schema": {
+"$ref": "#/components/schemas/ProblemDetails"
+}
+},
+"application/json": {
+"schema": {
+"$ref": "#/components/schemas/ProblemDetails"
+}
+},
+"text/json": {
+"schema": {
+"$ref": "#/components/schemas/ProblemDetails"
+}
+}
+}
+},
+"500": {
+"description": "Internal Server Error"
+}
+}
+}
+},
+"/api/driver/count": {
+"get": {
+"tags": [
+"driver"
+],
+"operationId": "DriversCount",
+"responses": {
+"200": {
+"description": "OK",
+"content": {
+"text/plain": {
+"schema": {
+"type": "integer",
+"format": "int32"
+}
+},
+"application/json": {
+"schema": {
+"type": "integer",
+"format": "int32"
+}
+},
+"text/json": {
+"schema": {
+"type": "integer",
+"format": "int32"
+}
+}
+}
+},
+"201": {
+"description": "Created",
+"content": {
+"text/plain": {
+"schema": {
+"type": "integer",
+"format": "int32"
+}
+},
+"application/json": {
+"schema": {
+"type": "integer",
+"format": "int32"
+}
+},
+"text/json": {
+"schema": {
+"type": "integer",
+"format": "int32"
+}
+}
+}
+},
+"400": {
+"description": "Bad Request",
+"content": {
+"text/plain": {
+"schema": {
+"$ref": "#/components/schemas/ProblemDetails"
+}
+},
+"application/json": {
+"schema": {
+"$ref": "#/components/schemas/ProblemDetails"
+}
+},
+"text/json": {
+"schema": {
+"$ref": "#/components/schemas/ProblemDetails"
+}
+}
+}
+},
+"404": {
+"description": "Not Found",
+"content": {
+"text/plain": {
+"schema": {
+"$ref": "#/components/schemas/ProblemDetails"
+}
+},
+"application/json": {
+"schema": {
+"$ref": "#/components/schemas/ProblemDetails"
+}
+},
+"text/json": {
+"schema": {
+"$ref": "#/components/schemas/ProblemDetails"
+}
+}
+}
+},
+"500": {
+"description": "Internal Server Error"
+}
+}
+}
+},
+"/api/internationalLicense/international-licenses": {
+"get": {
+"tags": [
+"internationalLicense"
+],
+"operationId": "AllInternationalLicenses",
+"responses": {
+"200": {
+"description": "OK",
+"content": {
+"text/plain": {
+"schema": {
+"type": "array",
+"items": {
+"$ref": "#/components/schemas/InternationalLicense"
+}
+}
+},
+"application/json": {
+"schema": {
+"type": "array",
+"items": {
+"$ref": "#/components/schemas/InternationalLicense"
+}
+}
+},
+"text/json": {
+"schema": {
+"type": "array",
+"items": {
+"$ref": "#/components/schemas/InternationalLicense"
+}
+}
+}
+}
+},
+"201": {
+"description": "Created",
+"content": {
+"text/plain": {
+"schema": {
+"type": "array",
+"items": {
+"$ref": "#/components/schemas/InternationalLicense"
+}
+}
+},
+"application/json": {
+"schema": {
+"type": "array",
+"items": {
+"$ref": "#/components/schemas/InternationalLicense"
+}
+}
+},
+"text/json": {
+"schema": {
+"type": "array",
+"items": {
+"$ref": "#/components/schemas/InternationalLicense"
+}
+}
+}
+}
+},
+"400": {
+"description": "Bad Request",
+"content": {
+"text/plain": {
+"schema": {
+"$ref": "#/components/schemas/ProblemDetails"
+}
+},
+"application/json": {
+"schema": {
+"$ref": "#/components/schemas/ProblemDetails"
+}
+},
+"text/json": {
+"schema": {
+"$ref": "#/components/schemas/ProblemDetails"
+}
+}
+}
+},
+"404": {
+"description": "Not Found",
+"content": {
+"text/plain": {
+"schema": {
+"$ref": "#/components/schemas/ProblemDetails"
+}
+},
+"application/json": {
+"schema": {
+"$ref": "#/components/schemas/ProblemDetails"
+}
+},
+"text/json": {
+"schema": {
+"$ref": "#/components/schemas/ProblemDetails"
+}
+}
+}
+},
+"500": {
+"description": "Internal Server Error"
+}
+}
+}
+},
+"/api/internationalLicense/{id}": {
+"get": {
+"tags": [
+"internationalLicense"
+],
+"operationId": "ReadInternationalLicenseByID",
+"parameters": [
+{
+"name": "id",
+"in": "path",
+"required": true,
+"schema": {
+"type": "integer",
+"format": "int32"
+}
+}
+],
+"responses": {
+"200": {
+"description": "OK",
+"content": {
+"text/plain": {
+"schema": {
+"$ref": "#/components/schemas/InternationalLicense"
+}
+},
+"application/json": {
+"schema": {
+"$ref": "#/components/schemas/InternationalLicense"
+}
+},
+"text/json": {
+"schema": {
+"$ref": "#/components/schemas/InternationalLicense"
+}
+}
+}
+},
+"201": {
+"description": "Created",
+"content": {
+"text/plain": {
+"schema": {
+"$ref": "#/components/schemas/InternationalLicense"
+}
+},
+"application/json": {
+"schema": {
+"$ref": "#/components/schemas/InternationalLicense"
+}
+},
+"text/json": {
+"schema": {
+"$ref": "#/components/schemas/InternationalLicense"
+}
+}
+}
+},
+"400": {
+"description": "Bad Request",
+"content": {
+"text/plain": {
+"schema": {
+"$ref": "#/components/schemas/ProblemDetails"
+}
+},
+"application/json": {
+"schema": {
+"$ref": "#/components/schemas/ProblemDetails"
+}
+},
+"text/json": {
+"schema": {
+"$ref": "#/components/schemas/ProblemDetails"
+}
+}
+}
+},
+"404": {
+"description": "Not Found",
+"content": {
+"text/plain": {
+"schema": {
+"$ref": "#/components/schemas/ProblemDetails"
+}
+},
+"application/json": {
+"schema": {
+"$ref": "#/components/schemas/ProblemDetails"
+}
+},
+"text/json": {
+"schema": {
+"$ref": "#/components/schemas/ProblemDetails"
+}
+}
+}
+},
+"500": {
+"description": "Internal Server Error"
+}
+}
+},
+"put": {
+"tags": [
+"internationalLicense"
+],
+"operationId": "UpdateInternationalLicense",
+"parameters": [
+{
+"name": "id",
+"in": "path",
+"required": true,
+"schema": {
+"type": "integer",
+"format": "int32"
+}
+}
+],
+"requestBody": {
+"content": {
+"application/json": {
+"schema": {
+"$ref": "#/components/schemas/InternationalLicense"
+}
+},
+"text/json": {
+"schema": {
+"$ref": "#/components/schemas/InternationalLicense"
+}
+},
+"application/*+json": {
+"schema": {
+"$ref": "#/components/schemas/InternationalLicense"
+}
+}
+}
+},
+"responses": {
+"200": {
+"description": "OK",
+"content": {
+"text/plain": {
+"schema": {
+"$ref": "#/components/schemas/InternationalLicense"
+}
+},
+"application/json": {
+"schema": {
+"$ref": "#/components/schemas/InternationalLicense"
+}
+},
+"text/json": {
+"schema": {
+"$ref": "#/components/schemas/InternationalLicense"
+}
+}
+}
+},
+"201": {
+"description": "Created",
+"content": {
+"text/plain": {
+"schema": {
+"$ref": "#/components/schemas/InternationalLicense"
+}
+},
+"application/json": {
+"schema": {
+"$ref": "#/components/schemas/InternationalLicense"
+}
+},
+"text/json": {
+"schema": {
+"$ref": "#/components/schemas/InternationalLicense"
+}
+}
+}
+},
+"400": {
+"description": "Bad Request",
+"content": {
+"text/plain": {
+"schema": {
+"$ref": "#/components/schemas/ProblemDetails"
+}
+},
+"application/json": {
+"schema": {
+"$ref": "#/components/schemas/ProblemDetails"
+}
+},
+"text/json": {
+"schema": {
+"$ref": "#/components/schemas/ProblemDetails"
+}
+}
+}
+},
+"404": {
+"description": "Not Found",
+"content": {
+"text/plain": {
+"schema": {
+"$ref": "#/components/schemas/ProblemDetails"
+}
+},
+"application/json": {
+"schema": {
+"$ref": "#/components/schemas/ProblemDetails"
+}
+},
+"text/json": {
+"schema": {
+"$ref": "#/components/schemas/ProblemDetails"
+}
+}
+}
+},
+"500": {
+"description": "Internal Server Error"
+}
+}
+},
+"delete": {
+"tags": [
+"internationalLicense"
+],
+"operationId": "DeleteInternationalLicense",
+"parameters": [
+{
+"name": "id",
+"in": "path",
+"required": true,
+"schema": {
+"type": "integer",
+"format": "int32"
+}
+}
+],
+"responses": {
+"200": {
+"description": "OK"
+},
+"201": {
+"description": "Created"
+},
+"400": {
+"description": "Bad Request",
+"content": {
+"text/plain": {
+"schema": {
+"$ref": "#/components/schemas/ProblemDetails"
+}
+},
+"application/json": {
+"schema": {
+"$ref": "#/components/schemas/ProblemDetails"
+}
+},
+"text/json": {
+"schema": {
+"$ref": "#/components/schemas/ProblemDetails"
+}
+}
+}
+},
+"404": {
+"description": "Not Found",
+"content": {
+"text/plain": {
+"schema": {
+"$ref": "#/components/schemas/ProblemDetails"
+}
+},
+"application/json": {
+"schema": {
+"$ref": "#/components/schemas/ProblemDetails"
+}
+},
+"text/json": {
+"schema": {
+"$ref": "#/components/schemas/ProblemDetails"
+}
+}
+}
+},
+"500": {
+"description": "Internal Server Error"
+}
+}
+}
+},
+"/api/internationalLicense": {
+"post": {
+"tags": [
+"internationalLicense"
+],
+"operationId": "CreateInternationalLicense",
+"requestBody": {
+"content": {
+"application/json": {
+"schema": {
+"$ref": "#/components/schemas/InternationalLicense"
+}
+},
+"text/json": {
+"schema": {
+"$ref": "#/components/schemas/InternationalLicense"
+}
+},
+"application/*+json": {
+"schema": {
+"$ref": "#/components/schemas/InternationalLicense"
+}
+}
+}
+},
+"responses": {
+"200": {
+"description": "OK",
+"content": {
+"text/plain": {
+"schema": {
+"$ref": "#/components/schemas/InternationalLicense"
+}
+},
+"application/json": {
+"schema": {
+"$ref": "#/components/schemas/InternationalLicense"
+}
+},
+"text/json": {
+"schema": {
+"$ref": "#/components/schemas/InternationalLicense"
+}
+}
+}
+},
+"201": {
+"description": "Created",
+"content": {
+"text/plain": {
+"schema": {
+"$ref": "#/components/schemas/InternationalLicense"
+}
+},
+"application/json": {
+"schema": {
+"$ref": "#/components/schemas/InternationalLicense"
+}
+},
+"text/json": {
+"schema": {
+"$ref": "#/components/schemas/InternationalLicense"
+}
+}
+}
+},
+"400": {
+"description": "Bad Request",
+"content": {
+"text/plain": {
+"schema": {
+"$ref": "#/components/schemas/ProblemDetails"
+}
+},
+"application/json": {
+"schema": {
+"$ref": "#/components/schemas/ProblemDetails"
+}
+},
+"text/json": {
+"schema": {
+"$ref": "#/components/schemas/ProblemDetails"
+}
+}
+}
+},
+"404": {
+"description": "Not Found",
+"content": {
+"text/plain": {
+"schema": {
+"$ref": "#/components/schemas/ProblemDetails"
+}
+},
+"application/json": {
+"schema": {
+"$ref": "#/components/schemas/ProblemDetails"
+}
+},
+"text/json": {
+"schema": {
+"$ref": "#/components/schemas/ProblemDetails"
+}
+}
+}
+},
+"500": {
+"description": "Internal Server Error"
+}
+}
+}
+},
+"/api/license/licenses": {
+"get": {
+"tags": [
+"license"
+],
+"operationId": "AllLicenses",
+"responses": {
+"200": {
+"description": "OK",
+"content": {
+"text/plain": {
+"schema": {
+"type": "array",
+"items": {
+"$ref": "#/components/schemas/_License"
+}
+}
+},
+"application/json": {
+"schema": {
+"type": "array",
+"items": {
+"$ref": "#/components/schemas/_License"
+}
+}
+},
+"text/json": {
+"schema": {
+"type": "array",
+"items": {
+"$ref": "#/components/schemas/_License"
+}
+}
+}
+}
+},
+"201": {
+"description": "Created",
+"content": {
+"text/plain": {
+"schema": {
+"type": "array",
+"items": {
+"$ref": "#/components/schemas/_License"
+}
+}
+},
+"application/json": {
+"schema": {
+"type": "array",
+"items": {
+"$ref": "#/components/schemas/_License"
+}
+}
+},
+"text/json": {
+"schema": {
+"type": "array",
+"items": {
+"$ref": "#/components/schemas/_License"
+}
+}
+}
+}
+},
+"400": {
+"description": "Bad Request",
+"content": {
+"text/plain": {
+"schema": {
+"$ref": "#/components/schemas/ProblemDetails"
+}
+},
+"application/json": {
+"schema": {
+"$ref": "#/components/schemas/ProblemDetails"
+}
+},
+"text/json": {
+"schema": {
+"$ref": "#/components/schemas/ProblemDetails"
+}
+}
+}
+},
+"404": {
+"description": "Not Found",
+"content": {
+"text/plain": {
+"schema": {
+"$ref": "#/components/schemas/ProblemDetails"
+}
+},
+"application/json": {
+"schema": {
+"$ref": "#/components/schemas/ProblemDetails"
+}
+},
+"text/json": {
+"schema": {
+"$ref": "#/components/schemas/ProblemDetails"
+}
+}
+}
+},
+"500": {
+"description": "Internal Server Error"
+}
+}
+}
+},
+"/api/license/{id}": {
+"get": {
+"tags": [
+"license"
+],
+"operationId": "ReadLicenseByID",
+"parameters": [
+{
+"name": "id",
+"in": "path",
+"required": true,
+"schema": {
+"type": "integer",
+"format": "int32"
+}
+}
+],
+"responses": {
+"200": {
+"description": "OK",
+"content": {
+"text/plain": {
+"schema": {
+"$ref": "#/components/schemas/_License"
+}
+},
+"application/json": {
+"schema": {
+"$ref": "#/components/schemas/_License"
+}
+},
+"text/json": {
+"schema": {
+"$ref": "#/components/schemas/_License"
+}
+}
+}
+},
+"201": {
+"description": "Created",
+"content": {
+"text/plain": {
+"schema": {
+"$ref": "#/components/schemas/_License"
+}
+},
+"application/json": {
+"schema": {
+"$ref": "#/components/schemas/_License"
+}
+},
+"text/json": {
+"schema": {
+"$ref": "#/components/schemas/_License"
+}
+}
+}
+},
+"400": {
+"description": "Bad Request",
+"content": {
+"text/plain": {
+"schema": {
+"$ref": "#/components/schemas/ProblemDetails"
+}
+},
+"application/json": {
+"schema": {
+"$ref": "#/components/schemas/ProblemDetails"
+}
+},
+"text/json": {
+"schema": {
+"$ref": "#/components/schemas/ProblemDetails"
+}
+}
+}
+},
+"404": {
+"description": "Not Found",
+"content": {
+"text/plain": {
+"schema": {
+"$ref": "#/components/schemas/ProblemDetails"
+}
+},
+"application/json": {
+"schema": {
+"$ref": "#/components/schemas/ProblemDetails"
+}
+},
+"text/json": {
+"schema": {
+"$ref": "#/components/schemas/ProblemDetails"
+}
+}
+}
+},
+"500": {
+"description": "Internal Server Error"
+}
+}
+},
+"put": {
+"tags": [
+"license"
+],
+"parameters": [
+{
+"name": "id",
+"in": "path",
+"required": true,
+"schema": {
+"type": "integer",
+"format": "int32"
+}
+}
+],
+"requestBody": {
+"content": {
+"application/json": {
+"schema": {
+"$ref": "#/components/schemas/_License"
+}
+},
+"text/json": {
+"schema": {
+"$ref": "#/components/schemas/_License"
+}
+},
+"application/*+json": {
+"schema": {
+"$ref": "#/components/schemas/_License"
+}
+}
+}
+},
+"responses": {
+"200": {
+"description": "OK",
+"content": {
+"text/plain": {
+"schema": {
+"$ref": "#/components/schemas/_License"
+}
+},
+"application/json": {
+"schema": {
+"$ref": "#/components/schemas/_License"
+}
+},
+"text/json": {
+"schema": {
+"$ref": "#/components/schemas/_License"
+}
+}
+}
+},
+"201": {
+"description": "Created",
+"content": {
+"text/plain": {
+"schema": {
+"$ref": "#/components/schemas/_License"
+}
+},
+"application/json": {
+"schema": {
+"$ref": "#/components/schemas/_License"
+}
+},
+"text/json": {
+"schema": {
+"$ref": "#/components/schemas/_License"
+}
+}
+}
+},
+"400": {
+"description": "Bad Request",
+"content": {
+"text/plain": {
+"schema": {
+"$ref": "#/components/schemas/ProblemDetails"
+}
+},
+"application/json": {
+"schema": {
+"$ref": "#/components/schemas/ProblemDetails"
+}
+},
+"text/json": {
+"schema": {
+"$ref": "#/components/schemas/ProblemDetails"
+}
+}
+}
+},
+"404": {
+"description": "Not Found",
+"content": {
+"text/plain": {
+"schema": {
+"$ref": "#/components/schemas/ProblemDetails"
+}
+},
+"application/json": {
+"schema": {
+"$ref": "#/components/schemas/ProblemDetails"
+}
+},
+"text/json": {
+"schema": {
+"$ref": "#/components/schemas/ProblemDetails"
+}
+}
+}
+},
+"500": {
+"description": "Internal Server Error"
+}
+}
+},
+"delete": {
+"tags": [
+"license"
+],
+"parameters": [
+{
+"name": "id",
+"in": "path",
+"required": true,
+"schema": {
+"type": "integer",
+"format": "int32"
+}
+}
+],
+"responses": {
+"200": {
+"description": "OK"
+},
+"201": {
+"description": "Created"
+},
+"400": {
+"description": "Bad Request",
+"content": {
+"text/plain": {
+"schema": {
+"$ref": "#/components/schemas/ProblemDetails"
+}
+},
+"application/json": {
+"schema": {
+"$ref": "#/components/schemas/ProblemDetails"
+}
+},
+"text/json": {
+"schema": {
+"$ref": "#/components/schemas/ProblemDetails"
+}
+}
+}
+},
+"404": {
+"description": "Not Found",
+"content": {
+"text/plain": {
+"schema": {
+"$ref": "#/components/schemas/ProblemDetails"
+}
+},
+"application/json": {
+"schema": {
+"$ref": "#/components/schemas/ProblemDetails"
+}
+},
+"text/json": {
+"schema": {
+"$ref": "#/components/schemas/ProblemDetails"
+}
+}
+}
+},
+"500": {
+"description": "Internal Server Error"
+}
+}
+}
+},
+"/api/license": {
+"post": {
+"tags": [
+"license"
+],
+"requestBody": {
+"content": {
+"application/json": {
+"schema": {
+"$ref": "#/components/schemas/_License"
+}
+},
+"text/json": {
+"schema": {
+"$ref": "#/components/schemas/_License"
+}
+},
+"application/*+json": {
+"schema": {
+"$ref": "#/components/schemas/_License"
+}
+}
+}
+},
+"responses": {
+"200": {
+"description": "OK",
+"content": {
+"text/plain": {
+"schema": {
+"$ref": "#/components/schemas/_License"
+}
+},
+"application/json": {
+"schema": {
+"$ref": "#/components/schemas/_License"
+}
+},
+"text/json": {
+"schema": {
+"$ref": "#/components/schemas/_License"
+}
+}
+}
+},
+"201": {
+"description": "Created",
+"content": {
+"text/plain": {
+"schema": {
+"$ref": "#/components/schemas/_License"
+}
+},
+"application/json": {
+"schema": {
+"$ref": "#/components/schemas/_License"
+}
+},
+"text/json": {
+"schema": {
+"$ref": "#/components/schemas/_License"
+}
+}
+}
+},
+"400": {
+"description": "Bad Request",
+"content": {
+"text/plain": {
+"schema": {
+"$ref": "#/components/schemas/ProblemDetails"
+}
+},
+"application/json": {
+"schema": {
+"$ref": "#/components/schemas/ProblemDetails"
+}
+},
+"text/json": {
+"schema": {
+"$ref": "#/components/schemas/ProblemDetails"
+}
+}
+}
+},
+"404": {
+"description": "Not Found",
+"content": {
+"text/plain": {
+"schema": {
+"$ref": "#/components/schemas/ProblemDetails"
+}
+},
+"application/json": {
+"schema": {
+"$ref": "#/components/schemas/ProblemDetails"
+}
+},
+"text/json": {
+"schema": {
+"$ref": "#/components/schemas/ProblemDetails"
+}
+}
+}
+},
+"500": {
+"description": "Internal Server Error"
+}
+}
+}
+},
+"/api/license/{id}/deactivate": {
+"patch": {
+"tags": [
+"license"
+],
+"parameters": [
+{
+"name": "id",
+"in": "path",
+"required": true,
+"schema": {
+"type": "integer",
+"format": "int32"
+}
+}
+],
+"responses": {
+"200": {
+"description": "OK",
+"content": {
+"text/plain": {
+"schema": {
+"type": "boolean"
+}
+},
+"application/json": {
+"schema": {
+"type": "boolean"
+}
+},
+"text/json": {
+"schema": {
+"type": "boolean"
+}
+}
+}
+},
+"201": {
+"description": "Created",
+"content": {
+"text/plain": {
+"schema": {
+"type": "boolean"
+}
+},
+"application/json": {
+"schema": {
+"type": "boolean"
+}
+},
+"text/json": {
+"schema": {
+"type": "boolean"
+}
+}
+}
+},
+"400": {
+"description": "Bad Request",
+"content": {
+"text/plain": {
+"schema": {
+"$ref": "#/components/schemas/ProblemDetails"
+}
+},
+"application/json": {
+"schema": {
+"$ref": "#/components/schemas/ProblemDetails"
+}
+},
+"text/json": {
+"schema": {
+"$ref": "#/components/schemas/ProblemDetails"
+}
+}
+}
+},
+"404": {
+"description": "Not Found",
+"content": {
+"text/plain": {
+"schema": {
+"$ref": "#/components/schemas/ProblemDetails"
+}
+},
+"application/json": {
+"schema": {
+"$ref": "#/components/schemas/ProblemDetails"
+}
+},
+"text/json": {
+"schema": {
+"$ref": "#/components/schemas/ProblemDetails"
+}
+}
+}
+},
+"500": {
+"description": "Internal Server Error"
+}
+}
+}
+},
+"/api/license/{id}/activate": {
+"patch": {
+"tags": [
+"license"
+],
+"parameters": [
+{
+"name": "id",
+"in": "path",
+"required": true,
+"schema": {
+"type": "integer",
+"format": "int32"
+}
+}
+],
+"responses": {
+"200": {
+"description": "OK",
+"content": {
+"text/plain": {
+"schema": {
+"type": "boolean"
+}
+},
+"application/json": {
+"schema": {
+"type": "boolean"
+}
+},
+"text/json": {
+"schema": {
+"type": "boolean"
+}
+}
+}
+},
+"201": {
+"description": "Created",
+"content": {
+"text/plain": {
+"schema": {
+"type": "boolean"
+}
+},
+"application/json": {
+"schema": {
+"type": "boolean"
+}
+},
+"text/json": {
+"schema": {
+"type": "boolean"
+}
+}
+}
+},
+"400": {
+"description": "Bad Request",
+"content": {
+"text/plain": {
+"schema": {
+"$ref": "#/components/schemas/ProblemDetails"
+}
+},
+"application/json": {
+"schema": {
+"$ref": "#/components/schemas/ProblemDetails"
+}
+},
+"text/json": {
+"schema": {
+"$ref": "#/components/schemas/ProblemDetails"
+}
+}
+}
+},
+"404": {
+"description": "Not Found",
+"content": {
+"text/plain": {
+"schema": {
+"$ref": "#/components/schemas/ProblemDetails"
+}
+},
+"application/json": {
+"schema": {
+"$ref": "#/components/schemas/ProblemDetails"
+}
+},
+"text/json": {
+"schema": {
+"$ref": "#/components/schemas/ProblemDetails"
+}
+}
+}
+},
+"500": {
+"description": "Internal Server Error"
+}
+}
+}
+},
+"/api/license/{id}/renew/by-user-id/{userId}": {
+"get": {
+"tags": [
+"license"
+],
+"parameters": [
+{
+"name": "id",
+"in": "path",
+"required": true,
+"schema": {
+"type": "integer",
+"format": "int32"
+}
+},
+{
+"name": "userId",
+"in": "path",
+"required": true,
+"schema": {
+"type": "integer",
+"format": "int32"
+}
+},
+{
+"name": "notes",
+"in": "query",
+"schema": {
+"type": "string",
+"default": ""
+}
+}
+],
+"responses": {
+"200": {
+"description": "OK",
+"content": {
+"text/plain": {
+"schema": {
+"$ref": "#/components/schemas/_License"
+}
+},
+"application/json": {
+"schema": {
+"$ref": "#/components/schemas/_License"
+}
+},
+"text/json": {
+"schema": {
+"$ref": "#/components/schemas/_License"
+}
+}
+}
+},
+"201": {
+"description": "Created",
+"content": {
+"text/plain": {
+"schema": {
+"$ref": "#/components/schemas/_License"
+}
+},
+"application/json": {
+"schema": {
+"$ref": "#/components/schemas/_License"
+}
+},
+"text/json": {
+"schema": {
+"$ref": "#/components/schemas/_License"
+}
+}
+}
+},
+"400": {
+"description": "Bad Request",
+"content": {
+"text/plain": {
+"schema": {
+"$ref": "#/components/schemas/ProblemDetails"
+}
+},
+"application/json": {
+"schema": {
+"$ref": "#/components/schemas/ProblemDetails"
+}
+},
+"text/json": {
+"schema": {
+"$ref": "#/components/schemas/ProblemDetails"
+}
+}
+}
+},
+"404": {
+"description": "Not Found",
+"content": {
+"text/plain": {
+"schema": {
+"$ref": "#/components/schemas/ProblemDetails"
+}
+},
+"application/json": {
+"schema": {
+"$ref": "#/components/schemas/ProblemDetails"
+}
+},
+"text/json": {
+"schema": {
+"$ref": "#/components/schemas/ProblemDetails"
+}
+}
+}
+},
+"500": {
+"description": "Internal Server Error"
+}
+}
+}
+},
+"/api/license/{id}/lost-replacement/by-user-id/{userId}": {
+"get": {
+"tags": [
+"license"
+],
+"parameters": [
+{
+"name": "id",
+"in": "path",
+"required": true,
+"schema": {
+"type": "integer",
+"format": "int32"
+}
+},
+{
+"name": "userId",
+"in": "path",
+"required": true,
+"schema": {
+"type": "integer",
+"format": "int32"
+}
+}
+],
+"responses": {
+"200": {
+"description": "OK",
+"content": {
+"text/plain": {
+"schema": {
+"$ref": "#/components/schemas/_License"
+}
+},
+"application/json": {
+"schema": {
+"$ref": "#/components/schemas/_License"
+}
+},
+"text/json": {
+"schema": {
+"$ref": "#/components/schemas/_License"
+}
+}
+}
+},
+"201": {
+"description": "Created",
+"content": {
+"text/plain": {
+"schema": {
+"$ref": "#/components/schemas/_License"
+}
+},
+"application/json": {
+"schema": {
+"$ref": "#/components/schemas/_License"
+}
+},
+"text/json": {
+"schema": {
+"$ref": "#/components/schemas/_License"
+}
+}
+}
+},
+"400": {
+"description": "Bad Request",
+"content": {
+"text/plain": {
+"schema": {
+"$ref": "#/components/schemas/ProblemDetails"
+}
+},
+"application/json": {
+"schema": {
+"$ref": "#/components/schemas/ProblemDetails"
+}
+},
+"text/json": {
+"schema": {
+"$ref": "#/components/schemas/ProblemDetails"
+}
+}
+}
+},
+"404": {
+"description": "Not Found",
+"content": {
+"text/plain": {
+"schema": {
+"$ref": "#/components/schemas/ProblemDetails"
+}
+},
+"application/json": {
+"schema": {
+"$ref": "#/components/schemas/ProblemDetails"
+}
+},
+"text/json": {
+"schema": {
+"$ref": "#/components/schemas/ProblemDetails"
+}
+}
+}
+},
+"500": {
+"description": "Internal Server Error"
+}
+}
+}
+},
+"/api/license/{id}/damaged-replacement/by-user-id/{userId}": {
+"get": {
+"tags": [
+"license"
+],
+"parameters": [
+{
+"name": "id",
+"in": "path",
+"required": true,
+"schema": {
+"type": "integer",
+"format": "int32"
+}
+},
+{
+"name": "userId",
+"in": "path",
+"required": true,
+"schema": {
+"type": "integer",
+"format": "int32"
+}
+}
+],
+"responses": {
+"200": {
+"description": "OK",
+"content": {
+"text/plain": {
+"schema": {
+"$ref": "#/components/schemas/_License"
+}
+},
+"application/json": {
+"schema": {
+"$ref": "#/components/schemas/_License"
+}
+},
+"text/json": {
+"schema": {
+"$ref": "#/components/schemas/_License"
+}
+}
+}
+},
+"201": {
+"description": "Created",
+"content": {
+"text/plain": {
+"schema": {
+"$ref": "#/components/schemas/_License"
+}
+},
+"application/json": {
+"schema": {
+"$ref": "#/components/schemas/_License"
+}
+},
+"text/json": {
+"schema": {
+"$ref": "#/components/schemas/_License"
+}
+}
+}
+},
+"400": {
+"description": "Bad Request",
+"content": {
+"text/plain": {
+"schema": {
+"$ref": "#/components/schemas/ProblemDetails"
+}
+},
+"application/json": {
+"schema": {
+"$ref": "#/components/schemas/ProblemDetails"
+}
+},
+"text/json": {
+"schema": {
+"$ref": "#/components/schemas/ProblemDetails"
+}
+}
+}
+},
+"404": {
+"description": "Not Found",
+"content": {
+"text/plain": {
+"schema": {
+"$ref": "#/components/schemas/ProblemDetails"
+}
+},
+"application/json": {
+"schema": {
+"$ref": "#/components/schemas/ProblemDetails"
+}
+},
+"text/json": {
+"schema": {
+"$ref": "#/components/schemas/ProblemDetails"
+}
+}
+}
+},
+"500": {
+"description": "Internal Server Error"
+}
+}
+}
+},
+"/api/license/{id}/detain/fees/{fee}/by-user-id/{userId}": {
+"patch": {
+"tags": [
+"license"
+],
+"parameters": [
+{
+"name": "id",
+"in": "path",
+"required": true,
+"schema": {
+"type": "integer",
+"format": "int32"
+}
+},
+{
+"name": "fee",
+"in": "path",
+"required": true,
+"schema": {
+"type": "number",
+"format": "double"
+}
+},
+{
+"name": "userId",
+"in": "path",
+"required": true,
+"schema": {
+"type": "integer",
+"format": "int32"
+}
+}
+],
+"responses": {
+"200": {
+"description": "OK",
+"content": {
+"text/plain": {
+"schema": {
+"type": "integer",
+"format": "int32"
+}
+},
+"application/json": {
+"schema": {
+"type": "integer",
+"format": "int32"
+}
+},
+"text/json": {
+"schema": {
+"type": "integer",
+"format": "int32"
+}
+}
+}
+},
+"201": {
+"description": "Created",
+"content": {
+"text/plain": {
+"schema": {
+"type": "integer",
+"format": "int32"
+}
+},
+"application/json": {
+"schema": {
+"type": "integer",
+"format": "int32"
+}
+},
+"text/json": {
+"schema": {
+"type": "integer",
+"format": "int32"
+}
+}
+}
+},
+"400": {
+"description": "Bad Request",
+"content": {
+"text/plain": {
+"schema": {
+"$ref": "#/components/schemas/ProblemDetails"
+}
+},
+"application/json": {
+"schema": {
+"$ref": "#/components/schemas/ProblemDetails"
+}
+},
+"text/json": {
+"schema": {
+"$ref": "#/components/schemas/ProblemDetails"
+}
+}
+}
+},
+"404": {
+"description": "Not Found",
+"content": {
+"text/plain": {
+"schema": {
+"$ref": "#/components/schemas/ProblemDetails"
+}
+},
+"application/json": {
+"schema": {
+"$ref": "#/components/schemas/ProblemDetails"
+}
+},
+"text/json": {
+"schema": {
+"$ref": "#/components/schemas/ProblemDetails"
+}
+}
+}
+},
+"500": {
+"description": "Internal Server Error"
+}
+}
+}
+},
+"/api/license/{id}/release/by-user-id/{userId}": {
+"patch": {
+"tags": [
+"license"
+],
+"parameters": [
+{
+"name": "id",
+"in": "path",
+"required": true,
+"schema": {
+"type": "integer",
+"format": "int32"
+}
+},
+{
+"name": "userId",
+"in": "path",
+"required": true,
+"schema": {
+"type": "integer",
+"format": "int32"
+}
+}
+],
+"responses": {
+"200": {
+"description": "OK",
+"content": {
+"text/plain": {
+"schema": {
+"type": "boolean"
+}
+},
+"application/json": {
+"schema": {
+"type": "boolean"
+}
+},
+"text/json": {
+"schema": {
+"type": "boolean"
+}
+}
+}
+},
+"201": {
+"description": "Created",
+"content": {
+"text/plain": {
+"schema": {
+"type": "boolean"
+}
+},
+"application/json": {
+"schema": {
+"type": "boolean"
+}
+},
+"text/json": {
+"schema": {
+"type": "boolean"
+}
+}
+}
+},
+"400": {
+"description": "Bad Request",
+"content": {
+"text/plain": {
+"schema": {
+"$ref": "#/components/schemas/ProblemDetails"
+}
+},
+"application/json": {
+"schema": {
+"$ref": "#/components/schemas/ProblemDetails"
+}
+},
+"text/json": {
+"schema": {
+"$ref": "#/components/schemas/ProblemDetails"
+}
+}
+}
+},
+"404": {
+"description": "Not Found",
+"content": {
+"text/plain": {
+"schema": {
+"$ref": "#/components/schemas/ProblemDetails"
+}
+},
+"application/json": {
+"schema": {
+"$ref": "#/components/schemas/ProblemDetails"
+}
+},
+"text/json": {
+"schema": {
+"$ref": "#/components/schemas/ProblemDetails"
+}
+}
+}
+},
+"500": {
+"description": "Internal Server Error"
+}
+}
+}
+},
+"/api/license/{id}/is-detained": {
+"get": {
+"tags": [
+"license"
+],
+"parameters": [
+{
+"name": "id",
+"in": "path",
+"required": true,
+"schema": {
+"type": "integer",
+"format": "int32"
+}
+}
+],
+"responses": {
+"200": {
+"description": "OK",
+"content": {
+"text/plain": {
+"schema": {
+"type": "boolean"
+}
+},
+"application/json": {
+"schema": {
+"type": "boolean"
+}
+},
+"text/json": {
+"schema": {
+"type": "boolean"
+}
+}
+}
+},
+"201": {
+"description": "Created",
+"content": {
+"text/plain": {
+"schema": {
+"type": "boolean"
+}
+},
+"application/json": {
+"schema": {
+"type": "boolean"
+}
+},
+"text/json": {
+"schema": {
+"type": "boolean"
+}
+}
+}
+},
+"400": {
+"description": "Bad Request",
+"content": {
+"text/plain": {
+"schema": {
+"$ref": "#/components/schemas/ProblemDetails"
+}
+},
+"application/json": {
+"schema": {
+"$ref": "#/components/schemas/ProblemDetails"
+}
+},
+"text/json": {
+"schema": {
+"$ref": "#/components/schemas/ProblemDetails"
+}
+}
+}
+},
+"404": {
+"description": "Not Found",
+"content": {
+"text/plain": {
+"schema": {
+"$ref": "#/components/schemas/ProblemDetails"
+}
+},
+"application/json": {
+"schema": {
+"$ref": "#/components/schemas/ProblemDetails"
+}
+},
+"text/json": {
+"schema": {
+"$ref": "#/components/schemas/ProblemDetails"
+}
+}
+}
+},
+"500": {
+"description": "Internal Server Error"
+}
+}
+}
+},
+"/api/license/count": {
+"get": {
+"tags": [
+"license"
+],
+"operationId": "LicensesCount",
+"responses": {
+"200": {
+"description": "OK",
+"content": {
+"text/plain": {
+"schema": {
+"type": "integer",
+"format": "int32"
+}
+},
+"application/json": {
+"schema": {
+"type": "integer",
+"format": "int32"
+}
+},
+"text/json": {
+"schema": {
+"type": "integer",
+"format": "int32"
+}
+}
+}
+},
+"201": {
+"description": "Created",
+"content": {
+"text/plain": {
+"schema": {
+"type": "integer",
+"format": "int32"
+}
+},
+"application/json": {
+"schema": {
+"type": "integer",
+"format": "int32"
+}
+},
+"text/json": {
+"schema": {
+"type": "integer",
+"format": "int32"
+}
+}
+}
+},
+"400": {
+"description": "Bad Request",
+"content": {
+"text/plain": {
+"schema": {
+"$ref": "#/components/schemas/ProblemDetails"
+}
+},
+"application/json": {
+"schema": {
+"$ref": "#/components/schemas/ProblemDetails"
+}
+},
+"text/json": {
+"schema": {
+"$ref": "#/components/schemas/ProblemDetails"
+}
+}
+}
+},
+"404": {
+"description": "Not Found",
+"content": {
+"text/plain": {
+"schema": {
+"$ref": "#/components/schemas/ProblemDetails"
+}
+},
+"application/json": {
+"schema": {
+"$ref": "#/components/schemas/ProblemDetails"
+}
+},
+"text/json": {
+"schema": {
+"$ref": "#/components/schemas/ProblemDetails"
+}
+}
+}
+},
+"500": {
+"description": "Internal Server Error"
+}
+}
+}
+},
+"/api/licenseClass/license-classes": {
+"get": {
+"tags": [
+"licenseClass"
+],
+"operationId": "GetLicenseClasses",
+"responses": {
+"200": {
+"description": "OK",
+"content": {
+"text/plain": {
+"schema": {
+"type": "array",
+"items": {
+"$ref": "#/components/schemas/LicenseClass"
+}
+}
+},
+"application/json": {
+"schema": {
+"type": "array",
+"items": {
+"$ref": "#/components/schemas/LicenseClass"
+}
+}
+},
+"text/json": {
+"schema": {
+"type": "array",
+"items": {
+"$ref": "#/components/schemas/LicenseClass"
+}
+}
+}
+}
+},
+"201": {
+"description": "Created",
+"content": {
+"text/plain": {
+"schema": {
+"type": "array",
+"items": {
+"$ref": "#/components/schemas/LicenseClass"
+}
+}
+},
+"application/json": {
+"schema": {
+"type": "array",
+"items": {
+"$ref": "#/components/schemas/LicenseClass"
+}
+}
+},
+"text/json": {
+"schema": {
+"type": "array",
+"items": {
+"$ref": "#/components/schemas/LicenseClass"
+}
+}
+}
+}
+},
+"400": {
+"description": "Bad Request",
+"content": {
+"text/plain": {
+"schema": {
+"$ref": "#/components/schemas/ProblemDetails"
+}
+},
+"application/json": {
+"schema": {
+"$ref": "#/components/schemas/ProblemDetails"
+}
+},
+"text/json": {
+"schema": {
+"$ref": "#/components/schemas/ProblemDetails"
+}
+}
+}
+},
+"404": {
+"description": "Not Found",
+"content": {
+"text/plain": {
+"schema": {
+"$ref": "#/components/schemas/ProblemDetails"
+}
+},
+"application/json": {
+"schema": {
+"$ref": "#/components/schemas/ProblemDetails"
+}
+},
+"text/json": {
+"schema": {
+"$ref": "#/components/schemas/ProblemDetails"
+}
+}
+}
+},
+"500": {
+"description": "Internal Server Error"
+}
+}
+}
+},
+"/api/licenseClass/{id}": {
+"get": {
+"tags": [
+"licenseClass"
+],
+"operationId": "ReadLicenseClassByID",
+"parameters": [
+{
+"name": "id",
+"in": "path",
+"required": true,
+"schema": {
+"type": "integer",
+"format": "int32"
+}
+}
+],
+"responses": {
+"200": {
+"description": "OK",
+"content": {
+"text/plain": {
+"schema": {
+"$ref": "#/components/schemas/LicenseClass"
+}
+},
+"application/json": {
+"schema": {
+"$ref": "#/components/schemas/LicenseClass"
+}
+},
+"text/json": {
+"schema": {
+"$ref": "#/components/schemas/LicenseClass"
+}
+}
+}
+},
+"201": {
+"description": "Created",
+"content": {
+"text/plain": {
+"schema": {
+"$ref": "#/components/schemas/LicenseClass"
+}
+},
+"application/json": {
+"schema": {
+"$ref": "#/components/schemas/LicenseClass"
+}
+},
+"text/json": {
+"schema": {
+"$ref": "#/components/schemas/LicenseClass"
+}
+}
+}
+},
+"400": {
+"description": "Bad Request",
+"content": {
+"text/plain": {
+"schema": {
+"$ref": "#/components/schemas/ProblemDetails"
+}
+},
+"application/json": {
+"schema": {
+"$ref": "#/components/schemas/ProblemDetails"
+}
+},
+"text/json": {
+"schema": {
+"$ref": "#/components/schemas/ProblemDetails"
+}
+}
+}
+},
+"404": {
+"description": "Not Found",
+"content": {
+"text/plain": {
+"schema": {
+"$ref": "#/components/schemas/ProblemDetails"
+}
+},
+"application/json": {
+"schema": {
+"$ref": "#/components/schemas/ProblemDetails"
+}
+},
+"text/json": {
+"schema": {
+"$ref": "#/components/schemas/ProblemDetails"
+}
+}
+}
+},
+"500": {
+"description": "Internal Server Error"
+}
+}
+},
+"put": {
+"tags": [
+"licenseClass"
+],
+"operationId": "UpdateLicenseClass",
+"parameters": [
+{
+"name": "id",
+"in": "path",
+"required": true,
+"schema": {
+"type": "integer",
+"format": "int32"
+}
+}
+],
+"requestBody": {
+"content": {
+"application/json": {
+"schema": {
+"$ref": "#/components/schemas/LicenseClass"
+}
+},
+"text/json": {
+"schema": {
+"$ref": "#/components/schemas/LicenseClass"
+}
+},
+"application/*+json": {
+"schema": {
+"$ref": "#/components/schemas/LicenseClass"
+}
+}
+}
+},
+"responses": {
+"200": {
+"description": "OK",
+"content": {
+"text/plain": {
+"schema": {
+"$ref": "#/components/schemas/LicenseClass"
+}
+},
+"application/json": {
+"schema": {
+"$ref": "#/components/schemas/LicenseClass"
+}
+},
+"text/json": {
+"schema": {
+"$ref": "#/components/schemas/LicenseClass"
+}
+}
+}
+},
+"201": {
+"description": "Created",
+"content": {
+"text/plain": {
+"schema": {
+"$ref": "#/components/schemas/LicenseClass"
+}
+},
+"application/json": {
+"schema": {
+"$ref": "#/components/schemas/LicenseClass"
+}
+},
+"text/json": {
+"schema": {
+"$ref": "#/components/schemas/LicenseClass"
+}
+}
+}
+},
+"400": {
+"description": "Bad Request",
+"content": {
+"text/plain": {
+"schema": {
+"$ref": "#/components/schemas/ProblemDetails"
+}
+},
+"application/json": {
+"schema": {
+"$ref": "#/components/schemas/ProblemDetails"
+}
+},
+"text/json": {
+"schema": {
+"$ref": "#/components/schemas/ProblemDetails"
+}
+}
+}
+},
+"404": {
+"description": "Not Found",
+"content": {
+"text/plain": {
+"schema": {
+"$ref": "#/components/schemas/ProblemDetails"
+}
+},
+"application/json": {
+"schema": {
+"$ref": "#/components/schemas/ProblemDetails"
+}
+},
+"text/json": {
+"schema": {
+"$ref": "#/components/schemas/ProblemDetails"
+}
+}
+}
+},
+"500": {
+"description": "Internal Server Error"
+}
+}
+},
+"delete": {
+"tags": [
+"licenseClass"
+],
+"operationId": "DeleteLicenseClass",
+"parameters": [
+{
+"name": "id",
+"in": "path",
+"required": true,
+"schema": {
+"type": "integer",
+"format": "int32"
+}
+}
+],
+"responses": {
+"200": {
+"description": "OK"
+},
+"201": {
+"description": "Created"
+},
+"400": {
+"description": "Bad Request",
+"content": {
+"text/plain": {
+"schema": {
+"$ref": "#/components/schemas/ProblemDetails"
+}
+},
+"application/json": {
+"schema": {
+"$ref": "#/components/schemas/ProblemDetails"
+}
+},
+"text/json": {
+"schema": {
+"$ref": "#/components/schemas/ProblemDetails"
+}
+}
+}
+},
+"404": {
+"description": "Not Found",
+"content": {
+"text/plain": {
+"schema": {
+"$ref": "#/components/schemas/ProblemDetails"
+}
+},
+"application/json": {
+"schema": {
+"$ref": "#/components/schemas/ProblemDetails"
+}
+},
+"text/json": {
+"schema": {
+"$ref": "#/components/schemas/ProblemDetails"
+}
+}
+}
+},
+"500": {
+"description": "Internal Server Error"
+}
+}
+}
+},
+"/api/licenseClass": {
+"post": {
+"tags": [
+"licenseClass"
+],
+"operationId": "CreateLicenseClass",
+"requestBody": {
+"content": {
+"application/json": {
+"schema": {
+"$ref": "#/components/schemas/LicenseClass"
+}
+},
+"text/json": {
+"schema": {
+"$ref": "#/components/schemas/LicenseClass"
+}
+},
+"application/*+json": {
+"schema": {
+"$ref": "#/components/schemas/LicenseClass"
+}
+}
+}
+},
+"responses": {
+"200": {
+"description": "OK",
+"content": {
+"text/plain": {
+"schema": {
+"$ref": "#/components/schemas/LicenseClass"
+}
+},
+"application/json": {
+"schema": {
+"$ref": "#/components/schemas/LicenseClass"
+}
+},
+"text/json": {
+"schema": {
+"$ref": "#/components/schemas/LicenseClass"
+}
+}
+}
+},
+"201": {
+"description": "Created",
+"content": {
+"text/plain": {
+"schema": {
+"$ref": "#/components/schemas/LicenseClass"
+}
+},
+"application/json": {
+"schema": {
+"$ref": "#/components/schemas/LicenseClass"
+}
+},
+"text/json": {
+"schema": {
+"$ref": "#/components/schemas/LicenseClass"
+}
+}
+}
+},
+"400": {
+"description": "Bad Request",
+"content": {
+"text/plain": {
+"schema": {
+"$ref": "#/components/schemas/ProblemDetails"
+}
+},
+"application/json": {
+"schema": {
+"$ref": "#/components/schemas/ProblemDetails"
+}
+},
+"text/json": {
+"schema": {
+"$ref": "#/components/schemas/ProblemDetails"
+}
+}
+}
+},
+"404": {
+"description": "Not Found",
+"content": {
+"text/plain": {
+"schema": {
+"$ref": "#/components/schemas/ProblemDetails"
+}
+},
+"application/json": {
+"schema": {
+"$ref": "#/components/schemas/ProblemDetails"
+}
+},
+"text/json": {
+"schema": {
+"$ref": "#/components/schemas/ProblemDetails"
+}
+}
+}
+},
+"500": {
+"description": "Internal Server Error"
+}
+}
+}
+},
+"/api/licenseClass/classes-name": {
+"get": {
+"tags": [
+"licenseClass"
+],
+"operationId": "GetClassesNames",
+"responses": {
+"200": {
+"description": "OK",
+"content": {
+"text/plain": {
+"schema": {
+"type": "array",
+"items": {
+"type": "string"
+}
+}
+},
+"application/json": {
+"schema": {
+"type": "array",
+"items": {
+"type": "string"
+}
+}
+},
+"text/json": {
+"schema": {
+"type": "array",
+"items": {
+"type": "string"
+}
+}
+}
+}
+},
+"201": {
+"description": "Created",
+"content": {
+"text/plain": {
+"schema": {
+"type": "array",
+"items": {
+"type": "string"
+}
+}
+},
+"application/json": {
+"schema": {
+"type": "array",
+"items": {
+"type": "string"
+}
+}
+},
+"text/json": {
+"schema": {
+"type": "array",
+"items": {
+"type": "string"
+}
+}
+}
+}
+},
+"400": {
+"description": "Bad Request",
+"content": {
+"text/plain": {
+"schema": {
+"$ref": "#/components/schemas/ProblemDetails"
+}
+},
+"application/json": {
+"schema": {
+"$ref": "#/components/schemas/ProblemDetails"
+}
+},
+"text/json": {
+"schema": {
+"$ref": "#/components/schemas/ProblemDetails"
+}
+}
+}
+},
+"404": {
+"description": "Not Found",
+"content": {
+"text/plain": {
+"schema": {
+"$ref": "#/components/schemas/ProblemDetails"
+}
+},
+"application/json": {
+"schema": {
+"$ref": "#/components/schemas/ProblemDetails"
+}
+},
+"text/json": {
+"schema": {
+"$ref": "#/components/schemas/ProblemDetails"
+}
+}
+}
+},
+"500": {
+"description": "Internal Server Error"
+}
+}
+}
+},
+"/api/localApplication/local-applications": {
+"get": {
+"tags": [
+"localApplication"
+],
+"operationId": "AllLocalLicensesApplications",
+"responses": {
+"200": {
+"description": "OK",
+"content": {
+"text/plain": {
+"schema": {
+"type": "array",
+"items": {
+"$ref": "#/components/schemas/LocalDLApp_View"
+}
+}
+},
+"application/json": {
+"schema": {
+"type": "array",
+"items": {
+"$ref": "#/components/schemas/LocalDLApp_View"
+}
+}
+},
+"text/json": {
+"schema": {
+"type": "array",
+"items": {
+"$ref": "#/components/schemas/LocalDLApp_View"
+}
+}
+}
+}
+},
+"201": {
+"description": "Created",
+"content": {
+"text/plain": {
+"schema": {
+"type": "array",
+"items": {
+"$ref": "#/components/schemas/LocalDLApp_View"
+}
+}
+},
+"application/json": {
+"schema": {
+"type": "array",
+"items": {
+"$ref": "#/components/schemas/LocalDLApp_View"
+}
+}
+},
+"text/json": {
+"schema": {
+"type": "array",
+"items": {
+"$ref": "#/components/schemas/LocalDLApp_View"
+}
+}
+}
+}
+},
+"400": {
+"description": "Bad Request",
+"content": {
+"text/plain": {
+"schema": {
+"$ref": "#/components/schemas/ProblemDetails"
+}
+},
+"application/json": {
+"schema": {
+"$ref": "#/components/schemas/ProblemDetails"
+}
+},
+"text/json": {
+"schema": {
+"$ref": "#/components/schemas/ProblemDetails"
+}
+}
+}
+},
+"404": {
+"description": "Not Found",
+"content": {
+"text/plain": {
+"schema": {
+"$ref": "#/components/schemas/ProblemDetails"
+}
+},
+"application/json": {
+"schema": {
+"$ref": "#/components/schemas/ProblemDetails"
+}
+},
+"text/json": {
+"schema": {
+"$ref": "#/components/schemas/ProblemDetails"
+}
+}
+}
+},
+"500": {
+"description": "Internal Server Error"
+}
+}
+}
+},
+"/api/localApplication/{id}": {
+"get": {
+"tags": [
+"localApplication"
+],
+"operationId": "ReadLocalApplicationByID",
+"parameters": [
+{
+"name": "id",
+"in": "path",
+"required": true,
+"schema": {
+"type": "integer",
+"format": "int32"
+}
+}
+],
+"responses": {
+"200": {
+"description": "OK",
+"content": {
+"text/plain": {
+"schema": {
+"$ref": "#/components/schemas/LocalDLApp"
+}
+},
+"application/json": {
+"schema": {
+"$ref": "#/components/schemas/LocalDLApp"
+}
+},
+"text/json": {
+"schema": {
+"$ref": "#/components/schemas/LocalDLApp"
+}
+}
+}
+},
+"201": {
+"description": "Created",
+"content": {
+"text/plain": {
+"schema": {
+"$ref": "#/components/schemas/LocalDLApp"
+}
+},
+"application/json": {
+"schema": {
+"$ref": "#/components/schemas/LocalDLApp"
+}
+},
+"text/json": {
+"schema": {
+"$ref": "#/components/schemas/LocalDLApp"
+}
+}
+}
+},
+"400": {
+"description": "Bad Request",
+"content": {
+"text/plain": {
+"schema": {
+"$ref": "#/components/schemas/ProblemDetails"
+}
+},
+"application/json": {
+"schema": {
+"$ref": "#/components/schemas/ProblemDetails"
+}
+},
+"text/json": {
+"schema": {
+"$ref": "#/components/schemas/ProblemDetails"
+}
+}
+}
+},
+"404": {
+"description": "Not Found",
+"content": {
+"text/plain": {
+"schema": {
+"$ref": "#/components/schemas/ProblemDetails"
+}
+},
+"application/json": {
+"schema": {
+"$ref": "#/components/schemas/ProblemDetails"
+}
+},
+"text/json": {
+"schema": {
+"$ref": "#/components/schemas/ProblemDetails"
+}
+}
+}
+},
+"500": {
+"description": "Internal Server Error"
+}
+}
+},
+"put": {
+"tags": [
+"localApplication"
+],
+"operationId": "UpdateLocalApplication",
+"parameters": [
+{
+"name": "id",
+"in": "path",
+"required": true,
+"schema": {
+"type": "integer",
+"format": "int32"
+}
+}
+],
+"requestBody": {
+"content": {
+"application/json": {
+"schema": {
+"$ref": "#/components/schemas/LocalDLApp"
+}
+},
+"text/json": {
+"schema": {
+"$ref": "#/components/schemas/LocalDLApp"
+}
+},
+"application/*+json": {
+"schema": {
+"$ref": "#/components/schemas/LocalDLApp"
+}
+}
+}
+},
+"responses": {
+"200": {
+"description": "OK",
+"content": {
+"text/plain": {
+"schema": {
+"$ref": "#/components/schemas/LocalDLApp"
+}
+},
+"application/json": {
+"schema": {
+"$ref": "#/components/schemas/LocalDLApp"
+}
+},
+"text/json": {
+"schema": {
+"$ref": "#/components/schemas/LocalDLApp"
+}
+}
+}
+},
+"201": {
+"description": "Created",
+"content": {
+"text/plain": {
+"schema": {
+"$ref": "#/components/schemas/LocalDLApp"
+}
+},
+"application/json": {
+"schema": {
+"$ref": "#/components/schemas/LocalDLApp"
+}
+},
+"text/json": {
+"schema": {
+"$ref": "#/components/schemas/LocalDLApp"
+}
+}
+}
+},
+"400": {
+"description": "Bad Request",
+"content": {
+"text/plain": {
+"schema": {
+"$ref": "#/components/schemas/ProblemDetails"
+}
+},
+"application/json": {
+"schema": {
+"$ref": "#/components/schemas/ProblemDetails"
+}
+},
+"text/json": {
+"schema": {
+"$ref": "#/components/schemas/ProblemDetails"
+}
+}
+}
+},
+"404": {
+"description": "Not Found",
+"content": {
+"text/plain": {
+"schema": {
+"$ref": "#/components/schemas/ProblemDetails"
+}
+},
+"application/json": {
+"schema": {
+"$ref": "#/components/schemas/ProblemDetails"
+}
+},
+"text/json": {
+"schema": {
+"$ref": "#/components/schemas/ProblemDetails"
+}
+}
+}
+},
+"500": {
+"description": "Internal Server Error"
+}
+}
+},
+"delete": {
+"tags": [
+"localApplication"
+],
+"operationId": "DleteLocalApplication",
+"parameters": [
+{
+"name": "id",
+"in": "path",
+"required": true,
+"schema": {
+"type": "integer",
+"format": "int32"
+}
+}
+],
+"responses": {
+"200": {
+"description": "OK"
+},
+"201": {
+"description": "Created"
+},
+"400": {
+"description": "Bad Request",
+"content": {
+"text/plain": {
+"schema": {
+"$ref": "#/components/schemas/ProblemDetails"
+}
+},
+"application/json": {
+"schema": {
+"$ref": "#/components/schemas/ProblemDetails"
+}
+},
+"text/json": {
+"schema": {
+"$ref": "#/components/schemas/ProblemDetails"
+}
+}
+}
+},
+"404": {
+"description": "Not Found",
+"content": {
+"text/plain": {
+"schema": {
+"$ref": "#/components/schemas/ProblemDetails"
+}
+},
+"application/json": {
+"schema": {
+"$ref": "#/components/schemas/ProblemDetails"
+}
+},
+"text/json": {
+"schema": {
+"$ref": "#/components/schemas/ProblemDetails"
+}
+}
+}
+},
+"500": {
+"description": "Internal Server Error"
+}
+}
+}
+},
+"/api/localApplication/{id}/person": {
+"get": {
+"tags": [
+"localApplication"
+],
+"operationId": "ReadPersonID",
+"parameters": [
+{
+"name": "id",
+"in": "path",
+"required": true,
+"schema": {
+"type": "integer",
+"format": "int32"
+}
+}
+],
+"responses": {
+"200": {
+"description": "OK",
+"content": {
+"text/plain": {
+"schema": {
+"type": "integer",
+"format": "int32"
+}
+},
+"application/json": {
+"schema": {
+"type": "integer",
+"format": "int32"
+}
+},
+"text/json": {
+"schema": {
+"type": "integer",
+"format": "int32"
+}
+}
+}
+},
+"201": {
+"description": "Created",
+"content": {
+"text/plain": {
+"schema": {
+"type": "integer",
+"format": "int32"
+}
+},
+"application/json": {
+"schema": {
+"type": "integer",
+"format": "int32"
+}
+},
+"text/json": {
+"schema": {
+"type": "integer",
+"format": "int32"
+}
+}
+}
+},
+"400": {
+"description": "Bad Request",
+"content": {
+"text/plain": {
+"schema": {
+"$ref": "#/components/schemas/ProblemDetails"
+}
+},
+"application/json": {
+"schema": {
+"$ref": "#/components/schemas/ProblemDetails"
+}
+},
+"text/json": {
+"schema": {
+"$ref": "#/components/schemas/ProblemDetails"
+}
+}
+}
+},
+"404": {
+"description": "Not Found",
+"content": {
+"text/plain": {
+"schema": {
+"$ref": "#/components/schemas/ProblemDetails"
+}
+},
+"application/json": {
+"schema": {
+"$ref": "#/components/schemas/ProblemDetails"
+}
+},
+"text/json": {
+"schema": {
+"$ref": "#/components/schemas/ProblemDetails"
+}
+}
+}
+},
+"500": {
+"description": "Internal Server Error"
+}
+}
+}
+},
+"/api/localApplication/{id}/view": {
+"get": {
+"tags": [
+"localApplication"
+],
+"operationId": "ReadLocalApplicationView",
+"parameters": [
+{
+"name": "id",
+"in": "path",
+"required": true,
+"schema": {
+"type": "integer",
+"format": "int32"
+}
+}
+],
+"responses": {
+"200": {
+"description": "OK",
+"content": {
+"text/plain": {
+"schema": {
+"$ref": "#/components/schemas/LocalDLApp_View"
+}
+},
+"application/json": {
+"schema": {
+"$ref": "#/components/schemas/LocalDLApp_View"
+}
+},
+"text/json": {
+"schema": {
+"$ref": "#/components/schemas/LocalDLApp_View"
+}
+}
+}
+},
+"201": {
+"description": "Created",
+"content": {
+"text/plain": {
+"schema": {
+"$ref": "#/components/schemas/LocalDLApp_View"
+}
+},
+"application/json": {
+"schema": {
+"$ref": "#/components/schemas/LocalDLApp_View"
+}
+},
+"text/json": {
+"schema": {
+"$ref": "#/components/schemas/LocalDLApp_View"
+}
+}
+}
+},
+"400": {
+"description": "Bad Request",
+"content": {
+"text/plain": {
+"schema": {
+"$ref": "#/components/schemas/ProblemDetails"
+}
+},
+"application/json": {
+"schema": {
+"$ref": "#/components/schemas/ProblemDetails"
+}
+},
+"text/json": {
+"schema": {
+"$ref": "#/components/schemas/ProblemDetails"
+}
+}
+}
+},
+"404": {
+"description": "Not Found",
+"content": {
+"text/plain": {
+"schema": {
+"$ref": "#/components/schemas/ProblemDetails"
+}
+},
+"application/json": {
+"schema": {
+"$ref": "#/components/schemas/ProblemDetails"
+}
+},
+"text/json": {
+"schema": {
+"$ref": "#/components/schemas/ProblemDetails"
+}
+}
+}
+},
+"500": {
+"description": "Internal Server Error"
+}
+}
+}
+},
+"/api/localApplication": {
+"post": {
+"tags": [
+"localApplication"
+],
+"operationId": "CreateLocalApplication",
+"requestBody": {
+"content": {
+"application/json": {
+"schema": {
+"$ref": "#/components/schemas/LocalDLApp"
+}
+},
+"text/json": {
+"schema": {
+"$ref": "#/components/schemas/LocalDLApp"
+}
+},
+"application/*+json": {
+"schema": {
+"$ref": "#/components/schemas/LocalDLApp"
+}
+}
+}
+},
+"responses": {
+"200": {
+"description": "OK",
+"content": {
+"text/plain": {
+"schema": {
+"$ref": "#/components/schemas/LocalDLApp"
+}
+},
+"application/json": {
+"schema": {
+"$ref": "#/components/schemas/LocalDLApp"
+}
+},
+"text/json": {
+"schema": {
+"$ref": "#/components/schemas/LocalDLApp"
+}
+}
+}
+},
+"201": {
+"description": "Created",
+"content": {
+"text/plain": {
+"schema": {
+"$ref": "#/components/schemas/LocalDLApp"
+}
+},
+"application/json": {
+"schema": {
+"$ref": "#/components/schemas/LocalDLApp"
+}
+},
+"text/json": {
+"schema": {
+"$ref": "#/components/schemas/LocalDLApp"
+}
+}
+}
+},
+"400": {
+"description": "Bad Request",
+"content": {
+"text/plain": {
+"schema": {
+"$ref": "#/components/schemas/ProblemDetails"
+}
+},
+"application/json": {
+"schema": {
+"$ref": "#/components/schemas/ProblemDetails"
+}
+},
+"text/json": {
+"schema": {
+"$ref": "#/components/schemas/ProblemDetails"
+}
+}
+}
+},
+"404": {
+"description": "Not Found",
+"content": {
+"text/plain": {
+"schema": {
+"$ref": "#/components/schemas/ProblemDetails"
+}
+},
+"application/json": {
+"schema": {
+"$ref": "#/components/schemas/ProblemDetails"
+}
+},
+"text/json": {
+"schema": {
+"$ref": "#/components/schemas/ProblemDetails"
+}
+}
+}
+},
+"500": {
+"description": "Internal Server Error"
+}
+}
+}
+},
+"/api/localApplication/{id}/does-passed-all-tests": {
+"get": {
+"tags": [
+"localApplication"
+],
+"operationId": "isAllTestsPassed",
+"parameters": [
+{
+"name": "id",
+"in": "path",
+"required": true,
+"schema": {
+"type": "integer",
+"format": "int32"
+}
+}
+],
+"responses": {
+"200": {
+"description": "OK",
+"content": {
+"text/plain": {
+"schema": {
+"type": "boolean"
+}
+},
+"application/json": {
+"schema": {
+"type": "boolean"
+}
+},
+"text/json": {
+"schema": {
+"type": "boolean"
+}
+}
+}
+},
+"201": {
+"description": "Created",
+"content": {
+"text/plain": {
+"schema": {
+"type": "boolean"
+}
+},
+"application/json": {
+"schema": {
+"type": "boolean"
+}
+},
+"text/json": {
+"schema": {
+"type": "boolean"
+}
+}
+}
+},
+"400": {
+"description": "Bad Request",
+"content": {
+"text/plain": {
+"schema": {
+"$ref": "#/components/schemas/ProblemDetails"
+}
+},
+"application/json": {
+"schema": {
+"$ref": "#/components/schemas/ProblemDetails"
+}
+},
+"text/json": {
+"schema": {
+"$ref": "#/components/schemas/ProblemDetails"
+}
+}
+}
+},
+"404": {
+"description": "Not Found",
+"content": {
+"text/plain": {
+"schema": {
+"$ref": "#/components/schemas/ProblemDetails"
+}
+},
+"application/json": {
+"schema": {
+"$ref": "#/components/schemas/ProblemDetails"
+}
+},
+"text/json": {
+"schema": {
+"$ref": "#/components/schemas/ProblemDetails"
+}
+}
+}
+},
+"500": {
+"description": "Internal Server Error"
+}
+}
+}
+},
+"/api/localApplication/{id}/passed-test-count": {
+"get": {
+"tags": [
+"localApplication"
+],
+"operationId": "PassedTestCount",
+"parameters": [
+{
+"name": "id",
+"in": "path",
+"required": true,
+"schema": {
+"type": "integer",
+"format": "int32"
+}
+}
+],
+"responses": {
+"200": {
+"description": "OK",
+"content": {
+"text/plain": {
+"schema": {
+"type": "integer",
+"format": "int32"
+}
+},
+"application/json": {
+"schema": {
+"type": "integer",
+"format": "int32"
+}
+},
+"text/json": {
+"schema": {
+"type": "integer",
+"format": "int32"
+}
+}
+}
+},
+"201": {
+"description": "Created",
+"content": {
+"text/plain": {
+"schema": {
+"type": "integer",
+"format": "int32"
+}
+},
+"application/json": {
+"schema": {
+"type": "integer",
+"format": "int32"
+}
+},
+"text/json": {
+"schema": {
+"type": "integer",
+"format": "int32"
+}
+}
+}
+},
+"400": {
+"description": "Bad Request",
+"content": {
+"text/plain": {
+"schema": {
+"$ref": "#/components/schemas/ProblemDetails"
+}
+},
+"application/json": {
+"schema": {
+"$ref": "#/components/schemas/ProblemDetails"
+}
+},
+"text/json": {
+"schema": {
+"$ref": "#/components/schemas/ProblemDetails"
+}
+}
+}
+},
+"404": {
+"description": "Not Found",
+"content": {
+"text/plain": {
+"schema": {
+"$ref": "#/components/schemas/ProblemDetails"
+}
+},
+"application/json": {
+"schema": {
+"$ref": "#/components/schemas/ProblemDetails"
+}
+},
+"text/json": {
+"schema": {
+"$ref": "#/components/schemas/ProblemDetails"
+}
+}
+}
+},
+"500": {
+"description": "Internal Server Error"
+}
+}
+}
+},
+"/api/localApplication/{id}/is-test-passed/test-type/{testType}": {
+"get": {
+"tags": [
+"localApplication"
+],
+"operationId": "isTestPassed",
+"parameters": [
+{
+"name": "id",
+"in": "path",
+"required": true,
+"schema": {
+"type": "integer",
+"format": "int32"
+}
+},
+{
+"name": "testType",
+"in": "path",
+"required": true,
+"schema": {
+"$ref": "#/components/schemas/enTestType"
+}
+}
+],
+"responses": {
+"200": {
+"description": "OK",
+"content": {
+"text/plain": {
+"schema": {
+"type": "boolean"
+}
+},
+"application/json": {
+"schema": {
+"type": "boolean"
+}
+},
+"text/json": {
+"schema": {
+"type": "boolean"
+}
+}
+}
+},
+"201": {
+"description": "Created",
+"content": {
+"text/plain": {
+"schema": {
+"type": "boolean"
+}
+},
+"application/json": {
+"schema": {
+"type": "boolean"
+}
+},
+"text/json": {
+"schema": {
+"type": "boolean"
+}
+}
+}
+},
+"400": {
+"description": "Bad Request",
+"content": {
+"text/plain": {
+"schema": {
+"$ref": "#/components/schemas/ProblemDetails"
+}
+},
+"application/json": {
+"schema": {
+"$ref": "#/components/schemas/ProblemDetails"
+}
+},
+"text/json": {
+"schema": {
+"$ref": "#/components/schemas/ProblemDetails"
+}
+}
+}
+},
+"404": {
+"description": "Not Found",
+"content": {
+"text/plain": {
+"schema": {
+"$ref": "#/components/schemas/ProblemDetails"
+}
+},
+"application/json": {
+"schema": {
+"$ref": "#/components/schemas/ProblemDetails"
+}
+},
+"text/json": {
+"schema": {
+"$ref": "#/components/schemas/ProblemDetails"
+}
+}
+}
+},
+"500": {
+"description": "Internal Server Error"
+}
+}
+}
+},
+"/api/localApplication/{id}/canceled": {
+"get": {
+"tags": [
+"localApplication"
+],
+"operationId": "isCancelled",
+"parameters": [
+{
+"name": "id",
+"in": "path",
+"required": true,
+"schema": {
+"type": "integer",
+"format": "int32"
+}
+}
+],
+"responses": {
+"200": {
+"description": "OK",
+"content": {
+"text/plain": {
+"schema": {
+"type": "boolean"
+}
+},
+"application/json": {
+"schema": {
+"type": "boolean"
+}
+},
+"text/json": {
+"schema": {
+"type": "boolean"
+}
+}
+}
+},
+"201": {
+"description": "Created",
+"content": {
+"text/plain": {
+"schema": {
+"type": "boolean"
+}
+},
+"application/json": {
+"schema": {
+"type": "boolean"
+}
+},
+"text/json": {
+"schema": {
+"type": "boolean"
+}
+}
+}
+},
+"400": {
+"description": "Bad Request",
+"content": {
+"text/plain": {
+"schema": {
+"$ref": "#/components/schemas/ProblemDetails"
+}
+},
+"application/json": {
+"schema": {
+"$ref": "#/components/schemas/ProblemDetails"
+}
+},
+"text/json": {
+"schema": {
+"$ref": "#/components/schemas/ProblemDetails"
+}
+}
+}
+},
+"404": {
+"description": "Not Found",
+"content": {
+"text/plain": {
+"schema": {
+"$ref": "#/components/schemas/ProblemDetails"
+}
+},
+"application/json": {
+"schema": {
+"$ref": "#/components/schemas/ProblemDetails"
+}
+},
+"text/json": {
+"schema": {
+"$ref": "#/components/schemas/ProblemDetails"
+}
+}
+}
+},
+"500": {
+"description": "Internal Server Error"
+}
+}
+}
+},
+"/api/localApplication/{id}/completed": {
+"get": {
+"tags": [
+"localApplication"
+],
+"operationId": "isCompleted",
+"parameters": [
+{
+"name": "id",
+"in": "path",
+"required": true,
+"schema": {
+"type": "integer",
+"format": "int32"
+}
+}
+],
+"responses": {
+"200": {
+"description": "OK",
+"content": {
+"text/plain": {
+"schema": {
+"type": "boolean"
+}
+},
+"application/json": {
+"schema": {
+"type": "boolean"
+}
+},
+"text/json": {
+"schema": {
+"type": "boolean"
+}
+}
+}
+},
+"201": {
+"description": "Created",
+"content": {
+"text/plain": {
+"schema": {
+"type": "boolean"
+}
+},
+"application/json": {
+"schema": {
+"type": "boolean"
+}
+},
+"text/json": {
+"schema": {
+"type": "boolean"
+}
+}
+}
+},
+"400": {
+"description": "Bad Request",
+"content": {
+"text/plain": {
+"schema": {
+"$ref": "#/components/schemas/ProblemDetails"
+}
+},
+"application/json": {
+"schema": {
+"$ref": "#/components/schemas/ProblemDetails"
+}
+},
+"text/json": {
+"schema": {
+"$ref": "#/components/schemas/ProblemDetails"
+}
+}
+}
+},
+"404": {
+"description": "Not Found",
+"content": {
+"text/plain": {
+"schema": {
+"$ref": "#/components/schemas/ProblemDetails"
+}
+},
+"application/json": {
+"schema": {
+"$ref": "#/components/schemas/ProblemDetails"
+}
+},
+"text/json": {
+"schema": {
+"$ref": "#/components/schemas/ProblemDetails"
+}
+}
+}
+},
+"500": {
+"description": "Internal Server Error"
+}
+}
+}
+},
+"/api/localApplication/{id}/license-issued": {
+"get": {
+"tags": [
+"localApplication"
+],
+"operationId": "isLicenseIssued",
+"parameters": [
+{
+"name": "id",
+"in": "path",
+"required": true,
+"schema": {
+"type": "integer",
+"format": "int32"
+}
+}
+],
+"responses": {
+"200": {
+"description": "OK",
+"content": {
+"text/plain": {
+"schema": {
+"type": "boolean"
+}
+},
+"application/json": {
+"schema": {
+"type": "boolean"
+}
+},
+"text/json": {
+"schema": {
+"type": "boolean"
+}
+}
+}
+},
+"201": {
+"description": "Created",
+"content": {
+"text/plain": {
+"schema": {
+"type": "boolean"
+}
+},
+"application/json": {
+"schema": {
+"type": "boolean"
+}
+},
+"text/json": {
+"schema": {
+"type": "boolean"
+}
+}
+}
+},
+"400": {
+"description": "Bad Request",
+"content": {
+"text/plain": {
+"schema": {
+"$ref": "#/components/schemas/ProblemDetails"
+}
+},
+"application/json": {
+"schema": {
+"$ref": "#/components/schemas/ProblemDetails"
+}
+},
+"text/json": {
+"schema": {
+"$ref": "#/components/schemas/ProblemDetails"
+}
+}
+}
+},
+"404": {
+"description": "Not Found",
+"content": {
+"text/plain": {
+"schema": {
+"$ref": "#/components/schemas/ProblemDetails"
+}
+},
+"application/json": {
+"schema": {
+"$ref": "#/components/schemas/ProblemDetails"
+}
+},
+"text/json": {
+"schema": {
+"$ref": "#/components/schemas/ProblemDetails"
+}
+}
+}
+},
+"500": {
+"description": "Internal Server Error"
+}
+}
+}
+},
+"/api/localApplication/{id}/active-license-id": {
+"get": {
+"tags": [
+"localApplication"
+],
+"operationId": "ReadLicenseID",
+"parameters": [
+{
+"name": "id",
+"in": "path",
+"required": true,
+"schema": {
+"type": "integer",
+"format": "int32"
+}
+}
+],
+"responses": {
+"200": {
+"description": "OK",
+"content": {
+"text/plain": {
+"schema": {
+"type": "integer",
+"format": "int32"
+}
+},
+"application/json": {
+"schema": {
+"type": "integer",
+"format": "int32"
+}
+},
+"text/json": {
+"schema": {
+"type": "integer",
+"format": "int32"
+}
+}
+}
+},
+"201": {
+"description": "Created",
+"content": {
+"text/plain": {
+"schema": {
+"type": "integer",
+"format": "int32"
+}
+},
+"application/json": {
+"schema": {
+"type": "integer",
+"format": "int32"
+}
+},
+"text/json": {
+"schema": {
+"type": "integer",
+"format": "int32"
+}
+}
+}
+},
+"400": {
+"description": "Bad Request",
+"content": {
+"text/plain": {
+"schema": {
+"$ref": "#/components/schemas/ProblemDetails"
+}
+},
+"application/json": {
+"schema": {
+"$ref": "#/components/schemas/ProblemDetails"
+}
+},
+"text/json": {
+"schema": {
+"$ref": "#/components/schemas/ProblemDetails"
+}
+}
+}
+},
+"404": {
+"description": "Not Found",
+"content": {
+"text/plain": {
+"schema": {
+"$ref": "#/components/schemas/ProblemDetails"
+}
+},
+"application/json": {
+"schema": {
+"$ref": "#/components/schemas/ProblemDetails"
+}
+},
+"text/json": {
+"schema": {
+"$ref": "#/components/schemas/ProblemDetails"
+}
+}
+}
+},
+"500": {
+"description": "Internal Server Error"
+}
+}
+}
+},
+"/api/localApplication/{id}/last-test-per-test-type/test-type/{testId}": {
+"get": {
+"tags": [
+"localApplication"
+],
+"operationId": "LastTestPerTestType",
+"parameters": [
+{
+"name": "id",
+"in": "path",
+"required": true,
+"schema": {
+"type": "integer",
+"format": "int32"
+}
+},
+{
+"name": "testId",
+"in": "path",
+"required": true,
+"schema": {
+"$ref": "#/components/schemas/enTestType"
+}
+}
+],
+"responses": {
+"200": {
+"description": "OK",
+"content": {
+"text/plain": {
+"schema": {
+"$ref": "#/components/schemas/clsTests"
+}
+},
+"application/json": {
+"schema": {
+"$ref": "#/components/schemas/clsTests"
+}
+},
+"text/json": {
+"schema": {
+"$ref": "#/components/schemas/clsTests"
+}
+}
+}
+},
+"201": {
+"description": "Created",
+"content": {
+"text/plain": {
+"schema": {
+"$ref": "#/components/schemas/clsTests"
+}
+},
+"application/json": {
+"schema": {
+"$ref": "#/components/schemas/clsTests"
+}
+},
+"text/json": {
+"schema": {
+"$ref": "#/components/schemas/clsTests"
+}
+}
+}
+},
+"400": {
+"description": "Bad Request",
+"content": {
+"text/plain": {
+"schema": {
+"$ref": "#/components/schemas/ProblemDetails"
+}
+},
+"application/json": {
+"schema": {
+"$ref": "#/components/schemas/ProblemDetails"
+}
+},
+"text/json": {
+"schema": {
+"$ref": "#/components/schemas/ProblemDetails"
+}
+}
+}
+},
+"404": {
+"description": "Not Found",
+"content": {
+"text/plain": {
+"schema": {
+"$ref": "#/components/schemas/ProblemDetails"
+}
+},
+"application/json": {
+"schema": {
+"$ref": "#/components/schemas/ProblemDetails"
+}
+},
+"text/json": {
+"schema": {
+"$ref": "#/components/schemas/ProblemDetails"
+}
+}
+}
+},
+"500": {
+"description": "Internal Server Error"
+}
+}
+}
+},
+"/api/localApplication/{id}/is-test-attended/{testId}": {
+"get": {
+"tags": [
+"localApplication"
+],
+"operationId": "isTestAttended",
+"parameters": [
+{
+"name": "id",
+"in": "path",
+"required": true,
+"schema": {
+"type": "integer",
+"format": "int32"
+}
+},
+{
+"name": "testId",
+"in": "path",
+"required": true,
+"schema": {
+"$ref": "#/components/schemas/enTestType"
+}
+}
+],
+"responses": {
+"200": {
+"description": "OK",
+"content": {
+"text/plain": {
+"schema": {
+"type": "boolean"
+}
+},
+"application/json": {
+"schema": {
+"type": "boolean"
+}
+},
+"text/json": {
+"schema": {
+"type": "boolean"
+}
+}
+}
+},
+"201": {
+"description": "Created",
+"content": {
+"text/plain": {
+"schema": {
+"type": "boolean"
+}
+},
+"application/json": {
+"schema": {
+"type": "boolean"
+}
+},
+"text/json": {
+"schema": {
+"type": "boolean"
+}
+}
+}
+},
+"400": {
+"description": "Bad Request",
+"content": {
+"text/plain": {
+"schema": {
+"$ref": "#/components/schemas/ProblemDetails"
+}
+},
+"application/json": {
+"schema": {
+"$ref": "#/components/schemas/ProblemDetails"
+}
+},
+"text/json": {
+"schema": {
+"$ref": "#/components/schemas/ProblemDetails"
+}
+}
+}
+},
+"404": {
+"description": "Not Found",
+"content": {
+"text/plain": {
+"schema": {
+"$ref": "#/components/schemas/ProblemDetails"
+}
+},
+"application/json": {
+"schema": {
+"$ref": "#/components/schemas/ProblemDetails"
+}
+},
+"text/json": {
+"schema": {
+"$ref": "#/components/schemas/ProblemDetails"
+}
+}
+}
+},
+"500": {
+"description": "Internal Server Error"
+}
+}
+}
+},
+"/api/localApplication/{id}/complete": {
+"patch": {
+"tags": [
+"localApplication"
+],
+"operationId": "CompleteLocalApplication",
+"parameters": [
+{
+"name": "id",
+"in": "path",
+"required": true,
+"schema": {
+"type": "integer",
+"format": "int32"
+}
+}
+],
+"responses": {
+"200": {
+"description": "OK",
+"content": {
+"text/plain": {
+"schema": {
+"type": "boolean"
+}
+},
+"application/json": {
+"schema": {
+"type": "boolean"
+}
+},
+"text/json": {
+"schema": {
+"type": "boolean"
+}
+}
+}
+},
+"201": {
+"description": "Created",
+"content": {
+"text/plain": {
+"schema": {
+"type": "boolean"
+}
+},
+"application/json": {
+"schema": {
+"type": "boolean"
+}
+},
+"text/json": {
+"schema": {
+"type": "boolean"
+}
+}
+}
+},
+"400": {
+"description": "Bad Request",
+"content": {
+"text/plain": {
+"schema": {
+"$ref": "#/components/schemas/ProblemDetails"
+}
+},
+"application/json": {
+"schema": {
+"$ref": "#/components/schemas/ProblemDetails"
+}
+},
+"text/json": {
+"schema": {
+"$ref": "#/components/schemas/ProblemDetails"
+}
+}
+}
+},
+"404": {
+"description": "Not Found",
+"content": {
+"text/plain": {
+"schema": {
+"$ref": "#/components/schemas/ProblemDetails"
+}
+},
+"application/json": {
+"schema": {
+"$ref": "#/components/schemas/ProblemDetails"
+}
+},
+"text/json": {
+"schema": {
+"$ref": "#/components/schemas/ProblemDetails"
+}
+}
+}
+},
+"500": {
+"description": "Internal Server Error"
+}
+}
+}
+},
+"/api/localApplication/{id}/cancel": {
+"patch": {
+"tags": [
+"localApplication"
+],
+"operationId": "CancelLocalApplciation",
+"parameters": [
+{
+"name": "id",
+"in": "path",
+"required": true,
+"schema": {
+"type": "integer",
+"format": "int32"
+}
+}
+],
+"responses": {
+"200": {
+"description": "OK",
+"content": {
+"text/plain": {
+"schema": {
+"type": "boolean"
+}
+},
+"application/json": {
+"schema": {
+"type": "boolean"
+}
+},
+"text/json": {
+"schema": {
+"type": "boolean"
+}
+}
+}
+},
+"201": {
+"description": "Created",
+"content": {
+"text/plain": {
+"schema": {
+"type": "boolean"
+}
+},
+"application/json": {
+"schema": {
+"type": "boolean"
+}
+},
+"text/json": {
+"schema": {
+"type": "boolean"
+}
+}
+}
+},
+"400": {
+"description": "Bad Request",
+"content": {
+"text/plain": {
+"schema": {
+"$ref": "#/components/schemas/ProblemDetails"
+}
+},
+"application/json": {
+"schema": {
+"$ref": "#/components/schemas/ProblemDetails"
+}
+},
+"text/json": {
+"schema": {
+"$ref": "#/components/schemas/ProblemDetails"
+}
+}
+}
+},
+"404": {
+"description": "Not Found",
+"content": {
+"text/plain": {
+"schema": {
+"$ref": "#/components/schemas/ProblemDetails"
+}
+},
+"application/json": {
+"schema": {
+"$ref": "#/components/schemas/ProblemDetails"
+}
+},
+"text/json": {
+"schema": {
+"$ref": "#/components/schemas/ProblemDetails"
+}
+}
+}
+},
+"500": {
+"description": "Internal Server Error"
+}
+}
+}
+},
+"/api/localApplication/{id}/issue-license/{notes}/{byUserId}": {
+"get": {
+"tags": [
+"localApplication"
+],
+"operationId": "IssueFirstTimeLicense",
+"parameters": [
+{
+"name": "id",
+"in": "path",
+"required": true,
+"schema": {
+"type": "integer",
+"format": "int32"
+}
+},
+{
+"name": "byUserId",
+"in": "path",
+"required": true,
+"schema": {
+"type": "integer",
+"format": "int32"
+}
+},
+{
+"name": "notes",
+"in": "path",
+"required": true,
+"schema": {
+"type": "string"
+}
+}
+],
+"responses": {
+"200": {
+"description": "OK",
+"content": {
+"text/plain": {
+"schema": {
+"type": "integer",
+"format": "int32"
+}
+},
+"application/json": {
+"schema": {
+"type": "integer",
+"format": "int32"
+}
+},
+"text/json": {
+"schema": {
+"type": "integer",
+"format": "int32"
+}
+}
+}
+},
+"201": {
+"description": "Created",
+"content": {
+"text/plain": {
+"schema": {
+"type": "integer",
+"format": "int32"
+}
+},
+"application/json": {
+"schema": {
+"type": "integer",
+"format": "int32"
+}
+},
+"text/json": {
+"schema": {
+"type": "integer",
+"format": "int32"
+}
+}
+}
+},
+"400": {
+"description": "Bad Request",
+"content": {
+"text/plain": {
+"schema": {
+"$ref": "#/components/schemas/ProblemDetails"
+}
+},
+"application/json": {
+"schema": {
+"$ref": "#/components/schemas/ProblemDetails"
+}
+},
+"text/json": {
+"schema": {
+"$ref": "#/components/schemas/ProblemDetails"
+}
+}
+}
+},
+"404": {
+"description": "Not Found",
+"content": {
+"text/plain": {
+"schema": {
+"$ref": "#/components/schemas/ProblemDetails"
+}
+},
+"application/json": {
+"schema": {
+"$ref": "#/components/schemas/ProblemDetails"
+}
+},
+"text/json": {
+"schema": {
+"$ref": "#/components/schemas/ProblemDetails"
+}
+}
+}
+},
+"500": {
+"description": "Internal Server Error"
+}
+}
+}
+},
+"/api/localApplication/{id}/license-id": {
+"get": {
+"tags": [
+"localApplication"
+],
+"operationId": "license-id",
+"parameters": [
+{
+"name": "id",
+"in": "path",
+"required": true,
+"schema": {
+"type": "integer",
+"format": "int32"
+}
+}
+],
+"responses": {
+"200": {
+"description": "OK",
+"content": {
+"text/plain": {
+"schema": {
+"type": "integer",
+"format": "int32"
+}
+},
+"application/json": {
+"schema": {
+"type": "integer",
+"format": "int32"
+}
+},
+"text/json": {
+"schema": {
+"type": "integer",
+"format": "int32"
+}
+}
+}
+},
+"201": {
+"description": "Created",
+"content": {
+"text/plain": {
+"schema": {
+"type": "integer",
+"format": "int32"
+}
+},
+"application/json": {
+"schema": {
+"type": "integer",
+"format": "int32"
+}
+},
+"text/json": {
+"schema": {
+"type": "integer",
+"format": "int32"
+}
+}
+}
+},
+"400": {
+"description": "Bad Request",
+"content": {
+"text/plain": {
+"schema": {
+"$ref": "#/components/schemas/ProblemDetails"
+}
+},
+"application/json": {
+"schema": {
+"$ref": "#/components/schemas/ProblemDetails"
+}
+},
+"text/json": {
+"schema": {
+"$ref": "#/components/schemas/ProblemDetails"
+}
+}
+}
+},
+"404": {
+"description": "Not Found",
+"content": {
+"text/plain": {
+"schema": {
+"$ref": "#/components/schemas/ProblemDetails"
+}
+},
+"application/json": {
+"schema": {
+"$ref": "#/components/schemas/ProblemDetails"
+}
+},
+"text/json": {
+"schema": {
+"$ref": "#/components/schemas/ProblemDetails"
+}
+}
+}
+},
+"500": {
+"description": "Internal Server Error"
+}
+}
+}
+},
+"/api/login/{username}/{password}/is-active": {
+"get": {
+"tags": [
+"login"
+],
+"operationId": "isActive",
+"parameters": [
+{
+"name": "username",
+"in": "path",
+"required": true,
+"schema": {
+"type": "string"
+}
+},
+{
+"name": "password",
+"in": "path",
+"required": true,
+"schema": {
+"type": "string"
+}
+}
+],
+"responses": {
+"200": {
+"description": "OK",
+"content": {
+"text/plain": {
+"schema": {
+"type": "boolean"
+}
+},
+"application/json": {
+"schema": {
+"type": "boolean"
+}
+},
+"text/json": {
+"schema": {
+"type": "boolean"
+}
+}
+}
+},
+"201": {
+"description": "Created",
+"content": {
+"text/plain": {
+"schema": {
+"type": "boolean"
+}
+},
+"application/json": {
+"schema": {
+"type": "boolean"
+}
+},
+"text/json": {
+"schema": {
+"type": "boolean"
+}
+}
+}
+},
+"400": {
+"description": "Bad Request",
+"content": {
+"text/plain": {
+"schema": {
+"$ref": "#/components/schemas/ProblemDetails"
+}
+},
+"application/json": {
+"schema": {
+"$ref": "#/components/schemas/ProblemDetails"
+}
+},
+"text/json": {
+"schema": {
+"$ref": "#/components/schemas/ProblemDetails"
+}
+}
+}
+},
+"404": {
+"description": "Not Found",
+"content": {
+"text/plain": {
+"schema": {
+"$ref": "#/components/schemas/ProblemDetails"
+}
+},
+"application/json": {
+"schema": {
+"$ref": "#/components/schemas/ProblemDetails"
+}
+},
+"text/json": {
+"schema": {
+"$ref": "#/components/schemas/ProblemDetails"
+}
+}
+}
+},
+"500": {
+"description": "Internal Server Error"
+}
+}
+}
+},
+"/api/login/{userId}": {
+"post": {
+"tags": [
+"login"
+],
+"operationId": "CreateRecord",
+"parameters": [
+{
+"name": "userId",
+"in": "path",
+"required": true,
+"schema": {
+"type": "integer",
+"format": "int32"
+}
+}
+],
+"responses": {
+"200": {
+"description": "OK",
+"content": {
+"text/plain": {
+"schema": {
+"type": "boolean"
+}
+},
+"application/json": {
+"schema": {
+"type": "boolean"
+}
+},
+"text/json": {
+"schema": {
+"type": "boolean"
+}
+}
+}
+},
+"201": {
+"description": "Created",
+"content": {
+"text/plain": {
+"schema": {
+"type": "boolean"
+}
+},
+"application/json": {
+"schema": {
+"type": "boolean"
+}
+},
+"text/json": {
+"schema": {
+"type": "boolean"
+}
+}
+}
+},
+"400": {
+"description": "Bad Request",
+"content": {
+"text/plain": {
+"schema": {
+"$ref": "#/components/schemas/ProblemDetails"
+}
+},
+"application/json": {
+"schema": {
+"$ref": "#/components/schemas/ProblemDetails"
+}
+},
+"text/json": {
+"schema": {
+"$ref": "#/components/schemas/ProblemDetails"
+}
+}
+}
+},
+"404": {
+"description": "Not Found",
+"content": {
+"text/plain": {
+"schema": {
+"$ref": "#/components/schemas/ProblemDetails"
+}
+},
+"application/json": {
+"schema": {
+"$ref": "#/components/schemas/ProblemDetails"
+}
+},
+"text/json": {
+"schema": {
+"$ref": "#/components/schemas/ProblemDetails"
+}
+}
+}
+},
+"500": {
+"description": "Internal Server Error"
+}
+}
+}
+},
+"/api/login/{username}/is-exist": {
+"get": {
+"tags": [
+"login"
+],
+"operationId": "isUserExistByUsername",
+"parameters": [
+{
+"name": "username",
+"in": "path",
+"required": true,
+"schema": {
+"type": "string"
+}
+}
+],
+"responses": {
+"200": {
+"description": "OK",
+"content": {
+"text/plain": {
+"schema": {
+"type": "boolean"
+}
+},
+"application/json": {
+"schema": {
+"type": "boolean"
+}
+},
+"text/json": {
+"schema": {
+"type": "boolean"
+}
+}
+}
+},
+"201": {
+"description": "Created",
+"content": {
+"text/plain": {
+"schema": {
+"type": "boolean"
+}
+},
+"application/json": {
+"schema": {
+"type": "boolean"
+}
+},
+"text/json": {
+"schema": {
+"type": "boolean"
+}
+}
+}
+},
+"400": {
+"description": "Bad Request",
+"content": {
+"text/plain": {
+"schema": {
+"$ref": "#/components/schemas/ProblemDetails"
+}
+},
+"application/json": {
+"schema": {
+"$ref": "#/components/schemas/ProblemDetails"
+}
+},
+"text/json": {
+"schema": {
+"$ref": "#/components/schemas/ProblemDetails"
+}
+}
+}
+},
+"404": {
+"description": "Not Found",
+"content": {
+"text/plain": {
+"schema": {
+"$ref": "#/components/schemas/ProblemDetails"
+}
+},
+"application/json": {
+"schema": {
+"$ref": "#/components/schemas/ProblemDetails"
+}
+},
+"text/json": {
+"schema": {
+"$ref": "#/components/schemas/ProblemDetails"
+}
+}
+}
+},
+"500": {
+"description": "Internal Server Error"
+}
+}
+}
+},
+"/api/login/{username}/{password}/is-exist": {
+"get": {
+"tags": [
+"login"
+],
+"operationId": "isUserExist",
+"parameters": [
+{
+"name": "username",
+"in": "path",
+"required": true,
+"schema": {
+"type": "string"
+}
+},
+{
+"name": "password",
+"in": "path",
+"required": true,
+"schema": {
+"type": "string"
+}
+}
+],
+"responses": {
+"200": {
+"description": "OK",
+"content": {
+"text/plain": {
+"schema": {
+"type": "boolean"
+}
+},
+"application/json": {
+"schema": {
+"type": "boolean"
+}
+},
+"text/json": {
+"schema": {
+"type": "boolean"
+}
+}
+}
+},
+"201": {
+"description": "Created",
+"content": {
+"text/plain": {
+"schema": {
+"type": "boolean"
+}
+},
+"application/json": {
+"schema": {
+"type": "boolean"
+}
+},
+"text/json": {
+"schema": {
+"type": "boolean"
+}
+}
+}
+},
+"400": {
+"description": "Bad Request",
+"content": {
+"text/plain": {
+"schema": {
+"$ref": "#/components/schemas/ProblemDetails"
+}
+},
+"application/json": {
+"schema": {
+"$ref": "#/components/schemas/ProblemDetails"
+}
+},
+"text/json": {
+"schema": {
+"$ref": "#/components/schemas/ProblemDetails"
+}
+}
+}
+},
+"404": {
+"description": "Not Found",
+"content": {
+"text/plain": {
+"schema": {
+"$ref": "#/components/schemas/ProblemDetails"
+}
+},
+"application/json": {
+"schema": {
+"$ref": "#/components/schemas/ProblemDetails"
+}
+},
+"text/json": {
+"schema": {
+"$ref": "#/components/schemas/ProblemDetails"
+}
+}
+}
+},
+"500": {
+"description": "Internal Server Error"
+}
+}
+}
+},
+"/api/person/people": {
+"get": {
+"tags": [
+"person"
+],
+"operationId": "Allpeople",
+"responses": {
+"200": {
+"description": "OK",
+"content": {
+"text/plain": {
+"schema": {
+"type": "array",
+"items": {
+"$ref": "#/components/schemas/Person_View"
+}
+}
+},
+"application/json": {
+"schema": {
+"type": "array",
+"items": {
+"$ref": "#/components/schemas/Person_View"
+}
+}
+},
+"text/json": {
+"schema": {
+"type": "array",
+"items": {
+"$ref": "#/components/schemas/Person_View"
+}
+}
+}
+}
+},
+"201": {
+"description": "Created",
+"content": {
+"text/plain": {
+"schema": {
+"type": "array",
+"items": {
+"$ref": "#/components/schemas/Person_View"
+}
+}
+},
+"application/json": {
+"schema": {
+"type": "array",
+"items": {
+"$ref": "#/components/schemas/Person_View"
+}
+}
+},
+"text/json": {
+"schema": {
+"type": "array",
+"items": {
+"$ref": "#/components/schemas/Person_View"
+}
+}
+}
+}
+},
+"400": {
+"description": "Bad Request",
+"content": {
+"text/plain": {
+"schema": {
+"$ref": "#/components/schemas/ProblemDetails"
+}
+},
+"application/json": {
+"schema": {
+"$ref": "#/components/schemas/ProblemDetails"
+}
+},
+"text/json": {
+"schema": {
+"$ref": "#/components/schemas/ProblemDetails"
+}
+}
+}
+},
+"404": {
+"description": "Not Found",
+"content": {
+"text/plain": {
+"schema": {
+"$ref": "#/components/schemas/ProblemDetails"
+}
+},
+"application/json": {
+"schema": {
+"$ref": "#/components/schemas/ProblemDetails"
+}
+},
+"text/json": {
+"schema": {
+"$ref": "#/components/schemas/ProblemDetails"
+}
+}
+}
+},
+"500": {
+"description": "Internal Server Error"
+}
+}
+}
+},
+"/api/person/{id}": {
+"get": {
+"tags": [
+"person"
+],
+"operationId": "ReadPersonByID",
+"parameters": [
+{
+"name": "id",
+"in": "path",
+"required": true,
+"schema": {
+"type": "integer",
+"format": "int32"
+}
+}
+],
+"responses": {
+"200": {
+"description": "OK",
+"content": {
+"text/plain": {
+"schema": {
+"$ref": "#/components/schemas/Person"
+}
+},
+"application/json": {
+"schema": {
+"$ref": "#/components/schemas/Person"
+}
+},
+"text/json": {
+"schema": {
+"$ref": "#/components/schemas/Person"
+}
+}
+}
+},
+"201": {
+"description": "Created",
+"content": {
+"text/plain": {
+"schema": {
+"$ref": "#/components/schemas/Person"
+}
+},
+"application/json": {
+"schema": {
+"$ref": "#/components/schemas/Person"
+}
+},
+"text/json": {
+"schema": {
+"$ref": "#/components/schemas/Person"
+}
+}
+}
+},
+"400": {
+"description": "Bad Request",
+"content": {
+"text/plain": {
+"schema": {
+"$ref": "#/components/schemas/ProblemDetails"
+}
+},
+"application/json": {
+"schema": {
+"$ref": "#/components/schemas/ProblemDetails"
+}
+},
+"text/json": {
+"schema": {
+"$ref": "#/components/schemas/ProblemDetails"
+}
+}
+}
+},
+"404": {
+"description": "Not Found",
+"content": {
+"text/plain": {
+"schema": {
+"$ref": "#/components/schemas/ProblemDetails"
+}
+},
+"application/json": {
+"schema": {
+"$ref": "#/components/schemas/ProblemDetails"
+}
+},
+"text/json": {
+"schema": {
+"$ref": "#/components/schemas/ProblemDetails"
+}
+}
+}
+},
+"500": {
+"description": "Internal Server Error"
+}
+}
+},
+"put": {
+"tags": [
+"person"
+],
+"operationId": "UpdatePerson",
+"parameters": [
+{
+"name": "id",
+"in": "path",
+"required": true,
+"schema": {
+"type": "integer",
+"format": "int32"
+}
+}
+],
+"requestBody": {
+"content": {
+"application/json": {
+"schema": {
+"$ref": "#/components/schemas/Person"
+}
+},
+"text/json": {
+"schema": {
+"$ref": "#/components/schemas/Person"
+}
+},
+"application/*+json": {
+"schema": {
+"$ref": "#/components/schemas/Person"
+}
+}
+}
+},
+"responses": {
+"200": {
+"description": "OK",
+"content": {
+"text/plain": {
+"schema": {
+"$ref": "#/components/schemas/Person"
+}
+},
+"application/json": {
+"schema": {
+"$ref": "#/components/schemas/Person"
+}
+},
+"text/json": {
+"schema": {
+"$ref": "#/components/schemas/Person"
+}
+}
+}
+},
+"201": {
+"description": "Created",
+"content": {
+"text/plain": {
+"schema": {
+"$ref": "#/components/schemas/Person"
+}
+},
+"application/json": {
+"schema": {
+"$ref": "#/components/schemas/Person"
+}
+},
+"text/json": {
+"schema": {
+"$ref": "#/components/schemas/Person"
+}
+}
+}
+},
+"400": {
+"description": "Bad Request",
+"content": {
+"text/plain": {
+"schema": {
+"$ref": "#/components/schemas/ProblemDetails"
+}
+},
+"application/json": {
+"schema": {
+"$ref": "#/components/schemas/ProblemDetails"
+}
+},
+"text/json": {
+"schema": {
+"$ref": "#/components/schemas/ProblemDetails"
+}
+}
+}
+},
+"404": {
+"description": "Not Found",
+"content": {
+"text/plain": {
+"schema": {
+"$ref": "#/components/schemas/ProblemDetails"
+}
+},
+"application/json": {
+"schema": {
+"$ref": "#/components/schemas/ProblemDetails"
+}
+},
+"text/json": {
+"schema": {
+"$ref": "#/components/schemas/ProblemDetails"
+}
+}
+}
+},
+"500": {
+"description": "Internal Server Error"
+}
+}
+},
+"delete": {
+"tags": [
+"person"
+],
+"operationId": "DeletePerson",
+"parameters": [
+{
+"name": "id",
+"in": "path",
+"required": true,
+"schema": {
+"type": "integer",
+"format": "int32"
+}
+}
+],
+"responses": {
+"200": {
+"description": "OK"
+},
+"201": {
+"description": "Created"
+},
+"400": {
+"description": "Bad Request",
+"content": {
+"text/plain": {
+"schema": {
+"$ref": "#/components/schemas/ProblemDetails"
+}
+},
+"application/json": {
+"schema": {
+"$ref": "#/components/schemas/ProblemDetails"
+}
+},
+"text/json": {
+"schema": {
+"$ref": "#/components/schemas/ProblemDetails"
+}
+}
+}
+},
+"404": {
+"description": "Not Found",
+"content": {
+"text/plain": {
+"schema": {
+"$ref": "#/components/schemas/ProblemDetails"
+}
+},
+"application/json": {
+"schema": {
+"$ref": "#/components/schemas/ProblemDetails"
+}
+},
+"text/json": {
+"schema": {
+"$ref": "#/components/schemas/ProblemDetails"
+}
+}
+}
+},
+"500": {
+"description": "Internal Server Error"
+}
+}
+}
+},
+"/api/person": {
+"post": {
+"tags": [
+"person"
+],
+"operationId": "CreatePerson",
+"requestBody": {
+"content": {
+"application/json": {
+"schema": {
+"$ref": "#/components/schemas/Person"
+}
+},
+"text/json": {
+"schema": {
+"$ref": "#/components/schemas/Person"
+}
+},
+"application/*+json": {
+"schema": {
+"$ref": "#/components/schemas/Person"
+}
+}
+}
+},
+"responses": {
+"200": {
+"description": "OK",
+"content": {
+"text/plain": {
+"schema": {
+"$ref": "#/components/schemas/Person"
+}
+},
+"application/json": {
+"schema": {
+"$ref": "#/components/schemas/Person"
+}
+},
+"text/json": {
+"schema": {
+"$ref": "#/components/schemas/Person"
+}
+}
+}
+},
+"201": {
+"description": "Created",
+"content": {
+"text/plain": {
+"schema": {
+"$ref": "#/components/schemas/Person"
+}
+},
+"application/json": {
+"schema": {
+"$ref": "#/components/schemas/Person"
+}
+},
+"text/json": {
+"schema": {
+"$ref": "#/components/schemas/Person"
+}
+}
+}
+},
+"400": {
+"description": "Bad Request",
+"content": {
+"text/plain": {
+"schema": {
+"$ref": "#/components/schemas/ProblemDetails"
+}
+},
+"application/json": {
+"schema": {
+"$ref": "#/components/schemas/ProblemDetails"
+}
+},
+"text/json": {
+"schema": {
+"$ref": "#/components/schemas/ProblemDetails"
+}
+}
+}
+},
+"404": {
+"description": "Not Found",
+"content": {
+"text/plain": {
+"schema": {
+"$ref": "#/components/schemas/ProblemDetails"
+}
+},
+"application/json": {
+"schema": {
+"$ref": "#/components/schemas/ProblemDetails"
+}
+},
+"text/json": {
+"schema": {
+"$ref": "#/components/schemas/ProblemDetails"
+}
+}
+}
+},
+"500": {
+"description": "Internal Server Error"
+}
+}
+}
+},
+"/api/person/{id}/is-exist": {
+"get": {
+"tags": [
+"person"
+],
+"operationId": "isPersonExistByID",
+"parameters": [
+{
+"name": "id",
+"in": "path",
+"required": true,
+"schema": {
+"type": "integer",
+"format": "int32"
+}
+}
+],
+"responses": {
+"200": {
+"description": "OK",
+"content": {
+"text/plain": {
+"schema": {
+"type": "boolean"
+}
+},
+"application/json": {
+"schema": {
+"type": "boolean"
+}
+},
+"text/json": {
+"schema": {
+"type": "boolean"
+}
+}
+}
+},
+"201": {
+"description": "Created",
+"content": {
+"text/plain": {
+"schema": {
+"type": "boolean"
+}
+},
+"application/json": {
+"schema": {
+"type": "boolean"
+}
+},
+"text/json": {
+"schema": {
+"type": "boolean"
+}
+}
+}
+},
+"400": {
+"description": "Bad Request",
+"content": {
+"text/plain": {
+"schema": {
+"$ref": "#/components/schemas/ProblemDetails"
+}
+},
+"application/json": {
+"schema": {
+"$ref": "#/components/schemas/ProblemDetails"
+}
+},
+"text/json": {
+"schema": {
+"$ref": "#/components/schemas/ProblemDetails"
+}
+}
+}
+},
+"404": {
+"description": "Not Found",
+"content": {
+"text/plain": {
+"schema": {
+"$ref": "#/components/schemas/ProblemDetails"
+}
+},
+"application/json": {
+"schema": {
+"$ref": "#/components/schemas/ProblemDetails"
+}
+},
+"text/json": {
+"schema": {
+"$ref": "#/components/schemas/ProblemDetails"
+}
+}
+}
+},
+"500": {
+"description": "Internal Server Error"
+}
+}
+}
+},
+"/api/person/No:{nationalNo}/is-exist": {
+"get": {
+"tags": [
+"person"
+],
+"operationId": "isPersonExistByNationalNo",
+"parameters": [
+{
+"name": "nationalNo",
+"in": "path",
+"required": true,
+"schema": {
+"type": "string"
+}
+}
+],
+"responses": {
+"200": {
+"description": "OK",
+"content": {
+"text/plain": {
+"schema": {
+"type": "boolean"
+}
+},
+"application/json": {
+"schema": {
+"type": "boolean"
+}
+},
+"text/json": {
+"schema": {
+"type": "boolean"
+}
+}
+}
+},
+"201": {
+"description": "Created",
+"content": {
+"text/plain": {
+"schema": {
+"type": "boolean"
+}
+},
+"application/json": {
+"schema": {
+"type": "boolean"
+}
+},
+"text/json": {
+"schema": {
+"type": "boolean"
+}
+}
+}
+},
+"400": {
+"description": "Bad Request",
+"content": {
+"text/plain": {
+"schema": {
+"$ref": "#/components/schemas/ProblemDetails"
+}
+},
+"application/json": {
+"schema": {
+"$ref": "#/components/schemas/ProblemDetails"
+}
+},
+"text/json": {
+"schema": {
+"$ref": "#/components/schemas/ProblemDetails"
+}
+}
+}
+},
+"404": {
+"description": "Not Found",
+"content": {
+"text/plain": {
+"schema": {
+"$ref": "#/components/schemas/ProblemDetails"
+}
+},
+"application/json": {
+"schema": {
+"$ref": "#/components/schemas/ProblemDetails"
+}
+},
+"text/json": {
+"schema": {
+"$ref": "#/components/schemas/ProblemDetails"
+}
+}
+}
+},
+"500": {
+"description": "Internal Server Error"
+}
+}
+}
+},
+"/api/person/{id}/full-name": {
+"get": {
+"tags": [
+"person"
+],
+"operationId": "personFullName",
+"parameters": [
+{
+"name": "id",
+"in": "path",
+"required": true,
+"schema": {
+"type": "integer",
+"format": "int32"
+}
+}
+],
+"responses": {
+"200": {
+"description": "OK",
+"content": {
+"text/plain": {
+"schema": {
+"type": "string"
+}
+},
+"application/json": {
+"schema": {
+"type": "string"
+}
+},
+"text/json": {
+"schema": {
+"type": "string"
+}
+}
+}
+},
+"201": {
+"description": "Created",
+"content": {
+"text/plain": {
+"schema": {
+"type": "string"
+}
+},
+"application/json": {
+"schema": {
+"type": "string"
+}
+},
+"text/json": {
+"schema": {
+"type": "string"
+}
+}
+}
+},
+"400": {
+"description": "Bad Request",
+"content": {
+"text/plain": {
+"schema": {
+"$ref": "#/components/schemas/ProblemDetails"
+}
+},
+"application/json": {
+"schema": {
+"$ref": "#/components/schemas/ProblemDetails"
+}
+},
+"text/json": {
+"schema": {
+"$ref": "#/components/schemas/ProblemDetails"
+}
+}
+}
+},
+"404": {
+"description": "Not Found",
+"content": {
+"text/plain": {
+"schema": {
+"$ref": "#/components/schemas/ProblemDetails"
+}
+},
+"application/json": {
+"schema": {
+"$ref": "#/components/schemas/ProblemDetails"
+}
+},
+"text/json": {
+"schema": {
+"$ref": "#/components/schemas/ProblemDetails"
+}
+}
+}
+},
+"500": {
+"description": "Internal Server Error"
+}
+}
+}
+},
+"/api/person/all-male-percentage": {
+"get": {
+"tags": [
+"person"
+],
+"operationId": "MalePercentage",
+"responses": {
+"200": {
+"description": "OK",
+"content": {
+"text/plain": {
+"schema": {
+"type": "integer",
+"format": "int32"
+}
+},
+"application/json": {
+"schema": {
+"type": "integer",
+"format": "int32"
+}
+},
+"text/json": {
+"schema": {
+"type": "integer",
+"format": "int32"
+}
+}
+}
+},
+"201": {
+"description": "Created",
+"content": {
+"text/plain": {
+"schema": {
+"type": "integer",
+"format": "int32"
+}
+},
+"application/json": {
+"schema": {
+"type": "integer",
+"format": "int32"
+}
+},
+"text/json": {
+"schema": {
+"type": "integer",
+"format": "int32"
+}
+}
+}
+},
+"400": {
+"description": "Bad Request",
+"content": {
+"text/plain": {
+"schema": {
+"$ref": "#/components/schemas/ProblemDetails"
+}
+},
+"application/json": {
+"schema": {
+"$ref": "#/components/schemas/ProblemDetails"
+}
+},
+"text/json": {
+"schema": {
+"$ref": "#/components/schemas/ProblemDetails"
+}
+}
+}
+},
+"404": {
+"description": "Not Found",
+"content": {
+"text/plain": {
+"schema": {
+"$ref": "#/components/schemas/ProblemDetails"
+}
+},
+"application/json": {
+"schema": {
+"$ref": "#/components/schemas/ProblemDetails"
+}
+},
+"text/json": {
+"schema": {
+"$ref": "#/components/schemas/ProblemDetails"
+}
+}
+}
+},
+"500": {
+"description": "Internal Server Error"
+}
+}
+}
+},
+"/api/person/all-female-percentage": {
+"get": {
+"tags": [
+"person"
+],
+"operationId": "FemalePercentage",
+"responses": {
+"200": {
+"description": "OK",
+"content": {
+"text/plain": {
+"schema": {
+"type": "integer",
+"format": "int32"
+}
+},
+"application/json": {
+"schema": {
+"type": "integer",
+"format": "int32"
+}
+},
+"text/json": {
+"schema": {
+"type": "integer",
+"format": "int32"
+}
+}
+}
+},
+"201": {
+"description": "Created",
+"content": {
+"text/plain": {
+"schema": {
+"type": "integer",
+"format": "int32"
+}
+},
+"application/json": {
+"schema": {
+"type": "integer",
+"format": "int32"
+}
+},
+"text/json": {
+"schema": {
+"type": "integer",
+"format": "int32"
+}
+}
+}
+},
+"400": {
+"description": "Bad Request",
+"content": {
+"text/plain": {
+"schema": {
+"$ref": "#/components/schemas/ProblemDetails"
+}
+},
+"application/json": {
+"schema": {
+"$ref": "#/components/schemas/ProblemDetails"
+}
+},
+"text/json": {
+"schema": {
+"$ref": "#/components/schemas/ProblemDetails"
+}
+}
+}
+},
+"404": {
+"description": "Not Found",
+"content": {
+"text/plain": {
+"schema": {
+"$ref": "#/components/schemas/ProblemDetails"
+}
+},
+"application/json": {
+"schema": {
+"$ref": "#/components/schemas/ProblemDetails"
+}
+},
+"text/json": {
+"schema": {
+"$ref": "#/components/schemas/ProblemDetails"
+}
+}
+}
+},
+"500": {
+"description": "Internal Server Error"
+}
+}
+}
+},
+"/api/test/tests": {
+"get": {
+"tags": [
+"test"
+],
+"operationId": "getAllTests",
+"responses": {
+"200": {
+"description": "OK",
+"content": {
+"text/plain": {
+"schema": {
+"type": "array",
+"items": {
+"$ref": "#/components/schemas/Test"
+}
+}
+},
+"application/json": {
+"schema": {
+"type": "array",
+"items": {
+"$ref": "#/components/schemas/Test"
+}
+}
+},
+"text/json": {
+"schema": {
+"type": "array",
+"items": {
+"$ref": "#/components/schemas/Test"
+}
+}
+}
+}
+},
+"201": {
+"description": "Created",
+"content": {
+"text/plain": {
+"schema": {
+"type": "array",
+"items": {
+"$ref": "#/components/schemas/Test"
+}
+}
+},
+"application/json": {
+"schema": {
+"type": "array",
+"items": {
+"$ref": "#/components/schemas/Test"
+}
+}
+},
+"text/json": {
+"schema": {
+"type": "array",
+"items": {
+"$ref": "#/components/schemas/Test"
+}
+}
+}
+}
+},
+"400": {
+"description": "Bad Request",
+"content": {
+"text/plain": {
+"schema": {
+"$ref": "#/components/schemas/ProblemDetails"
+}
+},
+"application/json": {
+"schema": {
+"$ref": "#/components/schemas/ProblemDetails"
+}
+},
+"text/json": {
+"schema": {
+"$ref": "#/components/schemas/ProblemDetails"
+}
+}
+}
+},
+"404": {
+"description": "Not Found",
+"content": {
+"text/plain": {
+"schema": {
+"$ref": "#/components/schemas/ProblemDetails"
+}
+},
+"application/json": {
+"schema": {
+"$ref": "#/components/schemas/ProblemDetails"
+}
+},
+"text/json": {
+"schema": {
+"$ref": "#/components/schemas/ProblemDetails"
+}
+}
+}
+},
+"500": {
+"description": "Internal Server Error"
+}
+}
+}
+},
+"/api/test/{id}": {
+"get": {
+"tags": [
+"test"
+],
+"operationId": "ReadTestByID",
+"parameters": [
+{
+"name": "id",
+"in": "path",
+"required": true,
+"schema": {
+"type": "integer",
+"format": "int32"
+}
+}
+],
+"responses": {
+"200": {
+"description": "OK",
+"content": {
+"text/plain": {
+"schema": {
+"$ref": "#/components/schemas/Test"
+}
+},
+"application/json": {
+"schema": {
+"$ref": "#/components/schemas/Test"
+}
+},
+"text/json": {
+"schema": {
+"$ref": "#/components/schemas/Test"
+}
+}
+}
+},
+"201": {
+"description": "Created",
+"content": {
+"text/plain": {
+"schema": {
+"$ref": "#/components/schemas/Test"
+}
+},
+"application/json": {
+"schema": {
+"$ref": "#/components/schemas/Test"
+}
+},
+"text/json": {
+"schema": {
+"$ref": "#/components/schemas/Test"
+}
+}
+}
+},
+"400": {
+"description": "Bad Request",
+"content": {
+"text/plain": {
+"schema": {
+"$ref": "#/components/schemas/ProblemDetails"
+}
+},
+"application/json": {
+"schema": {
+"$ref": "#/components/schemas/ProblemDetails"
+}
+},
+"text/json": {
+"schema": {
+"$ref": "#/components/schemas/ProblemDetails"
+}
+}
+}
+},
+"404": {
+"description": "Not Found",
+"content": {
+"text/plain": {
+"schema": {
+"$ref": "#/components/schemas/ProblemDetails"
+}
+},
+"application/json": {
+"schema": {
+"$ref": "#/components/schemas/ProblemDetails"
+}
+},
+"text/json": {
+"schema": {
+"$ref": "#/components/schemas/ProblemDetails"
+}
+}
+}
+},
+"500": {
+"description": "Internal Server Error"
+}
+}
+},
+"put": {
+"tags": [
+"test"
+],
+"operationId": "UpdateTest",
+"parameters": [
+{
+"name": "id",
+"in": "path",
+"required": true,
+"schema": {
+"type": "integer",
+"format": "int32"
+}
+}
+],
+"requestBody": {
+"content": {
+"application/json": {
+"schema": {
+"$ref": "#/components/schemas/Test"
+}
+},
+"text/json": {
+"schema": {
+"$ref": "#/components/schemas/Test"
+}
+},
+"application/*+json": {
+"schema": {
+"$ref": "#/components/schemas/Test"
+}
+}
+}
+},
+"responses": {
+"200": {
+"description": "OK",
+"content": {
+"text/plain": {
+"schema": {
+"$ref": "#/components/schemas/Test"
+}
+},
+"application/json": {
+"schema": {
+"$ref": "#/components/schemas/Test"
+}
+},
+"text/json": {
+"schema": {
+"$ref": "#/components/schemas/Test"
+}
+}
+}
+},
+"201": {
+"description": "Created",
+"content": {
+"text/plain": {
+"schema": {
+"$ref": "#/components/schemas/Test"
+}
+},
+"application/json": {
+"schema": {
+"$ref": "#/components/schemas/Test"
+}
+},
+"text/json": {
+"schema": {
+"$ref": "#/components/schemas/Test"
+}
+}
+}
+},
+"400": {
+"description": "Bad Request",
+"content": {
+"text/plain": {
+"schema": {
+"$ref": "#/components/schemas/ProblemDetails"
+}
+},
+"application/json": {
+"schema": {
+"$ref": "#/components/schemas/ProblemDetails"
+}
+},
+"text/json": {
+"schema": {
+"$ref": "#/components/schemas/ProblemDetails"
+}
+}
+}
+},
+"404": {
+"description": "Not Found",
+"content": {
+"text/plain": {
+"schema": {
+"$ref": "#/components/schemas/ProblemDetails"
+}
+},
+"application/json": {
+"schema": {
+"$ref": "#/components/schemas/ProblemDetails"
+}
+},
+"text/json": {
+"schema": {
+"$ref": "#/components/schemas/ProblemDetails"
+}
+}
+}
+},
+"500": {
+"description": "Internal Server Error"
+}
+}
+},
+"delete": {
+"tags": [
+"test"
+],
+"operationId": "DeleteTest",
+"parameters": [
+{
+"name": "id",
+"in": "path",
+"required": true,
+"schema": {
+"type": "integer",
+"format": "int32"
+}
+}
+],
+"responses": {
+"200": {
+"description": "OK"
+},
+"201": {
+"description": "Created"
+},
+"400": {
+"description": "Bad Request",
+"content": {
+"text/plain": {
+"schema": {
+"$ref": "#/components/schemas/ProblemDetails"
+}
+},
+"application/json": {
+"schema": {
+"$ref": "#/components/schemas/ProblemDetails"
+}
+},
+"text/json": {
+"schema": {
+"$ref": "#/components/schemas/ProblemDetails"
+}
+}
+}
+},
+"404": {
+"description": "Not Found",
+"content": {
+"text/plain": {
+"schema": {
+"$ref": "#/components/schemas/ProblemDetails"
+}
+},
+"application/json": {
+"schema": {
+"$ref": "#/components/schemas/ProblemDetails"
+}
+},
+"text/json": {
+"schema": {
+"$ref": "#/components/schemas/ProblemDetails"
+}
+}
+}
+},
+"500": {
+"description": "Internal Server Error"
+}
+}
+}
+},
+"/api/test/new": {
+"post": {
+"tags": [
+"test"
+],
+"operationId": "CreateTest",
+"requestBody": {
+"content": {
+"application/json": {
+"schema": {
+"$ref": "#/components/schemas/Test"
+}
+},
+"text/json": {
+"schema": {
+"$ref": "#/components/schemas/Test"
+}
+},
+"application/*+json": {
+"schema": {
+"$ref": "#/components/schemas/Test"
+}
+}
+}
+},
+"responses": {
+"200": {
+"description": "OK",
+"content": {
+"text/plain": {
+"schema": {
+"$ref": "#/components/schemas/Test"
+}
+},
+"application/json": {
+"schema": {
+"$ref": "#/components/schemas/Test"
+}
+},
+"text/json": {
+"schema": {
+"$ref": "#/components/schemas/Test"
+}
+}
+}
+},
+"201": {
+"description": "Created",
+"content": {
+"text/plain": {
+"schema": {
+"$ref": "#/components/schemas/Test"
+}
+},
+"application/json": {
+"schema": {
+"$ref": "#/components/schemas/Test"
+}
+},
+"text/json": {
+"schema": {
+"$ref": "#/components/schemas/Test"
+}
+}
+}
+},
+"400": {
+"description": "Bad Request",
+"content": {
+"text/plain": {
+"schema": {
+"$ref": "#/components/schemas/ProblemDetails"
+}
+},
+"application/json": {
+"schema": {
+"$ref": "#/components/schemas/ProblemDetails"
+}
+},
+"text/json": {
+"schema": {
+"$ref": "#/components/schemas/ProblemDetails"
+}
+}
+}
+},
+"404": {
+"description": "Not Found",
+"content": {
+"text/plain": {
+"schema": {
+"$ref": "#/components/schemas/ProblemDetails"
+}
+},
+"application/json": {
+"schema": {
+"$ref": "#/components/schemas/ProblemDetails"
+}
+},
+"text/json": {
+"schema": {
+"$ref": "#/components/schemas/ProblemDetails"
+}
+}
+}
+},
+"500": {
+"description": "Internal Server Error"
+}
+}
+}
+},
+"/api/test/test-by/test-type/{personId}/{id}/{licenseClass}": {
+"get": {
+"tags": [
+"test"
+],
+"operationId": "ReadByPersonAndLicenseClass",
+"parameters": [
+{
+"name": "personId",
+"in": "path",
+"required": true,
+"schema": {
+"type": "integer",
+"format": "int32"
+}
+},
+{
+"name": "id",
+"in": "path",
+"required": true,
+"schema": {
+"$ref": "#/components/schemas/enTestType"
+}
+},
+{
+"name": "licenseClass",
+"in": "path",
+"required": true,
+"schema": {
+"type": "integer",
+"format": "int32"
+}
+}
+],
+"responses": {
+"200": {
+"description": "OK",
+"content": {
+"text/plain": {
+"schema": {
+"$ref": "#/components/schemas/Test"
+}
+},
+"application/json": {
+"schema": {
+"$ref": "#/components/schemas/Test"
+}
+},
+"text/json": {
+"schema": {
+"$ref": "#/components/schemas/Test"
+}
+}
+}
+},
+"201": {
+"description": "Created",
+"content": {
+"text/plain": {
+"schema": {
+"$ref": "#/components/schemas/Test"
+}
+},
+"application/json": {
+"schema": {
+"$ref": "#/components/schemas/Test"
+}
+},
+"text/json": {
+"schema": {
+"$ref": "#/components/schemas/Test"
+}
+}
+}
+},
+"400": {
+"description": "Bad Request",
+"content": {
+"text/plain": {
+"schema": {
+"$ref": "#/components/schemas/ProblemDetails"
+}
+},
+"application/json": {
+"schema": {
+"$ref": "#/components/schemas/ProblemDetails"
+}
+},
+"text/json": {
+"schema": {
+"$ref": "#/components/schemas/ProblemDetails"
+}
+}
+}
+},
+"404": {
+"description": "Not Found",
+"content": {
+"text/plain": {
+"schema": {
+"$ref": "#/components/schemas/ProblemDetails"
+}
+},
+"application/json": {
+"schema": {
+"$ref": "#/components/schemas/ProblemDetails"
+}
+},
+"text/json": {
+"schema": {
+"$ref": "#/components/schemas/ProblemDetails"
+}
+}
+}
+},
+"500": {
+"description": "Internal Server Error"
+}
+}
+}
+},
+"/api/test/count": {
+"get": {
+"tags": [
+"test"
+],
+"operationId": "TestCount",
+"responses": {
+"200": {
+"description": "OK",
+"content": {
+"text/plain": {
+"schema": {
+"type": "integer",
+"format": "int32"
+}
+},
+"application/json": {
+"schema": {
+"type": "integer",
+"format": "int32"
+}
+},
+"text/json": {
+"schema": {
+"type": "integer",
+"format": "int32"
+}
+}
+}
+},
+"201": {
+"description": "Created",
+"content": {
+"text/plain": {
+"schema": {
+"type": "integer",
+"format": "int32"
+}
+},
+"application/json": {
+"schema": {
+"type": "integer",
+"format": "int32"
+}
+},
+"text/json": {
+"schema": {
+"type": "integer",
+"format": "int32"
+}
+}
+}
+},
+"400": {
+"description": "Bad Request",
+"content": {
+"text/plain": {
+"schema": {
+"$ref": "#/components/schemas/ProblemDetails"
+}
+},
+"application/json": {
+"schema": {
+"$ref": "#/components/schemas/ProblemDetails"
+}
+},
+"text/json": {
+"schema": {
+"$ref": "#/components/schemas/ProblemDetails"
+}
+}
+}
+},
+"404": {
+"description": "Not Found",
+"content": {
+"text/plain": {
+"schema": {
+"$ref": "#/components/schemas/ProblemDetails"
+}
+},
+"application/json": {
+"schema": {
+"$ref": "#/components/schemas/ProblemDetails"
+}
+},
+"text/json": {
+"schema": {
+"$ref": "#/components/schemas/ProblemDetails"
+}
+}
+}
+},
+"500": {
+"description": "Internal Server Error"
+}
+}
+}
+},
+"/api/test/passed-percetage": {
+"get": {
+"tags": [
+"test"
+],
+"operationId": "PassedPercentage",
+"responses": {
+"200": {
+"description": "OK",
+"content": {
+"text/plain": {
+"schema": {
+"type": "integer",
+"format": "int32"
+}
+},
+"application/json": {
+"schema": {
+"type": "integer",
+"format": "int32"
+}
+},
+"text/json": {
+"schema": {
+"type": "integer",
+"format": "int32"
+}
+}
+}
+},
+"201": {
+"description": "Created",
+"content": {
+"text/plain": {
+"schema": {
+"type": "integer",
+"format": "int32"
+}
+},
+"application/json": {
+"schema": {
+"type": "integer",
+"format": "int32"
+}
+},
+"text/json": {
+"schema": {
+"type": "integer",
+"format": "int32"
+}
+}
+}
+},
+"400": {
+"description": "Bad Request",
+"content": {
+"text/plain": {
+"schema": {
+"$ref": "#/components/schemas/ProblemDetails"
+}
+},
+"application/json": {
+"schema": {
+"$ref": "#/components/schemas/ProblemDetails"
+}
+},
+"text/json": {
+"schema": {
+"$ref": "#/components/schemas/ProblemDetails"
+}
+}
+}
+},
+"404": {
+"description": "Not Found",
+"content": {
+"text/plain": {
+"schema": {
+"$ref": "#/components/schemas/ProblemDetails"
+}
+},
+"application/json": {
+"schema": {
+"$ref": "#/components/schemas/ProblemDetails"
+}
+},
+"text/json": {
+"schema": {
+"$ref": "#/components/schemas/ProblemDetails"
+}
+}
+}
+},
+"500": {
+"description": "Internal Server Error"
+}
+}
+}
+},
+"/api/test/failed-percetage": {
+"get": {
+"tags": [
+"test"
+],
+"operationId": "FailedPercentage",
+"responses": {
+"200": {
+"description": "OK",
+"content": {
+"text/plain": {
+"schema": {
+"type": "integer",
+"format": "int32"
+}
+},
+"application/json": {
+"schema": {
+"type": "integer",
+"format": "int32"
+}
+},
+"text/json": {
+"schema": {
+"type": "integer",
+"format": "int32"
+}
+}
+}
+},
+"201": {
+"description": "Created",
+"content": {
+"text/plain": {
+"schema": {
+"type": "integer",
+"format": "int32"
+}
+},
+"application/json": {
+"schema": {
+"type": "integer",
+"format": "int32"
+}
+},
+"text/json": {
+"schema": {
+"type": "integer",
+"format": "int32"
+}
+}
+}
+},
+"400": {
+"description": "Bad Request",
+"content": {
+"text/plain": {
+"schema": {
+"$ref": "#/components/schemas/ProblemDetails"
+}
+},
+"application/json": {
+"schema": {
+"$ref": "#/components/schemas/ProblemDetails"
+}
+},
+"text/json": {
+"schema": {
+"$ref": "#/components/schemas/ProblemDetails"
+}
+}
+}
+},
+"404": {
+"description": "Not Found",
+"content": {
+"text/plain": {
+"schema": {
+"$ref": "#/components/schemas/ProblemDetails"
+}
+},
+"application/json": {
+"schema": {
+"$ref": "#/components/schemas/ProblemDetails"
+}
+},
+"text/json": {
+"schema": {
+"$ref": "#/components/schemas/ProblemDetails"
+}
+}
+}
+},
+"500": {
+"description": "Internal Server Error"
+}
+}
+}
+},
+"/api/testType/test-types": {
+"get": {
+"tags": [
+"testType"
+],
+"operationId": "GetTestTypes",
+"responses": {
+"200": {
+"description": "OK",
+"content": {
+"text/plain": {
+"schema": {
+"type": "array",
+"items": {
+"$ref": "#/components/schemas/TestType"
+}
+}
+},
+"application/json": {
+"schema": {
+"type": "array",
+"items": {
+"$ref": "#/components/schemas/TestType"
+}
+}
+},
+"text/json": {
+"schema": {
+"type": "array",
+"items": {
+"$ref": "#/components/schemas/TestType"
+}
+}
+}
+}
+},
+"201": {
+"description": "Created",
+"content": {
+"text/plain": {
+"schema": {
+"type": "array",
+"items": {
+"$ref": "#/components/schemas/TestType"
+}
+}
+},
+"application/json": {
+"schema": {
+"type": "array",
+"items": {
+"$ref": "#/components/schemas/TestType"
+}
+}
+},
+"text/json": {
+"schema": {
+"type": "array",
+"items": {
+"$ref": "#/components/schemas/TestType"
+}
+}
+}
+}
+},
+"400": {
+"description": "Bad Request",
+"content": {
+"text/plain": {
+"schema": {
+"$ref": "#/components/schemas/ProblemDetails"
+}
+},
+"application/json": {
+"schema": {
+"$ref": "#/components/schemas/ProblemDetails"
+}
+},
+"text/json": {
+"schema": {
+"$ref": "#/components/schemas/ProblemDetails"
+}
+}
+}
+},
+"404": {
+"description": "Not Found",
+"content": {
+"text/plain": {
+"schema": {
+"$ref": "#/components/schemas/ProblemDetails"
+}
+},
+"application/json": {
+"schema": {
+"$ref": "#/components/schemas/ProblemDetails"
+}
+},
+"text/json": {
+"schema": {
+"$ref": "#/components/schemas/ProblemDetails"
+}
+}
+}
+},
+"500": {
+"description": "Internal Server Error"
+}
+}
+}
+},
+"/api/testType/{id}": {
+"get": {
+"tags": [
+"testType"
+],
+"operationId": "ReadTestTypeByID",
+"parameters": [
+{
+"name": "id",
+"in": "path",
+"required": true,
+"schema": {
+"type": "integer",
+"format": "int32"
+}
+}
+],
+"responses": {
+"200": {
+"description": "OK",
+"content": {
+"text/plain": {
+"schema": {
+"$ref": "#/components/schemas/TestType"
+}
+},
+"application/json": {
+"schema": {
+"$ref": "#/components/schemas/TestType"
+}
+},
+"text/json": {
+"schema": {
+"$ref": "#/components/schemas/TestType"
+}
+}
+}
+},
+"201": {
+"description": "Created",
+"content": {
+"text/plain": {
+"schema": {
+"$ref": "#/components/schemas/TestType"
+}
+},
+"application/json": {
+"schema": {
+"$ref": "#/components/schemas/TestType"
+}
+},
+"text/json": {
+"schema": {
+"$ref": "#/components/schemas/TestType"
+}
+}
+}
+},
+"400": {
+"description": "Bad Request",
+"content": {
+"text/plain": {
+"schema": {
+"$ref": "#/components/schemas/ProblemDetails"
+}
+},
+"application/json": {
+"schema": {
+"$ref": "#/components/schemas/ProblemDetails"
+}
+},
+"text/json": {
+"schema": {
+"$ref": "#/components/schemas/ProblemDetails"
+}
+}
+}
+},
+"404": {
+"description": "Not Found",
+"content": {
+"text/plain": {
+"schema": {
+"$ref": "#/components/schemas/ProblemDetails"
+}
+},
+"application/json": {
+"schema": {
+"$ref": "#/components/schemas/ProblemDetails"
+}
+},
+"text/json": {
+"schema": {
+"$ref": "#/components/schemas/ProblemDetails"
+}
+}
+}
+},
+"500": {
+"description": "Internal Server Error"
+}
+}
+},
+"put": {
+"tags": [
+"testType"
+],
+"operationId": "UpdateTestType",
+"parameters": [
+{
+"name": "id",
+"in": "path",
+"required": true,
+"schema": {
+"type": "integer",
+"format": "int32"
+}
+}
+],
+"requestBody": {
+"content": {
+"application/json": {
+"schema": {
+"$ref": "#/components/schemas/TestType"
+}
+},
+"text/json": {
+"schema": {
+"$ref": "#/components/schemas/TestType"
+}
+},
+"application/*+json": {
+"schema": {
+"$ref": "#/components/schemas/TestType"
+}
+}
+}
+},
+"responses": {
+"200": {
+"description": "OK",
+"content": {
+"text/plain": {
+"schema": {
+"$ref": "#/components/schemas/TestType"
+}
+},
+"application/json": {
+"schema": {
+"$ref": "#/components/schemas/TestType"
+}
+},
+"text/json": {
+"schema": {
+"$ref": "#/components/schemas/TestType"
+}
+}
+}
+},
+"201": {
+"description": "Created",
+"content": {
+"text/plain": {
+"schema": {
+"$ref": "#/components/schemas/TestType"
+}
+},
+"application/json": {
+"schema": {
+"$ref": "#/components/schemas/TestType"
+}
+},
+"text/json": {
+"schema": {
+"$ref": "#/components/schemas/TestType"
+}
+}
+}
+},
+"400": {
+"description": "Bad Request",
+"content": {
+"text/plain": {
+"schema": {
+"$ref": "#/components/schemas/ProblemDetails"
+}
+},
+"application/json": {
+"schema": {
+"$ref": "#/components/schemas/ProblemDetails"
+}
+},
+"text/json": {
+"schema": {
+"$ref": "#/components/schemas/ProblemDetails"
+}
+}
+}
+},
+"404": {
+"description": "Not Found",
+"content": {
+"text/plain": {
+"schema": {
+"$ref": "#/components/schemas/ProblemDetails"
+}
+},
+"application/json": {
+"schema": {
+"$ref": "#/components/schemas/ProblemDetails"
+}
+},
+"text/json": {
+"schema": {
+"$ref": "#/components/schemas/ProblemDetails"
+}
+}
+}
+},
+"500": {
+"description": "Internal Server Error"
+}
+}
+},
+"delete": {
+"tags": [
+"testType"
+],
+"operationId": "DeleteTestType",
+"parameters": [
+{
+"name": "id",
+"in": "path",
+"required": true,
+"schema": {
+"type": "integer",
+"format": "int32"
+}
+}
+],
+"responses": {
+"200": {
+"description": "OK",
+"content": {
+"text/plain": {
+"schema": {
+"type": "boolean"
+}
+},
+"application/json": {
+"schema": {
+"type": "boolean"
+}
+},
+"text/json": {
+"schema": {
+"type": "boolean"
+}
+}
+}
+},
+"201": {
+"description": "Created",
+"content": {
+"text/plain": {
+"schema": {
+"type": "boolean"
+}
+},
+"application/json": {
+"schema": {
+"type": "boolean"
+}
+},
+"text/json": {
+"schema": {
+"type": "boolean"
+}
+}
+}
+},
+"400": {
+"description": "Bad Request",
+"content": {
+"text/plain": {
+"schema": {
+"$ref": "#/components/schemas/ProblemDetails"
+}
+},
+"application/json": {
+"schema": {
+"$ref": "#/components/schemas/ProblemDetails"
+}
+},
+"text/json": {
+"schema": {
+"$ref": "#/components/schemas/ProblemDetails"
+}
+}
+}
+},
+"404": {
+"description": "Not Found",
+"content": {
+"text/plain": {
+"schema": {
+"$ref": "#/components/schemas/ProblemDetails"
+}
+},
+"application/json": {
+"schema": {
+"$ref": "#/components/schemas/ProblemDetails"
+}
+},
+"text/json": {
+"schema": {
+"$ref": "#/components/schemas/ProblemDetails"
+}
+}
+}
+},
+"500": {
+"description": "Internal Server Error"
+}
+}
+}
+},
+"/api/testType": {
+"post": {
+"tags": [
+"testType"
+],
+"operationId": "CreateTestType",
+"requestBody": {
+"content": {
+"application/json": {
+"schema": {
+"$ref": "#/components/schemas/TestType"
+}
+},
+"text/json": {
+"schema": {
+"$ref": "#/components/schemas/TestType"
+}
+},
+"application/*+json": {
+"schema": {
+"$ref": "#/components/schemas/TestType"
+}
+}
+}
+},
+"responses": {
+"200": {
+"description": "OK",
+"content": {
+"text/plain": {
+"schema": {
+"$ref": "#/components/schemas/TestType"
+}
+},
+"application/json": {
+"schema": {
+"$ref": "#/components/schemas/TestType"
+}
+},
+"text/json": {
+"schema": {
+"$ref": "#/components/schemas/TestType"
+}
+}
+}
+},
+"201": {
+"description": "Created",
+"content": {
+"text/plain": {
+"schema": {
+"$ref": "#/components/schemas/TestType"
+}
+},
+"application/json": {
+"schema": {
+"$ref": "#/components/schemas/TestType"
+}
+},
+"text/json": {
+"schema": {
+"$ref": "#/components/schemas/TestType"
+}
+}
+}
+},
+"400": {
+"description": "Bad Request",
+"content": {
+"text/plain": {
+"schema": {
+"$ref": "#/components/schemas/ProblemDetails"
+}
+},
+"application/json": {
+"schema": {
+"$ref": "#/components/schemas/ProblemDetails"
+}
+},
+"text/json": {
+"schema": {
+"$ref": "#/components/schemas/ProblemDetails"
+}
+}
+}
+},
+"404": {
+"description": "Not Found",
+"content": {
+"text/plain": {
+"schema": {
+"$ref": "#/components/schemas/ProblemDetails"
+}
+},
+"application/json": {
+"schema": {
+"$ref": "#/components/schemas/ProblemDetails"
+}
+},
+"text/json": {
+"schema": {
+"$ref": "#/components/schemas/ProblemDetails"
+}
+}
+}
+},
+"500": {
+"description": "Internal Server Error"
+}
+}
+}
+},
+"/api/testType/{id}/fee": {
+"get": {
+"tags": [
+"testType"
+],
+"operationId": "GetTestTypeFee",
+"parameters": [
+{
+"name": "id",
+"in": "path",
+"required": true,
+"schema": {
+"$ref": "#/components/schemas/enTestType"
+}
+}
+],
+"responses": {
+"200": {
+"description": "OK",
+"content": {
+"text/plain": {
+"schema": {
+"type": "number",
+"format": "double"
+}
+},
+"application/json": {
+"schema": {
+"type": "number",
+"format": "double"
+}
+},
+"text/json": {
+"schema": {
+"type": "number",
+"format": "double"
+}
+}
+}
+},
+"201": {
+"description": "Created",
+"content": {
+"text/plain": {
+"schema": {
+"type": "number",
+"format": "double"
+}
+},
+"application/json": {
+"schema": {
+"type": "number",
+"format": "double"
+}
+},
+"text/json": {
+"schema": {
+"type": "number",
+"format": "double"
+}
+}
+}
+},
+"400": {
+"description": "Bad Request",
+"content": {
+"text/plain": {
+"schema": {
+"$ref": "#/components/schemas/ProblemDetails"
+}
+},
+"application/json": {
+"schema": {
+"$ref": "#/components/schemas/ProblemDetails"
+}
+},
+"text/json": {
+"schema": {
+"$ref": "#/components/schemas/ProblemDetails"
+}
+}
+}
+},
+"404": {
+"description": "Not Found",
+"content": {
+"text/plain": {
+"schema": {
+"$ref": "#/components/schemas/ProblemDetails"
+}
+},
+"application/json": {
+"schema": {
+"$ref": "#/components/schemas/ProblemDetails"
+}
+},
+"text/json": {
+"schema": {
+"$ref": "#/components/schemas/ProblemDetails"
+}
+}
+}
+},
+"500": {
+"description": "Internal Server Error"
+}
+}
+}
+},
+"/api/user/users": {
+"get": {
+"tags": [
+"user"
+],
+"operationId": "AllUsers",
+"responses": {
+"200": {
+"description": "OK",
+"content": {
+"text/plain": {
+"schema": {
+"type": "array",
+"items": {
+"$ref": "#/components/schemas/UserSummery"
+}
+}
+},
+"application/json": {
+"schema": {
+"type": "array",
+"items": {
+"$ref": "#/components/schemas/UserSummery"
+}
+}
+},
+"text/json": {
+"schema": {
+"type": "array",
+"items": {
+"$ref": "#/components/schemas/UserSummery"
+}
+}
+}
+}
+},
+"201": {
+"description": "Created",
+"content": {
+"text/plain": {
+"schema": {
+"type": "array",
+"items": {
+"$ref": "#/components/schemas/UserSummery"
+}
+}
+},
+"application/json": {
+"schema": {
+"type": "array",
+"items": {
+"$ref": "#/components/schemas/UserSummery"
+}
+}
+},
+"text/json": {
+"schema": {
+"type": "array",
+"items": {
+"$ref": "#/components/schemas/UserSummery"
+}
+}
+}
+}
+},
+"400": {
+"description": "Bad Request",
+"content": {
+"text/plain": {
+"schema": {
+"$ref": "#/components/schemas/ProblemDetails"
+}
+},
+"application/json": {
+"schema": {
+"$ref": "#/components/schemas/ProblemDetails"
+}
+},
+"text/json": {
+"schema": {
+"$ref": "#/components/schemas/ProblemDetails"
+}
+}
+}
+},
+"404": {
+"description": "Not Found",
+"content": {
+"text/plain": {
+"schema": {
+"$ref": "#/components/schemas/ProblemDetails"
+}
+},
+"application/json": {
+"schema": {
+"$ref": "#/components/schemas/ProblemDetails"
+}
+},
+"text/json": {
+"schema": {
+"$ref": "#/components/schemas/ProblemDetails"
+}
+}
+}
+},
+"500": {
+"description": "Internal Server Error"
+}
+}
+}
+},
+"/api/user/{id}": {
+"get": {
+"tags": [
+"user"
+],
+"operationId": "ReadUserByID",
+"parameters": [
+{
+"name": "id",
+"in": "path",
+"required": true,
+"schema": {
+"type": "integer",
+"format": "int32"
+}
+}
+],
+"responses": {
+"200": {
+"description": "OK",
+"content": {
+"text/plain": {
+"schema": {
+"$ref": "#/components/schemas/User"
+}
+},
+"application/json": {
+"schema": {
+"$ref": "#/components/schemas/User"
+}
+},
+"text/json": {
+"schema": {
+"$ref": "#/components/schemas/User"
+}
+}
+}
+},
+"201": {
+"description": "Created",
+"content": {
+"text/plain": {
+"schema": {
+"$ref": "#/components/schemas/User"
+}
+},
+"application/json": {
+"schema": {
+"$ref": "#/components/schemas/User"
+}
+},
+"text/json": {
+"schema": {
+"$ref": "#/components/schemas/User"
+}
+}
+}
+},
+"400": {
+"description": "Bad Request",
+"content": {
+"text/plain": {
+"schema": {
+"$ref": "#/components/schemas/ProblemDetails"
+}
+},
+"application/json": {
+"schema": {
+"$ref": "#/components/schemas/ProblemDetails"
+}
+},
+"text/json": {
+"schema": {
+"$ref": "#/components/schemas/ProblemDetails"
+}
+}
+}
+},
+"404": {
+"description": "Not Found",
+"content": {
+"text/plain": {
+"schema": {
+"$ref": "#/components/schemas/ProblemDetails"
+}
+},
+"application/json": {
+"schema": {
+"$ref": "#/components/schemas/ProblemDetails"
+}
+},
+"text/json": {
+"schema": {
+"$ref": "#/components/schemas/ProblemDetails"
+}
+}
+}
+},
+"500": {
+"description": "Internal Server Error"
+}
+}
+},
+"put": {
+"tags": [
+"user"
+],
+"operationId": "UpdateUser",
+"parameters": [
+{
+"name": "id",
+"in": "path",
+"required": true,
+"schema": {
+"type": "integer",
+"format": "int32"
+}
+}
+],
+"requestBody": {
+"content": {
+"application/json": {
+"schema": {
+"$ref": "#/components/schemas/User"
+}
+},
+"text/json": {
+"schema": {
+"$ref": "#/components/schemas/User"
+}
+},
+"application/*+json": {
+"schema": {
+"$ref": "#/components/schemas/User"
+}
+}
+}
+},
+"responses": {
+"200": {
+"description": "OK",
+"content": {
+"text/plain": {
+"schema": {
+"$ref": "#/components/schemas/User"
+}
+},
+"application/json": {
+"schema": {
+"$ref": "#/components/schemas/User"
+}
+},
+"text/json": {
+"schema": {
+"$ref": "#/components/schemas/User"
+}
+}
+}
+},
+"201": {
+"description": "Created",
+"content": {
+"text/plain": {
+"schema": {
+"$ref": "#/components/schemas/User"
+}
+},
+"application/json": {
+"schema": {
+"$ref": "#/components/schemas/User"
+}
+},
+"text/json": {
+"schema": {
+"$ref": "#/components/schemas/User"
+}
+}
+}
+},
+"400": {
+"description": "Bad Request",
+"content": {
+"text/plain": {
+"schema": {
+"$ref": "#/components/schemas/ProblemDetails"
+}
+},
+"application/json": {
+"schema": {
+"$ref": "#/components/schemas/ProblemDetails"
+}
+},
+"text/json": {
+"schema": {
+"$ref": "#/components/schemas/ProblemDetails"
+}
+}
+}
+},
+"404": {
+"description": "Not Found",
+"content": {
+"text/plain": {
+"schema": {
+"$ref": "#/components/schemas/ProblemDetails"
+}
+},
+"application/json": {
+"schema": {
+"$ref": "#/components/schemas/ProblemDetails"
+}
+},
+"text/json": {
+"schema": {
+"$ref": "#/components/schemas/ProblemDetails"
+}
+}
+}
+},
+"500": {
+"description": "Internal Server Error"
+}
+}
+},
+"delete": {
+"tags": [
+"user"
+],
+"operationId": "DeleteUser",
+"parameters": [
+{
+"name": "id",
+"in": "path",
+"required": true,
+"schema": {
+"type": "integer",
+"format": "int32"
+}
+}
+],
+"responses": {
+"200": {
+"description": "OK",
+"content": {
+"text/plain": {
+"schema": {
+"type": "boolean"
+}
+},
+"application/json": {
+"schema": {
+"type": "boolean"
+}
+},
+"text/json": {
+"schema": {
+"type": "boolean"
+}
+}
+}
+},
+"201": {
+"description": "Created",
+"content": {
+"text/plain": {
+"schema": {
+"type": "boolean"
+}
+},
+"application/json": {
+"schema": {
+"type": "boolean"
+}
+},
+"text/json": {
+"schema": {
+"type": "boolean"
+}
+}
+}
+},
+"400": {
+"description": "Bad Request",
+"content": {
+"text/plain": {
+"schema": {
+"$ref": "#/components/schemas/ProblemDetails"
+}
+},
+"application/json": {
+"schema": {
+"$ref": "#/components/schemas/ProblemDetails"
+}
+},
+"text/json": {
+"schema": {
+"$ref": "#/components/schemas/ProblemDetails"
+}
+}
+}
+},
+"404": {
+"description": "Not Found",
+"content": {
+"text/plain": {
+"schema": {
+"$ref": "#/components/schemas/ProblemDetails"
+}
+},
+"application/json": {
+"schema": {
+"$ref": "#/components/schemas/ProblemDetails"
+}
+},
+"text/json": {
+"schema": {
+"$ref": "#/components/schemas/ProblemDetails"
+}
+}
+}
+},
+"500": {
+"description": "Internal Server Error"
+}
+}
+}
+},
+"/api/user/username/{username}": {
+"get": {
+"tags": [
+"user"
+],
+"operationId": "ReadUserByUsername",
+"parameters": [
+{
+"name": "username",
+"in": "path",
+"required": true,
+"schema": {
+"type": "string"
+}
+}
+],
+"responses": {
+"200": {
+"description": "OK",
+"content": {
+"text/plain": {
+"schema": {
+"$ref": "#/components/schemas/User"
+}
+},
+"application/json": {
+"schema": {
+"$ref": "#/components/schemas/User"
+}
+},
+"text/json": {
+"schema": {
+"$ref": "#/components/schemas/User"
+}
+}
+}
+},
+"201": {
+"description": "Created",
+"content": {
+"text/plain": {
+"schema": {
+"$ref": "#/components/schemas/User"
+}
+},
+"application/json": {
+"schema": {
+"$ref": "#/components/schemas/User"
+}
+},
+"text/json": {
+"schema": {
+"$ref": "#/components/schemas/User"
+}
+}
+}
+},
+"400": {
+"description": "Bad Request",
+"content": {
+"text/plain": {
+"schema": {
+"$ref": "#/components/schemas/ProblemDetails"
+}
+},
+"application/json": {
+"schema": {
+"$ref": "#/components/schemas/ProblemDetails"
+}
+},
+"text/json": {
+"schema": {
+"$ref": "#/components/schemas/ProblemDetails"
+}
+}
+}
+},
+"404": {
+"description": "Not Found",
+"content": {
+"text/plain": {
+"schema": {
+"$ref": "#/components/schemas/ProblemDetails"
+}
+},
+"application/json": {
+"schema": {
+"$ref": "#/components/schemas/ProblemDetails"
+}
+},
+"text/json": {
+"schema": {
+"$ref": "#/components/schemas/ProblemDetails"
+}
+}
+}
+},
+"500": {
+"description": "Internal Server Error"
+}
+}
+}
+},
+"/api/user": {
+"post": {
+"tags": [
+"user"
+],
+"operationId": "CreateUser",
+"requestBody": {
+"content": {
+"application/json": {
+"schema": {
+"$ref": "#/components/schemas/User"
+}
+},
+"text/json": {
+"schema": {
+"$ref": "#/components/schemas/User"
+}
+},
+"application/*+json": {
+"schema": {
+"$ref": "#/components/schemas/User"
+}
+}
+}
+},
+"responses": {
+"200": {
+"description": "OK",
+"content": {
+"text/plain": {
+"schema": {
+"$ref": "#/components/schemas/User"
+}
+},
+"application/json": {
+"schema": {
+"$ref": "#/components/schemas/User"
+}
+},
+"text/json": {
+"schema": {
+"$ref": "#/components/schemas/User"
+}
+}
+}
+},
+"201": {
+"description": "Created",
+"content": {
+"text/plain": {
+"schema": {
+"$ref": "#/components/schemas/User"
+}
+},
+"application/json": {
+"schema": {
+"$ref": "#/components/schemas/User"
+}
+},
+"text/json": {
+"schema": {
+"$ref": "#/components/schemas/User"
+}
+}
+}
+},
+"400": {
+"description": "Bad Request",
+"content": {
+"text/plain": {
+"schema": {
+"$ref": "#/components/schemas/ProblemDetails"
+}
+},
+"application/json": {
+"schema": {
+"$ref": "#/components/schemas/ProblemDetails"
+}
+},
+"text/json": {
+"schema": {
+"$ref": "#/components/schemas/ProblemDetails"
+}
+}
+}
+},
+"404": {
+"description": "Not Found",
+"content": {
+"text/plain": {
+"schema": {
+"$ref": "#/components/schemas/ProblemDetails"
+}
+},
+"application/json": {
+"schema": {
+"$ref": "#/components/schemas/ProblemDetails"
+}
+},
+"text/json": {
+"schema": {
+"$ref": "#/components/schemas/ProblemDetails"
+}
+}
+}
+},
+"500": {
+"description": "Internal Server Error"
+}
+}
+}
+},
+"/api/user/{id}/existance": {
+"get": {
+"tags": [
+"user"
+],
+"operationId": "isUserExistByID",
+"parameters": [
+{
+"name": "id",
+"in": "path",
+"required": true,
+"schema": {
+"type": "integer",
+"format": "int32"
+}
+}
+],
+"responses": {
+"200": {
+"description": "OK",
+"content": {
+"text/plain": {
+"schema": {
+"type": "boolean"
+}
+},
+"application/json": {
+"schema": {
+"type": "boolean"
+}
+},
+"text/json": {
+"schema": {
+"type": "boolean"
+}
+}
+}
+},
+"201": {
+"description": "Created",
+"content": {
+"text/plain": {
+"schema": {
+"type": "boolean"
+}
+},
+"application/json": {
+"schema": {
+"type": "boolean"
+}
+},
+"text/json": {
+"schema": {
+"type": "boolean"
+}
+}
+}
+},
+"400": {
+"description": "Bad Request",
+"content": {
+"text/plain": {
+"schema": {
+"$ref": "#/components/schemas/ProblemDetails"
+}
+},
+"application/json": {
+"schema": {
+"$ref": "#/components/schemas/ProblemDetails"
+}
+},
+"text/json": {
+"schema": {
+"$ref": "#/components/schemas/ProblemDetails"
+}
+}
+}
+},
+"404": {
+"description": "Not Found",
+"content": {
+"text/plain": {
+"schema": {
+"$ref": "#/components/schemas/ProblemDetails"
+}
+},
+"application/json": {
+"schema": {
+"$ref": "#/components/schemas/ProblemDetails"
+}
+},
+"text/json": {
+"schema": {
+"$ref": "#/components/schemas/ProblemDetails"
+}
+}
+}
+},
+"500": {
+"description": "Internal Server Error"
+}
+}
+}
+}
+},
+"components": {
+"schemas": {
+"ActiveLicense": {
+"type": "object",
+"properties": {
+"licenseID": {
+"type": "integer",
+"format": "int32"
+},
+"applicationID": {
+"type": "integer",
+"format": "int32"
+},
+"class": {
+"type": "string",
+"nullable": true
+},
+"issueDate": {
+"type": "string",
+"format": "date"
+},
+"expirationDate": {
+"type": "string",
+"format": "date"
+},
+"isActive": {
+"type": "boolean"
+}
+},
+"additionalProperties": false
+},
+"ApplicationType": {
+"type": "object",
+"properties": {
+"id": {
+"type": "integer",
+"format": "int32"
+},
+"typeTitle": {
+"type": "string",
+"nullable": true
+},
+"typeFee": {
+"type": "number",
+"format": "double"
+}
+},
+"additionalProperties": false
+},
+"AppointmentDTO": {
+"type": "object",
+"properties": {
+"testAppointmentID": {
+"type": "integer",
+"format": "int32"
+},
+"testTypeID": {
+"type": "integer",
+"format": "int32"
+},
+"localDrivingLicenseApplicationID": {
+"type": "integer",
+"format": "int32"
+},
+"appointmentDate": {
+"type": "string",
+"format": "date-time"
+},
+"paidFees": {
+"type": "number",
+"format": "double"
+},
+"createdByUserID": {
+"type": "integer",
+"format": "int32"
+},
+"isLocked": {
+"type": "boolean"
+},
+"retakeTestApplicationID": {
+"type": "integer",
+"format": "int32",
+"nullable": true
+}
+},
+"additionalProperties": false
+},
+"AppointmentViewDTO": {
+"type": "object",
+"properties": {
+"testAppointmentID": {
+"type": "integer",
+"format": "int32"
+},
+"testTypeID": {
+"type": "integer",
+"format": "int32"
+},
+"testTypeTitle": {
+"type": "string",
+"nullable": true
+},
+"localDrivingLicenseApplicationID": {
+"type": "integer",
+"format": "int32"
+},
+"personID": {
+"type": "integer",
+"format": "int32"
+},
+"fullName": {
+"type": "string",
+"nullable": true
+},
+"appointmentDate": {
+"type": "string",
+"format": "date-time"
+},
+"paidFees": {
+"type": "number",
+"format": "double"
+},
+"isLocked": {
+"type": "boolean"
+}
+},
+"additionalProperties": false
+},
+"DetainedLicense": {
+"type": "object",
+"properties": {
+"id": {
+"type": "integer",
+"format": "int32"
+},
+"licenseID": {
+"type": "integer",
+"format": "int32"
+},
+"detainDate": {
+"type": "string",
+"format": "date-time"
+},
+"fineFees": {
+"type": "number",
+"format": "double"
+},
+"createdByUserID": {
+"type": "integer",
+"format": "int32"
+},
+"isReleased": {
+"type": "boolean"
+},
+"releaseDate": {
+"type": "string",
+"format": "date-time",
+"nullable": true
+},
+"releasedByUserID": {
+"type": "integer",
+"format": "int32",
+"nullable": true
+},
+"releaseApplicationID": {
+"type": "integer",
+"format": "int32",
+"nullable": true
+}
+},
+"additionalProperties": false
+},
+"DetainedLicense_View": {
+"type": "object",
+"properties": {
+"id": {
+"type": "integer",
+"format": "int32"
+},
+"fullName": {
+"type": "string",
+"nullable": true
+},
+"licenseID": {
+"type": "integer",
+"format": "int32"
+},
+"detainDate": {
+"type": "string",
+"format": "date-time"
+},
+"isReleased": {
+"type": "boolean"
+},
+"fineFees": {
+"type": "number",
+"format": "double"
+},
+"releaseDate": {
+"type": "string",
+"format": "date-time",
+"nullable": true
+},
+"nationalNo": {
+"type": "string",
+"nullable": true
+},
+"releaseApplicationID": {
+"type": "integer",
+"format": "int32",
+"nullable": true
+}
+},
+"additionalProperties": false
+},
+"Driver": {
+"type": "object",
+"properties": {
+"id": {
+"type": "integer",
+"format": "int32"
+},
+"personID": {
+"type": "integer",
+"format": "int32"
+},
+"creationDate": {
+"type": "string",
+"format": "date"
+},
+"createdByUserID": {
+"type": "integer",
+"format": "int32"
+}
+},
+"additionalProperties": false
+},
+"DriverInterNationalLicense": {
+"type": "object",
+"properties": {
+"licenseID": {
+"type": "integer",
+"format": "int32"
+},
+"applicationID": {
+"type": "integer",
+"format": "int32"
+},
+"issuedUsingLocalLicenseID": {
+"type": "integer",
+"format": "int32"
+},
+"issueDate": {
+"type": "string",
+"format": "date"
+},
+"expirationDate": {
+"type": "string",
+"format": "date"
+},
+"isActive": {
+"type": "boolean"
+}
+},
+"additionalProperties": false
+},
+"Driver_View": {
+"type": "object",
+"properties": {
+"id": {
+"type": "integer",
+"format": "int32"
+},
+"personID": {
+"type": "integer",
+"format": "int32"
+},
+"fullName": {
+"type": "string",
+"nullable": true
+},
+"nationalID": {
+"type": "string",
+"nullable": true
+},
+"date": {
+"type": "string",
+"format": "date"
+},
+"activeLicenses": {
+"type": "integer",
+"format": "int32"
+}
+},
+"additionalProperties": false
+},
+"InternationalLicense": {
+"type": "object",
+"properties": {
+"internationalLicenseID": {
+"type": "integer",
+"format": "int32"
+},
+"applicationID": {
+"type": "integer",
+"format": "int32"
+},
+"driverID": {
+"type": "integer",
+"format": "int32"
+},
+"issuedUsingLocalLicenseID": {
+"type": "integer",
+"format": "int32"
+},
+"issueDate": {
+"type": "string",
+"format": "date-time"
+},
+"expirationDate": {
+"type": "string",
+"format": "date-time"
+},
+"isActive": {
+"type": "boolean"
+},
+"createdByUserID": {
+"type": "integer",
+"format": "int32"
+}
+},
+"additionalProperties": false
+},
+"LicenseClass": {
+"type": "object",
+"properties": {
+"id": {
+"type": "integer",
+"format": "int32"
+},
+"className": {
+"type": "string",
+"nullable": true
+},
+"description": {
+"type": "string",
+"nullable": true
+},
+"fees": {
+"type": "number",
+"format": "double"
+},
+"minAgeAllowed": {
+"type": "integer",
+"format": "int32"
+},
+"validityYears": {
+"type": "integer",
+"format": "int32"
+}
+},
+"additionalProperties": false
+},
+"LocalDLApp": {
+"type": "object",
+"properties": {
+"id": {
+"type": "integer",
+"format": "int32"
+},
+"applicationID": {
+"type": "integer",
+"format": "int32"
+},
+"licenseClassID": {
+"type": "integer",
+"format": "int32"
+}
+},
+"additionalProperties": false
+},
+"LocalDLApp_View": {
+"type": "object",
+"properties": {
+"id": {
+"type": "integer",
+"format": "int32"
+},
+"nationalID": {
+"type": "string",
+"nullable": true
+},
+"class": {
+"type": "string",
+"nullable": true
+},
+"fullName": {
+"type": "string",
+"nullable": true
+},
+"date": {
+"type": "string",
+"format": "date"
+},
+"passedTest": {
+"type": "integer",
+"format": "int32"
+},
+"status": {
+"type": "string",
+"nullable": true
+}
+},
+"additionalProperties": false
+},
+"Person": {
+"required": [
+"address",
+"birthDate",
+"createdByUserID",
+"firstName",
+"gender",
+"lastName",
+"nationality",
+"nationalNumber",
+"secondName",
+"thirdName"
+],
+"type": "object",
+"properties": {
+"id": {
+"type": "integer",
+"format": "int32"
+},
+"firstName": {
+"maxLength": 50,
+"minLength": 0,
+"type": "string"
+},
+"secondName": {
+"maxLength": 50,
+"minLength": 0,
+"type": "string"
+},
+"thirdName": {
+"maxLength": 50,
+"minLength": 0,
+"type": "string"
+},
+"lastName": {
+"maxLength": 50,
+"minLength": 0,
+"type": "string"
+},
+"nationalNumber": {
+"maxLength": 20,
+"minLength": 0,
+"type": "string"
+},
+"address": {
+"maxLength": 150,
+"minLength": 0,
+"type": "string"
+},
+"email": {
+"maxLength": 100,
+"minLength": 0,
+"type": "string",
+"format": "email",
+"nullable": true
+},
+"phoneNumber": {
+"maxLength": 20,
+"minLength": 0,
+"type": "string",
+"format": "tel",
+"nullable": true
+},
+"birthDate": {
+"minLength": 1,
+"type": "string"
+},
+"personalPicture": {
+"type": "string",
+"nullable": true
+},
+"nationality": {
+"minLength": 1,
+"type": "string"
+},
+"gender": {
+"minLength": 1,
+"type": "string"
+},
+"createdByUserID": {
+"type": "integer",
+"format": "int32"
+},
+"creationDate": {
+"type": "string",
+"format": "date-time"
+},
+"updatedByUserID": {
+"type": "integer",
+"format": "int32",
+"nullable": true
+},
+"updatedDate": {
+"type": "string",
+"format": "date-time",
+"nullable": true
+}
+},
+"additionalProperties": false
+},
+"Person_View": {
+"type": "object",
+"properties": {
+"id": {
+"type": "integer",
+"format": "int32"
+},
+"firstName": {
+"type": "string",
+"nullable": true
+},
+"secondName": {
+"type": "string",
+"nullable": true
+},
+"thirdName": {
+"type": "string",
+"nullable": true
+},
+"lastName": {
+"type": "string",
+"nullable": true
+},
+"nationalNumber": {
+"type": "string",
+"nullable": true
+},
+"email": {
+"type": "string",
+"nullable": true
+},
+"phoneNumber": {
+"type": "string",
+"nullable": true
+},
+"birthDate": {
+"type": "string",
+"nullable": true
+},
+"nationality": {
+"type": "string",
+"nullable": true
+},
+"gender": {
+"type": "string",
+"nullable": true
+}
+},
+"additionalProperties": false
+},
+"ProblemDetails": {
+"type": "object",
+"properties": {
+"type": {
+"type": "string",
+"nullable": true
+},
+"title": {
+"type": "string",
+"nullable": true
+},
+"status": {
+"type": "integer",
+"format": "int32",
+"nullable": true
+},
+"detail": {
+"type": "string",
+"nullable": true
+},
+"instance": {
+"type": "string",
+"nullable": true
+}
+},
+"additionalProperties": {}
+},
+"Test": {
+"type": "object",
+"properties": {
+"id": {
+"type": "integer",
+"format": "int32"
+},
+"appointmentID": {
+"type": "integer",
+"format": "int32"
+},
+"result": {
+"type": "boolean"
+},
+"notes": {
+"type": "string",
+"nullable": true
+},
+"createdByUserID": {
+"type": "integer",
+"format": "int32"
+}
+},
+"additionalProperties": false
+},
+"TestAppointmentDTO": {
+"type": "object",
+"properties": {
+"testAppointmentID": {
+"type": "integer",
+"format": "int32"
+},
+"appointmentDate": {
+"type": "string",
+"format": "date-time"
+},
+"paidFees": {
+"type": "number",
+"format": "double"
+},
+"isLocked": {
+"type": "boolean"
+}
+},
+"additionalProperties": false
+},
+"TestType": {
+"type": "object",
+"properties": {
+"id": {
+"type": "integer",
+"format": "int32"
+},
+"testTypeTitle": {
+"type": "string",
+"nullable": true
+},
+"testTypeDescription": {
+"type": "string",
+"nullable": true
+},
+"testTypeFees": {
+"type": "number",
+"format": "double"
+}
+},
+"additionalProperties": false
+},
+"User": {
+"type": "object",
+"properties": {
+"id": {
+"type": "integer",
+"format": "int32"
+},
+"username": {
+"type": "string",
+"nullable": true
+},
+"password": {
+"type": "string",
+"nullable": true
+},
+"isActive": {
+"type": "boolean"
+},
+"personID": {
+"type": "integer",
+"format": "int32"
+}
+},
+"additionalProperties": false
+},
+"UserSummery": {
+"type": "object",
+"properties": {
+"id": {
+"type": "integer",
+"format": "int32"
+},
+"personID": {
+"type": "integer",
+"format": "int32"
+},
+"fullName": {
+"type": "string",
+"nullable": true
+},
+"username": {
+"type": "string",
+"nullable": true
+},
+"isActive": {
+"type": "boolean"
+}
+},
+"additionalProperties": false
+},
+"_Application": {
+"type": "object",
+"properties": {
+"id": {
+"type": "integer",
+"format": "int32"
+},
+"personID": {
+"type": "integer",
+"format": "int32"
+},
+"status": {
+"$ref": "#/components/schemas/enStatus"
+},
+"applicationTypeID": {
+"type": "integer",
+"format": "int32"
+},
+"date": {
+"type": "string",
+"format": "date-time"
+},
+"paidFees": {
+"type": "number",
+"format": "double"
+},
+"lastStatusDate": {
+"type": "string",
+"format": "date-time"
+},
+"createdByUserID": {
+"type": "integer",
+"format": "int32"
+}
+},
+"additionalProperties": false
+},
+"_License": {
+"type": "object",
+"properties": {
+"id": {
+"type": "integer",
+"format": "int32"
+},
+"applicationID": {
+"type": "integer",
+"format": "int32"
+},
+"driverID": {
+"type": "integer",
+"format": "int32"
+},
+"licenseClass": {
+"type": "integer",
+"format": "int32"
+},
+"issueDate": {
+"type": "string",
+"format": "date"
+},
+"expDate": {
+"type": "string",
+"format": "date"
+},
+"isActive": {
+"type": "boolean"
+},
+"paidFees": {
+"type": "number",
+"format": "double"
+},
+"issueReason": {
+"type": "integer",
+"format": "int32"
+},
+"notes": {
+"type": "string",
+"nullable": true
+},
+"createdByUserID": {
+"type": "integer",
+"format": "int32"
+}
+},
+"additionalProperties": false
+},
+"clsAppointment": {
+"type": "object",
+"properties": {
+"testAppointmentID": {
+"type": "integer",
+"format": "int32"
+},
+"testTypeID": {
+"type": "integer",
+"format": "int32"
+},
+"localDrivingLicenseApplicationID": {
+"type": "integer",
+"format": "int32"
+},
+"appointmentDate": {
+"type": "string",
+"format": "date-time"
+},
+"paidFees": {
+"type": "number",
+"format": "double"
+},
+"createdByUserID": {
+"type": "integer",
+"format": "int32"
+},
+"isLocked": {
+"type": "boolean"
+},
+"retakeTestApplicationID": {
+"type": "integer",
+"format": "int32",
+"nullable": true
+},
+"appointmentDTO": {
+"$ref": "#/components/schemas/AppointmentDTO"
+}
+},
+"additionalProperties": false
+},
+"clsTests": {
+"type": "object",
+"properties": {
+"_Mode": {
+"$ref": "#/components/schemas/enMode"
+},
+"id": {
+"type": "integer",
+"format": "int32"
+},
+"appointmentID": {
+"type": "integer",
+"format": "int32"
+},
+"appointmentInfo": {
+"$ref": "#/components/schemas/clsAppointment"
+},
+"result": {
+"type": "boolean"
+},
+"notes": {
+"type": "string",
+"nullable": true
+},
+"createdByUserID": {
+"type": "integer",
+"format": "int32"
+},
+"testDTO": {
+"$ref": "#/components/schemas/Test"
+}
+},
+"additionalProperties": false
+},
+"enApplicationType": {
+"enum": [
+1,
+2,
+3,
+4,
+5,
+6,
+7
+],
+"type": "integer",
+"format": "int32"
+},
+"enMode": {
+"enum": [
+0,
+1
+],
+"type": "integer",
+"format": "int32"
+},
+"enStatus": {
+"enum": [
+1,
+2,
+3
+],
+"type": "integer",
+"format": "int32"
+},
+"enTestType": {
+"enum": [
+1,
+2,
+3
+],
+"type": "integer",
+"format": "int32"
+}
+}
+}
+}

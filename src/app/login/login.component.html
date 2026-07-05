@@ -1,0 +1,49 @@
+<div class="cont">
+  <div class="img-box">
+    <img src="images\Resume-Building-min-1.png" alt="" />
+  </div>
+  <div class="container">
+    <header>
+      <p class="main-text">سجل دخول إلى حسابك!</p>
+    </header>
+
+    <form [formGroup]="login_form" (ngSubmit)="onSubmit()">
+      <div class="control">
+        <label for="username">اسم المستخدم</label>
+        <input
+          type="text"
+          id="username"
+          [formControl]="login_form.controls.username"
+        />
+      </div>
+
+      <div class="control">
+        <label for="password">كلمة المرور</label>
+        <input type="password" id="password" formControlName="password" />
+      </div>
+
+      <a href="#" style="pointer-events: none; text-decoration: none"
+        >هل نسيت كلمة المرور</a
+      >
+      <button type="submit" class="button homepage-button">
+        تسجيل الدخول &#8594;
+      </button>
+      <button routerLink="../" class="button homepage-button">
+        العودة إلى الموقع
+      </button>
+
+      <!-- <p>Don't have an accunt? <a href="">Sign up</a></p> -->
+
+      @if (invalidPassword || isExist() == false) {
+        <p class="error">invalid username/password</p>
+      }
+      @if (
+        isExist() === true &&
+        isActive() === false &&
+        login_form.controls.username.value !== ""
+      ) {
+        <p class="error">user {{ enteredUsername() }} is NOT active</p>
+      }
+    </form>
+  </div>
+</div>

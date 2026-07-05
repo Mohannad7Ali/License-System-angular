@@ -1,0 +1,143 @@
+<div class="container withbackground" dir="rtl">
+  <header class="page-header">
+    <h2>
+      <i class="fa fa-user-circle"></i>
+      {{ mode === "add" ? "إضافة شخص جديد" : "تعديل بيانات الشخص" }}
+    </h2>
+  </header>
+
+  <!-- عرض الأخطاء القادمة من السيرفر -->
+  @if (serverErrors.length > 0) {
+    <div class="error-alert">
+      <strong><i class="fa fa-warning"></i> تنبيهات النظام:</strong>
+      <ul>
+        @for (error of serverErrors; track $index) {
+          <li>{{ error }}</li>
+        }
+      </ul>
+    </div>
+  }
+
+  <form [formGroup]="personForm" (ngSubmit)="onSave()" class="card person-form">
+    <div class="form-body">
+      <!-- قسم رفع الصورة -->
+      <div class="photo-section">
+        <div class="avatar-wrapper" (click)="fileInput.click()">
+          <!-- تم ربط الرابط الافتراضي المباشر هنا في حال لم توجد معاينة -->
+          <img
+            [src]="
+              imagePreview() ||
+              'https://cdn-icons-png.flaticon.com/256/5844/5844412.png'
+            "
+            alt="صورة الشخص"
+          />
+          <div class="avatar-overlay"><i class="fa fa-camera"></i></div>
+        </div>
+        <input
+          type="file"
+          #fileInput
+          (change)="onFileSelected($event)"
+          accept="image/*"
+          style="display: none"
+        />
+        <p class="hint">اضغط لتغيير الصورة</p>
+        @if (
+          personForm.get("personalPicture")?.touched &&
+          personForm.get("personalPicture")?.invalid
+        ) {
+          <small class="text-danger">الصورة الشخصية مطلوبة</small>
+        }
+      </div>
+
+      <!-- شبكة الحقول -->
+      <div class="inputs-grid">
+        <div class="control">
+          <label>الاسم الأول *</label>
+          <input type="text" formControlName="firstName" />
+        </div>
+        <div class="control">
+          <label>الاسم الثاني *</label>
+          <input type="text" formControlName="secondName" />
+        </div>
+        <div class="control">
+          <label>الاسم الثالث *</label>
+          <input type="text" formControlName="thirdName" />
+        </div>
+        <div class="control">
+          <label>الكنية *</label>
+          <input type="text" formControlName="lastName" />
+        </div>
+
+        <div class="control">
+          <label>الرقم الوطني *</label>
+          <input type="text" formControlName="nationalNumber" />
+          @if (personForm.get("nationalNumber")?.errors?.["notUnique"]) {
+            <small class="text-danger">الرقم الوطني مسجل مسبقاً</small>
+          }
+        </div>
+
+        <div class="control">
+          <label>تاريخ الميلاد *</label>
+          <input type="date" formControlName="birthDate" />
+        </div>
+
+        <div class="control">
+          <label>الجنس *</label>
+          <div class="radio-group">
+            <label
+              ><input type="radio" value="M" formControlName="gender" />
+              ذكر</label
+            >
+            <label
+              ><input type="radio" value="F" formControlName="gender" />
+              أنثى</label
+            >
+          </div>
+        </div>
+
+        <div class="control">
+          <label>الجنسية *</label>
+          <select formControlName="nationality">
+            <option value="">-- اختر الدولة --</option>
+            @for (c of countries; track c.countryID) {
+              <option [value]="c.countryID">{{ c.countryName }}</option>
+            }
+          </select>
+        </div>
+
+        <div class="control">
+          <label>الهاتف *</label>
+          <input type="tel" formControlName="phoneNumber" />
+        </div>
+
+        <div class="control">
+          <label>البريد الإلكتروني *</label>
+          <input type="email" formControlName="email" />
+        </div>
+
+        <div class="control full-width">
+          <label>العنوان السكني *</label>
+          <textarea formControlName="address" rows="2"></textarea>
+        </div>
+      </div>
+    </div>
+
+    <div class="actions">
+      <button
+        type="button"
+        class="button button-secondary"
+        routerLink="/dashboard/people"
+      >
+        إلغاء
+      </button>
+      <button
+        type="submit"
+        class="button button-primary"
+        [disabled]="personForm.invalid"
+      >
+        <i class="fa fa-save"></i>
+        {{ mode === "add" ? "حفظ الشخص" : "تحديث البيانات" }}
+      </button>
+    </div>
+  </form>
+</div>

@@ -1,0 +1,14 @@
+<div class="dashboard">
+  <!-- Mobile overlay -->
+  <div #overlayElement class="mobile-overlay" (click)="closeMobileMenu()"></div>
+
+  <!-- Sidebar -->
+  <app-sidebar #sidebarElement />
+
+  <!-- Main content area -->
+  <div class="main-content">
+    <app-header (mobileMenuToggle)="toggleMobileMenu()" />
+    <app-notification></app-notification>
+    <router-outlet />
+  </div>
+</div>

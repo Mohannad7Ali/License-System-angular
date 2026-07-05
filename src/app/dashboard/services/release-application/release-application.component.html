@@ -1,0 +1,192 @@
+<!-- showign notification if person took all 3 tests already  -->
+<app-notification />
+
+<form action="">
+  <div class="flex">
+    <input
+      type="number"
+      [formControl]="filter"
+      placeholder="Enter License ID..."
+    />
+    <div class="add-btn">
+      <button class="button" type="button" (click)="onSearch()">Search</button>
+    </div>
+  </div>
+  @if (filter.touched && filter.invalid) {
+  <p class="error-message">PLEASE ENTER A VALID ID NUMBER</p>
+  }
+</form>
+
+<div class="container">
+  <fieldset>
+    <legend>Required Fees</legend>
+    <div class="control-row border-color">
+      <div class="control">
+        <label for="class-fee">Required fees</label>
+        <p id="class-fee">
+          {{
+            detain_info() !== undefined
+              ? (detain_info()!.fineFees | currency)
+              : "N/A"
+          }}
+        </p>
+      </div>
+      <div class="control">
+        <label for="app-fee">Required fees for release application</label>
+        <p id="app-fee">
+          {{
+            applicationTypeFee !== undefined
+              ? (applicationTypeFee | currency)
+              : "N/A"
+          }}
+        </p>
+      </div>
+      <div class="control">
+        <label for="total-fees">Total fees</label>
+        <p id="total-fees">
+          {{
+            detain_info() !== undefined
+              ? (detain_info()!.fineFees + applicationTypeFee | currency)
+              : "N/A"
+          }}
+        </p>
+      </div>
+    </div>
+  </fieldset>
+
+  <fieldset>
+    <legend>License Info</legend>
+    <div class="control-row">
+      <div class="control">
+        <label for="full-name">Applicant Name</label>
+        <p id="full-name">
+          {{
+            current_driver() != undefined ? current_driver()!.fullName : "N/A"
+          }}
+        </p>
+      </div>
+      <div class="control">
+        <label for="license-class">License Class</label>
+        <p id="license-class">
+          {{ licenseClass() != undefined ? licenseClass() : "N/A" }}
+        </p>
+      </div>
+      <div class="control">
+        <label for="issue-reason">Issue Reason</label>
+        <p id="issue-reason">
+          {{ issueReason() != undefined ? issueReason() : "N/A" }}
+        </p>
+      </div>
+    </div>
+    <div class="control-row">
+      <div class="control">
+        <label for="exp-date">Expiration Date</label>
+        <p id="exp-date">
+          {{
+            current_license() != undefined ? current_license()!.expDate : "N/A"
+          }}
+        </p>
+      </div>
+
+      <div class="control">
+        <label for="driver-id">Driver ID</label>
+        <p id="status">
+          {{
+            current_license() != undefined ? current_license()?.driverID : "N/A"
+          }}
+        </p>
+      </div>
+      <div class="control">
+        <label for="active-status">Active Status</label>
+        <p id="active-status">
+          {{
+            current_license() != undefined
+              ? current_license()!.isActive
+                ? "Active"
+                : "Not Active"
+              : "N/A"
+          }}
+        </p>
+      </div>
+    </div>
+    <div class="control-row">
+      <div class="control">
+        <label for="detain-status">Detain Status</label>
+        <p id="detain-status">
+          {{
+            isDetaiend() != undefined
+              ? isDetaiend()!
+                ? "Detained"
+                : "Not Detained"
+              : "N/A"
+          }}
+        </p>
+      </div>
+    </div>
+  </fieldset>
+
+  <fieldset>
+    <legend>Detain Info</legend>
+
+    <div class="control-row new">
+      <div class="control">
+        <label for="detain-id">Detain ID</label>
+        <p id="detain-id">
+          {{ detain_info() != undefined ? detain_info()!.id : "N/A" }}
+        </p>
+      </div>
+      <div class="control">
+        <label for="detain-date">Detain Date</label>
+        <p id="detain-date">
+          {{
+            detain_info() != undefined
+              ? (detain_info()!.detainDate | date)
+              : "N/A"
+          }}
+        </p>
+      </div>
+    </div>
+
+    <div class="control-row new">
+      <div class="control">
+        <label for="release-app-id">Release Application ID</label>
+        <p id="release-app-id">
+          {{
+            detain_info() != undefined
+              ? detain_info()!.releaseApplicationID
+                ? detain_info()!.releaseApplicationID
+                : "N/A"
+              : "N/A"
+          }}
+        </p>
+      </div>
+
+      <div class="control">
+        <label for="new-issue-reason">Release Date</label>
+        <p id="new-issue-reason">
+          {{
+            detain_info() != undefined
+              ? detain_info()!.releaseDate
+                ? (detain_info()!.releaseDate | date)
+                : "N/A"
+              : "N/A"
+          }}
+        </p>
+      </div>
+    </div>
+  </fieldset>
+
+  <div class="actions">
+    <button class="button button-secondary" (click)="onReset()">Reset</button>
+    <button class="button" (click)="onRelease()">Release License</button>
+  </div>
+
+  @if(isDialogVisible()){
+  <app-confirmation-dialog
+    [isVisible]="isDialogVisible()"
+    title="Confirm"
+    message="Are you sure you want to release license?"
+    (confirmed)="onDialogResult($event)"
+  ></app-confirmation-dialog>
+  }
+</div>

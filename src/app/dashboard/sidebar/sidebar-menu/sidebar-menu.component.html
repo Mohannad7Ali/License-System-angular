@@ -1,0 +1,122 @@
+<main dir="rtl">
+  <!-- القائمة الرئيسية -->
+  <ul>
+    <li class="ul-header">القائمة الرئيسية</li>
+
+    <li>
+      <a routerLink="test" routerLinkActive="active">
+        <i class="fa fa-th-large icon-gold"></i>
+        <span>لوحة التحكم</span>
+      </a>
+    </li>
+
+    <!-- إدارة الأشخاص (الجديدة) -->
+    <li>
+      <a routerLink="people" routerLinkActive="active">
+        <i class="fa fa-users icon-gold"></i>
+        <span>إدارة الأشخاص</span>
+      </a>
+    </li>
+
+    <!-- الخدمات -->
+    <li>
+      <button (click)="ontoggle('services')">
+        <i class="fa fa-id-card icon-gold"></i>
+        <span>خدمات الرخص</span>
+        <i
+          class="fa fa-chevron-down arrow"
+          [class.rotated]="menuOpen['services']()"
+        ></i>
+      </button>
+      @if (menuOpen["services"]()) {
+        <ul class="submenu">
+          <li>
+            <a routerLink="services/new-application/local">طلب رخصة جديدة</a>
+          </li>
+          <li><a routerLink="services/renew-local-app">تجديد رخصة</a></li>
+          <li><a routerLink="services/replace-app">بدل فاقد / تالف</a></li>
+          <li><a routerLink="services/release-app">فك حجز رخصة</a></li>
+        </ul>
+      }
+    </li>
+    <!-- إدارة الاختبارات -->
+    <li>
+      <a routerLink="manage-tests/tests" routerLinkActive="active">
+        <i class="fa fa-cogs icon-test"></i>
+        <span>سجلات الاختبارات</span>
+      </a>
+    </li>
+    <li>
+      <a
+        routerLink="appointments/manage-appointments"
+        routerLinkActive="active"
+      >
+        <i class="fa fa-calendar icon-gold"></i>
+        <span>المواعيد</span>
+      </a>
+    </li>
+
+    <li>
+      <button (click)="ontoggle('apps')">
+        <i class="fa fa-folder-open icon-gold"></i>
+        <span>إدارة الطلبات</span>
+        <i
+          class="fa fa-chevron-down arrow"
+          [class.rotated]="menuOpen['apps']()"
+        ></i>
+      </button>
+      @if (menuOpen["apps"]()) {
+        <ul class="submenu">
+          <li>
+            <a routerLink="applications-management/local-applications"
+              >الطلبات المحلية</a
+            >
+          </li>
+        </ul>
+      }
+    </li>
+  </ul>
+
+  <!-- إعدادات النظام -->
+  <ul>
+    <li class="ul-header">النظام</li>
+
+    <li>
+      <button (click)="ontoggle('system')">
+        <i class="fa fa-cogs icon-gold"></i>
+        <span>الإعدادات</span>
+        <i
+          class="fa fa-chevron-down arrow"
+          [class.rotated]="menuOpen['system']()"
+        ></i>
+      </button>
+      @if (menuOpen["system"]()) {
+        <ul class="submenu">
+          <li><a routerLink="system/application-types">أنواع الطلبات</a></li>
+          <li><a routerLink="system/manage-tests">أنواع الاختبارات</a></li>
+        </ul>
+      }
+    </li>
+
+    <li>
+      <a routerLink="accounts" routerLinkActive="active">
+        <i class="fa fa-user-circle icon-gold"></i>
+        <span>مستخدمي النظام</span>
+      </a>
+    </li>
+
+    <li class="logout-li">
+      <button (click)="logout()">
+        <i class="fa fa-sign-out-alt"></i>
+        <span>تسجيل الخروج</span>
+      </button>
+    </li>
+  </ul>
+</main>
+
+<app-confirmation-dialog
+  [isVisible]="isDialogVisible()"
+  title="تأكيد الخروج"
+  message="هل أنت متأكد أنك تريد تسجيل الخروج من النظام؟"
+  (confirmed)="onDialogResult($event)"
+></app-confirmation-dialog>

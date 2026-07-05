@@ -1,0 +1,39 @@
+<!-- ====== HTML ====== -->
+<header>
+  <!-- Left: Mobile Menu Toggle Button -->
+  <button class="mobile-menu-toggle" (click)="toggleMobileMenu()" aria-label="قائمة الهاتف">
+    <i class="fa fa-bars"></i>
+  </button>
+
+  <!-- Center: Logo -->
+  <div class="logo">
+    <span class="logo-icon">📊</span>
+    <span>لوحة التحكم</span>
+  </div>
+
+  <!-- Center-Left: Search Bar (fills whitespace) -->
+  <div class="search-wrapper">
+    <span class="search-icon">🔍</span>
+    <input type="text" placeholder="ابحث عن شيء..." />
+  </div>
+
+  <!-- Right: Actions + User -->
+  <div class="actions">
+    <button class="icon-btn" aria-label="الإشعارات">
+      <span>🔔</span>
+      <span class="badge">3</span>
+    </button>
+
+    <button routerLink="./user-account" class="user-section">
+      <div class="user-info">
+        <div class="user-text">
+          <span class="welcome">مرحباً 👋</span>
+          <span class="username">
+            {{ currentUserService.getCurrentUser()?.username }}
+          </span>
+        </div>
+        <img src="images/user (4).png" alt="صورة المستخدم" class="avatar" />
+      </div>
+    </button>
+  </div>
+</header>

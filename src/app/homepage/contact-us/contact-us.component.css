@@ -1,0 +1,39 @@
+.contact-box {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 30px;
+}
+.numbers {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 10px;
+  font-size: 18px;
+  max-width: 400px;
+}
+
+form {
+  border-radius: 15px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+  -webkit-border-radius: 15px;
+  -moz-border-radius: 15px;
+  -ms-border-radius: 15px;
+  -o-border-radius: 15px;
+}
+.control-row {
+  width: 100%;
+}
+.control {
+  min-width: 0;
+}
+.control input {
+  border: none;
+}
+button {
+  width: 100%;
+}

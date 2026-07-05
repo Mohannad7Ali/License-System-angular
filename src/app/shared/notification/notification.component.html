@@ -1,0 +1,39 @@
+@if (messageBox()) {
+  <div class="notification-wrapper" dir="rtl">
+    <div class="backdrop" (click)="closeNotification()"></div>
+
+    <div class="notification-card" [attr.data-status]="messageBox()?.status">
+      <!-- شريط علوي ملون حسب الحالة -->
+      <div class="status-bar"></div>
+
+      <div class="content-layout">
+        <div class="icon-section">
+          @if (messageBox()?.status === "success") {
+            <i class="fa fa-check-circle success-icon"></i>
+          } @else if (messageBox()?.status === "failed") {
+            <i class="fa fa-times-circle failed-icon"></i>
+          } @else {
+            <i class="fa fa-info-circle info-icon"></i>
+          }
+        </div>
+
+        <div class="text-section">
+          <header class="status-title">
+            {{
+              messageBox()?.status === "success"
+                ? "تمت العملية بنجاح"
+                : messageBox()?.status === "failed"
+                  ? "حدث خطأ ما"
+                  : "تنبيه من النظام"
+            }}
+          </header>
+          <p class="message-text">{{ messageBox()?.message }}</p>
+        </div>
+      </div>
+
+      <footer class="action-footer">
+        <button class="btn-ok" (click)="closeNotification()">موافق</button>
+      </footer>
+    </div>
+  </div>
+}

@@ -1,0 +1,134 @@
+<!-- حوار التأكيد للحذف -->
+<app-confirmation-dialog
+  [isVisible]="isDialogVisible()"
+  title="تأكيد الحذف"
+  message="هل أنت متأكد أنك تريد حذف هذا الشخص؟ سيتم حذف جميع السجلات المرتبطة به نهائياً."
+  (confirmed)="onDialogResult($event)"
+>
+</app-confirmation-dialog>
+
+<!-- مكون التنبيهات -->
+<app-notification />
+
+<div class="container">
+  <header class="page-header">
+    <div class="title-section">
+      <i class="fa fa-users-gears page-icon"></i>
+      <h2>إدارة الأشخاص</h2>
+    </div>
+    <p class="subtitle">
+      يمكنك البحث عن الأشخاص، تعديل بياناتهم أو إضافة أشخاص جدد للنظام.
+    </p>
+  </header>
+
+  <!-- قسم الفلترة والإضافة -->
+  <div class="table-controls">
+    <div class="search-wrapper">
+      <i class="fa fa-search search-icon"></i>
+      <input
+        type="text"
+        [formControl]="filter"
+        placeholder="ابحث بالاسم، الرقم الوطني، أو الهاتف..."
+      />
+    </div>
+    <button class="button add-btn" (click)="onAddPerson()">
+      <i class="fa fa-user-plus"></i> إضافة شخص جديد
+    </button>
+  </div>
+
+  <!-- جدول البيانات -->
+  <div class="card table-card">
+    <table>
+      <thead>
+        <tr>
+          <th>المعرف</th>
+          <th>الرقم الوطني</th>
+          <th>الاسم الكامل</th>
+          <th>الجنس</th>
+          <th>الهاتف</th>
+          <th>الجنسية</th>
+          <th>الإجراءات</th>
+        </tr>
+      </thead>
+      <tbody>
+        @for (person of displayedData; track person.id) {
+          <tr>
+            <td>
+              <span class="id-badge">{{ person.id }}</span>
+            </td>
+            <td>
+              <strong>{{ person.nationalNumber }}</strong>
+            </td>
+            <td>
+              {{ person.firstName }} {{ person.secondName }}
+              {{ person.lastName }}
+            </td>
+            <td>
+              <span
+                [class]="
+                  person.gender === 'Male' ? 'gender-male' : 'gender-female'
+                "
+              >
+                <i
+                  [class]="
+                    person.gender === 'Male' ? 'fa fa-mars' : 'fa fa-venus'
+                  "
+                ></i>
+                {{ person.gender === "Male" ? "ذكر" : "أنثى" }}
+              </span>
+            </td>
+            <td>{{ person.phoneNumber }}</td>
+            <td>{{ person.nationality }}</td>
+            <td class="actions">
+              <button
+                class="btn-action edit-btn"
+                (click)="onEdit(person.id)"
+                title="تعديل البيانات"
+              >
+                <i class="fa fa-edit"></i>
+              </button>
+              <button
+                class="btn-action delete-btn"
+                (click)="onDelete(person.id)"
+                title="حذف الشخص"
+              >
+                <i class="fa fa-trash"></i>
+              </button>
+            </td>
+          </tr>
+        } @empty {
+          <tr>
+            <td colspan="7" class="empty-row">
+              <i class="fa fa-folder-open"></i>
+              <p>لا توجد بيانات مطابقة لعملية البحث</p>
+            </td>
+          </tr>
+        }
+      </tbody>
+    </table>
+  </div>
+
+  <!-- التحكم في الصفحات -->
+  <footer class="pagination-section">
+    <div class="results-count">
+      إجمالي النتائج: <b>{{ filteredData.length }}</b> شخص
+    </div>
+    <div class="pagination-btns">
+      <button
+        class="p-btn"
+        (click)="onPrevious()"
+        [disabled]="currentPage === 1"
+      >
+        <i class="fa fa-chevron-right"></i> السابق
+      </button>
+      <span class="page-indicator">الصفحة {{ currentPage }}</span>
+      <button
+        class="p-btn"
+        (click)="onNext()"
+        [disabled]="currentPage * pageSize >= filteredData.length"
+      >
+        التالي <i class="fa fa-chevron-left"></i>
+      </button>
+    </div>
+  </footer>
+</div>

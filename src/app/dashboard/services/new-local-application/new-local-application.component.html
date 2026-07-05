@@ -1,0 +1,153 @@
+<app-confirmation-dialog
+  [isVisible]="isDialogVisible()"
+  title="تأكيد الطلب"
+  message="هل أنت متأكد من صحة البيانات وتريد تقديم الطلب؟"
+  (confirmed)="onDialogResult($event)"
+></app-confirmation-dialog>
+
+<app-notification />
+
+<div class="na-page-container" dir="rtl">
+  <div class="na-form-card">
+    <header class="na-header">
+      <div class="na-icon-box"><i class="fa fa-file-signature"></i></div>
+      <div class="na-title-text">
+        <h2>تقديم طلب رخصة محلية</h2>
+        <p>يرجى إكمال كافة الحقول الإلزامية المميزة بـ (*)</p>
+      </div>
+    </header>
+
+    <form [formGroup]="registerForm" (ngSubmit)="onSubmit()">
+      <div class="na-layout-split">
+        <!-- عمود الصورة الشخصية -->
+        <div class="na-photo-side">
+          <div class="na-avatar-frame" (click)="fileInput.click()">
+            <img [src]="imagePreview()" alt="صورة المتقدم" />
+            <div class="na-avatar-overlay"><i class="fa fa-camera"></i></div>
+          </div>
+          <input
+            type="file"
+            #fileInput
+            (change)="onFileSelected($event)"
+            accept="image/*"
+            style="display: none"
+          />
+          <p class="na-photo-hint">صورة الشخص (إجبارية)</p>
+        </div>
+
+        <!-- عمود الحقول -->
+        <div class="na-fields-side">
+          <div class="na-row">
+            <div class="na-field">
+              <label>الاسم الأول *</label>
+              <input
+                type="text"
+                formControlName="firstName"
+                placeholder="الاسم"
+              />
+            </div>
+            <div class="na-field">
+              <label>اسم الأب *</label>
+              <input
+                type="text"
+                formControlName="secondName"
+                placeholder="الأب"
+              />
+            </div>
+            <div class="na-field">
+              <label>اسم الجد</label>
+              <input
+                type="text"
+                formControlName="thirdName"
+                placeholder="اختياري"
+              />
+            </div>
+            <div class="na-field">
+              <label>الكنية *</label>
+              <input
+                type="text"
+                formControlName="lastName"
+                placeholder="اللقب"
+              />
+            </div>
+          </div>
+
+          <div class="na-row">
+            <div class="na-field">
+              <label>الرقم الوطني *</label>
+              <input
+                type="text"
+                formControlName="nationalNo"
+                placeholder="أدخل الرقم الوطني"
+              />
+              @if (registerForm.get("nationalNo")?.errors?.["notUnique"]) {
+                <small class="na-err">الرقم مستخدم مسبقاً!</small>
+              }
+            </div>
+            <div class="na-field">
+              <label>تاريخ الميلاد *</label>
+              <input type="date" formControlName="birthDate" />
+            </div>
+            <div class="na-field">
+              <label>الجنسية *</label>
+              <select formControlName="country">
+                <option value="">-- اختر الدولة --</option>
+                @for (c of countries; track c.countryID) {
+                  <option [value]="c.countryID">{{ c.countryName }}</option>
+                }
+              </select>
+            </div>
+          </div>
+
+          <div class="na-row">
+            <div class="na-field">
+              <label>صنف الرخصة *</label>
+              <select formControlName="licenseClass" class="na-special-select">
+                <option value="">-- اختر الفئة --</option>
+                @for (lc of licenseClasses; track lc.id) {
+                  <option [value]="lc.id">{{ lc.className }}</option>
+                }
+              </select>
+            </div>
+            <div class="na-field">
+              <label>رقم الهاتف *</label>
+              <input
+                type="tel"
+                formControlName="phone"
+                placeholder="09xxxxxxxx"
+              />
+            </div>
+            <div class="na-field">
+              <label>البريد الإلكتروني *</label>
+              <input type="email" formControlName="email" />
+            </div>
+          </div>
+
+          <div class="na-row">
+            <div class="na-field na-full">
+              <label>العنوان السكني الحالي بالتفصيل *</label>
+              <input
+                type="text"
+                formControlName="address"
+                placeholder="المدينة، الشارع، المبنى..."
+              />
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="na-footer">
+        <button type="button" class="na-btn-back" (click)="onCancel()">
+          إلغاء
+        </button>
+        <button
+          type="submit"
+          class="na-btn-submit"
+          [disabled]="registerForm.invalid || isSubmitting()"
+        >
+          <i class="fa fa-save"></i> تقديم الطلب وحفظ البيانات
+        </button>
+      </div>
+    </form>
+  </div>
+</div>

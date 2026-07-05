@@ -1,0 +1,39 @@
+<div class="wrapper">
+  <div class="user-box">
+    <img src="images/user (4).png" alt="" />
+    <p class="username">{{ full_name ?? "undefiend" }}</p>
+  </div>
+
+  <div class="user-info-box">
+    <app-new-local-application
+      [person_id]="current_user?.personID ?? null"
+    ></app-new-local-application>
+
+    <!-- <div class="form">
+      <div class="control-row">
+        <div class="control">
+          <label for="user-id">User ID</label>
+          <p name="user-id" id="user-id">{{ current_user?.id }}</p>
+        </div>
+        <div class="control">
+          <label for="username">Username</label>
+          <input
+            type="text"
+            name="username"
+            id="username"
+            [value]="current_user?.username"
+            #username
+          />
+        </div>
+        <div class="control">
+          <label for="activity-state">Activity State</label>
+          <p id="activity-state">
+            {{ this.current_user?.isActive ? "Active" : "NOT Active" }}
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+  <a routerLink="change-password">Change user password?</a> -->
+  </div>
+</div>

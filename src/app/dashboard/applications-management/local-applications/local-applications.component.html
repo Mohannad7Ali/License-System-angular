@@ -1,0 +1,148 @@
+<app-confirmation-dialog
+  [isVisible]="isDialogVisible()"
+  title="تأكيد الإلغاء"
+  message="هل أنت متأكد أنك تريد إلغاء هذا الطلب؟ هذا الإجراء لا يمكن التراجع عنه."
+  (confirmed)="onDialogResult($event)"
+></app-confirmation-dialog>
+
+<app-notification />
+
+<div class="la-container" dir="rtl">
+  <header class="la-page-header">
+    <div class="la-title-section">
+      <div class="la-icon-circle"><i class="fa fa-file-invoice"></i></div>
+      <div>
+        <h2>إدارة طلبات الرخص المحلية</h2>
+        <p class="la-subtitle">
+          عرض ومتابعة كافة طلبات رخص القيادة المقدمة عبر النظام
+        </p>
+      </div>
+    </div>
+  </header>
+
+  <!-- Search and Action Bar -->
+  <div class="la-action-bar">
+    <div class="la-search-box">
+      <i class="fa fa-search"></i>
+      <input
+        type="text"
+        [formControl]="filter"
+        placeholder="ابحث بالاسم، الرقم الوطني، أو المعرف..."
+      />
+    </div>
+    <button
+      class="la-btn-primary"
+      routerLink="../add-edit-application"
+      [queryParams]="{ mode: 'add', application_id: 0, with_cancelation: true }"
+    >
+      <i class="fa fa-plus"></i> تقديم طلب جديد
+    </button>
+  </div>
+
+  <!-- Modern Data Table Card -->
+  <div class="la-table-card">
+    <table class="la-modern-table">
+      <thead>
+        <tr>
+          <th>المعرف</th>
+          <th>الرقم الوطني</th>
+          <th>الاسم الكامل</th>
+          <th>صنف الرخصة</th>
+          <th>التاريخ</th>
+          <th>الاختبارات</th>
+          <th>الحالة</th>
+          <th>الإجراءات</th>
+        </tr>
+      </thead>
+      <tbody>
+        @for (app of displayedData; track app.id) {
+          <tr>
+            <td>
+              <span class="la-id-badge">{{ app.id }}</span>
+            </td>
+            <td>
+              <span class="la-national-no">{{ app.nationalID }}</span>
+            </td>
+            <td class="la-name-cell">{{ app.fullName }}</td>
+            <td>
+              <span class="la-class-label">{{ app.class }}</span>
+            </td>
+            <td>{{ app.date | date: "dd/MM/yyyy" }}</td>
+            <td>
+              <div class="la-test-progress">
+                <span class="la-progress-text">{{ app.passedTest }} / 3</span>
+                <div class="la-progress-bar">
+                  <div
+                    class="la-fill"
+                    [style.width]="(app.passedTest / 3) * 100 + '%'"
+                  ></div>
+                </div>
+              </div>
+            </td>
+            <td>
+              <span class="la-status-badge" [attr.data-status]="app.status">
+                {{
+                  app.status === "New"
+                    ? "جديد"
+                    : app.status === "Completed"
+                      ? "مكتمل"
+                      : "ملغي"
+                }}
+              </span>
+            </td>
+            <td class="la-actions">
+              <button
+                class="la-btn-icon view"
+                title="عرض التفاصيل"
+                [routerLink]="['../preview-application']"
+                [queryParams]="{ application_id: app.id }"
+              >
+                <i class="fa fa-eye"></i>
+              </button>
+              @if (app.status === "New") {
+                <button
+                  class="la-btn-icon cancel"
+                  title="إلغاء الطلب"
+                  (click)="onCancel(app.id)"
+                >
+                  <i class="fa fa-ban"></i>
+                </button>
+              }
+            </td>
+          </tr>
+        } @empty {
+          <tr>
+            <td colspan="8" class="la-empty-state">
+              <i class="fa fa-inbox"></i>
+              <p>لا توجد طلبات مطابقة للبحث</p>
+            </td>
+          </tr>
+        }
+      </tbody>
+    </table>
+  </div>
+
+  <!-- Pagination Area -->
+  <footer class="la-pagination-area">
+    <div class="la-results-info">
+      إجمالي الطلبات: <b>{{ filteredApplications.length }}</b>
+    </div>
+    <div class="la-nav-btns">
+      <button
+        class="la-nav-btn"
+        (click)="onPrevious()"
+        [disabled]="currentPage === 1"
+      >
+        السابق
+      </button>
+      <span class="la-page-num">صفحة {{ currentPage }}</span>
+      <button
+        class="la-nav-btn"
+        (click)="onNext()"
+        [disabled]="currentPage * pageSize >= filteredApplications.length"
+      >
+        التالي
+      </button>
+    </div>
+  </footer>
+</div>

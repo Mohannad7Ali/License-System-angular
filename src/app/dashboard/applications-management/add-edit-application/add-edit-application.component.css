@@ -1,0 +1,7 @@
+/* src/modules/add-edit-application/add-edit-application.component.css */
+
+:host {
+  display: block !important;
+  width: 100% !important;
+  box-sizing: border-box !important;
+}

@@ -1,0 +1,128 @@
+<app-notification></app-notification>
+
+@if (isDialogVisible()) {
+  <app-confirmation-dialog
+    [isVisible]="isDialogVisible()"
+    title="تأكيد حفظ النتيجة"
+    message="هل أنت متأكد من رغبتك في حفظ النتيجة؟ يرجى الانتباه أن النتائج لا يمكن تعديلها بعد الحفظ."
+    (confirmed)="onDialogResult($event)"
+  ></app-confirmation-dialog>
+}
+
+<app-dialog-wrapper title="إدارة المواعيد > تسجيل نتيجة الاختبار">
+  <div class="test-module-wrapper" dir="rtl">
+    <!-- بطاقة المعلومات العلوية -->
+    <div class="info-card-gradient">
+      <div class="info-header">
+        <i class="fa fa-address-card"></i>
+        <span>بيانات الموعد والمتقدم</span>
+      </div>
+
+      <div class="info-details-grid">
+        <div class="info-box">
+          <label>رقم الموعد</label>
+          <span class="value"
+            >#{{ appointment()?.testAppointmentID || "---" }}</span
+          >
+        </div>
+        <div class="info-box">
+          <label>اسم المتقدم</label>
+          <span class="value primary">{{
+            appointment()?.fullName || "جاري التحميل..."
+          }}</span>
+        </div>
+        <div class="info-box">
+          <label>نوع الاختبار المجدول</label>
+          <span class="value badge-type">
+            <i class="fa fa-vial"></i>
+            {{ appointment()?.testTypeTitle || "---" }}
+          </span>
+        </div>
+      </div>
+    </div>
+
+    <!-- بطاقة إدخال النتيجة -->
+    <form
+      class="result-entry-card"
+      [formGroup]="testForm"
+      (ngSubmit)="onSubmit()"
+    >
+      <div class="section-divider">
+        <span>النتيجة النهائية والتقرير</span>
+      </div>
+
+      <div class="form-content">
+        <!-- اختيار النتيجة -->
+        <div class="field-group">
+          <label class="main-label">نتيجة الاختبار الإجمالية *</label>
+          <div class="custom-toggle-group">
+            <label
+              class="toggle-item pass"
+              [class.active]="testForm.get('result')?.value === '1'"
+            >
+              <input type="radio" value="1" formControlName="result" />
+              <div class="content">
+                <i class="fa fa-check-circle"></i>
+                <div class="text">
+                  <span class="status">ناجح</span>
+                  <span class="sub">PASSED</span>
+                </div>
+              </div>
+            </label>
+
+            <label
+              class="toggle-item fail"
+              [class.active]="testForm.get('result')?.value === '0'"
+            >
+              <input type="radio" value="0" formControlName="result" />
+              <div class="content">
+                <i class="fa fa-times-circle"></i>
+                <div class="text">
+                  <span class="status">راسب</span>
+                  <span class="sub">FAILED</span>
+                </div>
+              </div>
+            </label>
+          </div>
+        </div>
+
+        <!-- الملاحظات -->
+        <div class="field-group">
+          <label class="main-label">ملاحظات الفاحص والتقرير الفني</label>
+          <div class="textarea-wrapper">
+            <i class="fa fa-pen-nib"></i>
+            <textarea
+              formControlName="notes"
+              placeholder="اكتب تقييم المتقدم هنا..."
+            ></textarea>
+          </div>
+        </div>
+
+        <!-- في حال النجاح وظهور المعرف -->
+        @if (test?.id) {
+          <div class="success-banner-id">
+            <i class="fa fa-certificate"></i>
+            <span
+              >تم إصدار سجل اختبار برقم: <strong>{{ test?.id }}</strong></span
+            >
+          </div>
+        }
+      </div>
+
+      <!-- الأزرار -->
+      <footer class="footer-actions">
+        <button type="button" class="btn-cancel-flat" (click)="onCancel()">
+          تراجع
+        </button>
+        <button
+          type="submit"
+          class="btn-submit-modern"
+          [disabled]="testForm.invalid || isSubmitting()"
+        >
+          <span>حفظ واعتماد النتيجة</span>
+          <i class="fa fa-arrow-left"></i>
+        </button>
+      </footer>
+    </form>
+  </div>
+</app-dialog-wrapper>

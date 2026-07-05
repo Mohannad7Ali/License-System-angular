@@ -1,0 +1,146 @@
+.container {
+  padding: 20px;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+.page-header h2 {
+  color: #2d3748;
+  font-size: 1.4rem;
+  margin-bottom: 5px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+.subtitle {
+  color: #718096;
+  font-size: 0.85rem;
+  margin-bottom: 25px;
+}
+
+.table-controls {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+}
+.search-box {
+  position: relative;
+  width: 350px;
+}
+.search-icon {
+  position: absolute;
+  right: 12px;
+  top: 50%;
+  transform: translateY(-50%);
+  color: #a0aec0;
+  font-size: 0.9rem;
+}
+.search-box input {
+  width: 100%;
+  padding: 10px 40px 10px 15px;
+  font-size: 0.9rem;
+  border: 1px solid #e2e8f0;
+  border-radius: 8px;
+}
+
+.add-btn {
+  background-color: var(--dark-color);
+  color: white;
+  padding: 9px 18px;
+  font-size: 0.85rem;
+  font-weight: 500;
+  border-radius: 8px;
+  font-weight: 500;
+  width: 20%;
+  border: none;
+  cursor: pointer;
+  display: flex;
+  justify-content: center;
+}
+
+.table-container {
+  background: white;
+  border-radius: 10px;
+  border: 1px solid #e2e8f0;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+  overflow: hidden;
+}
+table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.85rem;
+}
+th {
+  background-color: #f7fafc;
+  color: #4a5568;
+  font-weight: 600;
+  padding: 12px 15px;
+  text-align: center;
+  border-bottom: 2px solid #edf2f7;
+}
+td {
+  padding: 12px 15px;
+  border-bottom: 1px solid #edf2f7;
+  vertical-align: middle;
+  color: #4a5568;
+}
+
+.desc-cell {
+  color: #718096;
+  font-size: 0.8rem;
+  line-height: 1.4;
+}
+.fee-cell {
+  color: #38a169;
+  font-weight: 700;
+}
+.id-badge {
+  background: #edf2f7;
+  padding: 3px 8px;
+  border-radius: 5px;
+  font-weight: bold;
+}
+
+.actions {
+  display: flex;
+  gap: 8px;
+  justify-content: center;
+}
+.btn-action {
+  padding: 6px 12px;
+  font-size: 0.75rem;
+  border-radius: 6px;
+  border: none;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+.edit {
+  background-color: #ebf4ff;
+  color: #4c51bf;
+}
+.delete {
+  background-color: #fff5f5;
+  color: #c53030;
+}
+
+.pagination {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 20px;
+  gap: 12px;
+}
+.p-btn {
+  background: #fff;
+  border: 1px solid #e2e8f0;
+  padding: 6px 14px;
+  border-radius: 6px;
+  font-size: 0.85rem;
+  cursor: pointer;
+}
+.p-btn:disabled {
+  opacity: 0.4;
+  cursor: not-allowed;
+}

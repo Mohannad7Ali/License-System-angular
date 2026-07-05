@@ -1,0 +1,79 @@
+<div class="container" dir="rtl">
+  <header class="page-header">
+    <h2>
+      <i class="fa fa-edit" style="color: var(--special-color)"></i>
+      {{ mode === "add" ? "إضافة" : "تعديل" }}
+      {{ targetType === "application" ? "نوع طلب" : "نوع اختبار" }}
+    </h2>
+  </header>
+
+  <form [formGroup]="type_form" (ngSubmit)="onSave()" class="card compact-form">
+    <!-- حقل المعرف -->
+    <div class="control-row">
+      <div class="control">
+        <label>المعرف (ID)</label>
+        <input
+          type="text"
+          [value]="id || 'تلقائي'"
+          disabled
+          class="disabled-input"
+        />
+      </div>
+    </div>
+
+    <!-- حقل العنوان -->
+    <div class="control-row">
+      <div class="control">
+        <label>المسمى / العنوان *</label>
+        <input
+          type="text"
+          formControlName="title"
+          placeholder="أدخل العنوان هنا..."
+        />
+        @if (
+          type_form.get("title")?.touched && type_form.get("title")?.invalid
+        ) {
+          <small class="error-text">هذا الحقل مطلوب</small>
+        }
+      </div>
+    </div>
+
+    <!-- حقل الوصف (يظهر فقط في أنواع الاختبارات) -->
+    @if (targetType === "test") {
+      <div class="control-row">
+        <div class="control">
+          <label>الوصف التفصيلي *</label>
+          <textarea
+            formControlName="description"
+            rows="3"
+            placeholder="أدخل وصف الاختبار..."
+          ></textarea>
+        </div>
+      </div>
+    }
+
+    <!-- حقل الرسوم -->
+    <div class="control-row">
+      <div class="control">
+        <label>الرسوم المستحقة ($) *</label>
+        <input type="number" formControlName="fees" />
+        @if (type_form.get("fees")?.touched && type_form.get("fees")?.invalid) {
+          <small class="error-text">يرجى إدخال مبلغ صحيح</small>
+        }
+      </div>
+    </div>
+
+    <div class="form-actions">
+      <button type="button" class="btn-action cancel" (click)="onSuccess()">
+        إلغاء
+      </button>
+      <button
+        type="submit"
+        class="btn-action save"
+        [disabled]="type_form.invalid"
+      >
+        <i class="fa fa-save"></i> حفظ البيانات
+      </button>
+    </div>
+  </form>
+</div>

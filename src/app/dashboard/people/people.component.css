@@ -1,0 +1,317 @@
+/* الحاوية الرئيسية */
+.container {
+  max-width: 1200px;
+  margin: 2rem auto;
+  padding: 0 1.5rem;
+  direction: rtl;
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+}
+
+/* الترويسة (Header) */
+.page-header {
+  margin-bottom: 2rem;
+}
+
+.title-section {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  margin-bottom: 0.5rem;
+}
+
+.page-icon {
+  font-size: 1.75rem;
+  color: #2563eb;
+}
+
+.page-header h2 {
+  font-size: 1.75rem;
+  color: #1e293b;
+  margin: 0;
+  font-weight: 700;
+}
+
+.subtitle {
+  color: #64748b;
+  font-size: 0.95rem;
+  margin: 0;
+}
+
+/* 🛠️ قسم الفلترة والإضافة - مصلح وذكي */
+.table-controls {
+  display: flex;
+  justify-content: flex-start; /* ترتيب العناصر لتبدأ من اليمين بدلاً من التباعد المفرط */
+  align-items: center;
+  gap: 1rem; /* مسافة منطقية بين البحث والزر */
+  margin-bottom: 1.5rem;
+}
+
+/* حقل البحث: أقصى عرض منطقي له هو 450px ليبقى أنيقاً */
+.search-wrapper {
+  position: relative;
+  width: 100%;
+  max-width: 450px;
+}
+
+.search-icon {
+  position: absolute;
+  top: 50%;
+  right: 1rem;
+  transform: translateY(-50%);
+  color: #94a3b8;
+  font-size: 0.95rem;
+}
+
+.search-wrapper input {
+  width: 100%;
+  padding: 0.75rem 2.5rem 0.75rem 1rem;
+  font-size: 0.95rem;
+  border: 1.5px solid #e2e8f0;
+  border-radius: 10px;
+  background-color: #ffffff;
+  color: #334155;
+  outline: none;
+  transition: all 0.2s ease;
+}
+
+.search-wrapper input:focus {
+  border-color: #3b82f6;
+  box-shadow: 0 0 0 4px rgba(59, 130, 246, 0.1);
+}
+
+/* 🛠️ زر إضافة شخص جديد: تم قفل حجمه تماماً ليتناسب مع محتواه */
+.add-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.75rem 1.25rem;
+  background: linear-gradient(135deg, #3b82f6, #2563eb);
+  color: #ffffff;
+  border: none;
+  border-radius: 10px;
+  font-weight: 600;
+  font-size: 0.95rem;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  box-shadow: 0 4px 10px rgba(37, 99, 235, 0.15);
+  white-space: nowrap; /* يمنع النص من الانقسام لسطرين */
+  flex-shrink: 0; /* يمنع المتصفح من ضغط الزر */
+  width: auto; /* يعتمد على حجم النص بداخله فقط */
+}
+
+.add-btn:hover {
+  background: linear-gradient(135deg, #2563eb, #1d4ed8);
+  transform: translateY(-1px);
+  box-shadow: 0 6px 14px rgba(37, 99, 235, 0.25);
+}
+
+/* بطاقة الجدول (Table Card) */
+.table-card {
+  background: #ffffff;
+  border-radius: 14px;
+  border: 1px solid #e2e8f0;
+  box-shadow:
+    0 4px 6px -1px rgba(0, 0, 0, 0.02),
+    0 2px 4px -1px rgba(0, 0, 0, 0.02);
+  overflow: hidden;
+  margin-bottom: 1.5rem;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  text-align: right;
+}
+
+th {
+  background-color: #f8fafc;
+  color: #475569;
+  font-weight: 600;
+  font-size: 0.9rem;
+  padding: 1rem 1.25rem;
+  border-bottom: 1.5px solid #e2e8f0;
+}
+
+td {
+  padding: 1rem 1.25rem;
+  color: #334155;
+  font-size: 0.95rem;
+  border-bottom: 1px solid #f1f5f9;
+}
+
+tr:last-child td {
+  border-bottom: none;
+}
+
+tr:hover td {
+  background-color: #f8fafc;
+}
+
+/* شارات المعرف والرقم الوطني (Badges) */
+.id-badge {
+  background-color: #f1f5f9;
+  color: #64748b;
+  padding: 0.25rem 0.6rem;
+  border-radius: 6px;
+  font-weight: 600;
+  font-size: 0.85rem;
+}
+
+/* شارات الجنس (Gender Badges) */
+.gender-male,
+.gender-female {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  padding: 0.35rem 0.75rem;
+  border-radius: 20px;
+  font-size: 0.85rem;
+  font-weight: 600;
+}
+
+.gender-male {
+  background-color: #eff6ff;
+  color: #2563eb;
+}
+
+.gender-female {
+  background-color: #fdf2f8;
+  color: #db2777;
+}
+
+/* أزرار العمليات (Actions) */
+.actions {
+  display: flex;
+  gap: 0.5rem;
+}
+
+.btn-action {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 34px;
+  height: 34px;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  font-size: 0.95rem;
+}
+
+.edit-btn {
+  background-color: #f0fdf4;
+  color: #16a34a;
+}
+
+.edit-btn:hover {
+  background-color: #16a34a;
+  color: #ffffff;
+}
+
+.delete-btn {
+  background-color: #fef2f2;
+  color: #dc2626;
+}
+
+.delete-btn:hover {
+  background-color: #dc2626;
+  color: #ffffff;
+}
+
+/* الأسطر الفارغة (Empty State) */
+.empty-row {
+  text-align: center;
+  padding: 3rem 1rem !important;
+  color: #94a3b8;
+}
+
+.empty-row i {
+  font-size: 2.5rem;
+  margin-bottom: 0.75rem;
+}
+
+.empty-row p {
+  margin: 0;
+  font-size: 1rem;
+}
+
+/* التحكم بالصفحات (Pagination) */
+.pagination-section {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-top: 0.5rem;
+}
+
+.results-count {
+  color: #64748b;
+  font-size: 0.9rem;
+}
+
+.results-count b {
+  color: #1e293b;
+}
+
+.pagination-btns {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.p-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  padding: 0.5rem 1rem;
+  background-color: #ffffff;
+  border: 1.5px solid #e2e8f0;
+  border-radius: 8px;
+  color: #475569;
+  font-size: 0.9rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.p-btn:hover:not([disabled]) {
+  border-color: #cbd5e1;
+  background-color: #f8fafc;
+  color: #1e293b;
+}
+
+.p-btn:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.page-indicator {
+  color: #334155;
+  font-size: 0.9rem;
+  font-weight: 600;
+}
+
+/* شاشات الهواتف والأجهزة الصغيرة (Responsive) */
+@media (max-width: 768px) {
+  .table-controls {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .search-wrapper {
+    max-width: 100%;
+  }
+
+  .add-btn {
+    justify-content: center;
+  }
+
+  .table-card {
+    overflow-x: auto;
+  }
+
+  .pagination-section {
+    flex-direction: column;
+    gap: 1rem;
+    text-align: center;
+  }
+}

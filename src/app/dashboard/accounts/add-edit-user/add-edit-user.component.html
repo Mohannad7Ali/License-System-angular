@@ -1,0 +1,150 @@
+<div class="container" dir="rtl">
+  <header class="page-header">
+    <h2><i class="fa fa-user-plus"></i> إضافة مستخدم جديد للنظام</h2>
+  </header>
+
+  <!-- المرحلة الأولى: اختيار الشخص -->
+  <div class="card search-section">
+    <h3>1. البحث عن الشخص المُراد ربطه بالحساب</h3>
+    <div class="flex search-box-wrapper">
+      <div class="input-wrapper">
+        <input
+          type="text"
+          [formControl]="searchControl"
+          placeholder="أدخل الرقم الوطني للشخص..."
+          (keydown.enter)="onSearchPerson()"
+        />
+        <i class="fa fa-search"></i>
+      </div>
+      <button
+        class="btn-search"
+        (click)="onSearchPerson()"
+        [disabled]="isSearching() || !searchControl.value"
+      >
+        @if (isSearching()) {
+          <span class="spinner"></span>
+          جاري البحث...
+        } @else {
+          <i class="fa fa-search"></i>
+          بحث
+        }
+      </button>
+    </div>
+
+    <!-- عرض تفاصيل الشخص عند العثور عليه -->
+    @if (foundPerson()) {
+      <div class="person-details">
+        <i class="fa fa-check-circle"></i>
+        <div class="details-content">
+          <p>
+            <b>الاسم الكامل:</b> {{ foundPerson()?.firstName }}
+            {{ foundPerson()?.lastName }}
+          </p>
+          <p><b>رقم الهاتف:</b> {{ foundPerson()?.phoneNumber }}</p>
+        </div>
+      </div>
+    }
+
+    <!-- رسالة الخطأ عند عدم العثور -->
+    @if (searchedAndNotFound()) {
+      <div class="person-not-found">
+        <i class="fa fa-exclamation-circle"></i>
+        <span>لم يتم العثور على شخص مسجل بهذا الرقم الوطني.</span>
+      </div>
+    }
+  </div>
+
+  <!-- المرحلة الثانية: بيانات الحساب -->
+  <form [formGroup]="userForm" (ngSubmit)="onSave()" class="card user-form">
+    <h3>2. بيانات تسجيل الدخول للحساب</h3>
+
+    <div class="form-grid">
+      <div
+        class="control"
+        [class.has-error]="
+          userForm.get('username')?.invalid && userForm.get('username')?.touched
+        "
+      >
+        <label>اسم المستخدم *</label>
+        <input
+          type="text"
+          formControlName="username"
+          placeholder="مثال: mohand_ali"
+        />
+        @if (
+          userForm.get("username")?.invalid && userForm.get("username")?.touched
+        ) {
+          <small class="error-text"
+            >اسم المستخدم مطلوب (3 أحرف على الأقل)</small
+          >
+        }
+      </div>
+
+      <div
+        class="control"
+        [class.has-error]="
+          userForm.get('password')?.invalid && userForm.get('password')?.touched
+        "
+      >
+        <label>كلمة المرور *</label>
+        <input
+          type="password"
+          formControlName="password"
+          placeholder="******"
+        />
+        @if (
+          userForm.get("password")?.invalid && userForm.get("password")?.touched
+        ) {
+          <small class="error-text"
+            >كلمة المرور مطلوبة (6 أحرف على الأقل)</small
+          >
+        }
+      </div>
+
+      <div
+        class="control"
+        [class.has-error]="
+          userForm.errors?.['mismatch'] &&
+          userForm.get('confirmPassword')?.touched
+        "
+      >
+        <label>تأكيد كلمة المرور *</label>
+        <input
+          type="password"
+          formControlName="confirmPassword"
+          placeholder="******"
+        />
+        @if (
+          userForm.errors?.["mismatch"] &&
+          userForm.get("confirmPassword")?.touched
+        ) {
+          <small class="error-text">كلمات المرور غير متطابقة</small>
+        }
+      </div>
+
+      <div class="control checkbox-wrapper">
+        <label class="checkbox-label">
+          <input type="checkbox" formControlName="isActive" />
+          <span>تفعيل الحساب مباشرة للنظام</span>
+        </label>
+      </div>
+    </div>
+
+    <div class="actions">
+      <button
+        type="button"
+        class="button button-secondary"
+        routerLink="/dashboard/accounts"
+      >
+        إلغاء الأمر
+      </button>
+      <button
+        type="submit"
+        class="button button-primary"
+        [disabled]="userForm.invalid || !foundPerson()"
+      >
+        حفظ وتفعيل الحساب
+      </button>
+    </div>
+  </form>
+</div>

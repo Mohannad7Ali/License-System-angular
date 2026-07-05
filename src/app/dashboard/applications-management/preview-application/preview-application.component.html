@@ -1,0 +1,170 @@
+<app-confirmation-dialog
+  [isVisible]="isDialogVisible()"
+  message="هل أنت متأكد أنك تريد إصدار رخصة قيادة لهذا الطلب؟"
+  title="تأكيد الإصدار"
+  (confirmed)="onDialogResult($event)"
+></app-confirmation-dialog>
+
+<app-notification></app-notification>
+
+<app-dialog-wrapper title="الطلبات > معاينة تفاصيل الطلب">
+  <div class="pa-preview-container" dir="rtl">
+    <div class="pa-info-grid">
+      <!-- Section 1: Application Basic Details (Column 1) -->
+      <div class="pa-info-section">
+        <h4 class="pa-section-title">
+          <i class="fa fa-info-circle"></i> تفاصيل الطلب الأساسية
+        </h4>
+
+        <div class="pa-detail-item">
+          <span class="pa-label">رقم الطلب المحلي:</span>
+          <span class="pa-value pa-highlight">
+            {{
+              current_application != undefined
+                ? current_application!.id
+                : "غير متوفر"
+            }}
+          </span>
+        </div>
+
+        <div class="pa-detail-item">
+          <span class="pa-label">اسم المتقدم بالكامل:</span>
+          <span class="pa-value">
+            {{
+              current_application != undefined
+                ? current_application!.fullName
+                : "غير متوفر"
+            }}
+          </span>
+        </div>
+
+        <div class="pa-detail-item">
+          <span class="pa-label">الرقم الوطني:</span>
+          <span class="pa-value">
+            {{
+              current_application != undefined
+                ? current_application!.nationalID
+                : "غير متوفر"
+            }}
+          </span>
+        </div>
+      </div>
+
+      <!-- Section 2: License Details & Status (Column 2) -->
+      <div class="pa-info-section">
+        <h4 class="pa-section-title">
+          <i class="fa fa-id-card"></i> حالة ومستندات الرخصة
+        </h4>
+
+        <div class="pa-detail-item">
+          <span class="pa-label">صنف الرخصة المطلوب:</span>
+          <span class="pa-value pa-class-label">
+            {{
+              current_application != undefined
+                ? current_application!.class
+                : "غير متوفر"
+            }}
+          </span>
+        </div>
+
+        <div class="pa-detail-item">
+          <span class="pa-label">تاريخ تقديم الطلب:</span>
+          <span class="pa-value">
+            {{
+              current_application != undefined
+                ? (current_application!.date | date: "dd/MM/yyyy")
+                : "غير متوفر"
+            }}
+          </span>
+        </div>
+
+        <div class="pa-detail-item">
+          <span class="pa-label">حالة الطلب الحالية:</span>
+          <span class="pa-value">
+            <span
+              class="la-status-badge"
+              [attr.data-status]="current_application?.status"
+            >
+              {{
+                current_application?.status === "New"
+                  ? "جديد"
+                  : current_application?.status === "Completed"
+                    ? "مكتمل"
+                    : "ملغي"
+              }}
+            </span>
+          </span>
+        </div>
+      </div>
+
+      <!-- Section 3: Tests Progress & Issuance (Spans both columns in the bottom row) -->
+      <div class="pa-info-section pa-full-width">
+        <h4 class="pa-section-title">
+          <i class="fa fa-tasks"></i> نتائج الاختبارات المكتملة وحالة الإصدار
+        </h4>
+
+        <div class="pa-test-stats">
+          <div class="pa-stat-circle">
+            <span class="pa-num">
+              {{
+                current_application != undefined
+                  ? current_application!.passedTest
+                  : "0"
+              }}
+            </span>
+            <span class="pa-total">/ 3</span>
+          </div>
+          <div class="pa-stat-desc">
+            <p class="pa-bold">الاختبارات المجتازة</p>
+            <p class="pa-muted">
+              يجب اجتياز 3 اختبارات (نظري، عملي، طبي) لتتمكن من إصدار الرخصة
+              الرسمية للمتقدم عبر النظام
+            </p>
+          </div>
+        </div>
+
+        <hr style="border: 0; border-top: 1px solid #edf2f7; margin: 20px 0" />
+
+        <div class="pa-detail-item pa-license-reference">
+          <span class="pa-label">رقم الرخصة المصدرة المرتبطة بهذا الطلب:</span>
+          <span class="pa-value pa-highlight">
+            {{
+              licese_id() !== undefined
+                ? licese_id() != 0
+                  ? licese_id()
+                  : "لا توجد رخصة مصدرة بعد"
+                : "لا توجد رخصة مصدرة بعد"
+            }}
+          </span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Actions Footer Area -->
+    <div class="pa-preview-footer">
+      <a
+        class="pa-link-edit"
+        routerLink="../add-edit-application"
+        [queryParams]="{
+          mode: 'edit',
+          application_id: application_id,
+          person_id: null,
+        }"
+      >
+        <i class="fa fa-user-edit"></i> تعديل البيانات الشخصية للمتقدم؟
+      </a>
+
+      <div class="pa-action-buttons">
+        <button class="pa-btn-close" (click)="onClose()">إغلاق</button>
+        @if (
+          current_application?.passedTest == 3 &&
+          current_application?.status == "New"
+        ) {
+          <button class="pa-btn-issue" (click)="issueLicenseFirsttime()">
+            <i class="fa fa-certificate"></i> إصدار الرخصة لأول مرة
+          </button>
+        }
+      </div>
+    </div>
+  </div>
+</app-dialog-wrapper>

@@ -1,0 +1,20 @@
+.main-text {
+  color: black;
+  font-size: 60px;
+  font-weight: bold;
+}
+
+.cards {
+  margin-top: 40px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 40px;
+}
+
+button {
+  padding: 15px 30px;
+  font-size: 18px;
+  font-weight: normal;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+}
