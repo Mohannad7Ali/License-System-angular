@@ -1,72 +1,121 @@
-<div class="container">
-  <form class="filteration">
-    <div class="flex">
+<app-notification />
+
+<div class="la-container" dir="rtl">
+  <header class="la-page-header">
+    <div class="la-title-section">
+      <div class="la-icon-circle"><i class="fa fa-globe"></i></div>
+      <div>
+        <h2>إدارة رخص القيادة الدولية</h2>
+        <p class="la-subtitle">
+          عرض وتدقيق كافة الرخص الدولية الصادرة عن النظام
+        </p>
+      </div>
+    </div>
+  </header>
+
+  <!-- شريط البحث والإجراءات -->
+  <div class="la-action-bar">
+    <div class="la-search-box">
+      <i class="fa fa-search"></i>
       <input
         type="text"
         [formControl]="filter"
-        placeholder="Full Text Search..."
+        placeholder="ابحث برقم الرخصة الدولية أو المحلية..."
       />
-      <div class="add-btn">
-        <button routerLink="" class="button">+ Add New License</button>
-      </div>
     </div>
-  </form>
-
-  <table>
-    <thead>
-      <tr>
-        <th scope="col">ID</th>
-        <th scope="col">Int. App ID</th>
-        <th scope="col">Driver ID</th>
-        <th scope="col">Local App ID</th>
-        <th scope="col">Issue Date</th>
-        <th scope="col">Expire Date</th>
-        <th scope="col">is Active</th>
-        <th scope="col">Actions</th>
-      </tr>
-    </thead>
-    <tbody>
-      @for (app of displayedData; track $index) {
-      <tr>
-        <td>{{ app.id }}</td>
-        <td>{{ app.applicationID }}</td>
-        <td>{{ app.driverID }}</td>
-        <td>{{ app.issuedByLocalLicenseID }}</td>
-        <td>{{ app.issueDate | date : "EEE, MMM d, yyyy" }}</td>
-        <td>{{ app.expDate | date : "EEE, MMM d, yyyy" }}</td>
-        <td>{{ app.isActive ? "YES" : "NO" }}</td>
-        <td>
-          <button
-            routerLink="preview-internatioanl-license"
-            [queryParams]="{ id: app.id }"
-            class="button"
-          >
-            Preview
-          </button>
-        </td>
-      </tr>
-      } @empty {
-      <tr>
-        <td colspan="8" style="text-align: center">No Licenses found</td>
-      </tr>
-      }
-    </tbody>
-  </table>
-
-  <div class="pagination">
     <button
-      class="prev-btn"
-      (click)="onPrevious()"
-      [disabled]="currentPage === 1"
+      class="la-btn-primary"
+      routerLink="/dashboard/services/new-application/international"
     >
-      Previous
-    </button>
-    <button
-      class="next-btn"
-      (click)="onNext()"
-      [disabled]="currentPage * pageSize >= filteredLicenses.length"
-    >
-      Next
+      <i class="fa fa-plus"></i> إصدار رخصة دولية
     </button>
   </div>
+
+  <!-- الجدول الاحترافي -->
+  <div class="la-table-card">
+    <table class="la-modern-table">
+      <thead>
+        <tr>
+          <th>ID الدولي</th>
+          <th>ID المحلي</th>
+          <th>تاريخ الإصدار</th>
+          <th>تاريخ الانتهاء</th>
+          <th>الحالة</th>
+          <th style="text-align: center">الإجراءات</th>
+        </tr>
+      </thead>
+      <tbody>
+        @for (item of displayedData; track item.internationalLicenseID) {
+          <tr>
+            <td>
+              <span class="la-id-badge"
+                >INT-{{ item.internationalLicenseID }}</span
+              >
+            </td>
+            <td>
+              <span class="la-name-cell"
+                >#{{ item.issuedUsingLocalLicenseID }}</span
+              >
+            </td>
+            <td>{{ item.issueDate | date: "dd/MM/yyyy" }}</td>
+            <td>
+              <span [class.text-danger]="!item.isActive">{{
+                item.expirationDate | date: "dd/MM/yyyy"
+              }}</span>
+            </td>
+            <td>
+              <span
+                class="la-status-badge"
+                [attr.data-status]="item.isActive ? 'Active' : 'Locked'"
+              >
+                {{ item.isActive ? "نشطة" : "منتهية" }}
+              </span>
+            </td>
+            <td class="la-actions">
+              <!-- 🎯 إصلاح الرابط هنا ليرسل المعرف (id) لصفحة المعاينة -->
+              <button
+                class="la-btn-icon view"
+                title="عرض التفاصيل"
+                [routerLink]="['preview-license']"
+                [queryParams]="{ id: item.internationalLicenseID }"
+              >
+                <i class="fa fa-eye"></i>
+              </button>
+            </td>
+          </tr>
+        } @empty {
+          <tr>
+            <td colspan="6" class="la-empty-state">
+              <i class="fa fa-folder-open"></i>
+              <p>لا توجد رخص دولية مسجلة حالياً</p>
+            </td>
+          </tr>
+        }
+      </tbody>
+    </table>
+  </div>
+
+  <!-- الترقيم -->
+  <footer class="la-pagination-area">
+    <div class="la-results-info">
+      إجمالي السجلات: <b>{{ filteredData.length }}</b>
+    </div>
+    <div class="la-nav-btns">
+      <button
+        class="la-nav-btn"
+        (click)="onPrevious()"
+        [disabled]="currentPage === 1"
+      >
+        السابق
+      </button>
+      <span class="la-page-num">صفحة {{ currentPage }}</span>
+      <button
+        class="la-nav-btn"
+        (click)="onNext()"
+        [disabled]="currentPage * pageSize >= filteredData.length"
+      >
+        التالي
+      </button>
+    </div>
+  </footer>
 </div>

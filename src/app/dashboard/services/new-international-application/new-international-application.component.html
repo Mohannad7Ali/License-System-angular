@@ -1,1 +1,75 @@
-<p>new-international-application works!</p>
+<div class="int-page-container" dir="rtl">
+  <header class="page-header">
+    <div class="header-icon"><i class="fa fa-globe"></i></div>
+    <div class="header-text">
+      <h1>إصدار رخصة قيادة دولية</h1>
+      <p>يجب إدخال رقم رخصة محلية سارية المفعول للمتابعة</p>
+    </div>
+  </header>
+
+  <!-- الجزء الأول: البحث -->
+  <div class="card search-card">
+    <div class="search-input-group">
+      <label>رقم الرخصة المحلية</label>
+      <div class="flex-row">
+        <input
+          type="number"
+          [formControl]="licenseSearch"
+          placeholder="مثلاً: 125"
+        />
+        <button class="btn-search" (click)="onSearch()">
+          <i class="fa fa-magnifying-glass"></i> بحث
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- الجزء الثاني: بيانات الرخصة الدولية (تظهر عند العثور على رخصة محلية) -->
+  @if (foundLocalLicense()) {
+    <div class="card detail-card animated-fade">
+      <div class="section-title">
+        <i class="fa fa-info-circle"></i> معلومات الرخصة الدولية الجديدة
+      </div>
+
+      <div class="info-grid">
+        <div class="info-item">
+          <label>اسم المتقدم:</label>
+          <p>{{ applicantName() || "جاري التحميل..." }}</p>
+        </div>
+        <div class="info-item">
+          <label>الرخصة المحلية المرتبطة:</label>
+          <p>#{{ foundLocalLicense().id }}</p>
+        </div>
+        <div class="info-item">
+          <label>تاريخ الإصدار:</label>
+          <p>{{ today | date: "dd/MM/yyyy" }}</p>
+        </div>
+        <div class="info-item">
+          <label>تاريخ الانتهاء:</label>
+          <p class="expiry">{{ expiryDate | date: "dd/MM/yyyy" }}</p>
+        </div>
+        <div class="info-item">
+          <label>رسوم الخدمة:</label>
+          <p class="fee">$50.00</p>
+        </div>
+        <div class="info-item">
+          <label>المسؤول:</label>
+          <p>المستخدم الحالي</p>
+        </div>
+      </div>
+
+      <footer class="form-footer">
+        <button class="btn-secondary" (click)="foundLocalLicense.set(null)">
+          إلغاء
+        </button>
+        <button
+          class="btn-primary"
+          [disabled]="isSubmitting()"
+          (click)="onIssue()"
+        >
+          <i class="fa fa-check-double"></i> تأكيد وإصدار الرخصة
+        </button>
+      </footer>
+    </div>
+  }
+</div>

@@ -1,79 +1,109 @@
-import { Component, DestroyRef, inject, OnInit } from '@angular/core';
+import {
+  Component,
+  inject,
+  signal,
+  computed,
+  OnInit,
+  DestroyRef,
+} from '@angular/core';
+import { CommonModule, DatePipe, Location } from '@angular/common';
 import { ActivatedRoute } from '@angular/router';
+import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
+import { switchMap, tap, catchError, of, forkJoin } from 'rxjs';
+
 import { TestService } from '../../../services/test.service';
-import { switchMap, tap } from 'rxjs';
-import { Test } from '../../../models/test.model';
 import { AppointmentService } from '../../../services/appointment.service';
-import { Appointment_View } from '../../../models/appointment.model';
+import { TestTypesService } from '../../../services/test-type.service';
 import { NotificationService } from '../../../services/notification.service';
+
+import { Test } from '../../../models/test.model';
+import { Appointment_View } from '../../../models/appointment.model';
+import { TestType } from '../../../models/test-type.model';
+
 import { NotificationComponent } from '../../../shared/notification/notification.component';
 import { DialogWrapperComponent } from '../../../shared/dialog-wrapper/dialog-wrapper.component';
-import { TestType } from '../../../models/test-type.model';
-import { TestTypesService } from '../../../services/test-type.service';
-import { DatePipe, Location } from '@angular/common';
+
 @Component({
   selector: 'app-preview-test',
   standalone: true,
-  imports: [NotificationComponent, DialogWrapperComponent, DatePipe],
+  imports: [
+    CommonModule,
+    NotificationComponent,
+    DialogWrapperComponent,
+    DatePipe,
+  ],
   templateUrl: './preview-test.component.html',
   styleUrl: './preview-test.component.css',
 })
 export class PreviewTestComponent implements OnInit {
-  testID: number | null = null;
-  current_test: Test | undefined = undefined;
-  current_appointment: Appointment_View | undefined = undefined;
-  testTypesArr: TestType[] = [];
+  private route = inject(ActivatedRoute);
+  private testService = inject(TestService);
+  private appointmentService = inject(AppointmentService);
+  private testTypeService = inject(TestTypesService);
+  private notify = inject(NotificationService);
+  private location = inject(Location);
   private destroyRef = inject(DestroyRef);
-  constructor(
-    private location: Location,
-    private route: ActivatedRoute,
-    private testService: TestService,
-    private appoitnmentService: AppointmentService,
-    private notifyServ: NotificationService,
-    private testTypeServ: TestTypesService
-  ) {}
+
+  testId = signal<number | null>(null);
+  testData = signal<Test | null>(null);
+  appointmentData = signal<Appointment_View | null>(null);
+  testTypesArr = signal<TestType[]>([]); // تغيير الاسم ليتوافق مع رغبتك
+  isLoading = signal(true);
+
+  // جلب اسم نوع الاختبار بناءً على حقل testType في الموديل
+  testTypeTitle = computed(() => {
+    const app = this.appointmentData();
+    const types = this.testTypesArr();
+    if (!app || types.length === 0) return '---';
+
+    // ✅ التصحيح: الموديل يستخدم testType
+    const type = types.find((t) => t.id === app.testType);
+    return type ? type.testTypeTitle : 'غير معروف';
+  });
 
   ngOnInit(): void {
-    this.route.queryParams.subscribe((params) => {
-      this.testID = params['id'];
-    });
-
-    this.loadTest();
+    this.route.queryParams
+      .pipe(takeUntilDestroyed(this.destroyRef))
+      .subscribe((params) => {
+        const id = params['id'];
+        if (id) {
+          this.testId.set(+id);
+          this.loadAllData();
+        }
+      });
   }
 
-  loadTest() {
-    if (this.testID) {
-      const subscription = this.testService
-        .read(this.testID!)
-        .pipe(
-          tap((response) => {
-            if (response) {
-              this.current_test = response;
-            }
+  loadAllData() {
+    this.isLoading.set(true);
+
+    this.testService
+      .read(this.testId()!)
+      .pipe(
+        takeUntilDestroyed(this.destroyRef),
+        tap((test) => this.testData.set(test)),
+        switchMap((test) =>
+          forkJoin({
+            // جلب بيانات العرض للموعد
+            appointment: this.appointmentService.readView(test.appointmentID),
+            types: this.testTypeService.all(),
           }),
-          switchMap((response) => {
-            return this.appoitnmentService
-              .readView(response.appointmentID)
-              .pipe(tap((response) => (this.current_appointment = response)));
-          }),
-          switchMap((response) => {
-            return this.testTypeServ.all().pipe(
-              tap((response) => {
-                this.testTypesArr = response;
-              })
-            );
-          })
-        )
-        .subscribe({
-          error: (error) => {
-            this.notifyServ.showMessage({
-              message: error.message,
-              status: 'failed',
-            });
-          },
-        });
-      this.destroyRef.onDestroy(() => subscription.unsubscribe());
-    }
+        ),
+        catchError((err) => {
+          this.notify.showMessage({
+            message: 'خطأ في تحميل البيانات: ' + err.message,
+            status: 'failed',
+          });
+          this.isLoading.set(false);
+          return of(null);
+        }),
+      )
+      .subscribe((res) => {
+        if (res) {
+          this.appointmentData.set(res.appointment);
+          this.testTypesArr.set(res.types);
+        }
+        this.isLoading.set(false);
+      });
   }
 
   onClose() {

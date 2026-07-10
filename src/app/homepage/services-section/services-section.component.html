@@ -1,48 +1,84 @@
-<div class="homepage-container withbackground" id="services">
-  <p class="section-title">Services</p>
-  <p class="main-text">Everything you need in one place</p>
-  <div class="service-cards">
-    <div class="card">
-      <p class="title">License Issuance</p>
-      <p class="description">
-        Upon successful completion of all tests, you have access to continue the
-        process of issuing the license whether its a first time issuance or
-        renew licenses.
-      </p>
-    </div>
-    <div class="card">
-      <p class="title">Test Scheduling</p>
-      <p class="description">
-        Schedule vision, written, and street tests for applicants based on their
-        license class and requirements.
-      </p>
-    </div>
-    <div class="card">
-      <p class="title">Test Evaluation</p>
-      <p class="description">
-        Efficiently evaluate and record the results of each test, determining
-        whether the applicant has successfully passed or needs further action.
+<!-- services.component.html -->
+<div dir="rtl" class="ov-services ov-fade-in-up" id="services">
+  <!-- رأس القسم -->
+  <div class="ov-section-header">
+    <span class="ov-section-badge">خدماتنا</span>
+    <h2 class="ov-main-text">كل ما تحتاجه في مكان واحد</h2>
+    <p class="ov-sub-text">
+      نقدم لك حلولاً متكاملة لإدارة رخص القيادة بكل سهولة
+    </p>
+  </div>
+
+  <!-- شبكة الخدمات -->
+  <div class="ov-service-grid">
+    <!-- 1. إصدار الرخصة -->
+    <div class="ov-service-card">
+      <div class="ov-card-icon">
+        <i class="fa fa-id-card" aria-hidden="true"></i>
+      </div>
+      <h3 class="ov-card-title">إصدار الرخصة</h3>
+      <p class="ov-card-desc">
+        بعد اجتياز جميع الاختبارات بنجاح، يمكنك متابعة عملية إصدار الرخصة سواء
+        كانت للمرة الأولى أو تجديد رخصة.
       </p>
     </div>
 
-    <div class="card">
-      <p class="title">License Replacement</p>
-      <p class="description">
-        Efficient handling of requests for replacing damaged or lost licenses.
-      </p>
-    </div>
-    <div class="card">
-      <p class="title">Release Applications</p>
-      <p class="description">
-        To lift the detention of your license, you can apply for a release
-        detained license application,and paying the required fines
+    <!-- 2. جدولة الاختبارات -->
+    <div class="ov-service-card">
+      <div class="ov-card-icon">
+        <i class="fa fa-calendar-check-o" aria-hidden="true"></i>
+      </div>
+      <h3 class="ov-card-title">جدولة الاختبارات</h3>
+      <p class="ov-card-desc">
+        جدولة اختبارات النظر، والتحريري، والشارع للمتقدمين بناءً على فئة الرخصة
+        ومتطلباتها.
       </p>
     </div>
 
-    <div class="card">
-      <p class="title">Renewal Application</p>
-      <p class="description">
-        Simplified renewal process for existing license holders.
+    <!-- 3. تقييم الاختبارات -->
+    <div class="ov-service-card">
+      <div class="ov-card-icon">
+        <i class="fa fa-bar-chart" aria-hidden="true"></i>
+      </div>
+      <h3 class="ov-card-title">تقييم الاختبارات</h3>
+      <p class="ov-card-desc">
+        تقييم وتسجيل نتائج كل اختبار بكفاءة، وتحديد ما إذا كان المتقدم قد اجتاز
+        بنجاح أو يحتاج إلى إعادة المحاولة.
+      </p>
+    </div>
+
+    <!-- 4. استبدال الرخصة -->
+    <div class="ov-service-card">
+      <div class="ov-card-icon">
+        <i class="fa fa-exchange" aria-hidden="true"></i>
+      </div>
+      <h3 class="ov-card-title">استبدال الرخصة</h3>
+      <p class="ov-card-desc">
+        معالجة طلبات استبدال الرخص التالفة أو المفقودة بكفاءة وسرعة.
+      </p>
+    </div>
+
+    <!-- 5. فك الحجز -->
+    <div class="ov-service-card">
+      <div class="ov-card-icon">
+        <i class="fa fa-unlock-alt" aria-hidden="true"></i>
+      </div>
+      <h3 class="ov-card-title">فك الحجز</h3>
+      <p class="ov-card-desc">
+        لرفع الحجز عن رخصتك، يمكنك تقديم طلب فك حجز الرخصة ودفع الغرامات
+        المطلوبة.
+      </p>
+    </div>
+
+    <!-- 6. تجديد الرخصة -->
+    <div class="ov-service-card">
+      <div class="ov-card-icon">
+        <i class="fa fa-refresh" aria-hidden="true"></i>
+      </div>
+      <h3 class="ov-card-title">تجديد الرخصة</h3>
+      <p class="ov-card-desc">
+        عملية تجديد مبسطة لحاملي الرخص الحاليين، مع إشعارات تلقائية قبل انتهاء
+        الصلاحية.
       </p>
     </div>
   </div>

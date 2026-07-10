@@ -1,100 +1,91 @@
 <app-notification />
 
-<app-dialog-wrapper title="Tests Management > Preview Test">
-  <div class="container">
-    <fieldset>
-      <legend>Test info</legend>
-      <div class="control-row">
-        <div class="control">
-          <label for="test-id">Test ID</label>
-          <p id="test-id">
-            {{ testID != undefined ? testID : "N/A" }}
-          </p>
+<app-dialog-wrapper title="إدارة الاختبارات > تفاصيل الاختبار">
+  <div class="pt-container" dir="rtl">
+    @if (isLoading()) {
+      <div class="pt-loader">
+        <i class="fa fa-spinner fa-spin"></i> جاري تحميل تفاصيل الاختبار...
+      </div>
+    } @else {
+      <div class="pt-content animated fadeIn">
+        <!-- بطاقة النتيجة -->
+        <div
+          class="pt-result-card"
+          [class.passed]="testData()?.result"
+          [class.failed]="!testData()?.result"
+        >
+          <div class="pt-result-icon">
+            <i
+              class="fa"
+              [class.fa-check-circle]="testData()?.result"
+              [class.fa-times-circle]="!testData()?.result"
+            ></i>
+          </div>
+          <div class="pt-result-text">
+            <h4>النتيجة النهائية</h4>
+            <h1>{{ testData()?.result ? "ناجح" : "راسب" }}</h1>
+          </div>
         </div>
-        <div class="control">
-          <label for="appointment-id">Appointment ID</label>
-          <p id="appointment-id">
-            {{
-              current_appointment != undefined
-                ? current_appointment!.testAppointmentID
-                : "N/A"
-            }}
-          </p>
+
+        <div class="pt-grid">
+          <!-- معلومات الاختبار -->
+          <fieldset class="pt-fieldset">
+            <legend><i class="fa fa-info-circle"></i> معلومات الاختبار</legend>
+            <div class="pt-row">
+              <div class="pt-item">
+                <label>رقم الاختبار (ID):</label>
+                <span>#{{ testId() }}</span>
+              </div>
+              <div class="pt-item">
+                <label>رقم الموعد:</label>
+                <!-- ✅ الموديل يستخدم appointmentID في Test -->
+                <span>{{ testData()?.appointmentID }}</span>
+              </div>
+              <div class="pt-item">
+                <label>نوع الاختبار:</label>
+                <span class="pt-highlight">{{ testTypeTitle() }}</span>
+              </div>
+            </div>
+          </fieldset>
+
+          <!-- معلومات المتقدم والطلب -->
+          <fieldset class="pt-fieldset">
+            <legend><i class="fa fa-user"></i> بيانات المتقدم</legend>
+            <div class="pt-row">
+              <div class="pt-item full-width">
+                <label>اسم الشخص بالكامل:</label>
+                <span>{{ appointmentData()?.fullName }}</span>
+              </div>
+              <div class="pt-item">
+                <label>رقم الطلب المحلي:</label>
+                <!-- ✅ الموديل يستخدم localDrivingLicenseApplicationID -->
+                <span>{{
+                  appointmentData()?.localDrivingLicenseApplicationID
+                }}</span>
+              </div>
+              <div class="pt-item">
+                <label>تاريخ الموعد:</label>
+                <!-- ✅ التصحيح: الموديل يستخدم date وليس appointmentDate -->
+                <span>{{ appointmentData()?.date | date: "dd/MM/yyyy" }}</span>
+              </div>
+            </div>
+          </fieldset>
+
+          <!-- الملاحظات -->
+          <fieldset class="pt-fieldset">
+            <legend><i class="fa fa-sticky-note-o"></i> ملاحظات الفاحص</legend>
+            <div class="pt-notes-box">
+              {{ testData()?.notes || "لا توجد ملاحظات مسجلة." }}
+            </div>
+          </fieldset>
+        </div>
+
+        <div class="pt-actions">
+          <button class="pt-btn-close" (click)="onClose()">
+            <i class="fa fa-arrow-right"></i> عودة للقائمة
+          </button>
         </div>
       </div>
-      <div class="control-row">
-        <div class="control">
-          <label for="full-name">Perosn Full Name</label>
-          <p id="full-name">
-            {{
-              current_appointment != undefined
-                ? current_appointment!.fullName
-                : "N/A"
-            }}
-          </p>
-        </div>
-        <div class="control">
-          <label for="test-type">Test Type</label>
-          <p id="test-type">
-            {{
-              current_appointment != undefined
-                ? testTypesArr[current_appointment!.testType - 1].testTypeTitle
-                : "N/A"
-            }}
-          </p>
-        </div>
-        <div class="control">
-          <label for="app-id">Local Application ID</label>
-          <p id="app-id">
-            {{
-              current_appointment != undefined
-                ? current_appointment!.localDrivingLicenseApplicationID
-                : "N/A"
-            }}
-          </p>
-        </div>
-      </div>
-      <div class="control-row">
-        <div class="control">
-          <label for="result">Result</label>
-          <p id="result">
-            {{
-              current_test != undefined
-                ? current_test!.result
-                  ? "PASSED"
-                  : "FAILED"
-                : "N/A"
-            }}
-          </p>
-        </div>
-        <div class="control">
-          <label for="locked-status">Locked Status</label>
-          <p id="locked-status">
-            {{
-              current_appointment != undefined
-                ? current_appointment!.isLocked
-                  ? "LOCKED"
-                  : "NOT LOCKED YET"
-                : "N/A"
-            }}
-          </p>
-        </div>
-        <div class="control">
-          <label for="date">Appoitnment Date</label>
-          <p id="date">
-            {{
-              current_appointment != undefined
-                ? (current_appointment!.date | date)
-                : "N/A"
-            }}
-          </p>
-        </div>
-      </div>
-      <div class="actions">
-        <div class="actions">
-          <button class="button" (click)="onClose()">OK</button>
-        </div>
-      </div>
-    </fieldset>
+    }
   </div>
 </app-dialog-wrapper>

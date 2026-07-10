@@ -1,0 +1,130 @@
+<div class="dn-page" dir="rtl">
+  <!-- هيدر الصفحة والمسار -->
+  <header class="dn-page-header">
+    <div class="dn-title-area">
+      <button class="dn-back-btn" (click)="goBack()" title="رجوع">
+        <i class="fa fa-arrow-right"></i>
+      </button>
+      <div class="dn-titles">
+        <h1>إجراء حجز رخصة قيادة (قيد)</h1>
+        <nav class="dn-breadcrumbs">
+          <span>خدمات التراخيص</span> / <span>حجز رخصة</span>
+        </nav>
+      </div>
+    </div>
+    <div class="dn-header-actions">
+      <i class="fa fa-hand-stop-o dn-main-icon"></i>
+    </div>
+  </header>
+
+  <div class="dn-content-grid">
+    <!-- عمود البحث والإجراء (اليمين) -->
+    <div class="dn-col-main">
+      <section class="dn-card dn-search-section">
+        <h3 class="dn-card-title">
+          <i class="fa fa-search"></i> البحث عن رخصة
+        </h3>
+        <div class="dn-search-box">
+          <input
+            type="number"
+            [formControl]="searchControl"
+            placeholder="أدخل رقم الرخصة المحلية..."
+          />
+          <button
+            (click)="onSearch()"
+            [disabled]="searchControl.invalid || detainSuccessId()"
+          >
+            فحص الحالة
+          </button>
+        </div>
+      </section>
+
+      @if (licenseData()) {
+        <section class="dn-card dn-form-section animated slideInUp">
+          <h3 class="dn-card-title">
+            <i class="fa fa-gavel"></i> تفاصيل القيد المالي
+          </h3>
+          <div class="dn-form-group">
+            <div class="dn-input-field">
+              <label>قيمة الغرامة المستحقة ($)</label>
+              <input
+                type="number"
+                [formControl]="fineControl"
+                placeholder="0.00"
+              />
+              <small>يجب دفع هذا المبلغ عند فك الحجز لاحقاً</small>
+            </div>
+
+            <div class="dn-info-readonly">
+              <div class="dn-item">
+                <label>تاريخ القيد:</label>
+                <span>{{ today | date: "dd/MM/yyyy" }}</span>
+              </div>
+              <div class="dn-item">
+                <label>الموظف المسؤول:</label>
+                <span>Admin</span>
+              </div>
+            </div>
+          </div>
+
+          @if (detainSuccessId()) {
+            <div class="dn-success-msg">
+              <i class="fa fa-check-circle"></i>
+              تم تسجيل عملية الحجز بنجاح تحت الرقم المرجعي:
+              <strong>#{{ detainSuccessId() }}</strong>
+            </div>
+          }
+
+          <div class="dn-actions">
+            <button class="dn-btn-secondary" (click)="onReset()">
+              إلغاء العملية
+            </button>
+            <button
+              class="dn-btn-primary"
+              [disabled]="
+                isSubmitting() || fineControl.invalid || detainSuccessId()
+              "
+              (click)="onDetain()"
+            >
+              <i class="fa fa-lock"></i> تثبيت الحجز (قيد)
+            </button>
+          </div>
+        </section>
+      }
+    </div>
+
+    <!-- عمود معلومات السائق (اليسار) -->
+    <div class="dn-col-side">
+      @if (licenseData()) {
+        <section class="dn-card dn-user-card animated fadeIn">
+          <div class="dn-user-header">
+            <img src="images/user (4).png" alt="Driver" class="dn-user-img" />
+            <h4>{{ applicantName() }}</h4>
+            <span class="dn-label">صاحب الرخصة</span>
+          </div>
+          <div class="dn-user-details">
+            <div class="dn-detail">
+              <label>رقم الرخصة:</label>
+              <span>{{ licenseData()?.id }}</span>
+            </div>
+            <div class="dn-detail">
+              <label>تاريخ الانتهاء:</label>
+              <span [class.text-danger]="true">{{
+                licenseData()?.expDate | date: "dd/MM/yyyy"
+              }}</span>
+            </div>
+            <div class="dn-detail">
+              <label>حالة الرخصة:</label>
+              <span class="dn-status-active">نشطة</span>
+            </div>
+          </div>
+        </section>
+      } @else {
+        <div class="dn-empty-side">
+          <i class="fa fa-id-card-o"></i>
+          <p>ابحث عن رخصة لعرض تفاصيل السائق هنا</p>
+        </div>
+      }
+    </div>
+  </div>
+</div>

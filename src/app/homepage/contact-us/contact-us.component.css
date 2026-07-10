@@ -1,39 +1,238 @@
+/* ===== قسم اتصل بنا ===== */
+#contact-us {
+  padding: 40px 30px 50px;
+  background: var(--bg-light, #f8fafc);
+  border-radius: 40px 40px 0 0;
+  margin-top: 40px;
+}
+
+#contact-us .section-title {
+  font-size: 16px;
+  font-weight: 700;
+  color: #94a3b8;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  margin-bottom: 4px;
+}
+
+#contact-us .main-text {
+  font-size: 42px;
+  font-weight: 900;
+  color: #0f172a;
+  margin: 0 0 8px 0;
+}
+
+.contact-subtitle {
+  font-size: 18px;
+  color: #475569;
+  font-weight: 500;
+  margin-bottom: 32px;
+}
+
+/* ===== حاوية التواصل ===== */
 .contact-box {
   display: flex;
   justify-content: space-between;
-  align-items: center;
-  gap: 30px;
+  align-items: stretch;
+  gap: 40px;
+  direction: rtl;
 }
+
+/* ===== جهة اليمين (معلومات التواصل) ===== */
 .numbers {
   display: flex;
   flex-direction: column;
   align-items: flex-start;
-  gap: 10px;
+  gap: 16px;
   font-size: 18px;
-  max-width: 400px;
+  max-width: 420px;
+  flex: 1;
+  padding: 20px 0;
 }
 
-form {
-  border-radius: 15px;
+.numbers p {
+  margin: 0;
+  line-height: 1.6;
+}
+
+.contact-email {
+  color: #0f172a;
+  font-weight: 700;
+  font-size: 20px;
+  text-decoration: none;
+  transition: color 0.3s ease;
+  border-bottom: 2px solid #0f172a;
+  padding-bottom: 2px;
+}
+
+.contact-email:hover {
+  color: #3b82f6;
+  border-bottom-color: #3b82f6;
+}
+
+.contact-hours {
+  margin-top: 8px;
+  padding: 12px 16px;
+  background: #ffffff;
+  border-radius: 12px;
+  border: 1px solid #e2e8f0;
+  font-size: 15px;
+  color: #475569;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  width: 100%;
+}
+
+.contact-hours span:first-child {
+  font-weight: 700;
+  color: #0f172a;
+}
+
+/* ===== جهة اليسار (النموذج) ===== */
+.contact-form {
+  border-radius: 20px;
   display: flex;
   flex-direction: column;
   justify-content: center;
-  align-items: center;
-  gap: 10px;
-  -webkit-border-radius: 15px;
-  -moz-border-radius: 15px;
-  -ms-border-radius: 15px;
-  -o-border-radius: 15px;
+  gap: 14px;
+  flex: 1.5;
+  background: #ffffff;
+  padding: 32px 28px;
+  box-shadow: 0 2px 12px rgba(15, 23, 42, 0.06);
+  border: 1px solid #e2e8f0;
 }
+
 .control-row {
   width: 100%;
+  display: flex;
+  gap: 14px;
 }
+
 .control {
+  flex: 1;
   min-width: 0;
 }
-.control input {
-  border: none;
-}
-button {
+
+.control input,
+.contact-textarea {
   width: 100%;
+  padding: 14px 18px;
+  border: 2px solid #e2e8f0;
+  border-radius: 12px;
+  font-size: 16px;
+  font-weight: 500;
+  color: #0f172a;
+  background: #f8fafc;
+  transition: all 0.3s ease;
+  box-sizing: border-box;
+  font-family: inherit;
+}
+
+.contact-textarea {
+  resize: vertical;
+  min-height: 100px;
+}
+
+.control input:focus,
+.contact-textarea:focus {
+  outline: none;
+  border-color: #0f172a;
+  background: #ffffff;
+  box-shadow: 0 0 0 4px rgba(15, 23, 42, 0.08);
+}
+
+.control input::placeholder,
+.contact-textarea::placeholder {
+  color: #94a3b8;
+  font-weight: 400;
+}
+
+/* ===== زر الإرسال ===== */
+.contact-submit {
+  width: 100%;
+  padding: 16px 32px;
+  background: #0f172a;
+  color: #ffffff;
+  border: none;
+  border-radius: 60px;
+  font-size: 18px;
+  font-weight: 700;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 16px rgba(15, 23, 42, 0.15);
+  margin-top: 4px;
+}
+
+.contact-submit:hover {
+  background: #1e293b;
+  transform: translateY(-2px);
+  box-shadow: 0 8px 24px rgba(15, 23, 42, 0.25);
+}
+
+.contact-submit:active {
+  transform: translateY(0);
+}
+
+/* ===== استجابة للشاشات المختلفة ===== */
+@media (max-width: 992px) {
+  .contact-box {
+    flex-direction: column;
+    gap: 30px;
+  }
+
+  .numbers {
+    max-width: 100%;
+    padding: 0;
+  }
+
+  .contact-form {
+    padding: 24px 20px;
+  }
+
+  #contact-us .main-text {
+    font-size: 32px;
+  }
+}
+
+@media (max-width: 640px) {
+  #contact-us {
+    padding: 24px 16px 30px;
+  }
+
+  #contact-us .main-text {
+    font-size: 26px;
+  }
+
+  .contact-subtitle {
+    font-size: 16px;
+  }
+
+  .control-row {
+    flex-direction: column;
+    gap: 12px;
+  }
+
+  .contact-form {
+    padding: 20px 16px;
+  }
+
+  .control input,
+  .contact-textarea {
+    padding: 12px 14px;
+    font-size: 15px;
+  }
+
+  .contact-submit {
+    padding: 14px 24px;
+    font-size: 16px;
+  }
+
+  .numbers {
+    font-size: 16px;
+  }
+
+  .contact-email {
+    font-size: 18px;
+  }
 }

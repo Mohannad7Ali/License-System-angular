@@ -1,117 +1,135 @@
-<main dir="rtl">
-  <!-- القائمة الرئيسية -->
-  <ul>
-    <li class="ul-header">القائمة الرئيسية</li>
+<main dir="rtl" class="sb-main">
+  <!-- 1. لوحة التحكم -->
+  <div class="sb-section">
+    <a class="sb-link main-link" routerLink="test" routerLinkActive="active">
+      <i class="fa fa-tachometer sb-icon"></i>
+      <span>لوحة التحكم الرئيسية</span>
+    </a>
+  </div>
 
-    <li>
-      <a routerLink="test" routerLinkActive="active">
-        <i class="fa fa-th-large icon-gold"></i>
-        <span>لوحة التحكم</span>
-      </a>
-    </li>
+  <!-- 2. إدارة المستخدمين -->
+  <div class="sb-section">
+    <label class="sb-label">إدارة الهوية والوصول</label>
+    <button
+      class="sb-btn"
+      (click)="ontoggle('admin')"
+      [class.open]="menuOpen['admin']()"
+    >
+      <i class="fa fa-users sb-icon"></i>
+      <span>إدارة المستخدمين</span>
+      <i class="fa fa-chevron-left arrow"></i>
+    </button>
+    @if (menuOpen["admin"]()) {
+      <div class="sb-submenu">
+        <a routerLink="people" routerLinkActive="active">سجل الأشخاص</a>
+        <a routerLink="accounts" routerLinkActive="active">مستخدمي النظام</a>
+      </div>
+    }
+  </div>
 
-    <!-- إدارة الأشخاص (الجديدة) -->
-    <li>
-      <a routerLink="people" routerLinkActive="active">
-        <i class="fa fa-users icon-gold"></i>
-        <span>إدارة الأشخاص</span>
-      </a>
-    </li>
+  <!-- 3. خدمات التراخيص -->
+  <div class="sb-section">
+    <label class="sb-label">بوابة الخدمات الإلكترونية</label>
+    <button
+      class="sb-btn"
+      (click)="ontoggle('services')"
+      [class.open]="menuOpen['services']()"
+    >
+      <i class="fa fa-id-card sb-icon"></i>
+      <span>خدمات الرخص</span>
+      <i class="fa fa-chevron-left arrow"></i>
+    </button>
+    @if (menuOpen["services"]()) {
+      <div class="sb-submenu">
+        <a routerLink="services/new-application/local">طلب رخصة محلية</a>
+        <a routerLink="services/new-application/international"
+          >طلب رخصة دولية</a
+        >
+        <a routerLink="services/renew-local-app">تجديد رخصة منتهية</a>
+        <a routerLink="services/replace-app">بدل تالف / فاقد</a>
+        <a routerLink="services/detain-license">حجز رخصة (قيد)</a>
+        <a routerLink="services/release-app">فك حجز (إطلاق سراح)</a>
+      </div>
+    }
+  </div>
 
-    <!-- الخدمات -->
-    <li>
-      <button (click)="ontoggle('services')">
-        <i class="fa fa-id-card icon-gold"></i>
-        <span>خدمات الرخص</span>
-        <i
-          class="fa fa-chevron-down arrow"
-          [class.rotated]="menuOpen['services']()"
-        ></i>
-      </button>
-      @if (menuOpen["services"]()) {
-        <ul class="submenu">
-          <li>
-            <a routerLink="services/new-application/local">طلب رخصة جديدة</a>
-          </li>
-          <li><a routerLink="services/renew-local-app">تجديد رخصة</a></li>
-          <li><a routerLink="services/replace-app">بدل فاقد / تالف</a></li>
-          <li><a routerLink="services/release-app">فك حجز رخصة</a></li>
-        </ul>
-      }
-    </li>
-    <!-- إدارة الاختبارات -->
-    <li>
-      <a routerLink="manage-tests/tests" routerLinkActive="active">
-        <i class="fa fa-cogs icon-test"></i>
-        <span>سجلات الاختبارات</span>
-      </a>
-    </li>
-    <li>
-      <a
-        routerLink="appointments/manage-appointments"
-        routerLinkActive="active"
-      >
-        <i class="fa fa-calendar icon-gold"></i>
-        <span>المواعيد</span>
-      </a>
-    </li>
+  <!-- 4. العمليات الميدانية -->
+  <div class="sb-section">
+    <label class="sb-label">العمليات والميدان</label>
+    <button
+      class="sb-btn"
+      (click)="ontoggle('operations')"
+      [class.open]="menuOpen['operations']()"
+    >
+      <i class="fa fa-tasks sb-icon"></i>
+      <span>المواعيد والاختبارات</span>
+      <i class="fa fa-chevron-left arrow"></i>
+    </button>
+    @if (menuOpen["operations"]()) {
+      <div class="sb-submenu">
+        <a routerLink="applications-management/local-applications"
+          >طلبات الفحص الحالية</a
+        >
+        <a routerLink="appointments/manage-appointments">جدول المواعيد</a>
+        <a routerLink="manage-tests/tests">سجل نتائج الاختبارات</a>
+      </div>
+    }
+  </div>
 
-    <li>
-      <button (click)="ontoggle('apps')">
-        <i class="fa fa-folder-open icon-gold"></i>
-        <span>إدارة الطلبات</span>
-        <i
-          class="fa fa-chevron-down arrow"
-          [class.rotated]="menuOpen['apps']()"
-        ></i>
-      </button>
-      @if (menuOpen["apps"]()) {
-        <ul class="submenu">
-          <li>
-            <a routerLink="applications-management/local-applications"
-              >الطلبات المحلية</a
-            >
-          </li>
-        </ul>
-      }
-    </li>
-  </ul>
+  <!-- 5. السجلات والأرشيف -->
+  <div class="sb-section">
+    <label class="sb-label">الأرشيف والسجلات</label>
+    <button
+      class="sb-btn"
+      (click)="ontoggle('archives')"
+      [class.open]="menuOpen['archives']()"
+    >
+      <i class="fa fa-archive sb-icon"></i>
+      <span>سجلات التراخيص</span>
+      <i class="fa fa-chevron-left arrow"></i>
+    </button>
+    @if (menuOpen["archives"]()) {
+      <div class="sb-submenu">
+        <a routerLink="licenses-management/drivers">سجل السائقين</a>
+        <a routerLink="licenses-management/international-licenses"
+          >أرشيف الرخص الدولية</a
+        >
+        <a routerLink="licenses-management/detaiend-licenses">سجل المحجوزات</a>
+      </div>
+    }
+  </div>
 
-  <!-- إعدادات النظام -->
-  <ul>
-    <li class="ul-header">النظام</li>
+  <!-- 6. إعدادات النظام -->
+  <div class="sb-section">
+    <label class="sb-label">إدارة النظام والقواعد</label>
+    <button
+      class="sb-btn"
+      (click)="ontoggle('system')"
+      [class.open]="menuOpen['system']()"
+    >
+      <i class="fa fa-cogs sb-icon"></i>
+      <span>الإعدادات العامة</span>
+      <i class="fa fa-chevron-left arrow"></i>
+    </button>
+    @if (menuOpen["system"]()) {
+      <div class="sb-submenu">
+        <a routerLink="system/application-types" routerLinkActive="active"
+          >أنواع الطلبات</a
+        >
+        <a routerLink="system/manage-tests" routerLinkActive="active"
+          >أنواع الاختبارات</a
+        >
+      </div>
+    }
+  </div>
 
-    <li>
-      <button (click)="ontoggle('system')">
-        <i class="fa fa-cogs icon-gold"></i>
-        <span>الإعدادات</span>
-        <i
-          class="fa fa-chevron-down arrow"
-          [class.rotated]="menuOpen['system']()"
-        ></i>
-      </button>
-      @if (menuOpen["system"]()) {
-        <ul class="submenu">
-          <li><a routerLink="system/application-types">أنواع الطلبات</a></li>
-          <li><a routerLink="system/manage-tests">أنواع الاختبارات</a></li>
-        </ul>
-      }
-    </li>
-
-    <li>
-      <a routerLink="accounts" routerLinkActive="active">
-        <i class="fa fa-user-circle icon-gold"></i>
-        <span>مستخدمي النظام</span>
-      </a>
-    </li>
-
-    <li class="logout-li">
-      <button (click)="logout()">
-        <i class="fa fa-sign-out-alt"></i>
-        <span>تسجيل الخروج</span>
-      </button>
-    </li>
-  </ul>
+  <!-- 7. تسجيل الخروج -->
+  <div class="sb-section system-footer">
+    <button class="sb-logout" (click)="logout()">
+      <i class="fa fa-sign-out"></i>
+      <span>تسجيل الخروج</span>
+    </button>
+  </div>
 </main>
 
 <app-confirmation-dialog

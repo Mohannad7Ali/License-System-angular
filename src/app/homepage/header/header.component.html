@@ -1,19 +1,26 @@
-<header>
-  <p>DVLD</p>
-  <div class="links">
-    <ul>
-      <li><a href="#">HOME</a></li>
-      <li><a href="#services">Services</a></li>
-      <li><a href="#process">Process</a></li>
-      <li><a href="#about-us">About us</a></li>
-      <li><a href="#contact-us">Contact us</a></li>
-    </ul>
+<!-- header.component.html -->
+<header dir="rtl" class="ov-header">
+  <div class="ov-header-brand">
+    <span class="ov-logo">🚗 DVLD</span>
+    <span class="ov-slogan">نظام رخص القيادة</span>
   </div>
+
+  <nav class="ov-nav">
+    <ul class="ov-nav-list">
+      <li><a routerLink="/" routerLinkActive="active">الرئيسية</a></li>
+      <li><a routerLink="/services" routerLinkActive="active">الخدمات</a></li>
+      <li><a routerLink="/process" routerLinkActive="active">الإجراءات</a></li>
+      <li><a routerLink="/about" routerLinkActive="active">عنا</a></li>
+      <li><a routerLink="/contact" routerLinkActive="active">اتصل بنا</a></li>
+    </ul>
+  </nav>
+
   <button
     routerLink="../login"
     routerLinkActive="router-link-active"
-    class="button homepage-button"
+    class="ov-btn ov-btn-login"
   >
-    Login
+    <i class="fa fa-sign-in" aria-hidden="true"></i>
+    تسجيل الدخول
   </button>
 </header>

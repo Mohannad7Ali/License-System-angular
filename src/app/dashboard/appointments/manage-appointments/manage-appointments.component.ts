@@ -1,10 +1,10 @@
-import { Component, DestroyRef, inject, OnInit, signal, OnDestroy } from '@angular/core';
-import { ActivatedRoute, Router, RouterLink, NavigationEnd } from '@angular/router';
-import { Subject, takeUntil, tap, filter } from 'rxjs';
+import { Component, inject, OnInit, signal, OnDestroy } from '@angular/core';
+import { ActivatedRoute, Router, RouterLink } from '@angular/router';
+import { Subject, takeUntil } from 'rxjs';
 import { FormControl, ReactiveFormsModule } from '@angular/forms';
 import { AppointmentService } from '../../../services/appointment.service';
-import { TestType } from '../../../models/test-type.model';
 import { TestTypesService } from '../../../services/test-type.service';
+import { TestType } from '../../../models/test-type.model';
 import { DatePipe, CommonModule } from '@angular/common';
 import { ConfirmationDialogComponent } from '../../../shared/confirmation-dialog/confirmation-dialog.component';
 import { NotificationService } from '../../../services/notification.service';
@@ -25,83 +25,120 @@ import { NotificationComponent } from '../../../shared/notification/notification
   styleUrl: './manage-appointments.component.css',
 })
 export class ManageAppointmentsComponent implements OnInit, OnDestroy {
-  // الترقيم
   currentPage = 1;
   pageSize = 6;
 
-  // المعطيات
   localApplicationId: number | null = null;
   testTypeId: number | null = null;
 
-  appointments: any[] = [];
-  filteredappointments: any[] = [];
-  displayedData: any[] = [];
+  appointments = signal<any[]>([]);
+  filteredAppointments = signal<any[]>([]);
+  testTypesArr = signal<TestType[]>([]);
 
-  // أدوات التحكم
+  isLoading = signal(true);
   filter = new FormControl('', { nonNullable: true });
   isDeleteDialogVisible = signal(false);
   currentAppointmentToDelete: any = null;
-  private destroy$ = new Subject<void>();
-  current_date = new Date();
 
-  // حقن الخدمات
+  private destroy$ = new Subject<void>();
+
   private appointmentService = inject(AppointmentService);
+  private testTypeService = inject(TestTypesService);
   private notificationService = inject(NotificationService);
   private route = inject(ActivatedRoute);
-  private router = inject(Router);
 
   ngOnInit(): void {
-    // جلب البارامترات من الرابط
-    this.route.queryParams.pipe(takeUntil(this.destroy$)).subscribe((params) => {
-      this.localApplicationId = params['localApplicationId'] ? +params['localApplicationId'] : null;
-      this.testTypeId = params['testTypeId'] ? +params['testTypeId'] : null;
-      this.loadAppointments();
-    });
+    // 1. جلب أنواع الاختبارات أولاً لضمان وجود الأسماء عند العرض
+    this.testTypeService
+      .all()
+      .pipe(takeUntil(this.destroy$))
+      .subscribe({
+        next: (types) => {
+          this.testTypesArr.set(types);
+          this.initParams();
+        },
+        error: () => this.initParams(),
+      });
 
-    // مراقبة البحث
-    this.filter.valueChanges.pipe(takeUntil(this.destroy$)).subscribe(val => this.applyFilter(val));
+    this.filter.valueChanges
+      .pipe(takeUntil(this.destroy$))
+      .subscribe((val) => this.applyFilter(val));
+  }
+
+  private initParams() {
+    this.route.queryParams
+      .pipe(takeUntil(this.destroy$))
+      .subscribe((params) => {
+        this.localApplicationId = params['localApplicationId']
+          ? +params['localApplicationId']
+          : null;
+        this.testTypeId = params['testTypeId'] ? +params['testTypeId'] : null;
+        this.loadAppointments();
+      });
   }
 
   loadAppointments() {
+    this.isLoading.set(true);
     let request;
     if (this.localApplicationId && this.testTypeId) {
-      request = this.appointmentService.getAppointmentsPerTestType(this.localApplicationId, this.testTypeId);
+      request = this.appointmentService.getAppointmentsPerTestType(
+        this.localApplicationId,
+        this.testTypeId,
+      );
     } else {
       request = this.appointmentService.appointments();
     }
 
-    request.subscribe({
+    request.pipe(takeUntil(this.destroy$)).subscribe({
       next: (response: any[]) => {
-        this.appointments = response.map(app => ({
+        const mapped = response.map((app) => ({
           id: app.testAppointmentID || app.id,
           fullName: app.fullName,
-          localLicenseApplicationID: app.localDrivingLicenseApplicationID || app.localApplicationID,
+          localLicenseApplicationID:
+            app.localDrivingLicenseApplicationID || app.localApplicationID,
           isLocked: app.isLocked,
           date: app.appointmentDate || app.date,
-          testTypeTitle: app.testTypeTitle
+          testTypeID: app.testTypeID || app.testType,
+          testTypeTitle: app.testTypeTitle,
         }));
-        this.filteredappointments = [...this.appointments];
-        this.updateDisplayedData();
-      }
+        this.appointments.set(mapped);
+        this.applyFilter(this.filter.value);
+        this.isLoading.set(false);
+      },
+      error: () => this.isLoading.set(false),
     });
+  }
+
+  // ✅ حل مشكلة الاسم الفارغ: جلب الاسم من القائمة المحلية إذا نقص من السيرفر
+  getTestName(app: any): string {
+    if (app.testTypeTitle) return app.testTypeTitle;
+    const found = this.testTypesArr().find((t) => t.id === app.testTypeID);
+    return found ? found.testTypeTitle : `اختبار #${app.testTypeID}`;
   }
 
   applyFilter(value: string) {
     const search = value.toLowerCase().trim();
-    this.filteredappointments = this.appointments.filter(app => 
-      app.fullName.toLowerCase().includes(search) || app.id.toString().includes(search)
+    const result = this.appointments().filter(
+      (app) =>
+        app.fullName.toLowerCase().includes(search) ||
+        app.id.toString().includes(search),
     );
+    this.filteredAppointments.set(result);
     this.currentPage = 1;
-    this.updateDisplayedData();
   }
 
-  updateDisplayedData() {
+  get displayedData() {
     const start = (this.currentPage - 1) * this.pageSize;
-    this.displayedData = this.filteredappointments.slice(start, start + this.pageSize);
+    return this.filteredAppointments().slice(start, start + this.pageSize);
   }
 
-  onNext() { if (this.currentPage * this.pageSize < this.filteredappointments.length) { this.currentPage++; this.updateDisplayedData(); } }
-  onPrevious() { if (this.currentPage > 1) { this.currentPage--; this.updateDisplayedData(); } }
+  onNext() {
+    if (this.currentPage * this.pageSize < this.filteredAppointments().length)
+      this.currentPage++;
+  }
+  onPrevious() {
+    if (this.currentPage > 1) this.currentPage--;
+  }
 
   onDeleteClick(appointment: any) {
     this.currentAppointmentToDelete = appointment;
@@ -111,21 +148,23 @@ export class ManageAppointmentsComponent implements OnInit, OnDestroy {
   onDeleteDialogResult(confirmed: boolean) {
     this.isDeleteDialogVisible.set(false);
     if (confirmed && this.currentAppointmentToDelete) {
-      this.appointmentService.delete(this.currentAppointmentToDelete.id).subscribe({
-        next: () => {
-          this.notificationService.showMessage({ message: 'تم حذف الموعد بنجاح', status: 'success' });
-          this.loadAppointments();
-        },
-        error: (err) => this.notificationService.showMessage({ message: 'خطأ: ' + err.message, status: 'failed' })
-      });
+      this.appointmentService
+        .delete(this.currentAppointmentToDelete.id)
+        .subscribe({
+          next: () => {
+            this.notificationService.showMessage({
+              message: 'تم حذف الموعد بنجاح',
+              status: 'success',
+            });
+            this.loadAppointments();
+          },
+          error: (err) =>
+            this.notificationService.showMessage({
+              message: 'خطأ: ' + err.message,
+              status: 'failed',
+            }),
+        });
     }
-  }
-
-  // دالة مساعدة لمقارنة التواريخ في الـ HTML (اختياري)
-  isToday(date: any): boolean {
-    const d = new Date(date);
-    const today = new Date();
-    return d.toDateString() === today.toDateString();
   }
 
   ngOnDestroy() {

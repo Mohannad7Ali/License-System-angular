@@ -1,4 +1,240 @@
-.actions {
-  justify-content: space-between;
+.idl-page {
+  padding: 30px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
+/* 🔄 التنسيق الخاص باللودر */
+.loading-overlay {
+  height: 300px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.spinner-box {
+  text-align: center;
+  color: var(--dark-color);
+}
+.spinner-box i {
+  font-size: 3rem;
+  margin-bottom: 15px;
+}
+.spinner-box p {
+  font-weight: 600;
+  font-size: 1rem;
+}
+
+/* 🪪 تصميم كرت الرخصة */
+.idl-card {
+  width: 100%;
+  max-width: 550px;
+  background: #fff;
+  border-radius: 20px;
+  padding: 30px;
+  border: 1px solid #e2e8f0;
+  position: relative;
+  box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1);
+  overflow: hidden;
+}
+
+.idl-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 25px;
+  border-bottom: 2px solid #1e293b;
+  padding-bottom: 15px;
+}
+
+.gov-brand {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+}
+.eagle {
+  width: 45px;
+}
+.gov-titles {
+  display: flex;
+  flex-direction: column;
+}
+.main-title {
+  font-weight: 800;
+  font-size: 0.95rem;
+  color: #1e293b;
+}
+.sub-title {
+  font-size: 0.75rem;
+  color: #64748b;
+}
+
+.license-type {
+  background: #1e293b;
+  color: #fff;
+  padding: 5px 15px;
+  border-radius: 6px;
+  font-size: 0.75rem;
+  font-weight: 700;
+}
+
+.idl-body {
+  display: flex;
+  gap: 30px;
+}
+.photo-frame {
+  width: 130px;
+  height: 160px;
+  border-radius: 12px;
+  border: 1px solid #cbd5e1;
+  overflow: hidden;
+  margin-bottom: 10px;
+}
+.photo-frame img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.security-seal {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 5px;
+  color: #94a3b8;
+  font-size: 0.7rem;
+  font-weight: bold;
+}
+
+.data-column {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+.info-row label {
+  display: block;
+  font-size: 0.7rem;
+  color: #94a3b8;
+  font-weight: 700;
+  margin-bottom: 2px;
+}
+.info-row .value {
+  font-size: 0.95rem;
+  font-weight: 700;
+  color: #334155;
+}
+.info-row.large .value {
+  font-size: 1.15rem;
+  color: #1e293b;
+}
+.highlight-box {
+  background: #f8fafc;
+  padding: 10px;
+  border-radius: 8px;
+  border-right: 4px solid var(--special-color);
+}
+
+.grid-2 {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 15px;
+}
+
+.idl-footer {
+  margin-top: 25px;
+  padding-top: 20px;
+  border-top: 1px solid #f1f5f9;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.date-section {
+  display: flex;
+  gap: 30px;
+}
+.val.danger {
+  color: #ef4444;
+}
+
+.status-indicator {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-weight: 800;
+  font-size: 0.8rem;
+  color: #10b981;
+}
+
+/* 🔘 الأزرار */
+.actions-area {
+  display: flex;
+  gap: 15px;
+  margin-top: 35px;
+}
+.btn-print {
+  background: #2dce89;
+  color: white;
+  border: none;
+  padding: 12px 35px;
+  border-radius: 12px;
+  font-weight: 700;
+  cursor: pointer;
+  transition: 0.3s;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+.btn-print:hover {
+  background: #24b374;
+  transform: translateY(-2px);
+  box-shadow: 0 10px 15px rgba(45, 206, 137, 0.3);
+}
+
+.btn-back {
+  background: #1e293b;
+  color: white;
+  border: none;
+  padding: 12px 30px;
+  border-radius: 12px;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+/* 🖨️ إعدادات الطباعة */
+@media print {
+  .no-print,
+  app-header,
+  app-sidebar,
+  .page-actions,
+  .actions-area,
+  app-dialog-wrapper header {
+    display: none !important;
+  }
+  .idl-page {
+    padding: 0;
+  }
+  .idl-card {
+    box-shadow: none;
+    border: 1px solid #000;
+    width: 100%;
+    margin: 0;
+  }
+  body {
+    background: white;
+  }
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+.animated-in {
+  animation: fadeIn 0.5s ease-out;
+}

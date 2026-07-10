@@ -1,18 +1,21 @@
+<!-- استبدل محتوى الملف بهذا الكود الموحد -->
 <app-notification />
 <app-confirmation-dialog
   [isVisible]="isDeleteDialogVisible()"
-  title="تأكيد الحذف"
-  message="هل أنت متأكد أنك تريد حذف هذا الموعد؟ لا يمكن التراجع عن هذا الإجراء!"
+  title="تأكيد حذف الموعد"
+  message="هل أنت متأكد من رغبتك في حذف هذا الموعد نهائياً؟"
   (confirmed)="onDeleteDialogResult($event)"
 ></app-confirmation-dialog>
 
 <div class="la-container" dir="rtl">
   <header class="la-page-header">
     <div class="la-title-section">
-      <div class="la-icon-circle"><i class="fa fa-calendar-check"></i></div>
+      <div class="la-icon-circle"><i class="fa fa-calendar-check-o"></i></div>
       <div>
         <h2>إدارة مواعيد الاختبارات</h2>
-        <p class="la-subtitle">عرض المواعيد المجدولة، تعديلها، أو البدء بإجراء الاختبار.</p>
+        <p class="la-subtitle">
+          عرض المواعيد المجدولة وبدء إجراءات الاختبارات الميدانية.
+        </p>
       </div>
     </div>
   </header>
@@ -20,78 +23,130 @@
   <div class="la-action-bar">
     <div class="la-search-box">
       <i class="fa fa-search"></i>
-      <input type="text" [formControl]="filter" placeholder="ابحث بالاسم أو رقم الموعد...">
+      <input
+        type="text"
+        [formControl]="filter"
+        placeholder="بحث باسم المتقدم أو رقم الموعد..."
+      />
     </div>
-    <button class="la-btn-primary" routerLink="../add-edit-appointment" 
-            [queryParams]="{ mode: 'add', application_id: localApplicationId, testTypeId: testTypeId }">
+    <button
+      class="la-btn-primary"
+      routerLink="../add-edit-appointment"
+      [queryParams]="{
+        mode: 'add',
+        application_id: localApplicationId,
+        testTypeId: testTypeId,
+      }"
+    >
       <i class="fa fa-plus"></i> حجز موعد جديد
     </button>
   </div>
 
   <div class="la-table-card">
-    <table class="la-modern-table">
-      <thead>
-        <tr>
-          <th>المعرف</th>
-          <th>اسم المتقدم</th>
-          <th>رقم الطلب</th>
-          <th>الحالة</th>
-          <th>التاريخ</th>
-          <th>نوع الاختبار</th>
-          <th style="text-align: center;">إجراءات الاختبار</th>
-        </tr>
-      </thead>
-      <tbody>
-        @for (app of displayedData; track app.id) {
+    @if (isLoading()) {
+      <div class="la-loader-box">
+        <i class="fa fa-refresh fa-spin"></i> جاري تحميل المواعيد...
+      </div>
+    } @else {
+      <table class="la-modern-table">
+        <thead>
           <tr>
-            <td><span class="la-id-badge">{{ app.id }}</span></td>
-            <td class="la-name-cell">{{ app.fullName }}</td>
-            <td>{{ app.localLicenseApplicationID }}</td>
-            <td>
-              <span class="la-status-badge" [attr.data-status]="app.isLocked ? 'Locked' : 'Active'">
-                {{ app.isLocked ? "مغلق" : "نشط" }}
-              </span>
-            </td>
-            <td>{{ app.date | date: "dd/MM/yyyy" }}</td>
-            <td><span class="la-class-label">{{ app.testTypeTitle }}</span></td>
-            
-            <td class="la-actions">
-              <!-- 🎯 زر تقديم الاختبار: بارز جداً باللون الأخضر -->
-              <button class="btn-take-test" 
-                      [disabled]="app.isLocked"
-                      [routerLink]="['../take-test']" 
-                      [queryParams]="{ id: app.id }">
-                <i class="fa fa-file-signature"></i> تقديم الاختبار
-              </button>
-
-              <div class="v-divider"></div>
-
-              <!-- أزرار التعديل والحذف -->
-              <button class="la-btn-icon edit" title="تعديل الموعد" [disabled]="app.isLocked"
-                      [routerLink]="['../add-edit-appointment']" 
-                      [queryParams]="{ mode: 'edit', application_id: app.localLicenseApplicationID, appointment_id: app.id }">
-                <i class="fa fa-edit"></i>
-              </button>
-
-              <button class="la-btn-icon cancel" title="حذف الموعد" [disabled]="app.isLocked" 
-                      (click)="onDeleteClick(app)">
-                <i class="fa fa-trash"></i>
-              </button>
-            </td>
+            <th>ID</th>
+            <th>اسم المتقدم</th>
+            <th>رقم الطلب</th>
+            <th>الحالة</th>
+            <th>التاريخ</th>
+            <th>نوع الاختبار</th>
+            <th style="text-align: center">إجراءات الاختبار</th>
           </tr>
-        } @empty {
-          <tr><td colspan="7" class="la-empty-state"><i class="fa fa-calendar-times"></i><p>لا توجد مواعيد مسجلة</p></td></tr>
-        }
-      </tbody>
-    </table>
+        </thead>
+        <tbody>
+          @for (app of displayedData; track app.id) {
+            <tr class="animated fadeIn">
+              <td>
+                <span class="la-id-badge">#{{ app.id }}</span>
+              </td>
+              <td class="la-name-cell">{{ app.fullName }}</td>
+              <td>{{ app.localLicenseApplicationID }}</td>
+              <td>
+                <span
+                  class="la-status-badge"
+                  [attr.data-status]="app.isLocked ? 'Locked' : 'Active'"
+                >
+                  {{ app.isLocked ? "مغلق" : "نشط" }}
+                </span>
+              </td>
+              <td>{{ app.date | date: "dd/MM/yyyy" }}</td>
+              <td>
+                <span class="la-class-label">{{ getTestName(app) }}</span>
+              </td>
+
+              <td class="la-actions">
+                <button
+                  class="btn-take-test"
+                  [disabled]="app.isLocked"
+                  [routerLink]="['../take-test']"
+                  [queryParams]="{ id: app.id }"
+                >
+                  <i class="fa fa-file-text-o"></i> تقديم الاختبار
+                </button>
+                <button
+                  class="la-btn-icon edit"
+                  title="تعديل"
+                  [disabled]="app.isLocked"
+                  [routerLink]="['../add-edit-appointment']"
+                  [queryParams]="{
+                    mode: 'edit',
+                    application_id: app.localLicenseApplicationID,
+                    appointment_id: app.id,
+                  }"
+                >
+                  <i class="fa fa-edit"></i>
+                </button>
+                <button
+                  class="la-btn-icon cancel"
+                  title="حذف"
+                  [disabled]="app.isLocked"
+                  (click)="onDeleteClick(app)"
+                >
+                  <i class="fa fa-trash"></i>
+                </button>
+              </td>
+            </tr>
+          } @empty {
+            <tr>
+              <td colspan="7" class="la-empty-state">
+                <p>لا توجد مواعيد مسجلة تطابق بحثك</p>
+              </td>
+            </tr>
+          }
+        </tbody>
+      </table>
+    }
   </div>
 
   <footer class="la-pagination-area">
-    <div class="la-results-info">إجمالي النتائج: <b>{{ filteredappointments.length }}</b></div>
+    <!-- ✅ تم التصحيح هنا: استخدام filteredAppointments() -->
+    <div class="la-results-info">
+      إجمالي النتائج: <b>{{ filteredAppointments().length }}</b>
+    </div>
     <div class="la-nav-btns">
-      <button class="la-nav-btn" (click)="onPrevious()" [disabled]="currentPage === 1">السابق</button>
+      <button
+        class="la-nav-btn"
+        (click)="onPrevious()"
+        [disabled]="currentPage === 1"
+      >
+        السابق
+      </button>
       <span class="la-page-num">صفحة {{ currentPage }}</span>
-      <button class="la-nav-btn" (click)="onNext()" [disabled]="currentPage * pageSize >= filteredappointments.length">التالي</button>
+      <!-- ✅ تم التصحيح هنا أيضاً -->
+      <button
+        class="la-nav-btn"
+        (click)="onNext()"
+        [disabled]="currentPage * pageSize >= filteredAppointments().length"
+      >
+        التالي
+      </button>
     </div>
   </footer>
 </div>

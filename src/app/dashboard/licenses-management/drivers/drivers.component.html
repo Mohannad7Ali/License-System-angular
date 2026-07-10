@@ -1,67 +1,124 @@
-<div class="container">
-  <form class="filteration">
-    <div class="flex-one">
+<app-notification />
+
+<div class="la-container" dir="rtl">
+  <!-- رأس الصفحة -->
+  <header class="la-page-header">
+    <div class="la-title-section">
+      <div class="la-icon-circle"><i class="fa fa-users"></i></div>
+      <div>
+        <h2>إدارة السائقين</h2>
+        <p class="la-subtitle">
+          عرض كافة الأشخاص المسجلين كسائقين في النظام وإدارة ملفاتهم
+        </p>
+      </div>
+    </div>
+  </header>
+
+  <!-- شريط البحث -->
+  <div class="la-action-bar">
+    <div class="la-search-box">
+      <i class="fa fa-search"></i>
       <input
         type="text"
         [formControl]="filter"
-        placeholder="Full Text Search..."
+        placeholder="ابحث باسم السائق، الرقم الوطني أو المعرف..."
       />
     </div>
-  </form>
-  <table>
-    <thead>
-      <tr>
-        <th scope="col">ID</th>
-        <th scope="col">Person ID</th>
-        <th scope="col">Full Name</th>
-        <th scope="col">National ID</th>
-        <th scope="col">Date</th>
-        <th scope="col">Active Licenses</th>
-        <th scope="col">Actions</th>
-      </tr>
-    </thead>
-    <tbody>
-      @for (app of displayedData; track $index) {
-      <tr>
-        <td>{{ app.id }}</td>
-        <td>{{ app.personID }}</td>
-        <td>{{ app.fullName }}</td>
-        <td>{{ app.nationalID }}</td>
-        <td>{{ app.date }}</td>
-        <td>{{ app.activeLicenses }}</td>
-        <td>
-          <button
-            class="button"
-            routerLink="preview-driver"
-            [queryParams]="{ id: app.id }"
-            routerLinkActive="router-link-active"
-          >
-            Preview
-          </button>
-        </td>
-      </tr>
-      } @empty {
-      <tr>
-        <td colspan="9" style="text-align: center">No applications found</td>
-      </tr>
-      }
-    </tbody>
-  </table>
-
-  <div class="pagination">
-    <button
-      class="prev-btn"
-      (click)="onPrevious()"
-      [disabled]="currentPage === 1"
-    >
-      Previous
-    </button>
-    <button
-      class="next-btn"
-      (click)="onNext()"
-      [disabled]="currentPage * pageSize >= filteredDrivers.length"
-    >
-      Next
-    </button>
   </div>
+
+  <!-- الجدول الاحترافي -->
+  <div class="la-table-card">
+    <table class="la-modern-table">
+      <thead>
+        <tr>
+          <th>ID السائق</th>
+          <th>رقم الشخص</th>
+          <th>الرقم الوطني</th>
+          <th>الاسم الكامل</th>
+          <th>تاريخ التسجيل</th>
+          <th>الرخص النشطة</th>
+          <th style="text-align: center">الإجراءات</th>
+        </tr>
+      </thead>
+      <tbody>
+        @for (driver of displayedData; track driver.id) {
+          <tr>
+            <td>
+              <span class="la-id-badge">{{ driver.id }}</span>
+            </td>
+            <td>{{ driver.personID }}</td>
+            <td>
+              <span class="la-national-no">{{ driver.nationalID }}</span>
+            </td>
+            <td class="la-name-cell">{{ driver.fullName }}</td>
+            <td>{{ driver.date | date: "dd/MM/yyyy" }}</td>
+            <td>
+              <span class="active-lic-badge">
+                <i class="fa fa-id-card-o"></i> {{ driver.activeLicenses }} رخصة
+                نشطة
+              </span>
+            </td>
+            <td class="la-actions">
+              <!-- زر عرض الملف الشخصي -->
+              <button
+                class="la-btn-icon view"
+                title="عرض الملف"
+                [routerLink]="['preview-driver']"
+                [queryParams]="{ id: driver.id }"
+              >
+                <i class="fa fa-user-circle-o"></i>
+              </button>
+
+              <!-- زر عرض سجل الرخص (History) -->
+              <button
+                class="la-btn-icon history"
+                title="سجل الرخص"
+                [routerLink]="['person-licenses-history']"
+                [queryParams]="{ id: driver.id }"
+              >
+                <i class="fa fa-vcard-o"></i>
+              </button>
+            </td>
+          </tr>
+        } @empty {
+          <tr>
+            <td colspan="7" class="la-empty-state">
+              <i class="fa fa-user-slash"></i>
+              <p>
+                {{
+                  isLoading()
+                    ? "جاري التحميل..."
+                    : "لم يتم العثور على أي سائقين"
+                }}
+              </p>
+            </td>
+          </tr>
+        }
+      </tbody>
+    </table>
+  </div>
+
+  <!-- الترقيم -->
+  <footer class="la-pagination-area">
+    <div class="la-results-info">
+      إجمالي السائقين: <b>{{ filteredDrivers.length }}</b>
+    </div>
+    <div class="la-nav-btns">
+      <button
+        class="la-nav-btn"
+        (click)="onPrevious()"
+        [disabled]="currentPage === 1"
+      >
+        السابق
+      </button>
+      <span class="la-page-num">صفحة {{ currentPage }}</span>
+      <button
+        class="la-nav-btn"
+        (click)="onNext()"
+        [disabled]="currentPage * pageSize >= filteredDrivers.length"
+      >
+        التالي
+      </button>
+    </div>
+  </footer>
 </div>

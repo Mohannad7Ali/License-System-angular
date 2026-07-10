@@ -1,0 +1,151 @@
+.ra-container {
+  max-width: 1000px;
+  margin: 20px auto;
+  padding: 0 15px;
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.ra-header h2 {
+  color: #2d3436;
+  border-right: 5px solid #0984e3;
+  padding-right: 15px;
+  margin-bottom: 30px;
+}
+
+.ra-card {
+  background: #fff;
+  border-radius: 12px;
+  padding: 20px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+  margin-bottom: 20px;
+}
+
+.ra-search-group {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.ra-input-wrapper {
+  display: flex;
+  gap: 10px;
+}
+
+.ra-input-wrapper input {
+  flex: 1;
+  padding: 12px;
+  border: 2px solid #eee;
+  border-radius: 8px;
+  font-size: 1rem;
+  transition: 0.3s;
+}
+
+.ra-input-wrapper input:focus {
+  border-color: #0984e3;
+  outline: none;
+}
+
+.ra-btn-search {
+  padding: 0 25px;
+  background: #0984e3;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  font-weight: bold;
+}
+
+.ra-info-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 20px;
+  margin-top: 15px;
+}
+
+.ra-info-item {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+
+.ra-info-item label {
+  font-size: 0.85rem;
+  color: #636e72;
+  font-weight: 600;
+}
+
+.ra-val {
+  font-weight: bold;
+  color: #2d3436;
+}
+
+.ra-val.highlight {
+  color: #d63031;
+}
+
+.total .ra-val {
+  color: #00b894;
+  font-size: 1.2rem;
+}
+
+.ra-badge {
+  display: inline-block;
+  padding: 4px 12px;
+  border-radius: 20px;
+  font-size: 0.8rem;
+  background: #dfe6e9;
+  width: fit-content;
+}
+
+.ra-badge.detained {
+  background: #ff7675;
+  color: white;
+}
+
+.ra-actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 15px;
+  margin-top: 20px;
+}
+
+.ra-btn-release {
+  background: #00b894;
+  color: white;
+  border: none;
+  padding: 12px 30px;
+  border-radius: 8px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.ra-btn-release:disabled {
+  background: #b2bec3;
+}
+
+.ra-btn-reset {
+  background: #fab1a0;
+  color: #2d3436;
+  border: none;
+  padding: 12px 30px;
+  border-radius: 8px;
+  cursor: pointer;
+}
+
+.animated {
+  animation-duration: 0.5s;
+}
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+.fadeIn {
+  animation-name: fadeIn;
+}

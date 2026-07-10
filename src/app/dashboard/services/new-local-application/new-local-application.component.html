@@ -1,153 +1,143 @@
+<app-notification />
 <app-confirmation-dialog
   [isVisible]="isDialogVisible()"
-  title="تأكيد الطلب"
-  message="هل أنت متأكد من صحة البيانات وتريد تقديم الطلب؟"
+  title="تأكيد تقديم الطلب"
+  message="هل أنت متأكد من البيانات وتريد تقديم طلب الرخصة المحلية الرسمي؟"
   (confirmed)="onDialogResult($event)"
 ></app-confirmation-dialog>
 
-<app-notification />
-
-<div class="na-page-container" dir="rtl">
-  <div class="na-form-card">
-    <header class="na-header">
-      <div class="na-icon-box"><i class="fa fa-file-signature"></i></div>
-      <div class="na-title-text">
-        <h2>تقديم طلب رخصة محلية</h2>
-        <p>يرجى إكمال كافة الحقول الإلزامية المميزة بـ (*)</p>
+<div class="la-container" dir="rtl">
+  <div class="la-card">
+    <header class="la-header">
+      <div class="la-header-title">
+        <i class="fa fa-id-card-o main-icon"></i>
+        <div>
+          <h2>تقديم طلب رخصة قيادة جديدة</h2>
+          <p>وزارة النقل - نظام إدارة التراخيص</p>
+        </div>
       </div>
     </header>
 
-    <form [formGroup]="registerForm" (ngSubmit)="onSubmit()">
-      <div class="na-layout-split">
-        <!-- عمود الصورة الشخصية -->
-        <div class="na-photo-side">
-          <div class="na-avatar-frame" (click)="fileInput.click()">
-            <img [src]="imagePreview()" alt="صورة المتقدم" />
-            <div class="na-avatar-overlay"><i class="fa fa-camera"></i></div>
+    <div class="la-tabs">
+      <button
+        [class.active]="activeTab() === 'existing'"
+        (click)="setTab('existing')"
+      >
+        <i class="fa fa-search"></i> شخص مسجل مسبقاً
+      </button>
+      <button [class.active]="activeTab() === 'new'" (click)="setTab('new')">
+        <i class="fa fa-user-plus"></i> تسجيل شخص جديد
+      </button>
+    </div>
+
+    <div class="la-tab-content">
+      @if (activeTab() === "existing") {
+        <div class="tab-pane animated fadeIn">
+          <div class="la-search-box">
+            <label>الرقم الوطني للمتقدم:</label>
+            <div class="la-input-group">
+              <input
+                type="text"
+                [formControl]="existingSearchControl"
+                placeholder="أدخل الرقم الوطني..."
+              />
+              <button (click)="onSearch()" [disabled]="isSearching()">
+                <i
+                  class="fa"
+                  [class.fa-search]="!isSearching()"
+                  [class.fa-spinner]="isSearching()"
+                  [class.fa-spin]="isSearching()"
+                ></i>
+                بحث
+              </button>
+            </div>
           </div>
-          <input
-            type="file"
-            #fileInput
-            (change)="onFileSelected($event)"
-            accept="image/*"
-            style="display: none"
-          />
-          <p class="na-photo-hint">صورة الشخص (إجبارية)</p>
+
+          @if (foundPerson()) {
+            <div class="la-person-summary">
+              <div class="summary-item">
+                <label>الاسم الكامل:</label>
+                <span
+                  >{{ foundPerson()?.firstName }}
+                  {{ foundPerson()?.lastName }}</span
+                >
+              </div>
+              <div class="summary-item">
+                <label>رقم الهاتف:</label>
+                <span>{{ foundPerson()?.phoneNumber }}</span>
+              </div>
+              <div class="summary-status">
+                <i class="fa fa-check-circle"></i> تم التحقق من هوية الشخص
+              </div>
+            </div>
+          }
         </div>
+      }
 
-        <!-- عمود الحقول -->
-        <div class="na-fields-side">
-          <div class="na-row">
-            <div class="na-field">
-              <label>الاسم الأول *</label>
-              <input
-                type="text"
-                formControlName="firstName"
-                placeholder="الاسم"
-              />
+      @if (activeTab() === "new") {
+        <form [formGroup]="newPersonForm" class="tab-pane animated fadeIn">
+          <div class="la-form-grid">
+            <div class="la-field">
+              <label>الاسم الأول</label>
+              <input type="text" formControlName="firstName" />
             </div>
-            <div class="na-field">
-              <label>اسم الأب *</label>
-              <input
-                type="text"
-                formControlName="secondName"
-                placeholder="الأب"
-              />
+            <div class="la-field">
+              <label>الكنية</label>
+              <input type="text" formControlName="lastName" />
             </div>
-            <div class="na-field">
-              <label>اسم الجد</label>
-              <input
-                type="text"
-                formControlName="thirdName"
-                placeholder="اختياري"
-              />
+            <div class="la-field">
+              <label>الرقم الوطني</label>
+              <input type="text" formControlName="nationalNo" />
             </div>
-            <div class="na-field">
-              <label>الكنية *</label>
-              <input
-                type="text"
-                formControlName="lastName"
-                placeholder="اللقب"
-              />
-            </div>
-          </div>
-
-          <div class="na-row">
-            <div class="na-field">
-              <label>الرقم الوطني *</label>
-              <input
-                type="text"
-                formControlName="nationalNo"
-                placeholder="أدخل الرقم الوطني"
-              />
-              @if (registerForm.get("nationalNo")?.errors?.["notUnique"]) {
-                <small class="na-err">الرقم مستخدم مسبقاً!</small>
-              }
-            </div>
-            <div class="na-field">
-              <label>تاريخ الميلاد *</label>
+            <div class="la-field">
+              <label>تاريخ الميلاد</label>
               <input type="date" formControlName="birthDate" />
             </div>
-            <div class="na-field">
-              <label>الجنسية *</label>
-              <select formControlName="country">
-                <option value="">-- اختر الدولة --</option>
-                @for (c of countries; track c.countryID) {
-                  <option [value]="c.countryID">{{ c.countryName }}</option>
-                }
-              </select>
-            </div>
-          </div>
-
-          <div class="na-row">
-            <div class="na-field">
-              <label>صنف الرخصة *</label>
-              <select formControlName="licenseClass" class="na-special-select">
-                <option value="">-- اختر الفئة --</option>
-                @for (lc of licenseClasses; track lc.id) {
-                  <option [value]="lc.id">{{ lc.className }}</option>
-                }
-              </select>
-            </div>
-            <div class="na-field">
-              <label>رقم الهاتف *</label>
+            <div class="la-field">
+              <label>رقم الهاتف</label>
               <input
                 type="tel"
                 formControlName="phone"
                 placeholder="09xxxxxxxx"
               />
             </div>
-            <div class="na-field">
-              <label>البريد الإلكتروني *</label>
+            <div class="la-field">
+              <label>البريد الإلكتروني</label>
               <input type="email" formControlName="email" />
             </div>
-          </div>
-
-          <div class="na-row">
-            <div class="na-field na-full">
-              <label>العنوان السكني الحالي بالتفصيل *</label>
-              <input
-                type="text"
-                formControlName="address"
-                placeholder="المدينة، الشارع، المبنى..."
-              />
+            <div class="la-field la-full">
+              <label>العنوان السكني الحالي</label>
+              <input type="text" formControlName="address" />
             </div>
           </div>
+        </form>
+      }
+
+      <hr class="la-divider" />
+
+      <div class="la-common-section">
+        <div class="la-field">
+          <label class="important-label">فئة الرخصة المطلوبة *</label>
+          <select [formControl]="licenseClassControl" class="la-select-gold">
+            <option value="">-- اختر الفئة المطلوبة --</option>
+            @for (lc of licenseClasses; track lc.id) {
+              <option [value]="lc.id">{{ lc.className }}</option>
+            }
+          </select>
         </div>
       </div>
 
-      <div class="na-footer">
-        <button type="button" class="na-btn-back" (click)="onCancel()">
-          إلغاء
-        </button>
+      <footer class="la-footer">
+        <button class="btn-back" (click)="onCancel()">إلغاء</button>
         <button
-          type="submit"
-          class="na-btn-submit"
-          [disabled]="registerForm.invalid || isSubmitting()"
+          class="btn-submit"
+          (click)="onSubmit()"
+          [disabled]="isSubmitting()"
         >
-          <i class="fa fa-save"></i> تقديم الطلب وحفظ البيانات
+          <i class="fa fa-save"></i>
+          {{ isSubmitting() ? "جاري المعالجة..." : "تأكيد وحفظ الطلب" }}
         </button>
-      </div>
-    </form>
+      </footer>
+    </div>
   </div>
 </div>

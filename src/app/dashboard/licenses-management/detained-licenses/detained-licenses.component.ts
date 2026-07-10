@@ -1,8 +1,8 @@
-import { Component, OnInit, inject, signal, DestroyRef } from '@angular/core'; // تم التصحيح لـ @angular/core ✅
+import { Component, OnInit, inject, signal, DestroyRef } from '@angular/core';
 import { CommonModule, CurrencyPipe, DatePipe } from '@angular/common';
 import { FormControl, ReactiveFormsModule } from '@angular/forms';
-import { RouterLink } from '@angular/router'; // تم التأكد من مكان الاستيراد
-import { tap, debounceTime } from 'rxjs';
+import { RouterLink } from '@angular/router';
+import { debounceTime } from 'rxjs';
 
 import { DetainedLicenseService } from '../../../services/detained-license.service';
 import { LicenseService } from '../../../services/license.service';
@@ -26,69 +26,64 @@ import { NotificationComponent } from '../../../shared/notification/notification
   styleUrl: './detained-licenses.component.css',
 })
 export class DetainedLicensesComponent implements OnInit {
-  // الخدمات
   private detainedService = inject(DetainedLicenseService);
   private licenseService = inject(LicenseService);
   private notify = inject(NotificationService);
   private destroyRef = inject(DestroyRef);
 
-  // البيانات
+  // سنعود لاستخدام المصفوفات العادية مؤقتاً لأنها كانت تعمل عندك
   list: any[] = [];
   filteredList: any[] = [];
   displayedData: any[] = [];
 
-  // التحكم
   currentPage = 1;
   pageSize = 6;
   filter = new FormControl('', { nonNullable: true });
-  isDialogVisible = signal(false);
-  licenseID: number | undefined = undefined;
-  current_user_id: number | null = null;
+
+  isLoading = signal(true);
+  isReleaseDialogVisible = signal(false);
+  selectedLicenseId = signal<number | null>(null);
 
   ngOnInit(): void {
-    // جلب بيانات المستخدم من LocalStorage
-    const userData = localStorage.getItem('current-user');
-    if (userData) {
-      this.current_user_id = JSON.parse(userData).id;
-    }
-
     this.loadData();
 
     // مراقبة البحث
-    const filterSub = this.filter.valueChanges
-      .pipe(
-        debounceTime(300),
-        tap((val) => this.applyFilter(val)),
-      )
-      .subscribe();
-
-    this.destroyRef.onDestroy(() => filterSub.unsubscribe());
+    const sub = this.filter.valueChanges
+      .pipe(debounceTime(300))
+      .subscribe((val) => {
+        this.applyFilter(val);
+      });
+    this.destroyRef.onDestroy(() => sub.unsubscribe());
   }
 
   loadData() {
-    const sub = this.detainedService.all().subscribe({
-      next: (res: any[]) => {
-        // ✅ تم تحديد النوع هنا لحل خطأ "implicitly has any type"
-        this.list = res;
-        this.filteredList = res;
+    this.isLoading.set(true);
+    // تأكد أن detainedService.all() تستدعي المسار الصحيح
+    this.detainedService.all().subscribe({
+      next: (res: any) => {
+        // نضع check للتأكد أن القادمة مصفوفة
+        this.list = Array.isArray(res) ? res : [];
+        this.filteredList = [...this.list];
         this.updateDisplayedData();
+        this.isLoading.set(false);
       },
-      error: () =>
+      error: (err) => {
+        console.error('API Error:', err); // سيظهر لك الخطأ الحقيقي في الكونسول
         this.notify.showMessage({
           message: 'فشل تحميل قائمة الرخص المحتجزة',
           status: 'failed',
-        }),
+        });
+        this.isLoading.set(false);
+      },
     });
-    this.destroyRef.onDestroy(() => sub.unsubscribe());
   }
 
   applyFilter(value: string) {
     const search = value.toLowerCase().trim();
     this.filteredList = this.list.filter(
       (item) =>
-        item.fullName.toLowerCase().includes(search) ||
-        item.nationalNo.toLowerCase().includes(search) ||
-        item.licenseID.toString().includes(search),
+        item.fullName?.toLowerCase().includes(search) ||
+        item.licenseID?.toString().includes(search),
     );
     this.currentPage = 1;
     this.updateDisplayedData();
@@ -99,33 +94,7 @@ export class DetainedLicensesComponent implements OnInit {
     this.displayedData = this.filteredList.slice(start, start + this.pageSize);
   }
 
-  onRelease(id: number) {
-    this.licenseID = id;
-    this.isDialogVisible.set(true);
-  }
-
-  onDialogResult(confirmed: boolean) {
-    this.isDialogVisible.set(false);
-    if (confirmed && this.licenseID && this.current_user_id) {
-      this.licenseService
-        .release(this.licenseID, this.current_user_id)
-        .subscribe({
-          next: () => {
-            this.notify.showMessage({
-              message: `تم فك حجز الرخصة رقم ${this.licenseID} بنجاح`,
-              status: 'success',
-            });
-            this.loadData();
-          },
-          error: (err: any) =>
-            this.notify.showMessage({
-              message: 'فشل فك الحجز: ' + err.message,
-              status: 'failed',
-            }),
-        });
-    }
-  }
-
+  // دوال الترقيم
   onNext() {
     if (this.currentPage * this.pageSize < this.filteredList.length) {
       this.currentPage++;
@@ -136,6 +105,35 @@ export class DetainedLicensesComponent implements OnInit {
     if (this.currentPage > 1) {
       this.currentPage--;
       this.updateDisplayedData();
+    }
+  }
+
+  // فك الحجز
+  onReleaseRequest(licenseId: number) {
+    this.selectedLicenseId.set(licenseId);
+    this.isReleaseDialogVisible.set(true);
+  }
+
+  onDialogResult(confirmed: boolean) {
+    this.isReleaseDialogVisible.set(false);
+    if (confirmed && this.selectedLicenseId()) {
+      const userData = localStorage.getItem('current-user');
+      const userId = userData ? JSON.parse(userData).id : 1;
+
+      this.licenseService.release(this.selectedLicenseId()!, userId).subscribe({
+        next: () => {
+          this.notify.showMessage({
+            message: 'تم فك حجز الرخصة بنجاح',
+            status: 'success',
+          });
+          this.loadData();
+        },
+        error: (err) =>
+          this.notify.showMessage({
+            message: 'فشل العملية: ' + err.message,
+            status: 'failed',
+          }),
+      });
     }
   }
 }

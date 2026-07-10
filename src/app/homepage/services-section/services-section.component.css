@@ -1,47 +1,177 @@
-.main-text {
-  font-size: 45px;
-  color: black;
-  font-weight: bold;
+/* services.component.css */
+:root {
+  --ov-primary: #0f172a; /* Navy */
+  --ov-primary-light: #1e293b;
+  --ov-accent: #3b82f6;
+  --ov-white: #ffffff;
+  --ov-bg-light: #f8fafc;
+  --ov-shadow: 0 8px 30px rgba(15, 23, 42, 0.08);
+  --ov-shadow-hover: 0 12px 40px rgba(15, 23, 42, 0.15);
+  --ov-radius: 20px;
+  --ov-transition: 0.3s ease;
 }
 
-.service-cards {
-  display: grid;
-  grid-template-columns: repeat(3, minmax(300px, 1fr));
-  gap: 20px;
-  margin: 50px 0 50px 0;
+/* ===== أنيميشن الدخول ===== */
+@keyframes ovFadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(40px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
-.card {
+.ov-fade-in-up {
+  animation: ovFadeInUp 0.7s ease-out forwards;
+}
+
+/* ===== الحاوية العامة ===== */
+.ov-services {
+  direction: rtl;
+  padding: 60px 32px 80px;
+  background: var(--ov-bg-light);
+  text-align: center;
+  box-sizing: border-box;
+}
+
+/* ===== رأس القسم ===== */
+.ov-section-header {
+  margin-bottom: 50px;
+}
+.ov-section-badge {
+  display: inline-block;
+  background: var(--ov-primary);
+  color: var(--ov-white);
+  padding: 8px 24px;
+  border-radius: 30px;
+  font-size: 14px;
+  font-weight: 700;
+  letter-spacing: 0.5px;
+  margin-bottom: 12px;
+}
+.ov-main-text {
+  font-size: 44px;
+  font-weight: 900;
+  color: var(--ov-primary);
+  margin: 0 0 8px 0;
+  line-height: 1.2;
+}
+.ov-sub-text {
+  font-size: 18px;
+  color: #64748b;
+  max-width: 600px;
+  margin: 0 auto;
+  line-height: 1.6;
+}
+
+/* ===== شبكة الخدمات ===== */
+.ov-service-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 28px;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+/* ===== بطاقة الخدمة ===== */
+.ov-service-card {
+  background: var(--ov-white);
+  border-radius: var(--ov-radius);
+  padding: 40px 28px;
+  box-shadow: var(--ov-shadow);
+  transition: all var(--ov-transition);
   display: flex;
   flex-direction: column;
   align-items: center;
+  text-align: center;
+  border: 1px solid rgba(226, 232, 240, 0.6);
+  position: relative;
+  overflow: hidden;
+}
+.ov-service-card::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  right: 0;
+  left: 0;
+  height: 4px;
+  background: linear-gradient(to left, var(--ov-primary), var(--ov-accent));
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+.ov-service-card:hover {
+  transform: translateY(-8px);
+  box-shadow: var(--ov-shadow-hover);
+}
+.ov-service-card:hover::before {
+  opacity: 1;
+}
+
+/* ===== أيقونة البطاقة ===== */
+.ov-card-icon {
+  width: 72px;
+  height: 72px;
+  border-radius: 50%;
+  background: rgba(15, 23, 42, 0.06);
+  display: flex;
+  align-items: center;
   justify-content: center;
-  gap: 20px;
-  /* background-color: white; */
-  /* background: linear-gradient(145deg, #45485824, #9aa0c9); */
-  /* background: linear-gradient(145deg, var(--dark-color), #9aa0c9); */
-  /* background: linear-gradient(145deg, #4a58b1, #9aa0c9); */
-  /* color: var(--light-color);
-  background: linear-gradient(145deg, var(--bg-hover-color), #9aa0c9); */
-  color: black;
-  background: linear-gradient(145deg, white, #9aa0bc);
-  border-radius: 10px;
-  padding: 50px;
-  -webkit-border-radius: 10px;
-  -moz-border-radius: 10px;
-  -ms-border-radius: 10px;
-  -o-border-radius: 10px;
-  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
-  .title {
-    color: var(--dark-color);
-    font-size: 20px;
-    font-weight: 500;
+  font-size: 32px;
+  color: var(--ov-primary);
+  margin-bottom: 20px;
+  transition: all var(--ov-transition);
+}
+.ov-service-card:hover .ov-card-icon {
+  background: var(--ov-primary);
+  color: var(--ov-white);
+  transform: scale(1.05);
+}
+
+/* ===== النصوص داخل البطاقة ===== */
+.ov-card-title {
+  font-size: 22px;
+  font-weight: 800;
+  color: var(--ov-primary);
+  margin: 0 0 12px 0;
+}
+.ov-card-desc {
+  font-size: 16px;
+  line-height: 1.7;
+  color: #475569;
+  margin: 0;
+}
+
+/* ===== استجابة للشاشات الصغيرة ===== */
+@media (max-width: 992px) {
+  .ov-services {
+    padding: 40px 20px 60px;
+  }
+  .ov-main-text {
+    font-size: 36px;
+  }
+  .ov-service-grid {
+    gap: 20px;
   }
 }
 
-.card:hover {
-  box-shadow: 0, 10px, 20px, rgba(0, 0, 0, 0.3);
-  transform: translateY(-5px);
-}
-.description {
-  font-size: 16px;
+@media (max-width: 640px) {
+  .ov-services {
+    padding: 30px 16px 40px;
+  }
+  .ov-main-text {
+    font-size: 28px;
+  }
+  .ov-sub-text {
+    font-size: 16px;
+  }
+  .ov-service-card {
+    padding: 30px 20px;
+  }
+  .ov-card-title {
+    font-size: 20px;
+  }
+  .ov-card-desc {
+    font-size: 15px;
+  }
 }

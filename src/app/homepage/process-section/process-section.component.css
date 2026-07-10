@@ -1,64 +1,247 @@
+/* process.component.css */
+:root {
+  --ov-primary: #0f172a; /* Navy */
+  --ov-secondary: #1e293b;
+  --ov-accent: #3b82f6;
+  --ov-white: #ffffff;
+  --ov-bg-light: #f8fafc;
+  --ov-border: #e2e8f0;
+  --ov-text-dark: #0f172a;
+  --ov-text-muted: #475569;
+  --ov-shadow: 0 4px 20px rgba(15, 23, 42, 0.06);
+  --ov-shadow-hover: 0 8px 30px rgba(15, 23, 42, 0.12);
+  --ov-radius: 16px;
+  --ov-transition: 0.3s ease;
+}
 
-.steps {
+/* ===== أنيميشن الدخول ===== */
+@keyframes ovFadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+.ov-fade-in-up {
+  animation: ovFadeInUp 0.6s ease-out forwards;
+}
+
+/* ===== الحاوية العامة ===== */
+.ov-process {
+  direction: rtl;
+  text-align: center;
+  padding: 40px 24px 50px;
+  background: var(--ov-bg-light);
+  max-width: 1200px;
+  margin: 0 auto;
+  box-sizing: border-box;
+}
+
+/* ===== العناوين ===== */
+.ov-section-tag {
+  font-size: 16px;
+  font-weight: 700;
+  color: var(--ov-accent);
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  margin: 0 0 4px 0;
+}
+.ov-section-title {
+  font-size: 36px;
+  font-weight: 900;
+  color: var(--ov-primary);
+  margin: 0 0 40px 0;
+  line-height: 1.2;
+}
+
+/* ===== شبكة الخطوات (محسّنة للـ RTL) ===== */
+.ov-steps-grid {
   display: grid;
-  grid-template-columns: repeat(3, minmax(200px, 1fr));
-  gap: 0px;
-  margin: 50px 20px;
-  padding: 20px;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 0;
+  margin: 0 0 40px 0;
+  padding: 0;
+  border: 1px solid var(--ov-border);
+  border-radius: var(--ov-radius);
+  overflow: hidden;
+  background: var(--ov-white);
+  box-shadow: var(--ov-shadow);
 }
 
-.step {
-  border: 1px solid var(--bg-hover-color);
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-  gap: 20px;
-  width: 100%;
-  padding: 20px;
-  color: black;
+/* كل خطوة */
+.ov-step {
+  padding: 28px 24px;
+  border-left: 1px solid var(--ov-border);
+  border-bottom: 1px solid var(--ov-border);
+  text-align: right;
+  transition: all var(--ov-transition);
+  background: var(--ov-white);
 }
-.step header {
-  font-size: 22px;
-  font-weight: 500;
-  display: flex;
-  align-items: center;
-  gap: 20px;
+.ov-step:hover {
+  background: #f8fafc;
+  box-shadow: inset 0 0 0 2px var(--ov-accent);
 }
-.step img {
-  width: 50px;
-  height: 50px;
-  border-radius: 50%;
-}
-.description {
-  font-size: 17px;
-}
-/* Remove top borders for the first row */
-.step:nth-child(-n + 3) {
+
+/* إزالة الحدود بشكل صحيح (لـ RTL) */
+/* أول 3 خطوات (الصف الأول) */
+.ov-step:nth-child(-n + 3) {
   border-top: none;
+}
+/* الصف الأول: إزالة الحدود اليسرى (لأن RTL) */
+.ov-step:nth-child(3n + 1) {
   border-right: none;
 }
-/* Remove bottom border for the last row */
-.step:nth-child(n + 4) {
+/* آخر صفين (الخطوتين 4 و 5) */
+.ov-step:nth-child(n + 4) {
   border-bottom: none;
-  border-right: none;
 }
-/* Remove left borders for the first column */
-.step:nth-child(3n + 1) {
+/* الخطوة 4 و 5 نزيل الحدود الجانبية حسب الحاجة */
+.ov-step:nth-child(4) {
   border-left: none;
 }
-
-/* Center Card 4 and Card 5 in Row 2 */
-.step:nth-child(4),
-.step:nth-child(5) {
-  grid-row: 2; /* Place them in the second row */
+.ov-step:nth-child(5) {
+  border-left: none;
+  border-right: 1px solid var(--ov-border);
 }
 
-.step:nth-child(4) {
-  grid-column: 1/2; /* Place Card 4 in the second column */
-  margin-left: 50%;
+/* تنسيق خاص للخطوتين 4 و 5 (لتوسيطهما) */
+.ov-step:nth-child(4),
+.ov-step:nth-child(5) {
+  grid-row: 2;
+}
+.ov-step:nth-child(4) {
+  grid-column: 1 / 2;
+  margin-right: 50%; /* RTL تعني تحريك لليمين */
+}
+.ov-step:nth-child(5) {
+  grid-column: 3 / 4;
+  margin-right: -50%; /* إزاحة للخلف */
 }
 
-.step:nth-child(5) {
-  grid-column: 3; /* Place Card 5 in the third column */
-  margin-left: -50%; /* Shift Card 5 closer to Card 4 */
+/* ===== داخل الخطوة ===== */
+.ov-step-header {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  margin-bottom: 12px;
+}
+.ov-step-header img {
+  width: 52px;
+  height: 52px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 2px solid var(--ov-border);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
+}
+.ov-step-number {
+  font-size: 20px;
+  font-weight: 800;
+  color: var(--ov-primary);
+  letter-spacing: -0.3px;
+}
+.ov-step-desc {
+  font-size: 16px;
+  line-height: 1.7;
+  color: var(--ov-text-muted);
+  margin: 0;
+  text-align: right;
+  font-weight: 500;
+}
+
+/* ===== الاقتباس (شهادة) ===== */
+.ov-testimonial {
+  font-size: 1.15rem;
+  font-style: italic;
+  color: var(--ov-text-muted);
+  border-right: 4px solid var(--ov-accent); /* RTL */
+  padding-right: 20px;
+  padding-left: 0;
+  margin: 30px auto 0;
+  max-width: 700px;
+  text-align: right;
+  line-height: 1.8;
+  background: var(--ov-white);
+  padding: 20px 24px;
+  border-radius: var(--ov-radius);
+  box-shadow: var(--ov-shadow);
+}
+.ov-testimonial-author {
+  display: block;
+  margin-top: 8px;
+  font-weight: 700;
+  color: var(--ov-primary);
+  font-style: normal;
+}
+
+/* ===== استجابة للشاشات الصغيرة ===== */
+@media (max-width: 992px) {
+  .ov-steps-grid {
+    grid-template-columns: repeat(2, 1fr);
+    border-radius: var(--ov-radius);
+  }
+  .ov-step {
+    border-left: 1px solid var(--ov-border);
+    border-bottom: 1px solid var(--ov-border);
+  }
+  /* إعادة تعيين القواعد الخاصة بالـ RTL للشبكة المزدوجة */
+  .ov-step:nth-child(-n + 2) {
+    border-top: none;
+  }
+  .ov-step:nth-child(2n + 1) {
+    border-right: none;
+  }
+  .ov-step:nth-child(n + 3) {
+    border-bottom: none;
+  }
+  /* إلغاء التوسيط الخاص للخطوتين 4 و 5 */
+  .ov-step:nth-child(4),
+  .ov-step:nth-child(5) {
+    grid-row: auto;
+    grid-column: auto;
+    margin: 0;
+  }
+  .ov-step:nth-child(4) {
+    border-left: 1px solid var(--ov-border);
+  }
+  .ov-step:nth-child(5) {
+    border-right: 1px solid var(--ov-border);
+  }
+}
+
+@media (max-width: 600px) {
+  .ov-process {
+    padding: 24px 12px 30px;
+  }
+  .ov-section-title {
+    font-size: 28px;
+  }
+  .ov-steps-grid {
+    grid-template-columns: 1fr;
+  }
+  .ov-step {
+    border: 1px solid var(--ov-border) !important;
+    border-radius: var(--ov-radius);
+    margin-bottom: 12px;
+    padding: 20px 16px;
+  }
+  .ov-step:last-child {
+    margin-bottom: 0;
+  }
+  .ov-step-header img {
+    width: 44px;
+    height: 44px;
+  }
+  .ov-step-number {
+    font-size: 18px;
+  }
+  .ov-step-desc {
+    font-size: 15px;
+  }
+  .ov-testimonial {
+    font-size: 1rem;
+    padding: 16px 18px;
+  }
 }

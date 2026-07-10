@@ -1,53 +1,37 @@
-import { Component, Inject, OnInit, PLATFORM_ID } from '@angular/core';
-import { NewLocalApplicationComponent } from '../services/new-local-application/new-local-application.component';
-import { isPlatformBrowser } from '@angular/common';
-import { User } from '../../models/user.model';
-import { PersonService } from '../../services/person.service';
-import { ChangeDetectorRef } from '@angular/core';
-import { UserService } from '../../services/user.service';
+import { Component, inject, signal, OnInit } from '@angular/core';
+import { CommonModule } from '@angular/common';
 import { RouterLink } from '@angular/router';
+import { CurrentUserService } from '../../services/current-user.service';
+import { PersonService } from '../../services/person.service';
+import { User } from '../../models/user.model';
+import { Person } from '../../models/person.model';
+
 @Component({
   selector: 'app-user-account',
   standalone: true,
-  imports: [NewLocalApplicationComponent, RouterLink],
+  imports: [CommonModule, RouterLink],
   templateUrl: './user-account.component.html',
   styleUrl: './user-account.component.css',
 })
 export class UserAccountComponent implements OnInit {
-  current_user: User | null = null;
-  person_id: number | null = null;
-  full_name: string | undefined = undefined;
-  constructor(
-    @Inject(PLATFORM_ID) private platformId: Object,
-    private personService: PersonService,
-    private userService: UserService,
-    private cd: ChangeDetectorRef
-  ) {}
+  private currentUserService = inject(CurrentUserService);
+  private personService = inject(PersonService);
+
+  user = signal<User | null>(null);
+  person = signal<Person | null>(null);
+  isLoading = signal(true);
 
   ngOnInit(): void {
-    if (isPlatformBrowser(this.platformId)) {
-      const current_user = localStorage.getItem('current-user');
-      if (current_user) {
-        try {
-          const user = JSON.parse(current_user);
-          this.current_user = user;
-          this.person_id = user.personID;
-          console.log('current user is done ', this.current_user?.personID);
-
-          if (this.person_id) {
-            this.personService.getFullName(this.person_id).subscribe({
-              next: (response) => {
-                this.full_name = response;
-                console.log('Full Name:', this.full_name);
-              },
-              error: (err) => console.error('Error fetching full name:', err),
-            });
-          }
-          this.cd.detectChanges();
-        } catch (error) {
-          console.error('Error parsing user data from local storage:', error);
-        }
-      }
+    const currentUser = this.currentUserService.getCurrentUser();
+    if (currentUser) {
+      this.user.set(currentUser);
+      this.personService.read(currentUser.personID).subscribe({
+        next: (data) => {
+          this.person.set(data);
+          this.isLoading.set(false);
+        },
+        error: () => this.isLoading.set(false),
+      });
     }
   }
 }

@@ -1,36 +1,154 @@
-header {
-  display: flex;
-  justify-content: space-around;
-  align-items: center;
-  color: #1b2568;
-  font-size: 12px;
-  padding: 10px;
-  p {
-    font-size: 20px;
-    font-weight: bold;
-  }
+/* header.component.css */
+:root {
+  --ov-primary: #0f172a; /* Navy */
+  --ov-primary-light: #1e293b;
+  --ov-accent: #3b82f6; /* أزرق فاتح */
+  --ov-white: #ffffff;
+  --ov-bg-header: #ffffff;
+  --ov-shadow: 0 2px 12px rgba(15, 23, 42, 0.08);
+  --ov-radius: 30px;
+  --ov-transition: 0.3s ease;
 }
 
-ul {
+.ov-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 12px 32px;
+  background: var(--ov-bg-header);
+  box-shadow: var(--ov-shadow);
+  direction: rtl; /* RTL أساسي */
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+
+/* القسم الأيسر (الشعار) */
+.ov-header-brand {
   display: flex;
   align-items: center;
+  gap: 8px;
 }
-ul li {
+.ov-logo {
+  font-size: 24px;
+  font-weight: 900;
+  color: var(--ov-primary);
+  letter-spacing: -0.5px;
+}
+.ov-slogan {
+  font-size: 14px;
+  font-weight: 500;
+  color: #64748b;
+  border-right: 2px solid #e2e8f0;
+  padding-right: 12px;
+  line-height: 1.4;
+}
+
+/* قائمة الروابط */
+.ov-nav {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+}
+.ov-nav-list {
+  display: flex;
   list-style: none;
-  a {
-    padding: 15px;
+  margin: 0;
+  padding: 0;
+  gap: 8px;
+  align-items: center;
+}
+.ov-nav-list li a {
+  display: block;
+  padding: 10px 18px;
+  font-size: 15px;
+  font-weight: 600;
+  color: #334155;
+  text-decoration: none;
+  border-radius: var(--ov-radius);
+  transition: all var(--ov-transition);
+  white-space: nowrap;
+}
+.ov-nav-list li a:hover,
+.ov-nav-list li a.active {
+  background: var(--ov-primary);
+  color: var(--ov-white);
+  box-shadow: 0 4px 12px rgba(15, 23, 42, 0.15);
+}
+
+/* زر تسجيل الدخول */
+.ov-btn-login {
+  background: var(--ov-primary);
+  color: var(--ov-white);
+  border: none;
+  padding: 10px 28px;
+  border-radius: var(--ov-radius);
+  font-size: 15px;
+  font-weight: 700;
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  cursor: pointer;
+  transition: all var(--ov-transition);
+  box-shadow: 0 4px 12px rgba(15, 23, 42, 0.15);
+  white-space: nowrap;
+}
+.ov-btn-login:hover {
+  background: var(--ov-primary-light);
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(15, 23, 42, 0.25);
+}
+.ov-btn-login i {
+  font-size: 16px;
+}
+
+/* ===== استجابة للشاشات الصغيرة ===== */
+@media (max-width: 992px) {
+  .ov-header {
+    padding: 12px 20px;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+  .ov-nav {
+    order: 3;
+    width: 100%;
+    justify-content: center;
+  }
+  .ov-nav-list {
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+  .ov-nav-list li a {
+    padding: 8px 14px;
+    font-size: 14px;
+  }
+  .ov-btn-login {
+    padding: 8px 20px;
+    font-size: 14px;
   }
 }
 
-a {
-  text-decoration: none;
-  color: black;
-}
-
-a:hover {
-  background-color: var(--button-bg-color);
-  color: var(--hover-color);
-}
-button {
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+@media (max-width: 600px) {
+  .ov-header {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 8px;
+  }
+  .ov-header-brand {
+    justify-content: center;
+  }
+  .ov-nav-list {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 4px;
+  }
+  .ov-nav-list li a {
+    text-align: center;
+    padding: 12px;
+    border-radius: 12px;
+  }
+  .ov-btn-login {
+    justify-content: center;
+    width: 100%;
+  }
 }

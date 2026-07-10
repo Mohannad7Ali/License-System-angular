@@ -4,7 +4,7 @@ export interface License {
   driverID: number;
   licenseClass: number;
   issueDate: Date;
-  expDate: Date;
+  expDate: Date; // المسمى الأصلي كما أرسلته
   isActive: boolean;
   paidFees: number;
   issueReason: number;
@@ -20,7 +20,6 @@ export interface ShortLicense {
   expirationDate: Date;
   isActive: boolean;
 }
-
 
 export enum enIssueReason {
   'First Time Issuance' = 1,

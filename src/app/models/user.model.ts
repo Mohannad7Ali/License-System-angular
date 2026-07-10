@@ -4,4 +4,5 @@ export interface User {
   fullName?: string;
   username: string;
   isActive: boolean;
+  password?: string;
 }

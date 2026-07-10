@@ -1,35 +1,183 @@
+/* ===== قسم من نحن ===== */
+#about-us {
+  padding: 50px 30px 60px;
+  background: var(--bg-white, #ffffff);
+  border-radius: 0;
+  margin-top: 0;
+}
+
+#about-us .section-title {
+  font-size: 16px;
+  font-weight: 700;
+  color: #94a3b8;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  margin-bottom: 4px;
+  text-align: right; /* RTL */
+}
+
+#about-us .main-text {
+  font-size: 42px;
+  font-weight: 900;
+  color: #0f172a;
+  margin: 0 0 8px 0;
+  text-align: right; /* RTL */
+}
+
+/* ===== حاوية المحتوى ===== */
 .content {
   display: flex;
-  align-items: baseline;
+  align-items: flex-start; /* تغيير من baseline لتحسين المحاذاة */
   gap: 70px;
+  direction: rtl;
+  margin-top: 20px;
 }
+
+/* ===== النص التعريفي ===== */
 .content div {
   max-width: 600px;
   margin-top: 15px;
-  p {
-    color: black;
-    font-size: 18px;
-    line-height: 1.8;
-  }
+  flex: 1.5;
 }
-strong {
-  color: #1b2568;
-}
-ul {
-  flex: 1;
-  text-align: center;
+
+.content div p {
+  color: #475569;
   font-size: 18px;
-  color: black;
+  line-height: 1.9;
+  margin: 16px 0;
+  font-weight: 500;
+}
+
+.content div p:first-child {
+  margin-top: 0;
+}
+
+.content div p:last-child {
+  margin-bottom: 0;
+}
+
+.content div strong {
+  color: #0f172a;
+  font-weight: 800;
+  font-size: 20px;
+  position: relative;
+}
+
+.content div strong::after {
+  content: "";
+  position: absolute;
+  bottom: -2px;
+  right: 0;
+  width: 100%;
+  height: 3px;
+  background: #0f172a;
+  border-radius: 2px;
+}
+
+/* ===== القائمة الجانبية (المميزات) ===== */
+.content ul {
+  flex: 1;
+  text-align: right; /* RTL */
+  font-size: 18px;
+  color: #0f172a;
   line-height: 1.8;
   list-style: none;
+  padding: 0;
+  margin: 15px 0 0 0;
+  background: #f8fafc;
+  border-radius: 20px;
+  padding: 28px 24px;
+  border: 1px solid #e2e8f0;
+  box-shadow: 0 2px 8px rgba(15, 23, 42, 0.04);
 }
-li {
+
+.content ul li {
   display: flex;
   align-items: center;
+  gap: 12px;
+  padding: 12px 0;
+  border-bottom: 1px solid #f1f5f9;
+  font-weight: 600;
+  color: #0f172a;
+}
 
-  span {
-    font-size: 1.5rem;
-    color: #1b2568;
-    margin-right: 10px;
+.content ul li:last-child {
+  border-bottom: none;
+  padding-bottom: 0;
+}
+
+.content ul li:first-child {
+  padding-top: 0;
+}
+
+.content ul li span {
+  font-size: 1.6rem;
+  color: #0f172a;
+  margin-left: 10px; /* RTL adjustment */
+  font-weight: 900;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 32px;
+  height: 32px;
+  background: #0f172a;
+  color: #ffffff;
+  border-radius: 50%;
+  font-size: 16px;
+  flex-shrink: 0;
+}
+
+/* ===== استجابة للشاشات المختلفة ===== */
+@media (max-width: 992px) {
+  .content {
+    flex-direction: column;
+    gap: 30px;
+  }
+
+  .content div {
+    max-width: 100%;
+  }
+
+  #about-us .main-text {
+    font-size: 32px;
+  }
+
+  .content ul {
+    width: 100%;
+  }
+}
+
+@media (max-width: 640px) {
+  #about-us {
+    padding: 30px 16px 40px;
+  }
+
+  #about-us .main-text {
+    font-size: 26px;
+  }
+
+  .content div p {
+    font-size: 16px;
+    line-height: 1.8;
+  }
+
+  .content div strong {
+    font-size: 18px;
+  }
+
+  .content ul {
+    font-size: 16px;
+    padding: 20px 16px;
+  }
+
+  .content ul li {
+    padding: 10px 0;
+  }
+
+  .content ul li span {
+    width: 28px;
+    height: 28px;
+    font-size: 14px;
+    margin-left: 8px;
   }
 }

@@ -1,26 +1,15 @@
-import {
-  Component,
-  OnInit,
-  inject,
-  signal,
-  Input,
-  OnChanges,
-  SimpleChanges,
-  DestroyRef,
-  PLATFORM_ID,
-  ChangeDetectorRef,
-} from '@angular/core';
-import { CommonModule, isPlatformBrowser, Location } from '@angular/common';
+import { Component, OnInit, inject, signal, Input } from '@angular/core'; // ✅ أضفنا Input هنا
+import { CommonModule, Location } from '@angular/common';
 import {
   FormBuilder,
   FormGroup,
   Validators,
   ReactiveFormsModule,
+  FormControl,
 } from '@angular/forms';
-import { ActivatedRoute, Router, CanDeactivateFn } from '@angular/router';
-import { forkJoin, switchMap, catchError, throwError, tap } from 'rxjs';
+import { Router, RouterLink, CanDeactivateFn } from '@angular/router';
+import { switchMap, catchError, throwError, of } from 'rxjs';
 
-import { CountryService } from '../../../services/country.service';
 import { LicenseClassService } from '../../../services/license-class.service';
 import { PersonService } from '../../../services/person.service';
 import { ApplicationService } from '../../../services/application.service';
@@ -30,8 +19,6 @@ import { NotificationService } from '../../../services/notification.service';
 
 import { Person } from '../../../models/person.model';
 import { LicenseClass } from '../../../models/license-class.model';
-import { Country } from '../../../models/country.model';
-import { isExist } from '../../custom-validator';
 import { ConfirmationDialogComponent } from '../../../shared/confirmation-dialog/confirmation-dialog.component';
 import { NotificationComponent } from '../../../shared/notification/notification.component';
 
@@ -43,109 +30,123 @@ import { NotificationComponent } from '../../../shared/notification/notification
     ReactiveFormsModule,
     ConfirmationDialogComponent,
     NotificationComponent,
+    RouterLink,
   ],
   templateUrl: './new-local-application.component.html',
   styleUrl: './new-local-application.component.css',
 })
-export class NewLocalApplicationComponent implements OnInit, OnChanges {
+export class NewLocalApplicationComponent implements OnInit {
+  // ✅ أضفنا هذه الأسطر لحل مشكلة التوافق مع المكون الأب
   @Input() application_id: number | null = null;
   @Input() person_id: number | null = null;
 
-  mode: 'add' | 'edit' = 'add';
-  countries: Country[] = [];
-  licenseClasses: LicenseClass[] = [];
-  isDialogVisible = signal(false);
-  isSubmitting = signal(false);
-
-  testImageUrl = 'https://cdn-icons-png.flaticon.com/256/5844/5844412.png';
-  imagePreview = signal<string>(this.testImageUrl);
-
-  registerForm!: FormGroup;
-
   private fb = inject(FormBuilder);
-  private countryService = inject(CountryService);
-  private licenseClassService = inject(LicenseClassService);
   private personService = inject(PersonService);
   private applicationService = inject(ApplicationService);
   private localAppService = inject(LocalApplicationService);
+  private licenseClassService = inject(LicenseClassService);
   private currentUserService = inject(CurrentUserService);
   private notify = inject(NotificationService);
   private location = inject(Location);
-  private destroyRef = inject(DestroyRef);
+
+  // إدارة التبويبات
+  activeTab = signal<'existing' | 'new'>('existing');
+
+  // البيانات
+  licenseClasses: LicenseClass[] = [];
+  isSubmitting = signal(false);
+  isDialogVisible = signal(false);
+
+  // تبويب شخص موجود
+  existingSearchControl = new FormControl('', [Validators.required]);
+  foundPerson = signal<Person | null>(null);
+  isSearching = signal(false);
+
+  // تبويب شخص جديد
+  newPersonForm!: FormGroup;
+  licenseClassControl = new FormControl('', [Validators.required]);
 
   ngOnInit(): void {
-    this.initForm();
     this.loadInitialData();
+    this.initNewPersonForm();
   }
 
-  ngOnChanges(changes: SimpleChanges): void {
-    if (this.application_id || this.person_id) {
-      this.mode = 'edit';
-      this.registerForm.get('nationalNo')?.clearAsyncValidators();
-    }
-  }
-
-  private initForm() {
-    this.registerForm = this.fb.group({
-      firstName: ['', [Validators.required, Validators.maxLength(50)]],
-      secondName: ['', [Validators.required, Validators.maxLength(50)]],
-      thirdName: ['', [Validators.maxLength(50)]], // جعلناه اختيارياً
-      lastName: ['', [Validators.required, Validators.maxLength(50)]],
-      nationalNo: [
-        '',
-        {
-          validators: [
-            Validators.required,
-            Validators.pattern('^[0-9]{5,20}$'),
-          ],
-          asyncValidators: [
-            this.mode === 'add' ? isExist(this.personService) : [],
-          ],
-          // ❌ حذفنا updateOn: 'blur' ليعمل الزر فوراً عند الكتابة
-        },
-      ],
-      email: ['', [Validators.required, Validators.email]],
-      phone: ['', [Validators.required]],
-      gender: ['M', Validators.required],
-      birthDate: ['', Validators.required],
-      country: ['', Validators.required],
-      address: ['', [Validators.required]],
-      licenseClass: ['', Validators.required],
-      personalPicture: [this.testImageUrl, Validators.required],
-    });
-  }
-
-  private loadInitialData() {
-    this.countryService
-      .AllCountries()
-      .subscribe((res) => (this.countries = res));
+  loadInitialData() {
     this.licenseClassService
       .getAllClasses()
       .subscribe((res) => (this.licenseClasses = res));
   }
 
-  onFileSelected(event: any) {
-    const file = event.target.files[0];
-    if (file) {
-      // إرسال مسار وهمي للسيرفر لتجنب الـ Base64 الثقيل
-      const fakePath = `C:\\DVLD_Photos\\${file.name}`;
-      this.registerForm.patchValue({ personalPicture: fakePath });
+  initNewPersonForm() {
+    this.newPersonForm = this.fb.group({
+      firstName: ['', Validators.required],
+      lastName: ['', Validators.required],
+      nationalNo: ['', Validators.required],
+      phone: ['', Validators.required],
+      gender: ['F', Validators.required],
+      birthDate: ['', Validators.required],
+      address: ['', Validators.required],
+      email: ['', [Validators.required, Validators.email]],
+    });
+  }
 
-      const reader = new FileReader();
-      reader.onload = () => this.imagePreview.set(reader.result as string);
-      reader.readAsDataURL(file);
-    }
+  setTab(tab: 'existing' | 'new') {
+    this.activeTab.set(tab);
+    this.foundPerson.set(null);
+    this.existingSearchControl.reset();
+    this.newPersonForm.reset({ gender: 'F' });
+  }
+
+  onSearch() {
+    const no = this.existingSearchControl.value?.trim();
+    if (!no) return;
+
+    this.isSearching.set(true);
+    this.personService.all().subscribe({
+      next: (people) => {
+        const p = people.find((x) => x.nationalNumber === no);
+        if (p) {
+          this.foundPerson.set(p);
+          this.notify.showMessage({
+            message: 'تم العثور على الشخص بنجاح',
+            status: 'success',
+          });
+        } else {
+          this.foundPerson.set(null);
+          this.notify.showMessage({
+            message: 'الرقم الوطني غير موجود',
+            status: 'failed',
+          });
+        }
+        this.isSearching.set(false);
+      },
+      error: () => {
+        this.isSearching.set(false);
+        this.notify.showMessage({
+          message: 'خطأ في الاتصال بالسيرفر',
+          status: 'failed',
+        });
+      },
+    });
   }
 
   onSubmit() {
-    if (this.registerForm.invalid) {
-      // الكود التالي يطبع لك في الـ Console أي حقل هو المسبب في جعل الزر معطلاً
-      Object.keys(this.registerForm.controls).forEach((key) => {
-        const controlErrors = this.registerForm.get(key)?.errors;
-        if (controlErrors)
-          console.log('Field: ' + key + ' is invalid', controlErrors);
+    if (this.activeTab() === 'existing' && !this.foundPerson()) {
+      this.notify.showMessage({
+        message: 'يرجى اختيار شخص أولاً',
+        status: 'failed',
       });
-      this.registerForm.markAllAsTouched();
+      return;
+    }
+    if (this.activeTab() === 'new' && this.newPersonForm.invalid) {
+      this.newPersonForm.markAllAsTouched();
+      return;
+    }
+    if (this.licenseClassControl.invalid) {
+      this.notify.showMessage({
+        message: 'يرجى اختيار فئة الرخصة',
+        status: 'failed',
+      });
       return;
     }
     this.isDialogVisible.set(true);
@@ -153,62 +154,61 @@ export class NewLocalApplicationComponent implements OnInit, OnChanges {
 
   onDialogResult(confirmed: boolean) {
     this.isDialogVisible.set(false);
-    if (confirmed) this.processApplication();
+    if (confirmed) this.processOrder();
   }
 
-  private processApplication() {
+  processOrder() {
     this.isSubmitting.set(true);
-    const form = this.registerForm.value;
     const currentUser = this.currentUserService.getCurrentUser();
 
-    const personData: Person = {
-      id: 0,
-      firstName: form.firstName,
-      secondName: form.secondName,
-      thirdName: form.thirdName || '',
-      lastName: form.lastName,
-      nationalNumber: form.nationalNo,
-      email: form.email,
-      phoneNumber: form.phone,
-      gender: form.gender,
-      birthDate: form.birthDate,
-      nationality: String(form.country),
-      address: form.address,
-      personalPicture: form.personalPicture || this.testImageUrl,
-      createdByUserID: currentUser?.id || 1,
-      creationDate: new Date().toISOString(),
-      updatedByUserID: null,
-      updatedDate: null,
-    };
+    const person$ =
+      this.activeTab() === 'existing'
+        ? of(this.foundPerson()!)
+        : this.personService.create({
+            id: 0,
+            firstName: this.newPersonForm.value.firstName,
+            secondName: '.',
+            thirdName: '.',
+            lastName: this.newPersonForm.value.lastName,
+            nationalNumber: this.newPersonForm.value.nationalNo,
+            email: this.newPersonForm.value.email,
+            phoneNumber: this.newPersonForm.value.phone,
+            gender: this.newPersonForm.value.gender,
+            birthDate: this.newPersonForm.value.birthDate,
+            nationality: '1',
+            address: this.newPersonForm.value.address,
+            personalPicture: '',
+            createdByUserID: currentUser?.id || 1,
+            creationDate: new Date().toISOString(),
+          } as any);
 
-    this.personService
-      .create(personData)
+    person$
       .pipe(
-        switchMap((newPerson) => {
+        switchMap((person) => {
           const appData: any = {
             id: 0,
-            personID: newPerson.id,
+            personID: person.id,
             applicationTypeID: 1,
             status: 1,
-            date: new Date().toISOString(),
             paidFees: 15,
-            lastStatusDate: new Date().toISOString(),
             createdByUserID: currentUser?.id || 1,
+            date: new Date().toISOString(),
+            lastStatusDate: new Date().toISOString(),
           };
           return this.applicationService.create(appData);
         }),
-        switchMap((newApp) => {
+        switchMap((app) => {
           const localAppData = {
             id: 0,
-            applicationID: newApp.id,
-            licenseClassID: Number(form.licenseClass),
+            applicationID: app.id,
+            licenseClassID: Number(this.licenseClassControl.value),
           };
           return this.localAppService.create(localAppData);
         }),
         catchError((err) => {
           this.isSubmitting.set(false);
           this.notify.showMessage({
-            message: 'فشل: ' + (err.error?.message || 'خطأ غير معروف'),
+            message: 'فشل التقديم: ' + (err.error?.message || 'خطأ'),
             status: 'failed',
           });
           return throwError(() => err);
@@ -216,7 +216,7 @@ export class NewLocalApplicationComponent implements OnInit, OnChanges {
       )
       .subscribe(() => {
         this.notify.showMessage({
-          message: 'تم التقديم بنجاح!',
+          message: 'تم تقديم طلب الرخصة بنجاح!',
           status: 'success',
         });
         this.location.back();
@@ -231,7 +231,10 @@ export class NewLocalApplicationComponent implements OnInit, OnChanges {
 export const canDeactivate: CanDeactivateFn<NewLocalApplicationComponent> = (
   comp,
 ) => {
-  if (comp.registerForm.dirty && !comp.isSubmitting()) {
+  if (
+    (comp.newPersonForm.dirty || comp.licenseClassControl.dirty) &&
+    !comp.isSubmitting()
+  ) {
     return window.confirm('هل تريد المغادرة؟ لم يتم حفظ البيانات.');
   }
   return true;

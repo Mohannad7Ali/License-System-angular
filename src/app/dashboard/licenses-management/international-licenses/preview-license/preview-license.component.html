@@ -1,95 +1,111 @@
-<app-notification />
+<app-dialog-wrapper title="معاينة رخصة القيادة الدولية">
+  <div class="idl-page" dir="rtl">
+    <!-- 🔄 شاشة التحميل (تظهر أولاً) -->
+    @if (loading()) {
+      <div class="loading-overlay">
+        <div class="spinner-box">
+          <i class="fa fa-refresh fa-spin"></i>
+          <p>جاري معالجة بيانات الرخصة الدولية...</p>
+        </div>
+      </div>
+    } @else {
+      <!-- 🪪 بطاقة الرخصة (هذا الجزء فقط الذي سيطبع) -->
+      <div id="license-to-print" class="idl-card animated-in">
+        <div class="idl-header">
+          <div class="gov-brand">
+            <img
+              src="https://cdn-icons-png.flaticon.com/512/300/300218.png"
+              class="eagle"
+            />
+            <div class="gov-titles">
+              <span class="main-title">الجمهورية العربية السورية</span>
+              <span class="sub-title">وزارة النقل - إدارة المرور</span>
+            </div>
+          </div>
+          <div class="license-type">رخصة دولية</div>
+        </div>
 
-<app-dialog-wrapper title="International Licenses > Preview License">
-  <div class="container">
-    <fieldset>
-      <legend>License info</legend>
-      <div class="control-row">
-        <div class="control">
-          <label for="license-id">License ID</label>
-          <p id="license-id">
-            {{ licenseID != undefined ? licenseID : "N/A" }}
-          </p>
+        <div class="idl-body">
+          <div class="photo-column">
+            <div class="photo-frame">
+              <img
+                [src]="
+                  person()?.personalPicture ||
+                  'https://cdn-icons-png.flaticon.com/256/5844/5844412.png'
+                "
+                alt="Driver"
+              />
+            </div>
+            <div class="security-seal">
+              <i class="fa fa-shield"></i>
+              <span>نسخة رسمية</span>
+            </div>
+          </div>
+
+          <div class="data-column">
+            <div class="info-row large">
+              <label>الاسم الكامل</label>
+              <span class="value"
+                >{{ person()?.firstName }} {{ person()?.lastName }}</span
+              >
+            </div>
+
+            <div class="info-row">
+              <label>الرقم الوطني</label>
+              <span class="value">{{ person()?.nationalNumber }}</span>
+            </div>
+
+            <div class="grid-2">
+              <div class="info-row">
+                <label>الجنس</label>
+                <span class="value">{{ getGenderText() }}</span>
+              </div>
+              <div class="info-row">
+                <label>تاريخ الميلاد</label>
+                <span class="value">{{
+                  person()?.birthDate | date: "dd/MM/yyyy"
+                }}</span>
+              </div>
+            </div>
+
+            <div class="info-row highlight-box">
+              <label>رقم الرخصة الدولية</label>
+              <span class="value"
+                >IDL-{{ license()?.internationalLicenseID }}</span
+              >
+            </div>
+          </div>
         </div>
-        <div class="control">
-          <label for="driver-id">Driver ID</label>
-          <p id="driver-id">
-            {{
-              current_license != undefined ? current_license!.driverID : "N/A"
-            }}
-          </p>
-        </div>
-      </div>
-      <div class="control-row">
-        <div class="control">
-          <label for="full-name">Perosn Full Name</label>
-          <p id="full-name">
-            {{ current_driver != undefined ? current_driver!.fullName : "N/A" }}
-          </p>
-        </div>
-        <div class="control">
-          <label for="test-type">National ID</label>
-          <p id="test-type">
-            {{
-              current_driver != undefined ? current_driver!.nationalID : "N/A"
-            }}
-          </p>
-        </div>
-        <div class="control">
-          <label for="app-id">Local Application ID</label>
-          <p id="app-id">
-            {{
-              current_license != undefined
-                ? current_license!.issuedByLocalLicenseID
-                : "N/A"
-            }}
-          </p>
-        </div>
-      </div>
-      <div class="control-row">
-        <div class="control">
-          <label for="active-status">Active Status</label>
-          <p id="active-status">
-            {{
-              current_license != undefined
-                ? current_license.isActive
-                  ? "Active"
-                  : "NOT Active"
-                : "N/A"
-            }}
-          </p>
-        </div>
-        <div class="control">
-          <label for="issue-date">Issue Date</label>
-          <p id="issue-date">
-            {{
-              current_license != undefined
-                ? (current_license!.issueDate | date)
-                : "N/A"
-            }}
-          </p>
-        </div>
-        <div class="control">
-          <label for="exp-date">Expiration Date</label>
-          <p id="exp-date">
-            {{
-              current_license != undefined
-                ? (current_license!.expDate | date)
-                : "N/A"
-            }}
-          </p>
+
+        <div class="idl-footer">
+          <div class="date-section">
+            <div class="date-item">
+              <label>تاريخ الإصدار</label>
+              <span class="val">{{
+                license()?.issueDate | date: "dd/MM/yyyy"
+              }}</span>
+            </div>
+            <div class="date-item">
+              <label>صلاحية لغاية</label>
+              <span class="val danger">{{
+                license()?.expirationDate | date: "dd/MM/yyyy"
+              }}</span>
+            </div>
+          </div>
+          <div class="status-indicator" [class.active]="license()?.isActive">
+            <i class="fa fa-certificate"></i>
+            {{ license()?.isActive ? "نشطة" : "ملغاة" }}
+          </div>
         </div>
       </div>
-      <div class="actions">
-        <a
-          routerLink="../../drivers/preview-driver"
-          [queryParams]="{ id: current_driver!.id }"
-          >Preview Drive's Info?</a
-        >
-        <div class="actions">
-          <button class="button" (click)="onClose()">OK</button>
-        </div>
+
+      <!-- 🔘 أزرار التحكم (لن تظهر في الطباعة) -->
+      <div class="no-print actions-area">
+        <button class="btn-print" (click)="onPrint()">
+          <i class="fa fa-print"></i> طـبـاعة الرخصة
+        </button>
+        <button class="btn-back" (click)="onBack()">إغلاق</button>
       </div>
-    </fieldset>
+    }
   </div>
 </app-dialog-wrapper>

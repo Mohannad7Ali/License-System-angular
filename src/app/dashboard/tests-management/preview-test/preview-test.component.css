@@ -1,0 +1,149 @@
+.pt-container {
+  padding: 10px;
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.pt-loader {
+  text-align: center;
+  padding: 50px;
+  color: #6c5ce7;
+  font-size: 1.2rem;
+}
+
+/* بطاقة النتيجة */
+.pt-result-card {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  padding: 20px;
+  border-radius: 12px;
+  margin-bottom: 25px;
+  color: white;
+}
+
+.pt-result-card.passed {
+  background: linear-gradient(135deg, #00b894, #00cec9);
+  box-shadow: 0 10px 20px rgba(0, 184, 148, 0.2);
+}
+
+.pt-result-card.failed {
+  background: linear-gradient(135deg, #d63031, #ff7675);
+  box-shadow: 0 10px 20px rgba(214, 48, 49, 0.2);
+}
+
+.pt-result-icon i {
+  font-size: 3.5rem;
+}
+
+.pt-result-text h4 {
+  margin: 0;
+  font-size: 0.9rem;
+  opacity: 0.9;
+}
+
+.pt-result-text h1 {
+  margin: 0;
+  font-size: 2rem;
+  font-weight: 800;
+}
+
+/* التنسيق الشبكي */
+.pt-grid {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.pt-fieldset {
+  border: 1px solid #edeff2;
+  border-radius: 8px;
+  padding: 15px 20px;
+}
+
+.pt-fieldset legend {
+  font-weight: bold;
+  color: #2d3436;
+  padding: 0 10px;
+  font-size: 0.95rem;
+}
+
+.pt-row {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 15px;
+}
+
+.pt-item {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+
+.pt-item.full-width {
+  grid-column: 1 / -1;
+}
+
+.pt-item label {
+  font-size: 0.8rem;
+  color: #7f8c8d;
+  font-weight: 600;
+}
+
+.pt-item span {
+  font-weight: 700;
+  color: #2d3436;
+}
+
+.pt-highlight {
+  color: #6c5ce7 !important;
+}
+
+.pt-notes-box {
+  background: #f8f9fb;
+  padding: 12px;
+  border-radius: 6px;
+  border-right: 4px solid #dfe6e9;
+  font-style: italic;
+  color: #636e72;
+}
+
+/* الأزرار */
+.pt-actions {
+  margin-top: 25px;
+  display: flex;
+  justify-content: flex-end;
+}
+
+.pt-btn-close {
+  background: #2d3436;
+  color: white;
+  border: none;
+  padding: 10px 25px;
+  border-radius: 8px;
+  cursor: pointer;
+  font-weight: 600;
+  transition: 0.3s;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.pt-btn-close:hover {
+  background: #000;
+  transform: translateX(-5px);
+}
+
+.animated {
+  animation-duration: 0.5s;
+}
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+.fadeIn {
+  animation-name: fadeIn;
+}

@@ -1,76 +1,108 @@
-import { Component, DestroyRef, inject } from '@angular/core';
-import { Test } from '../../models/test.model';
+import {
+  Component,
+  inject,
+  signal,
+  computed,
+  OnInit,
+  DestroyRef,
+} from '@angular/core';
+import { CommonModule, DatePipe } from '@angular/common';
 import { FormControl, ReactiveFormsModule } from '@angular/forms';
-import { TestService } from '../../services/test.service';
-import { tap } from 'rxjs';
 import { RouterLink } from '@angular/router';
+import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
+import { debounceTime, distinctUntilChanged } from 'rxjs';
+
+import { TestService } from '../../services/test.service';
+import { Test } from '../../models/test.model';
 
 @Component({
   selector: 'app-tests-management',
   standalone: true,
-  imports: [ReactiveFormsModule, RouterLink],
+  imports: [CommonModule, ReactiveFormsModule, RouterLink, DatePipe],
   templateUrl: './tests-management.component.html',
   styleUrl: './tests-management.component.css',
 })
-export class TestsManagementComponent {
-  currentPage = 1;
-  pageSize = 5;
-  tests: Test[] = [];
-  filteredTests: Test[] = [];
-  displayedData: Test[] = [];
+export class TestsManagementComponent implements OnInit {
+  private testService = inject(TestService);
   private destroyRef = inject(DestroyRef);
-  filter = new FormControl('', { nonNullable: true });
 
-  constructor(private testService: TestService) {}
+  allTests = signal<Test[]>([]);
+  isLoading = signal(true);
+  currentPage = signal(1);
+  pageSize = signal(7);
+  searchTerm = signal('');
+
+  filterControl = new FormControl('', { nonNullable: true });
+
+  // 1. فلترة البيانات مع معالجة القيم التي قد تكون undefined
+  filteredTests = computed(() => {
+    const term = this.searchTerm().toLowerCase();
+    const tests = this.allTests();
+    if (!term) return tests;
+
+    return tests.filter((test) => {
+      const idStr = test.id?.toString() || ''; // حل مشكلة undefined
+      const appIdStr = test.appointmentID?.toString() || '';
+      const notesStr = test.notes?.toLowerCase() || '';
+
+      return (
+        idStr.includes(term) ||
+        appIdStr.includes(term) ||
+        notesStr.includes(term)
+      );
+    });
+  });
+
+  // 2. تقسيم البيانات لصفحات
+  paginatedTests = computed(() => {
+    const startIndex = (this.currentPage() - 1) * this.pageSize();
+    return this.filteredTests().slice(startIndex, startIndex + this.pageSize());
+  });
+
+  // 3. حساب إجمالي الصفحات
+  totalPages = computed(() => {
+    const total = Math.ceil(this.filteredTests().length / this.pageSize());
+    return total > 0 ? total : 1;
+  });
 
   ngOnInit(): void {
-    const subscription = this.testService
+    this.loadTests();
+
+    this.filterControl.valueChanges
+      .pipe(
+        debounceTime(300),
+        distinctUntilChanged(),
+        takeUntilDestroyed(this.destroyRef),
+      )
+      .subscribe((value) => {
+        this.searchTerm.set(value);
+        this.currentPage.set(1);
+      });
+  }
+
+  loadTests() {
+    this.isLoading.set(true);
+    this.testService
       .all()
-      .pipe(
-        tap((response) => {
-          this.tests = response;
-          this.filteredTests = response;
-          this.updateDisplayedData();
-        }),
-      )
-      .subscribe();
-
-    this.destroyRef.onDestroy(() => subscription.unsubscribe());
-    this.filter.valueChanges
-      .pipe(
-        tap((value) => {
-          this.applyFilter(value);
-        }),
-      )
-      .subscribe();
+      .pipe(takeUntilDestroyed(this.destroyRef))
+      .subscribe({
+        next: (data: Test[]) => {
+          this.allTests.set(data);
+          this.isLoading.set(false);
+        },
+        error: () => this.isLoading.set(false),
+      });
   }
 
-  applyFilter(value: string) {
-    const lowerCaseFilter = value.toLowerCase();
-    this.filteredTests = this.tests.filter((item) =>
-      Object.values(item).some((val) =>
-        String(val).toLowerCase().includes(lowerCaseFilter),
-      ),
-    );
-    this.currentPage = 1;
-    this.updateDisplayedData();
-  }
-
-  updateDisplayedData() {
-    const startIndex = (this.currentPage - 1) * this.pageSize;
-    const endIndex = startIndex + this.pageSize;
-    this.displayedData = this.filteredTests.slice(startIndex, endIndex);
-  }
-  onNext() {
-    if (this.currentPage * this.pageSize < this.filteredTests.length) {
-      this.currentPage++;
-      this.updateDisplayedData();
+  nextPage() {
+    if (this.currentPage() < this.totalPages()) {
+      this.currentPage.update((p) => p + 1);
     }
   }
-  onPrevious() {
-    if (this.currentPage > 1) {
-      this.currentPage--;
-      this.updateDisplayedData();
+
+  prevPage() {
+    if (this.currentPage() > 1) {
+      this.currentPage.update((p) => p - 1);
     }
   }
 }

@@ -1,0 +1,169 @@
+/* استخدام التنسيقات الموحدة la- لضمان الجمالية */
+.la-container {
+  padding: 30px;
+  animation: fadeIn 0.5s ease-out;
+  background-color: #f8fafc;
+  min-height: 100vh;
+}
+
+.la-page-header {
+  margin-bottom: 35px;
+}
+.la-title-section {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+
+.la-icon-circle {
+  width: 55px;
+  height: 55px;
+  background: #eef2ff;
+  border-radius: 15px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #5a67ba;
+  font-size: 1.5rem;
+}
+
+.la-subtitle {
+  color: #8898aa;
+  font-size: 0.9rem;
+}
+
+.la-action-bar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 25px;
+}
+
+.la-search-box {
+  position: relative;
+  width: 400px;
+}
+.la-search-box i {
+  position: absolute;
+  right: 15px;
+  top: 50%;
+  transform: translateY(-50%);
+  color: #adb5bd;
+}
+.la-search-box input {
+  width: 100%;
+  padding: 12px 45px 12px 15px;
+  border-radius: 12px;
+  border: 1px solid #dee2e6;
+  background: #fff;
+  transition: 0.3s;
+}
+
+.la-table-card {
+  background: #fff;
+  border-radius: 16px;
+  box-shadow: 0 10px 25px rgba(50, 50, 93, 0.05);
+  overflow: hidden;
+  border: 1px solid #e9ecef;
+}
+
+.la-modern-table {
+  width: 100%;
+  border-collapse: collapse;
+}
+.la-modern-table th {
+  background: #f8f9fe;
+  padding: 15px 20px;
+  color: #4e73df;
+  font-size: 0.75rem;
+  text-align: center;
+  border-bottom: 2px solid #eaecf4;
+}
+.la-modern-table td {
+  padding: 18px 20px;
+  border-bottom: 1px solid #f0f0f0;
+  color: #32325d;
+  font-size: 0.9rem;
+}
+
+.la-id-badge {
+  background: #f0f2f6;
+  padding: 5px 10px;
+  border-radius: 8px;
+  font-weight: bold;
+  color: #525f7f;
+}
+.la-national-no {
+  font-family: monospace;
+  font-weight: 600;
+}
+.la-name-cell {
+  font-weight: 600;
+  color: #1e293b;
+}
+
+.active-lic-badge {
+  background-color: #dcfce7;
+  color: #15803d;
+  padding: 4px 12px;
+  border-radius: 20px;
+  font-size: 0.75rem;
+  font-weight: bold;
+}
+
+.la-actions {
+  display: flex;
+  gap: 10px;
+  justify-content: center;
+}
+
+.la-btn-icon {
+  width: 32px;
+  height: 32px;
+  border-radius: 8px;
+  border: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: 0.2s;
+  background: #f1f5f9;
+}
+
+.la-btn-icon.view {
+  color: #5e72e4;
+}
+.la-btn-icon.history {
+  color: #f59e0b;
+} /* لون برتقالي للسجل */
+
+.la-btn-icon:hover {
+  transform: scale(1.1);
+  background: #eef2ff;
+}
+
+.la-pagination-area {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 30px;
+}
+.la-nav-btn {
+  background: white;
+  border: 1px solid #dee2e6;
+  padding: 8px 20px;
+  border-radius: 10px;
+  cursor: pointer;
+  color: #525f7f;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}

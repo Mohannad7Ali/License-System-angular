@@ -55,39 +55,38 @@ export class AddEditUserComponent implements OnInit {
     this.isSearching.set(true);
     this.searchedAndNotFound.set(false);
     this.foundPerson.set(null);
-    this.userForm.patchValue({ personID: null }); // إعادة تهيئة المعرف لحين العثور على الشخص
+    this.userForm.patchValue({ personID: null });
 
-    // هنا يفضل جلب كائن الشخص كاملاً مباشرة
-    this.personService.isNationalNoExist(nationalNo).subscribe({
-      next: (exists) => {
-        if (exists) {
-          // استبدل read بـ الدالة المناسبة لديك لجلب الشخص عبر الرقم الوطني
-          // أو مرر كائن تجريبي مؤقتاً للتأكد من عمل الواجهة
-          this.personService.read(1).subscribe((person) => {
-            this.foundPerson.set(person);
+    // 1. جلب قائمة كل الأشخاص من السيرفر
+    this.personService.all().subscribe({
+      next: (people: Person[]) => {
+        // 2. البحث داخل المصفوفة عن الشخص الذي يطابق الرقم الوطني المدخل
+        const person = people.find((p) => p.nationalNumber === nationalNo);
 
-            // تحديث قيمة الـ personID داخل الفورم لجعله Valid وتفعيل الزر
-            this.userForm.patchValue({ personID: person.id });
+        if (person) {
+          // 3. إذا وُجد الشخص، نقوم بتحديث البيانات
+          this.foundPerson.set(person);
+          this.userForm.patchValue({ personID: person.id }); // هنا نضع الـ ID الحقيقي الذي وجدناه
 
-            this.notify.showMessage({
-              message: 'تم العثور على الشخص بنجاح',
-              status: 'success',
-            });
-            this.isSearching.set(false);
+          this.notify.showMessage({
+            message: 'تم العثور على الشخص وربطه بنجاح',
+            status: 'success',
           });
         } else {
+          // 4. إذا لم يوجد في القائمة
           this.searchedAndNotFound.set(true);
           this.notify.showMessage({
-            message: 'هذا الرقم الوطني غير مسجل كـ "شخص"',
+            message: 'عذراً، هذا الرقم الوطني غير مسجل في النظام كشخص.',
             status: 'failed',
           });
-          this.isSearching.set(false);
         }
+        this.isSearching.set(false);
       },
-      error: () => {
+      error: (err) => {
+        console.error('Search Error:', err);
         this.isSearching.set(false);
         this.notify.showMessage({
-          message: 'حدث خطأ أثناء البحث',
+          message: 'حدث خطأ أثناء محاولة الاتصال بسجل الأشخاص',
           status: 'failed',
         });
       },

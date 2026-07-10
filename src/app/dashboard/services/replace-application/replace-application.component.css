@@ -1,0 +1,154 @@
+.rp-container {
+  max-width: 900px;
+  margin: 20px auto;
+  padding: 0 20px;
+}
+
+.rp-header h2 {
+  color: #2c3e50;
+  border-right: 5px solid #3498db;
+  padding-right: 15px;
+  margin-bottom: 25px;
+}
+
+.rp-card {
+  background: #fff;
+  border-radius: 12px;
+  padding: 20px;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+  margin-bottom: 20px;
+  border: 1px solid #f1f2f6;
+}
+
+/* Selector for Damaged/Lost */
+.rp-mode-selector {
+  display: flex;
+  gap: 30px;
+  justify-content: center;
+  background: #f8f9fa;
+}
+
+.rp-radio {
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-weight: 600;
+  color: #34495e;
+}
+
+.rp-radio input[type="radio"] {
+  width: 20px;
+  height: 20px;
+  accent-color: #3498db;
+}
+
+.rp-search-group {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.rp-input-wrapper {
+  display: flex;
+  gap: 10px;
+}
+
+.rp-input-wrapper input {
+  flex: 1;
+  padding: 12px;
+  border: 2px solid #eee;
+  border-radius: 8px;
+  outline: none;
+}
+
+.rp-btn-search {
+  padding: 0 25px;
+  background: #2c3e50;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+}
+
+.rp-info-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 20px;
+}
+
+.rp-info-item label {
+  display: block;
+  font-size: 0.85rem;
+  color: #7f8c8d;
+  margin-bottom: 5px;
+}
+
+.rp-val {
+  font-weight: 700;
+  color: #2d3436;
+}
+
+.total .rp-val {
+  font-size: 1.3rem;
+}
+
+.rp-success-card {
+  background: #ebf5fb;
+  border: 2px dashed #3498db;
+}
+
+.success-header {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  color: #2980b9;
+  margin-bottom: 15px;
+}
+
+.rp-actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 15px;
+}
+
+.rp-btn-replace {
+  background: #3498db;
+  color: white;
+  padding: 12px 35px;
+  border: none;
+  border-radius: 8px;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+.rp-btn-reset {
+  background: #dfe6e9;
+  color: #2c3e50;
+  padding: 12px 25px;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+}
+
+.highlight {
+  color: #e67e22;
+}
+.text-success {
+  color: #27ae60;
+}
+
+.animated {
+  animation-duration: 0.6s;
+}
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+.fadeIn {
+  animation-name: fadeIn;
+}

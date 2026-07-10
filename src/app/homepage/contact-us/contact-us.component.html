@@ -1,20 +1,35 @@
-<div class="homepage-container" id="contact-us">
-  <p class="section-title">contact us</p>
-  <div class="main-text">Get In Touch</div>
-  <p>Ready to issue a driving license? Let's chat about how we can help</p>
+<div class="homepage-container" id="contact-us" dir="rtl">
+  <p class="section-title">اتصل بنا</p>
+  <div class="main-text">تواصل معنا</div>
+  <p class="contact-subtitle">هل أنت مستعد لإصدار رخصة قيادة؟ دعنا نساعدك!</p>
 
   <div class="contact-box">
     <div class="numbers">
-      <p style="color: black">
-        Email, call, or complete the form if you have any questions.
+      <p style="color: #475569; font-weight: 500; line-height: 1.8">
+        يمكنك التواصل معنا عبر البريد الإلكتروني، الهاتف، أو تعبئة النموذج
+        التالي.
       </p>
-      <a href="">info&#x40;dvld.io</a>
-      <p style="color: black">+321-221-2310</p>
+
+      <p style="color: #0f172a; font-weight: 700; font-size: 20px">
+        +963-11-1234567
+      </p>
+      <div class="contact-hours">
+        <span>🕐 ساعات العمل:</span>
+        <span>الأحد - الخميس: ٩ صباحاً - ٥ مساءً</span>
+      </div>
     </div>
 
-    <form action="">
-      <p style="text-align: center; font-size: 22px; color: black">
-        Message Us
+    <form action="" class="contact-form">
+      <p
+        style="
+          text-align: center;
+          font-size: 22px;
+          color: #0f172a;
+          font-weight: 800;
+          margin-bottom: 8px;
+        "
+      >
+        أرسل رسالتك
       </p>
       <div class="control-row">
         <div class="control">
@@ -22,7 +37,8 @@
             type="text"
             name="first-name"
             id="first-name"
-            placeholder="First name"
+            placeholder="الاسم الأول"
+            class="contact-input"
           />
         </div>
         <div class="control">
@@ -30,7 +46,8 @@
             type="text"
             name="last-name"
             id="last-name"
-            placeholder="Last name"
+            placeholder="الاسم الأخير"
+            class="contact-input"
           />
         </div>
       </div>
@@ -40,7 +57,8 @@
             type="email"
             name="email"
             id="email"
-            placeholder="Your email"
+            placeholder="البريد الإلكتروني"
+            class="contact-input"
           />
         </div>
       </div>
@@ -50,16 +68,22 @@
             type="tel"
             name="tel"
             id="tel"
-            placeholder="Your phone number"
+            placeholder="رقم الهاتف"
+            class="contact-input"
           />
         </div>
       </div>
       <div class="control-row">
         <div class="control">
-          <input type="text" id="message" placeholder="How can we help?" />
+          <textarea
+            id="message"
+            placeholder="كيف يمكننا مساعدتك؟"
+            class="contact-textarea"
+            rows="4"
+          ></textarea>
         </div>
       </div>
-      <button class="button homepage-button">Submit</button>
+      <button class="button homepage-button contact-submit">إرسال</button>
     </form>
   </div>
 </div>

@@ -1,76 +1,79 @@
-import { Component, DestroyRef, inject } from '@angular/core';
-import { InternationalLicense } from '../../../../models/internationl-license.model';
+import { Component, OnInit, inject, signal, DestroyRef } from '@angular/core';
+import { CommonModule, DatePipe, Location } from '@angular/common';
 import { ActivatedRoute, RouterLink } from '@angular/router';
 import { InternationlLicenseService } from '../../../../services/international-license.service';
+import { DriverService } from '../../../../services/driver.service';
+import { PersonService } from '../../../../services/person.service';
+import { DialogWrapperComponent } from '../../../../shared/dialog-wrapper/dialog-wrapper.component';
 import { NotificationService } from '../../../../services/notification.service';
 import { switchMap, tap } from 'rxjs';
-import { DriverService } from '../../../../services/driver.service';
-import { Driver_View } from '../../../../models/driver.model';
-import { DatePipe, Location } from '@angular/common';
-import { NotificationComponent } from '../../../../shared/notification/notification.component';
-import { DialogWrapperComponent } from '../../../../shared/dialog-wrapper/dialog-wrapper.component';
+
 @Component({
-  selector: 'app-preview-license',
+  selector: 'app-preview-license-int',
   standalone: true,
-  imports: [
-    NotificationComponent,
-    DialogWrapperComponent,
-    DatePipe,
-    RouterLink,
-  ],
+  imports: [CommonModule, DatePipe, DialogWrapperComponent, RouterLink],
   templateUrl: './preview-license.component.html',
   styleUrl: './preview-license.component.css',
 })
-export class PreviewLicenseComponent {
-  licenseID: number | null = null;
-  current_license: InternationalLicense | undefined = undefined;
-  current_driver: Driver_View | undefined = undefined;
+export class PreviewLicenseComponent implements OnInit {
+  license = signal<any>(null);
+  person = signal<any>(null);
+  loading = signal(true); // التحكم في شاشة التحميل
+
+  private route = inject(ActivatedRoute);
+  private intLicenseServ = inject(InternationlLicenseService);
+  private driverService = inject(DriverService);
+  private personService = inject(PersonService);
+  private location = inject(Location);
   private destroyRef = inject(DestroyRef);
-  constructor(
-    private location: Location,
-    private route: ActivatedRoute,
-    private internationLicenseServ: InternationlLicenseService,
-    private driverService: DriverService,
-    private notifyServ: NotificationService
-  ) {}
+  private notify = inject(NotificationService);
 
   ngOnInit(): void {
     this.route.queryParams.subscribe((params) => {
-      this.licenseID = params['id'];
+      const id = params['id'];
+      if (id) {
+        this.loadData(Number(id));
+      }
     });
-
-    this.loadTest();
   }
 
-  loadTest() {
-    if (this.licenseID) {
-      const subscription = this.internationLicenseServ
-        .read(this.licenseID!)
-        .pipe(
-          tap((response) => {
-            if (response) {
-              this.current_license = response;
-            }
-          }),
-          switchMap((response) => {
-            return this.driverService
-              .read(response.driverID)
-              .pipe(tap((response) => (this.current_driver = response)));
-          })
-        )
-        .subscribe({
-          error: (error) => {
-            this.notifyServ.showMessage({
-              message: error.message,
-              status: 'failed',
-            });
-          },
-        });
-      this.destroyRef.onDestroy(() => subscription.unsubscribe());
-    }
+  loadData(id: number) {
+    this.loading.set(true); // تشغيل التحميل
+    const sub = this.intLicenseServ
+      .read(id)
+      .pipe(
+        tap((res) => this.license.set(res)),
+        switchMap((res) => this.driverService.getDriverById(res.driverID)),
+        switchMap((driver) => this.personService.read(driver.personID)),
+      )
+      .subscribe({
+        next: (personData) => {
+          this.person.set(personData);
+          setTimeout(() => this.loading.set(false), 800); // إغلاق التحميل بعد ثانية بسيطة لإعطاء شعور بالاحترافية
+        },
+        error: () => {
+          this.notify.showMessage({
+            message: 'خطأ في تحميل بيانات الرخصة',
+            status: 'failed',
+          });
+          this.loading.set(false);
+        },
+      });
+    this.destroyRef.onDestroy(() => sub.unsubscribe());
   }
 
-  onClose() {
+  getGenderText(): string {
+    const g = this.person()?.gender;
+    if (!g) return 'غير محدد';
+    return g === 'M' || g === 'Male' ? 'ذكر' : 'أنثى';
+  }
+
+  // ✅ تفعيل الطباعة
+  onPrint() {
+    window.print();
+  }
+
+  onBack() {
     this.location.back();
   }
 }

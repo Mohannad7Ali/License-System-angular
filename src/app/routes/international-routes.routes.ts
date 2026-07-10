@@ -8,10 +8,8 @@ export const international_routes: Routes = [
     path: '',
     component: InternationalLicensesComponent,
   },
-  {
-    path: 'preview-internatioanl-license',
-    component: PreviewLicenseComponent,
-  },
+  { path: 'preview-license', component: PreviewLicenseComponent }, // المعاينة (تأكد من هذا الاسم)
+
   {
     path: 'preview-driver',
     component: PreviewDriverComponent,

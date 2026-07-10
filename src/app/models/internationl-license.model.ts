@@ -1,10 +1,11 @@
+// International License Model
 export interface InternationalLicense {
-  id: number;
+  internationalLicenseID: number; // المسمى الأصلي كما أرسلته
   applicationID: number;
   driverID: number;
-  issuedByLocalLicenseID: number;
-  issueDate: Date;
-  expDate: Date;
+  issuedUsingLocalLicenseID: number; // المسمى الأصلي كما أرسلته
+  issueDate: string;
+  expirationDate: string; // المسمى الأصلي كما أرسلته
   isActive: boolean;
   createdByUserID: number;
 }

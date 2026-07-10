@@ -1,11 +1,52 @@
+/* ===== تذييل الصفحة ===== */
 .homepage-container {
-  text-align: left;
+  text-align: center; /* تغيير من left إلى center للتوافق مع RTL */
   padding: 30px;
   margin-bottom: 0;
-  border-top: 1px solid var(--bg-hover-color);
+  border-top: 1px solid var(--bg-hover-color, #e2e8f0);
   gap: 0;
+  direction: rtl; /* دعم RTL */
+  background: var(--bg-white, #ffffff);
 }
-p {
-  text-align: left;
-  color: black;
+
+.homepage-container p {
+  text-align: center; /* تغيير من left إلى center */
+  color: #475569; /* لون رمادي محايد بدلاً من الأسود الصارخ */
+  margin: 4px 0;
+  font-weight: 500;
+  font-size: 15px;
+}
+
+/* تحسين النص الأول (العنوان) */
+.homepage-container p:first-of-type {
+  color: #0f172a; /* لون داكن (Navy) للتمييز */
+  font-weight: 700;
+  font-size: 16px;
+}
+
+/* تحسين النص الثاني (حقوق النشر) */
+.homepage-container p:last-of-type {
+  color: #94a3b8; /* لون رمادي فاتح للتباين */
+  font-size: 14px;
+  font-weight: 400;
+}
+
+/* ===== إذا كان هناك خلفية معتمة ===== */
+.homepage-container.withbackground {
+  background: #f8fafc; /* خلفية رمادية فاتحة جداً */
+  border-top: 2px solid #e2e8f0;
+  padding: 24px 30px;
+}
+
+/* ===== استجابة للشاشات الصغيرة ===== */
+@media (max-width: 640px) {
+  .homepage-container {
+    padding: 20px 16px;
+  }
+  .homepage-container p {
+    font-size: 14px;
+  }
+  .homepage-container p:first-of-type {
+    font-size: 15px;
+  }
 }

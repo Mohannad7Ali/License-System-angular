@@ -8,9 +8,9 @@ import {
   OnChanges,
   SimpleChanges,
   OnDestroy,
+  inject,
   Inject,
   PLATFORM_ID,
-  inject,
 } from '@angular/core';
 import {
   CommonModule,
@@ -19,8 +19,15 @@ import {
   isPlatformBrowser,
 } from '@angular/common';
 import { FormControl, ReactiveFormsModule, Validators } from '@angular/forms';
-import { Router } from '@angular/router';
-import { Subject, forkJoin, switchMap, takeUntil, tap, of } from 'rxjs';
+import {
+  Subject,
+  forkJoin,
+  switchMap,
+  takeUntil,
+  tap,
+  catchError,
+  of,
+} from 'rxjs';
 
 import { TestType } from '../../../models/test-type.model';
 import { TestTypesService } from '../../../services/test-type.service';
@@ -28,11 +35,6 @@ import { LocalApplicationService } from '../../../services/local-application.ser
 import { ApplicationService } from '../../../services/application.service';
 import { AppointmentService } from '../../../services/appointment.service';
 import { NotificationService } from '../../../services/notification.service';
-import {
-  enApplicationStatus,
-  enApplicationType,
-} from '../../../models/application.model';
-import { enLicenseClass } from '../../../models/license-class.model';
 import { NotificationComponent } from '../../../shared/notification/notification.component';
 
 export enum enMode {
@@ -62,12 +64,12 @@ export class MakeAppointmentComponent implements OnInit, OnChanges, OnDestroy {
   enMode = enMode;
 
   current_local_application = signal<any>(null);
-  current_main_application = signal<any>(null);
   applicantName = signal<string>('');
   testCount = signal<number>(0);
   testTypeID = signal<number | undefined>(undefined);
   schadualed = signal<boolean>(false);
-
+  isSubmitting = signal(false);
+  current_date = new Date();
   filter = new FormControl<number | undefined>(undefined, [
     Validators.required,
   ]);
@@ -75,7 +77,6 @@ export class MakeAppointmentComponent implements OnInit, OnChanges, OnDestroy {
 
   testTypes: TestType[] = [];
   current_user_id = signal<number>(1);
-  current_date = new Date();
   private destroy$ = new Subject<void>();
 
   private apppointmentService = inject(AppointmentService);
@@ -91,7 +92,6 @@ export class MakeAppointmentComponent implements OnInit, OnChanges, OnDestroy {
   }
 
   ngOnChanges(changes: SimpleChanges): void {
-    // تحديث الوضع فور تغير الـ Inputs القادمة من الأب
     this.checkInitialMode();
   }
 
@@ -108,15 +108,11 @@ export class MakeAppointmentComponent implements OnInit, OnChanges, OnDestroy {
   }
 
   private checkInitialMode() {
-    // 🎯 إذا جاء ID موعد، فنحن حتماً في وضع تعديل
-    if (this.appointmentID_to_edit && this.appointmentID_to_edit !== 0) {
-      this.appointments_mode = enMode.edit;
-    } else {
-      this.appointments_mode = enMode.add;
-    }
-
-    // تعبئة الفلتر والبحث تلقائياً إذا جاء ID طلب
-    if (this.applicationID && this.applicationID !== 0) {
+    this.appointments_mode =
+      this.appointmentID_to_edit && this.appointmentID_to_edit !== 0
+        ? enMode.edit
+        : enMode.add;
+    if (this.applicationID) {
       this.filter.setValue(this.applicationID);
       this.onSearch();
     }
@@ -129,30 +125,20 @@ export class MakeAppointmentComponent implements OnInit, OnChanges, OnDestroy {
     this.localAppService
       .read(id)
       .pipe(
+        takeUntil(this.destroy$),
         tap((local) => this.current_local_application.set(local)),
         switchMap((local) =>
-          this.mainAppService.read(local.applicationID).pipe(
-            switchMap((main) => {
-              this.current_main_application.set(main);
-              return forkJoin({
-                nameData: this.localAppService.readView(id),
-                count: this.localAppService.passedTestCount(id),
-              });
-            }),
-            tap(({ nameData, count }) => {
-              this.applicantName.set(nameData.fullName);
-              this.testCount.set(count);
-
-              if (this.appointments_mode === enMode.add) {
-                this.testTypeID.set(count >= 3 ? undefined : count);
-              } else {
-                // في وضع التعديل، سنعتمد على البيانات القادمة من السيرفر للموعد
-                this.testTypeID.set(count);
-              }
-            }),
-          ),
+          forkJoin({
+            view: this.localAppService.readView(id),
+            count: this.localAppService.passedTestCount(id),
+          }),
         ),
-        takeUntil(this.destroy$),
+        tap(({ view, count }) => {
+          this.applicantName.set(view.fullName);
+          this.testCount.set(count);
+          // في الـ Add، النوع التالي هو عدد الاختبارات الناجحة (مثلاً نجح في 0، يعني الاختبار التالي هو النوع رقم 0 في المصفوفة)
+          this.testTypeID.set(count);
+        }),
       )
       .subscribe({
         error: () =>
@@ -164,63 +150,64 @@ export class MakeAppointmentComponent implements OnInit, OnChanges, OnDestroy {
   }
 
   onSchedule() {
-    if (this.appointmentDate.invalid) {
+    if (this.appointmentDate.invalid || this.isSubmitting()) return;
+
+    const nextTestIndex = this.testTypeID() ?? 0;
+
+    // ✅ حماية: منع حجز اختبار إذا كان قد نجح في كل أنواع الاختبارات المتاحة
+    if (
+      this.appointments_mode === enMode.add &&
+      nextTestIndex >= this.testTypes.length
+    ) {
       this.notify.showMessage({
-        message: 'يرجى اختيار التاريخ',
+        message: 'عذراً، هذا المتقدم أكمل جميع الاختبارات المتاحة بنجاح',
         status: 'failed',
       });
       return;
     }
 
     const selectedDate = new Date(this.appointmentDate.value!).toISOString();
+    this.isSubmitting.set(true);
 
     if (this.appointments_mode === enMode.edit && this.appointmentID_to_edit) {
-      // ✅ تعديل: PUT update-date
       this.apppointmentService
         .updateDate(this.appointmentID_to_edit, selectedDate)
         .subscribe({
-          next: () => {
-            this.notify.showMessage({
-              message: 'تم تحديث الموعد بنجاح',
-              status: 'success',
-            });
-            this.schadualed.set(true);
-            setTimeout(() => this.onClosed(), 1000);
-          },
-          error: (err) =>
-            this.notify.showMessage({
-              message: 'فشل التحديث: ' + err.message,
-              status: 'failed',
-            }),
+          next: () => this.handleSuccess('تم تحديث الموعد بنجاح'),
+          error: (err) => this.handleError(err),
         });
     } else {
-      // ✅ إضافة: POST create
+      // ✅ الـ Payload الصحيح: إرسال ID الاختبار (Index + 1)
       const payload: any = {
         testAppointmentID: 0,
-        testTypeID: (this.testTypeID() ?? 0) + 1,
+        testTypeID: nextTestIndex + 1,
         localDrivingLicenseApplicationID: this.current_local_application().id,
         appointmentDate: selectedDate,
-        paidFees: this.testTypes[this.testTypeID() ?? 0].testTypeFees,
-        createdByUserID: this.current_user_id() || 1,
+        paidFees: this.testTypes[nextTestIndex]?.testTypeFees || 0,
+        createdByUserID: this.current_user_id(),
         isLocked: false,
       };
 
       this.apppointmentService.create(payload).subscribe({
-        next: () => {
-          this.notify.showMessage({
-            message: 'تم حجز الموعد بنجاح',
-            status: 'success',
-          });
-          this.schadualed.set(true);
-          setTimeout(() => this.onClosed(), 1000);
-        },
-        error: (err) =>
-          this.notify.showMessage({
-            message: 'فشل الحجز: ' + err.message,
-            status: 'failed',
-          }),
+        next: () => this.handleSuccess('تم حجز الموعد بنجاح'),
+        error: (err) => this.handleError(err),
       });
     }
+  }
+
+  private handleSuccess(msg: string) {
+    this.notify.showMessage({ message: msg, status: 'success' });
+    this.schadualed.set(true);
+    this.isSubmitting.set(false);
+    setTimeout(() => this.closed.emit(true), 1500);
+  }
+
+  private handleError(err: any) {
+    this.notify.showMessage({
+      message: 'فشل: ' + (err.message || 'خطأ غير متوقع'),
+      status: 'failed',
+    });
+    this.isSubmitting.set(false);
   }
 
   onReset() {
@@ -228,7 +215,6 @@ export class MakeAppointmentComponent implements OnInit, OnChanges, OnDestroy {
     this.applicantName.set('');
     this.schadualed.set(false);
   }
-
   onClosed() {
     this.closed.emit(true);
   }

@@ -1,107 +1,175 @@
-<app-dialog-wrapper title="Person Licenses History">
-  <div class="container">
-    <fieldset>
-      <legend>Driver's Licenses</legend>
-      <div class="control-row">
-        <div class="control">
-          <select name="" id="licenses" [formControl]="licenses">
-            <option value="local">Local Licenses</option>
-            <option value="international">International Licenses</option>
-          </select>
+<app-dialog-wrapper title="أرشيف رخص القيادة الخاص بالسائق">
+  <div class="lh-container" dir="rtl">
+    <!-- رأس الصفحة -->
+    <header class="lh-page-header">
+      <div class="lh-title-section">
+        <div class="lh-icon-circle"><i class="fa fa-history"></i></div>
+        <div>
+          <h2>سجل رخص القيادة</h2>
+          <p class="lh-subtitle">
+            عرض وتدقيق كافة الرخص الصادرة للسائق:
+            <span class="driver-name">{{
+              current_driver?.fullName || "جاري التحميل..."
+            }}</span>
+          </p>
         </div>
       </div>
-      <div class="control-row">
-        <div class="control">
-          <table>
-            <thead>
-              <tr>
-                <th scope="col">ID</th>
-                <th scope="col">Application ID</th>
-                @if (licenses.value == 'local') {
-                <th scope="col">Class</th>
-                }@else {
-                <th scope="col">Local Licenses ID</th>
-                }
-                <th scope="col">Issue Date</th>
-                <th scope="col">Exp. Date</th>
-                <th scope="col">Active Status</th>
-                <th scope="col">Actions</th>
-              </tr>
-            </thead>
+    </header>
 
-            <tbody>
-              @if(licenses.value == 'local'){ @for (item of localLicenses; track
-              $index) {
-              <tr>
-                <td>{{ item.licenseID }}</td>
-                <td>{{ item.applicationID }}</td>
-                <td>{{ item.class }}</td>
-                <td>{{ item.issueDate }}</td>
-                <td>{{ item.expirationDate }}</td>
-                <td>
-                  <input
-                    type="checkbox"
-                    style="pointer-events: none"
-                    [checked]="item.isActive"
-                  />
-                </td>
-                <td class="actions">
-                  <button
-                    routerLink="../preview-license"
-                    [queryParams]="{ id: item.licenseID }"
-                    class="button"
-                  >
-                    Preview License
-                  </button>
-                </td>
-              </tr>
-              }@empty {
-              <tr>
-                <td colspan="7" style="text-align: center">
-                  No local licenses found
-                </td>
-              </tr>
-              } }@else { @for (item of internationalLicenses; track $index) {
-              <tr>
-                <td>{{ item.licenseID }}</td>
-                <td>{{ item.applicationID }}</td>
-                <td>{{ item.issuedUsingLocalLicenseID }}</td>
-                <td>{{ item.issueDate }}</td>
-                <td>{{ item.expirationDate }}</td>
-                <td>
-                  <input
-                    type="checkbox"
-                    style="pointer-events: none"
-                    [checked]="item.isActive"
-                  />
-                </td>
-                <td class="actions">
-                  <button class="button">Preview License</button>
-                </td>
-              </tr>
-              } @empty {
-              <tr>
-                <td colspan="7" style="text-align: center">
-                  No international licenses found
-                </td>
-              </tr>
-              }}
-            </tbody>
-          </table>
+    <!-- شريط التحكم والبحث -->
+    <div class="lh-action-bar">
+      <div class="lh-type-toggle">
+        <label [class.active]="licenses.value === 'local'">
+          <input type="radio" value="local" [formControl]="licenses" />
+          <i class="fa fa-map-marker"></i> رخص محلية
+        </label>
+        <label [class.active]="licenses.value === 'international'">
+          <input type="radio" value="international" [formControl]="licenses" />
+          <i class="fa fa-globe"></i> رخص دولية
+        </label>
+      </div>
+
+      <div class="lh-search-box">
+        <i class="fa fa-search search-icon"></i>
+        <input
+          type="text"
+          [formControl]="filter"
+          placeholder="بحث برقم الرخصة، المعرف، أو الفئة..."
+        />
+      </div>
+    </div>
+
+    <!-- بطاقة الجدول -->
+    <div class="lh-table-card">
+      @if (loading()) {
+        <div class="lh-loader">
+          <i class="fa fa-circle-notch fa-spin"></i>
+          <p>جاري جلب بيانات الأرشيف...</p>
         </div>
-      </div>
-      <div class="actions">
-        <a
-          routerLink="../../../applications-management/add-edit-application"
-          [queryParams]="{
-            mode: 'edit',
-            application_id: null,
-            person_id: person_id
-          }"
-          >Edit person's basic information?
-        </a>
-        <button class="button" (click)="onCancel()">OK</button>
-      </div>
-    </fieldset>
+      } @else {
+        <table class="lh-modern-table">
+          <thead>
+            <tr>
+              <th>ID</th>
+              <th>رقم الطلب</th>
+              <th>
+                {{
+                  licenses.value == "local" ? "فئة الرخصة" : "الرخصة المحلية"
+                }}
+              </th>
+              <th>تاريخ الإصدار</th>
+              <th>تاريخ الانتهاء</th>
+              <th>الحالة</th>
+              <th style="text-align: center">الإجراءات</th>
+            </tr>
+          </thead>
+          <tbody>
+            <!-- عرض الرخص المحلية -->
+            @if (licenses.value == "local") {
+              @for (item of filteredLocalLicenses; track item.licenseID) {
+                <tr>
+                  <td>
+                    <span class="lh-id-badge">{{ item.licenseID }}</span>
+                  </td>
+                  <td>{{ item.applicationID }}</td>
+                  <td class="lh-name-cell">{{ item.class }}</td>
+                  <td>{{ item.issueDate | date: "dd/MM/yyyy" }}</td>
+                  <td>
+                    <span [class.expired-text]="!item.isActive">{{
+                      item.expirationDate | date: "dd/MM/yyyy"
+                    }}</span>
+                  </td>
+                  <td>
+                    <span
+                      class="lh-status-badge"
+                      [attr.data-status]="item.isActive ? 'Active' : 'Locked'"
+                    >
+                      {{ item.isActive ? "نشطة" : "منتهية" }}
+                    </span>
+                  </td>
+                  <td class="lh-actions">
+                    <button
+                      class="lh-btn-preview"
+                      [routerLink]="['../preview-license']"
+                      [queryParams]="{ id: item.licenseID }"
+                    >
+                      <i class="fa fa-eye"></i> معاينة
+                    </button>
+                  </td>
+                </tr>
+              } @empty {
+                <tr>
+                  <td colspan="7" class="lh-empty-state">
+                    <p>لا توجد رخص محلية مسجلة لهذا السائق</p>
+                  </td>
+                </tr>
+              }
+            } @else {
+              <!-- عرض الرخص الدولية -->
+              @for (
+                item of filteredInternationalLicenses;
+                track item.licenseID
+              ) {
+                <tr>
+                  <td>
+                    <span class="lh-id-badge">INT-{{ item.licenseID }}</span>
+                  </td>
+                  <td>{{ item.applicationID }}</td>
+                  <td>
+                    <b>#{{ item.issuedUsingLocalLicenseID }}</b>
+                  </td>
+                  <td>{{ item.issueDate | date: "dd/MM/yyyy" }}</td>
+                  <td>
+                    <span [class.expired-text]="!item.isActive">{{
+                      item.expirationDate | date: "dd/MM/yyyy"
+                    }}</span>
+                  </td>
+                  <td>
+                    <span
+                      class="lh-status-badge"
+                      [attr.data-status]="item.isActive ? 'Active' : 'Locked'"
+                    >
+                      {{ item.isActive ? "نشطة" : "منتهية" }}
+                    </span>
+                  </td>
+                  <td class="lh-actions">
+                    <button
+                      class="lh-btn-preview"
+                      [routerLink]="[
+                        '/dashboard/licenses-management/international-licenses/preview-license',
+                      ]"
+                      [queryParams]="{ id: item.licenseID }"
+                    >
+                      <i class="fa fa-eye"></i> معاينة
+                    </button>
+                  </td>
+                </tr>
+              } @empty {
+                <tr>
+                  <td colspan="7" class="lh-empty-state">
+                    <p>لا توجد رخص دولية مسجلة لهذا السائق</p>
+                  </td>
+                </tr>
+              }
+            }
+          </tbody>
+        </table>
+      }
+    </div>
+
+    <footer class="lh-footer">
+      <a
+        class="lh-edit-link"
+        [routerLink]="['../../../applications-management/add-edit-application']"
+        [queryParams]="{
+          mode: 'edit',
+          application_id: null,
+          person_id: person_id,
+        }"
+      >
+        <i class="fa fa-user-edit"></i> تعديل بيانات السائق الأساسية؟
+      </a>
+      <button class="lh-btn-close" (click)="onCancel()">إغلاق</button>
+    </footer>
   </div>
 </app-dialog-wrapper>

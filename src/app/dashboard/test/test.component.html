@@ -1,119 +1,177 @@
-<div class="overview-container">
-  <!-- Page Header -->
-  <div class="page-header">
-    <div>
-      <h1 class="page-title">مرحباً في لوحة التحكم 👋</h1>
-      <p class="page-subtitle">تحليلات عامة للنظام</p>
+<!-- overview.component.html -->
+<div class="ov-wrapper ov-fade-in-up">
+  <!-- رأس الصفحة -->
+  <div class="ov-header">
+    <div class="ov-header-content">
+      <div>
+        <h1 class="ov-title">مرحباً في لوحة التحكم 👋</h1>
+        <p class="ov-subtitle">نظرة عامة على أداء النظام</p>
+      </div>
+      <div class="ov-header-greeting">
+        <span class="ov-greeting-badge">📊 تحليلات اليوم</span>
+      </div>
     </div>
+    <div class="ov-header-divider"></div>
   </div>
 
-  <!-- Stats Grid -->
-  <div class="stats-grid">
-    <div class="stat-card applications">
-      <div class="stat-icon-wrapper">
-        <i class="fa fa-file-alt stat-icon"></i>
+  <!-- بطاقات الإحصائيات -->
+  <div class="ov-stats-grid">
+    <div class="ov-stat-card ov-stat-applications">
+      <div class="ov-stat-icon-wrapper">
+        <i class="fa fa-file-alt ov-stat-icon"></i>
       </div>
-      <div class="stat-content">
-        <h2 class="stat-value">{{ appsCount() }}</h2>
-        <p class="stat-label">الطلبات</p>
+      <div class="ov-stat-content">
+        <h2 class="ov-stat-value">{{ appsCount() }}</h2>
+        <p class="ov-stat-label">الطلبات</p>
       </div>
-      <div class="stat-trend up">
+      <div class="ov-stat-trend up">
         <i class="fa fa-arrow-up"></i>
         <span>+12%</span>
       </div>
     </div>
 
-    <div class="stat-card tests">
-      <div class="stat-icon-wrapper">
-        <i class="fa fa-clipboard-check stat-icon"></i>
+    <div class="ov-stat-card ov-stat-tests">
+      <div class="ov-stat-icon-wrapper">
+        <i class="fa fa-clipboard-check ov-stat-icon"></i>
       </div>
-      <div class="stat-content">
-        <h2 class="stat-value">{{ testCount() }}</h2>
-        <p class="stat-label">الاختبارات</p>
+      <div class="ov-stat-content">
+        <h2 class="ov-stat-value">{{ testCount() }}</h2>
+        <p class="ov-stat-label">الاختبارات</p>
       </div>
-      <div class="stat-trend up">
+      <div class="ov-stat-trend up">
         <i class="fa fa-arrow-up"></i>
         <span>+8%</span>
       </div>
     </div>
 
-    <div class="stat-card licenses">
-      <div class="stat-icon-wrapper">
-        <i class="fa fa-id-card stat-icon"></i>
+    <div class="ov-stat-card ov-stat-licenses">
+      <div class="ov-stat-icon-wrapper">
+        <i class="fa fa-id-card ov-stat-icon"></i>
       </div>
-      <div class="stat-content">
-        <h2 class="stat-value">{{ licensesCount() }}</h2>
-        <p class="stat-label">الرخص</p>
+      <div class="ov-stat-content">
+        <h2 class="ov-stat-value">{{ licensesCount() }}</h2>
+        <p class="ov-stat-label">الرخص</p>
       </div>
-      <div class="stat-trend up">
+      <div class="ov-stat-trend up">
         <i class="fa fa-arrow-up"></i>
         <span>+15%</span>
       </div>
     </div>
 
-    <div class="stat-card drivers">
-      <div class="stat-icon-wrapper">
-        <i class="fa fa-users stat-icon"></i>
+    <div class="ov-stat-card ov-stat-drivers">
+      <div class="ov-stat-icon-wrapper">
+        <i class="fa fa-users ov-stat-icon"></i>
       </div>
-      <div class="stat-content">
-        <h2 class="stat-value">{{ driversCount() }}</h2>
-        <p class="stat-label">السائقون</p>
+      <div class="ov-stat-content">
+        <h2 class="ov-stat-value">{{ driversCount() }}</h2>
+        <p class="ov-stat-label">السائقون</p>
       </div>
-      <div class="stat-trend up">
+      <div class="ov-stat-trend up">
         <i class="fa fa-arrow-up"></i>
         <span>+5%</span>
       </div>
     </div>
   </div>
 
-  <!-- Analytics Section -->
-  <div class="analytics-grid">
-    <div class="analytics-card people">
-      <div class="card-header">
-        <h3 class="card-title">تحليلات الأشخاص</h3>
+  <!-- قسم التحليلات (الدوائر) -->
+  <div class="ov-analytics-grid">
+    <div class="ov-analytics-card">
+      <div class="ov-card-header">
+        <h3 class="ov-card-title">تحليلات الأشخاص</h3>
       </div>
-      <div class="circle-container">
-        <div class="circle-item">
-          <div class="circle male" [style.background]="'conic-gradient(#3b82f6 ' + malePercentage + '%, #e2e8f0 ' + malePercentage + '%'">
-            <div class="circle-inner">
-              <span class="circle-value">{{ malePercentage | number : '1.0-2' }}%</span>
-              <span class="circle-label">ذكور</span>
+      <div class="ov-circle-container">
+        <div class="ov-circle-item">
+          <div
+            class="ov-circle ov-circle-male"
+            [style.background]="
+              'conic-gradient(#1e293b ' +
+              malePercentage +
+              '%, #e2e8f0 ' +
+              malePercentage +
+              '%'
+            "
+          >
+            <div class="ov-circle-inner">
+              <span class="ov-circle-value"
+                >{{ malePercentage | number: "1.0-2" }}%</span
+              >
+              <span class="ov-circle-label">ذكور</span>
             </div>
           </div>
         </div>
-        <div class="circle-item">
-          <div class="circle female" [style.background]="'conic-gradient(#ec4899 ' + femalePercentage + '%, #e2e8f0 ' + femalePercentage + '%'">
-            <div class="circle-inner">
-              <span class="circle-value">{{ femalePercentage | number : '1.0-2' }}%</span>
-              <span class="circle-label">إناث</span>
+        <div class="ov-circle-item">
+          <div
+            class="ov-circle ov-circle-female"
+            [style.background]="
+              'conic-gradient(#94a3b8 ' +
+              femalePercentage +
+              '%, #e2e8f0 ' +
+              femalePercentage +
+              '%'
+            "
+          >
+            <div class="ov-circle-inner">
+              <span class="ov-circle-value"
+                >{{ femalePercentage | number: "1.0-2" }}%</span
+              >
+              <span class="ov-circle-label">إناث</span>
             </div>
           </div>
         </div>
       </div>
     </div>
 
-    <div class="analytics-card tests-section">
-      <div class="card-header">
-        <h3 class="card-title">تحليلات الاختبارات</h3>
+    <div class="ov-analytics-card">
+      <div class="ov-card-header">
+        <h3 class="ov-card-title">تحليلات الاختبارات</h3>
       </div>
-      <div class="circle-container">
-        <div class="circle-item">
-          <div class="circle passed" [style.background]="'conic-gradient(#22c55e ' + passedTestsPercentage + '%, #e2e8f0 ' + passedTestsPercentage + '%'">
-            <div class="circle-inner">
-              <span class="circle-value">{{ passedTestsPercentage | number : '1.0-2' }}%</span>
-              <span class="circle-label">ناجح</span>
+      <div class="ov-circle-container">
+        <div class="ov-circle-item">
+          <div
+            class="ov-circle ov-circle-passed"
+            [style.background]="
+              'conic-gradient(#16a34a ' +
+              passedTestsPercentage +
+              '%, #e2e8f0 ' +
+              passedTestsPercentage +
+              '%'
+            "
+          >
+            <div class="ov-circle-inner">
+              <span class="ov-circle-value"
+                >{{ passedTestsPercentage | number: "1.0-2" }}%</span
+              >
+              <span class="ov-circle-label">ناجح</span>
             </div>
           </div>
         </div>
-        <div class="circle-item">
-          <div class="circle failed" [style.background]="'conic-gradient(#ef4444 ' + failedTestPercentage + '%, #e2e8f0 ' + failedTestPercentage + '%'">
-            <div class="circle-inner">
-              <span class="circle-value">{{ failedTestPercentage | number : '1.0-2' }}%</span>
-              <span class="circle-label">راسب</span>
+        <div class="ov-circle-item">
+          <div
+            class="ov-circle ov-circle-failed"
+            [style.background]="
+              'conic-gradient(#dc2626 ' +
+              failedTestPercentage +
+              '%, #e2e8f0 ' +
+              failedTestPercentage +
+              '%'
+            "
+          >
+            <div class="ov-circle-inner">
+              <span class="ov-circle-value"
+                >{{ failedTestPercentage | number: "1.0-2" }}%</span
+              >
+              <span class="ov-circle-label">راسب</span>
             </div>
           </div>
         </div>
       </div>
     </div>
+  </div>
+
+  <!-- تذييل -->
+  <div class="ov-footer">
+    <span class="ov-footer-text"
+      >جميع الحقوق محفوظة © وزارة النقل - الجمهورية العربية السورية</span
+    >
   </div>
 </div>
