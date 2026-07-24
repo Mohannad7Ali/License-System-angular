@@ -1,36 +1,39 @@
-<div class="homepage-container" id="contact-us" dir="rtl">
-  <p class="section-title">اتصل بنا</p>
-  <div class="main-text">تواصل معنا</div>
-  <p class="contact-subtitle">هل أنت مستعد لإصدار رخصة قيادة؟ دعنا نساعدك!</p>
+<div class="ov-contact-us ov-fade-in-up" id="contact-us" dir="rtl">
+  <!-- رأس القسم -->
+  <div class="ov-section-header">
+    <span class="ov-section-badge">اتصل بنا</span>
+    <h2 class="ov-main-text">تواصل معنا</h2>
+    <p class="contact-subtitle">
+      هل أنت مستعد لإصدار أو تجديد رخصة قيادتك؟ نحن هنا لمساعدتك!
+    </p>
+  </div>
 
   <div class="contact-box">
+    <!-- معلومات التواصل الجانبية -->
     <div class="numbers">
-      <p style="color: #475569; font-weight: 500; line-height: 1.8">
-        يمكنك التواصل معنا عبر البريد الإلكتروني، الهاتف، أو تعبئة النموذج
-        التالي.
+      <p class="info-text">
+        يمكنك التواصل معنا عبر البريد الإلكتروني، الهاتف، أو تعبئة نموذج التواصل
+        المباشر.
       </p>
 
-      <p style="color: #0f172a; font-weight: 700; font-size: 20px">
-        +963-11-1234567
-      </p>
+      <div class="phone-card">
+        <i class="fa fa-phone" aria-hidden="true"></i>
+        <span dir="ltr">+963-11-1234567</span>
+      </div>
+
       <div class="contact-hours">
-        <span>🕐 ساعات العمل:</span>
-        <span>الأحد - الخميس: ٩ صباحاً - ٥ مساءً</span>
+        <div class="hours-header">
+          <i class="fa fa-clock-o" aria-hidden="true"></i>
+          <span>ساعات العمل الرسمية:</span>
+        </div>
+        <span class="hours-details">الأحد - الخميس: ٩ صباحاً - ٥ مساءً</span>
       </div>
     </div>
 
-    <form action="" class="contact-form">
-      <p
-        style="
-          text-align: center;
-          font-size: 22px;
-          color: #0f172a;
-          font-weight: 800;
-          margin-bottom: 8px;
-        "
-      >
-        أرسل رسالتك
-      </p>
+    <!-- نموذج أرسل رسالتك -->
+    <form class="contact-form" (submit)="$event.preventDefault()">
+      <h3 class="form-title">أرسل رسالتك</h3>
+
       <div class="control-row">
         <div class="control">
           <input
@@ -51,6 +54,7 @@
           />
         </div>
       </div>
+
       <div class="control-row">
         <div class="control">
           <input
@@ -62,6 +66,7 @@
           />
         </div>
       </div>
+
       <div class="control-row">
         <div class="control">
           <input
@@ -73,6 +78,7 @@
           />
         </div>
       </div>
+
       <div class="control-row">
         <div class="control">
           <textarea
@@ -83,7 +89,8 @@
           ></textarea>
         </div>
       </div>
-      <button class="button homepage-button contact-submit">إرسال</button>
+
+      <button type="submit" class="contact-submit">إرسال الرسالة</button>
     </form>
   </div>
 </div>

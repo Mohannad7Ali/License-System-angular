@@ -1,4 +1,4 @@
-import { Component, inject, signal, OnDestroy, OnInit } from '@angular/core'; // الإصلاح: تم التغيير من common إلى core
+import { Component, inject, signal, OnDestroy, OnInit } from '@angular/core';
 import { CommonModule, CurrencyPipe, DatePipe } from '@angular/common';
 import { FormControl, ReactiveFormsModule, Validators } from '@angular/forms';
 import {
@@ -62,7 +62,6 @@ export class RenewLocalApplicationComponent implements OnInit, OnDestroy {
       .pipe(
         takeUntil(this.destroy$),
         tap((license: License) => {
-          // الإصلاح: تحديد نوع license
           if (!license.isActive) {
             throw new Error('هذه الرخصة غير نشطة، لا يمكن تجديدها!');
           }
@@ -83,12 +82,10 @@ export class RenewLocalApplicationComponent implements OnInit, OnDestroy {
           }),
         ),
         tap((res: { driver: Driver_View; licenseClass: LicenseClass }) => {
-          // الإصلاح: تحديد نوع res
           this.applicantName.set(res.driver.fullName);
           this.classFees.set(res.licenseClass.fees);
         }),
         catchError((err: any) => {
-          // الإصلاح: تحديد نوع err
           this.notify.showMessage({
             message: err.message || 'حدث خطأ في البحث',
             status: 'failed',
@@ -113,7 +110,6 @@ export class RenewLocalApplicationComponent implements OnInit, OnDestroy {
         .pipe(takeUntil(this.destroy$))
         .subscribe({
           next: (newLic: License) => {
-            // الإصلاح: تحديد نوع newLic
             this.newLicense.set(newLic);
             this.notify.showMessage({
               message: 'تم تجديد الرخصة بنجاح!',
@@ -123,7 +119,6 @@ export class RenewLocalApplicationComponent implements OnInit, OnDestroy {
             this.searchControl.disable();
           },
           error: (err: any) => {
-            // الإصلاح: تحديد نوع err
             this.notify.showMessage({
               message: 'فشل التجديد: ' + err.message,
               status: 'failed',

@@ -1,9 +1,12 @@
-/* الحاوية الرئيسية مع أنيميشن دخول هادئ */
+/* src/modules/manage-appointments/manage-appointments.component.css */
+
+/* الحاوية الرئيسية مع خلفية داكنة وأنيميشن دخول */
 .la-container {
   padding: 25px;
   animation: la-fadeIn 0.5s ease-out;
-  background-color: #f8fafc;
+  background-color: #0b0f19;
   min-height: 100vh;
+  color: #f8fafc;
 }
 
 /* الهيدر والعناوين */
@@ -20,18 +23,19 @@
 .la-icon-circle {
   width: 50px;
   height: 50px;
-  background: #eef2ff;
-  color: #5a67ba;
+  background: rgba(0, 240, 255, 0.1);
+  color: #00f0ff;
   border-radius: 12px;
   display: flex;
   align-items: center;
   justify-content: center;
   font-size: 1.4rem;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.02);
+  border: 1px solid rgba(0, 240, 255, 0.2);
+  box-shadow: 0 0 15px rgba(0, 240, 255, 0.15);
 }
 
 .la-subtitle {
-  color: #8898aa;
+  color: #94a3b8;
   font-size: 0.85rem;
   margin-top: 4px;
 }
@@ -55,51 +59,65 @@
   right: 15px;
   top: 50%;
   transform: translateY(-50%);
-  color: #94a3b8;
+  color: #64748b;
 }
 
 .la-search-box input {
   width: 100%;
   padding: 10px 40px 10px 15px;
   border-radius: 10px;
-  border: 1px solid #e2e8f0;
+  background: rgba(15, 20, 35, 0.6);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  color: #f8fafc;
   font-size: 0.9rem;
-  transition: 0.3s;
+  transition: all 0.3s ease;
+  backdrop-filter: blur(10px);
 }
 
 .la-search-box input:focus {
-  border-color: #5a67ba;
+  border-color: #00f0ff;
   outline: none;
-  box-shadow: 0 0 0 3px rgba(90, 103, 186, 0.1);
+  box-shadow: 0 0 12px rgba(0, 240, 255, 0.25);
 }
 
 .la-btn-primary {
-  background: #5a67ba;
-  color: white;
+  background: linear-gradient(135deg, #7000ff, #00f0ff);
+  color: #ffffff;
   border: none;
   padding: 10px 20px;
   border-radius: 10px;
-  font-weight: 600;
+  font-weight: 700;
   font-size: 0.85rem;
   cursor: pointer;
   display: flex;
   align-items: center;
   gap: 8px;
-  transition: 0.3s;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 15px rgba(112, 0, 255, 0.3);
 }
 
 .la-btn-primary:hover {
-  background: #434190;
   transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(0, 240, 255, 0.4);
 }
 
-/* تصميم الجدول الاحترافي */
+/* تصميم الجدول الاحترافي Glassmorphic */
 .la-table-card {
-  background: white;
-  border-radius: 15px;
-  border: 1px solid #e2e8f0;
-  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.03);
+  background: rgba(15, 20, 35, 0.65);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border-radius: 16px;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
   overflow: hidden;
+}
+
+.la-loader-box {
+  padding: 50px;
+  text-align: center;
+  color: #00f0ff;
+  font-weight: 600;
+  font-size: 1.1rem;
 }
 
 .la-modern-table {
@@ -108,47 +126,55 @@
 }
 
 .la-modern-table th {
-  background: #f8f9fe;
-  padding: 14px 20px;
-  color: #4e73df;
+  background: rgba(255, 255, 255, 0.03);
+  padding: 16px 20px;
+  color: #00f0ff;
   font-size: 0.75rem;
   text-transform: uppercase;
   font-weight: 700;
   text-align: center;
-  border-bottom: 2px solid #eaecf4;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+  letter-spacing: 0.5px;
 }
 
 .la-modern-table td {
-  padding: 15px 20px;
-  border-bottom: 1px solid #f1f5f9;
+  padding: 16px 20px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.05);
   font-size: 0.88rem;
-  color: #334155;
+  color: #e2e8f0;
   vertical-align: middle;
+  text-align: center;
+}
+
+.la-modern-table tbody tr {
+  transition: background-color 0.2s ease;
 }
 
 .la-modern-table tbody tr:hover {
-  background-color: #fcfdfe;
+  background-color: rgba(255, 255, 255, 0.03);
 }
 
 /* بيانات خاصة داخل الخلايا */
 .la-id-badge {
-  background: #f1f5f9;
-  padding: 4px 8px;
+  background: rgba(0, 240, 255, 0.1);
+  padding: 4px 10px;
   border-radius: 6px;
-  font-weight: bold;
+  font-weight: 700;
   font-size: 0.8rem;
-  color: #64748b;
+  color: #00f0ff;
+  border: 1px solid rgba(0, 240, 255, 0.2);
+  font-family: "Fira Code", monospace, sans-serif;
 }
 
 .la-name-cell {
   font-weight: 600;
-  color: #1e293b;
+  color: #f8fafc;
 }
 
 .la-class-label {
-  color: #5a67ba;
+  color: #a7f3d0;
   font-weight: 600;
-  font-size: 0.8rem;
+  font-size: 0.85rem;
 }
 
 /* حالات الموعد (Badges) */
@@ -157,20 +183,24 @@
   border-radius: 30px;
   font-size: 11px;
   font-weight: 800;
+  display: inline-block;
 }
 
 .la-status-badge[data-status="Active"] {
-  background: #dcfce7;
-  color: #15803d;
+  background: rgba(16, 185, 129, 0.12);
+  color: #34d399;
+  border: 1px solid rgba(16, 185, 129, 0.3);
 }
+
 .la-status-badge[data-status="Locked"] {
-  background: #fee2e2;
-  color: #991b1b;
+  background: rgba(244, 63, 94, 0.12);
+  color: #f87171;
+  border: 1px solid rgba(244, 63, 94, 0.3);
 }
 
 /* 🎯 زر "تقديم الاختبار" البارز */
 .btn-take-test {
-  background-color: #2dce89;
+  background: linear-gradient(135deg, #059669, #10b981);
   color: white;
   border: none;
   padding: 7px 15px;
@@ -181,27 +211,28 @@
   display: flex;
   align-items: center;
   gap: 8px;
-  transition: 0.3s;
-  box-shadow: 0 4px 6px rgba(45, 206, 137, 0.15);
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 12px rgba(16, 185, 129, 0.25);
 }
 
 .btn-take-test:hover:not(:disabled) {
-  background-color: #24b374;
   transform: translateY(-2px);
+  box-shadow: 0 6px 18px rgba(16, 185, 129, 0.4);
 }
 
 .btn-take-test:disabled {
-  background-color: #e2e8f0;
-  color: #94a3b8;
+  background: rgba(255, 255, 255, 0.05);
+  color: #64748b;
   cursor: not-allowed;
   box-shadow: none;
+  border: 1px solid rgba(255, 255, 255, 0.05);
 }
 
 /* فاصل رأسي بين الأزرار */
 .v-divider {
   width: 1px;
   height: 20px;
-  background: #e2e8f0;
+  background: rgba(255, 255, 255, 0.1);
   margin: 0 5px;
 }
 
@@ -214,32 +245,34 @@
 }
 
 .la-btn-icon {
-  width: 32px;
-  height: 32px;
+  width: 34px;
+  height: 34px;
   border-radius: 8px;
-  border: none;
+  border: 1px solid rgba(255, 255, 255, 0.08);
   display: flex;
   align-items: center;
   justify-content: center;
   cursor: pointer;
-  transition: 0.2s;
-  background: #f8fafc;
+  transition: all 0.2s ease;
+  background: rgba(255, 255, 255, 0.03);
 }
 
 .la-btn-icon.edit {
-  color: #4e73df;
+  color: #38bdf8;
 }
+
 .la-btn-icon.cancel {
-  color: #f5365c;
+  color: #f87171;
 }
 
 .la-btn-icon:hover:not(:disabled) {
-  background: #edf2f7;
-  transform: scale(1.1);
+  background: rgba(255, 255, 255, 0.1);
+  transform: scale(1.08);
+  border-color: rgba(255, 255, 255, 0.2);
 }
 
 .la-btn-icon:disabled {
-  opacity: 0.3;
+  opacity: 0.25;
   cursor: not-allowed;
 }
 
@@ -251,6 +284,15 @@
   margin-top: 25px;
 }
 
+.la-results-info {
+  color: #94a3b8;
+  font-size: 0.9rem;
+}
+
+.la-results-info b {
+  color: #00f0ff;
+}
+
 .la-nav-btns {
   display: flex;
   align-items: center;
@@ -258,24 +300,30 @@
 }
 
 .la-nav-btn {
-  background: white;
-  border: 1px solid #e2e8f0;
+  background: rgba(15, 20, 35, 0.6);
+  border: 1px solid rgba(255, 255, 255, 0.1);
   padding: 7px 18px;
   border-radius: 8px;
   cursor: pointer;
   font-weight: 600;
-  color: #64748b;
-  transition: 0.2s;
+  color: #cbd5e1;
+  transition: all 0.2s ease;
 }
 
 .la-nav-btn:hover:not(:disabled) {
-  border-color: #5a67ba;
-  color: #5a67ba;
+  border-color: #00f0ff;
+  color: #00f0ff;
+  box-shadow: 0 0 10px rgba(0, 240, 255, 0.2);
+}
+
+.la-nav-btn:disabled {
+  opacity: 0.4;
+  cursor: not-allowed;
 }
 
 .la-page-num {
   font-weight: 700;
-  color: #1e293b;
+  color: #f8fafc;
   font-size: 0.9rem;
 }
 
@@ -283,12 +331,12 @@
 .la-empty-state {
   text-align: center;
   padding: 60px !important;
-  color: #cbd5e1;
+  color: #64748b;
 }
 
-.la-empty-state i {
-  font-size: 3.5rem;
-  margin-bottom: 15px;
+.la-empty-state p {
+  font-size: 1rem;
+  margin-top: 10px;
 }
 
 @keyframes la-fadeIn {

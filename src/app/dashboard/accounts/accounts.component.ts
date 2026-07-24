@@ -2,7 +2,7 @@ import { Component, OnDestroy, OnInit, signal, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormControl, ReactiveFormsModule } from '@angular/forms';
 import { Router } from '@angular/router';
-import { Subscription, tap, catchError, throwError } from 'rxjs';
+import { Subscription, tap } from 'rxjs';
 
 import { UserService } from '../../services/user.service';
 import { NotificationService } from '../../services/notification.service';

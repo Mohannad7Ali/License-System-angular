@@ -1,190 +1,335 @@
+/* ==========================================================================
+   Dark Neon Glossy / Glassmorphism Theme - Tests Management
+   ========================================================================== */
+
 .tm-container {
-  padding: 20px;
-  max-width: 1100px;
+  padding: 2rem;
+  max-width: 1280px;
   margin: 0 auto;
+  direction: rtl;
+  font-family:
+    "Segoe UI",
+    system-ui,
+    -apple-system,
+    sans-serif;
+  color: #f1f5f9;
+  animation: fadeIn 0.4s ease-out;
 }
 
+/* 📌 الهيدر وإحصائيات الاختبارات */
 .tm-header {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  margin-bottom: 25px;
+  margin-bottom: 2rem;
+  flex-wrap: wrap;
+  gap: 1rem;
 }
 
 .tm-title-box h2 {
-  color: #2d3436;
-  margin: 0;
+  color: #f8fafc;
   font-size: 1.6rem;
-  border-right: 4px solid #6c5ce7;
-  padding-right: 15px;
+  font-weight: 800;
+  margin: 0 0 0.4rem 0;
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  border-right: none;
+  padding-right: 0;
+}
+
+.tm-title-box h2 i {
+  color: #38bdf8;
+  filter: drop-shadow(0 0 8px rgba(56, 189, 248, 0.4));
 }
 
 .tm-title-box p {
-  color: #636e72;
-  margin: 5px 0 0 15px;
+  color: #94a3b8;
+  font-size: 0.9rem;
+  margin: 0;
 }
 
 .tm-badge-info {
-  background: #6c5ce7;
-  color: white;
-  padding: 6px 15px;
+  background: rgba(56, 189, 248, 0.12);
+  color: #38bdf8;
+  border: 1px solid rgba(56, 189, 248, 0.25);
+  padding: 0.5rem 1.25rem;
   border-radius: 20px;
-  font-size: 0.9rem;
-  font-weight: 600;
+  font-size: 0.85rem;
+  font-weight: 700;
+  box-shadow: 0 0 12px rgba(56, 189, 248, 0.15);
 }
 
+/* 🔍 البحث */
 .tm-search-section {
-  margin-bottom: 20px;
+  margin-bottom: 2rem;
 }
 
 .tm-input-group {
   position: relative;
-  max-width: 450px;
+  max-width: 420px;
 }
 
 .tm-input-group i {
   position: absolute;
-  right: 15px;
+  right: 1rem;
   top: 50%;
   transform: translateY(-50%);
-  color: #a4b0be;
+  color: #64748b;
+  font-size: 0.95rem;
 }
 
 .tm-input-group input {
   width: 100%;
-  padding: 12px 40px 12px 15px;
-  border: 2px solid #edeff2;
-  border-radius: 10px;
+  padding: 0.75rem 2.8rem 0.75rem 1.25rem;
+  font-size: 0.95rem;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 12px;
+  background: rgba(15, 23, 42, 0.6);
+  backdrop-filter: blur(12px);
+  color: #f1f5f9;
   outline: none;
-  transition: 0.3s;
+  transition: all 0.25s ease;
+  box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.2);
+  box-sizing: border-box;
 }
 
 .tm-input-group input:focus {
-  border-color: #6c5ce7;
-  box-shadow: 0 0 0 3px rgba(108, 92, 231, 0.1);
+  border-color: #38bdf8;
+  background: rgba(15, 23, 42, 0.85);
+  box-shadow:
+    0 0 0 3px rgba(56, 189, 248, 0.25),
+    0 0 15px rgba(56, 189, 248, 0.2);
 }
 
-.tm-card {
-  background: white;
-  border-radius: 12px;
-  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
-  overflow: hidden;
+/* 🎴 شبكة البطاقات Grid */
+.tm-cards-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+  gap: 1.5rem;
+  margin-bottom: 2rem;
 }
 
-.tm-table {
-  width: 100%;
-  border-collapse: collapse;
+.tm-card-item {
+  background: rgba(30, 41, 59, 0.5);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border-radius: 18px;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  padding: 1.5rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  gap: 1.25rem;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  box-shadow: 0 10px 25px -10px rgba(0, 0, 0, 0.4);
 }
 
-.tm-table th {
-  background: #f8f9fb;
-  padding: 15px;
-  text-align: right;
-  color: #7f8c8d;
+.tm-card-item:hover {
+  transform: translateY(-5px);
+  border-color: rgba(56, 189, 248, 0.4);
+  box-shadow: 0 15px 35px -10px rgba(56, 189, 248, 0.25);
+  background: rgba(30, 41, 59, 0.7);
+}
+
+/* رأس البطاقة */
+.tm-card-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.tm-id-badge {
+  background: rgba(255, 255, 255, 0.06);
+  color: #94a3b8;
+  padding: 0.25rem 0.75rem;
+  border-radius: 20px;
+  font-weight: 700;
+  font-size: 0.8rem;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.tm-appointment-info {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  color: #cbd5e1;
+  font-size: 0.85rem;
   font-weight: 600;
-  text-align: center;
-  border-bottom: 2px solid #f1f2f6;
 }
 
-.tm-table td {
-  padding: 15px;
-  border-bottom: 1px solid #f1f2f6;
-  color: #2f3542;
+.tm-appointment-info i {
+  color: #38bdf8;
 }
 
-.tm-id {
-  font-weight: bold;
-  color: #6c5ce7;
+/* جسم البطاقة والنتيجة */
+.tm-card-body {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
 }
 
 .tm-result-badge {
-  padding: 4px 12px;
-  border-radius: 6px;
-  font-size: 0.85rem;
-  font-weight: bold;
+  padding: 0.5rem 1rem;
+  border-radius: 12px;
+  font-size: 0.9rem;
+  font-weight: 800;
   display: inline-flex;
   align-items: center;
-  gap: 6px;
+  justify-content: center;
+  gap: 0.6rem;
+  width: fit-content;
 }
 
 .tm-result-badge.passed {
-  background: #e3fcef;
-  color: #00a8ff;
+  background: rgba(52, 211, 153, 0.12);
+  color: #34d399;
+  border: 1px solid rgba(52, 211, 153, 0.3);
+  box-shadow: 0 0 12px rgba(52, 211, 153, 0.15);
 }
 
 .tm-result-badge.failed {
-  background: #ffeef0;
-  color: #e84118;
+  background: rgba(244, 63, 94, 0.12);
+  color: #f43f5e;
+  border: 1px solid rgba(244, 63, 94, 0.3);
+  box-shadow: 0 0 12px rgba(244, 63, 94, 0.15);
+}
+
+.tm-notes-box {
+  background: rgba(15, 23, 42, 0.4);
+  border-radius: 10px;
+  padding: 0.75rem 1rem;
+  border: 1px solid rgba(255, 255, 255, 0.04);
+}
+
+.tm-notes-label {
+  font-size: 0.75rem;
+  color: #64748b;
+  display: block;
+  margin-bottom: 0.25rem;
 }
 
 .tm-notes {
-  max-width: 250px;
-  white-space: nowrap;
+  color: #94a3b8;
+  font-size: 0.85rem;
+  line-height: 1.4;
+  margin: 0;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
   overflow: hidden;
-  text-overflow: ellipsis;
-  color: #747d8c;
-  font-style: italic;
+}
+
+/* أزرار البطاقة */
+.tm-card-footer {
+  padding-top: 1rem;
+  border-top: 1px solid rgba(255, 255, 255, 0.06);
 }
 
 .tm-btn-view {
-  background: #f1f2f6;
-  border: none;
-  padding: 6px 15px;
-  border-radius: 6px;
-  color: #2f3542;
+  width: 100%;
+  background: rgba(56, 189, 248, 0.1);
+  border: 1px solid rgba(56, 189, 248, 0.25);
+  padding: 0.65rem 1rem;
+  border-radius: 10px;
+  color: #38bdf8;
   cursor: pointer;
-  font-weight: 600;
-  transition: 0.2s;
+  font-weight: 700;
+  font-size: 0.85rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.6rem;
+  transition: all 0.25s ease;
+  text-decoration: none;
 }
 
 .tm-btn-view:hover {
-  background: #6c5ce7;
-  color: white;
+  background: rgba(56, 189, 248, 0.25);
+  color: #ffffff;
+  box-shadow: 0 0 15px rgba(56, 189, 248, 0.3);
 }
 
+/* ⏳ التحميل والقائمة الفارغة */
+.tm-loading,
+.tm-empty {
+  grid-column: 1 / -1;
+  background: rgba(30, 41, 59, 0.4);
+  backdrop-filter: blur(12px);
+  border: 1px dashed rgba(255, 255, 255, 0.15);
+  border-radius: 20px;
+  padding: 3.5rem 1.5rem;
+  text-align: center;
+  color: #94a3b8;
+  font-size: 1rem;
+}
+
+.tm-loading i,
+.tm-empty i {
+  font-size: 2.5rem;
+  margin-bottom: 1rem;
+  color: #38bdf8;
+  display: block;
+}
+
+/* 📄 الترقيم Pagination */
 .tm-pagination {
-  padding: 15px;
   display: flex;
   justify-content: center;
   align-items: center;
-  gap: 20px;
-  background: #f8f9fb;
+  gap: 1rem;
+  margin-top: 2rem;
 }
 
 .tm-pagination button {
-  padding: 8px 18px;
-  border-radius: 8px;
-  border: 1px solid #ddd;
-  background: white;
+  background: rgba(30, 41, 59, 0.6);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  padding: 0.6rem 1.25rem;
+  border-radius: 10px;
+  font-size: 0.85rem;
+  color: #cbd5e1;
   cursor: pointer;
+  font-weight: 600;
   display: flex;
   align-items: center;
-  gap: 8px;
+  gap: 0.5rem;
+  transition: all 0.2s ease;
+}
+
+.tm-pagination button:hover:not(:disabled) {
+  background: rgba(56, 189, 248, 0.15);
+  border-color: rgba(56, 189, 248, 0.3);
+  color: #38bdf8;
 }
 
 .tm-pagination button:disabled {
-  opacity: 0.5;
+  opacity: 0.35;
   cursor: not-allowed;
 }
 
 .tm-page-info {
-  font-weight: bold;
-  color: #57606f;
+  font-size: 0.85rem;
+  color: #94a3b8;
+  font-weight: 600;
 }
 
-.animated {
-  animation-duration: 0.4s;
-}
 @keyframes fadeIn {
   from {
     opacity: 0;
-    transform: translateY(5px);
+    transform: translateY(10px);
   }
   to {
     opacity: 1;
     transform: translateY(0);
   }
 }
-.fadeIn {
-  animation-name: fadeIn;
+
+@media (max-width: 640px) {
+  .tm-header {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+  .tm-input-group {
+    max-width: 100%;
+  }
 }

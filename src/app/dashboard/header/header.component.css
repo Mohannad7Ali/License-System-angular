@@ -1,151 +1,182 @@
-:root {
-  --hd-bg: #ffffff;
-  --hd-height: 70px;
-  --hd-border: #e2e8f0;
-  --hd-accent: #0284c7; /* لون أزرق رسمي */
-  --hd-danger: #ef4444;
-}
-
+/* ===== الهيدر الرئيسي (Dark Neon Glassmorphism) ===== */
 .hd-main {
-  width: 100%; /* العرض الكلي ناقص عرض السايد بار */
-  margin-right: 2%; /* دفع الهيدر لليسار ليفسح مجال للسايد بار */
-  margin-left: 10px; /* دفع الهيدر لليسار ليفسح مجال للسايد بار */
-  margin-bottom: 2%; /* دفع الهيدر لليسار ليفسح مجال للسايد بار */
-  padding-left: 20px;
+  width: 100%;
   height: 70px;
-  background: #ffffff;
-  border-bottom: 1px solid #e2e8f0;
+  background: rgba(15, 20, 35, 0.85);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 0 30px;
+  padding: 0 24px;
   position: sticky;
   top: 0;
   z-index: 998;
-  /* ظل أقوى قليلاً للأسفل ليفصله عن المحتوى الذي يمر تحته */
-  box-shadow:
-    0 4px 6px -1px rgba(0, 0, 0, 0.05),
-    0 2px 4px -1px rgba(0, 0, 0, 0.03);
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+  box-sizing: border-box;
 }
 
-/* القسم اليميني (العنوان) */
+/* شريط إضاءة نيون أعلى الهيدر */
+.hd-main::after {
+  content: "";
+  position: absolute;
+  bottom: -1px;
+  left: 0;
+  right: 0;
+  height: 1px;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(0, 240, 255, 0.3),
+    transparent
+  );
+}
+
+/* ===== القسم اليميني ===== */
 .hd-right-section {
   display: flex;
   align-items: center;
-  gap: 20px;
+  gap: 16px;
 }
 
 .hd-mobile-btn {
   display: none;
-  background: #f8fafc;
-  border: 1px solid #e2e8f0;
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  color: #00f0ff;
   padding: 8px 12px;
-  border-radius: 8px;
+  border-radius: 10px;
   cursor: pointer;
+  transition: all 0.25s ease;
+}
+
+.hd-mobile-btn:hover {
+  background: rgba(0, 240, 255, 0.15);
+  box-shadow: 0 0 12px rgba(0, 240, 255, 0.2);
 }
 
 .hd-brand {
   display: flex;
   flex-direction: column;
+  gap: 2px;
 }
 
 .hd-gov-title {
-  font-size: 1.1rem;
+  font-size: 1.05rem;
   font-weight: 800;
-  color: #1e293b;
+  color: #f8fafc;
+  letter-spacing: 0.3px;
 }
 
 .hd-sub-title {
-  font-size: 0.75rem;
-  color: #64748b;
+  font-size: 0.72rem;
+  color: #00f0ff;
   font-weight: 600;
+  opacity: 0.9;
 }
 
-/* القسم اليساري (الأدوات) */
+/* ===== القسم اليساري (الأدوات والبروفايل) ===== */
 .hd-left-section {
   display: flex;
   align-items: center;
-  gap: 15px;
+  gap: 16px;
 }
 
+/* زر الإشعارات */
 .hd-icon-btn {
   position: relative;
-  background: transparent;
-  border: none;
-  font-size: 1.3rem;
-  color: #64748b;
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 10px;
+  font-size: 1.1rem;
+  color: #94a3b8;
   cursor: pointer;
-  padding: 8px;
-  transition: 0.2s;
+  width: 40px;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.25s ease;
 }
 
 .hd-icon-btn:hover {
-  color: var(--hd-accent);
+  color: #00f0ff;
+  background: rgba(0, 240, 255, 0.1);
+  border-color: rgba(0, 240, 255, 0.3);
+  box-shadow: 0 0 15px rgba(0, 240, 255, 0.15);
 }
 
 .hd-badge {
   position: absolute;
-  top: 5px;
-  right: 0;
-  background: var(--hd-danger);
+  top: -4px;
+  right: -4px;
+  background: #f43f5e;
   color: white;
   font-size: 10px;
-  width: 16px;
-  height: 16px;
+  font-weight: 800;
+  width: 18px;
+  height: 18px;
   border-radius: 50%;
   display: flex;
   align-items: center;
   justify-content: center;
-  border: 2px solid white;
+  border: 2px solid #0f1423;
+  box-shadow: 0 0 8px rgba(244, 63, 94, 0.6);
 }
 
 .hd-divider {
   width: 1px;
-  height: 30px;
-  background: #e2e8f0;
-  margin: 0 5px;
+  height: 26px;
+  background: rgba(255, 255, 255, 0.1);
+  margin: 0 4px;
 }
 
 /* بروفايل المستخدم */
 .hd-user-profile {
-  background: transparent;
-  border: none;
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(255, 255, 255, 0.08);
   display: flex;
   align-items: center;
   gap: 12px;
   cursor: pointer;
-  padding: 5px 10px;
-  border-radius: 10px;
-  transition: 0.2s;
+  padding: 5px 8px 5px 14px;
+  border-radius: 12px;
+  transition: all 0.25s ease;
+  text-decoration: none;
 }
 
 .hd-user-profile:hover {
-  background: #f8fafc;
+  background: rgba(255, 255, 255, 0.07);
+  border-color: rgba(0, 240, 255, 0.3);
+  box-shadow: 0 0 15px rgba(0, 240, 255, 0.1);
 }
 
 .hd-user-info {
   display: flex;
   flex-direction: column;
-  align-items: flex-start;
+  align-items: flex-end;
 }
 
 .hd-username {
-  font-size: 0.9rem;
+  font-size: 0.85rem;
   font-weight: 700;
-  color: #334155;
+  color: #f1f5f9;
 }
 
 .hd-role {
-  font-size: 0.7rem;
-  color: #94a3b8;
+  font-size: 0.68rem;
+  color: #00f0ff;
+  font-weight: 600;
 }
 
 .hd-avatar {
-  width: 38px;
-  height: 38px;
+  width: 36px;
+  height: 36px;
   border-radius: 50%;
-  border: 2px solid #f1f5f9;
+  border: 2px solid rgba(0, 240, 255, 0.4);
   object-fit: cover;
+  box-shadow: 0 0 10px rgba(0, 240, 255, 0.2);
 }
 
 /* زر تسجيل الخروج */
@@ -153,36 +184,51 @@
   display: flex;
   align-items: center;
   gap: 8px;
-  background: #fef2f2;
-  color: var(--hd-danger);
-  border: 1px solid #fee2e2;
-  padding: 8px 15px;
-  border-radius: 8px;
+  background: rgba(239, 68, 68, 0.1);
+  color: #f87171;
+  border: 1px solid rgba(239, 68, 68, 0.25);
+  padding: 8px 14px;
+  border-radius: 10px;
   cursor: pointer;
   font-weight: 700;
-  transition: 0.2s;
+  font-size: 0.85rem;
+  transition: all 0.25s ease;
 }
 
 .hd-logout-btn:hover {
-  background: var(--hd-danger);
-  color: white;
+  background: rgba(239, 68, 68, 0.25);
+  color: #ffffff;
+  border-color: rgba(239, 68, 68, 0.5);
+  box-shadow: 0 0 15px rgba(239, 68, 68, 0.3);
 }
 
-/* تحسين الاستجابة (Responsive) */
+/* ===== Responsive ===== */
 @media (max-width: 768px) {
+  .hd-main {
+    padding: 0 16px;
+  }
+
   .hd-mobile-btn {
-    display: block;
+    display: flex;
   }
+
   .hd-gov-title {
-    font-size: 0.9rem;
+    font-size: 0.88rem;
   }
+
   .hd-sub-title {
     font-size: 0.65rem;
   }
+
   .hd-user-info,
   .hd-logout-text {
     display: none;
   }
+
+  .hd-user-profile {
+    padding: 4px;
+  }
+
   .hd-logout-btn {
     padding: 8px 10px;
   }

@@ -4,7 +4,6 @@ import { ActivatedRoute, RouterLink } from '@angular/router';
 import { FormControl, ReactiveFormsModule, Validators } from '@angular/forms';
 import {
   forkJoin,
-  Subscription,
   Subject,
   switchMap,
   tap,
@@ -12,39 +11,28 @@ import {
   debounceTime,
 } from 'rxjs';
 
-import { DialogWrapperComponent } from '../../../../shared/dialog-wrapper/dialog-wrapper.component';
 import { DriverService } from '../../../../services/driver.service';
 import { NotificationService } from '../../../../services/notification.service';
 
 @Component({
   selector: 'app-licenses-history',
   standalone: true,
-  imports: [
-    CommonModule,
-    ReactiveFormsModule,
-    RouterLink,
-    DialogWrapperComponent,
-    DatePipe,
-  ],
+  imports: [CommonModule, ReactiveFormsModule, RouterLink, DatePipe],
   templateUrl: './licenses-history.component.html',
   styleUrl: './licenses-history.component.css',
 })
 export class LicensesHistoryComponent implements OnInit, OnDestroy {
-  // المعرفات والحالات
   id: number | undefined = undefined;
   current_driver: any = undefined;
   person_id: number | undefined = undefined;
   loading = signal<boolean>(true);
 
-  // مصفوفات البيانات الأصلية
   localLicenses: any[] = [];
   internationalLicenses: any[] = [];
 
-  // مصفوفات البيانات المفلترة للبحث
   filteredLocalLicenses: any[] = [];
   filteredInternationalLicenses: any[] = [];
 
-  // عناصر التحكم
   licenses = new FormControl<'local' | 'international'>('local', {
     validators: Validators.required,
     nonNullable: true,
@@ -58,8 +46,16 @@ export class LicensesHistoryComponent implements OnInit, OnDestroy {
   private noifyServ = inject(NotificationService);
   private location = inject(Location);
 
+  // Getter لحساب الرخص النشطة ديناميكياً
+  get activeLicensesCount(): number {
+    const activeLocal = this.localLicenses.filter((l) => l.isActive).length;
+    const activeInter = this.internationalLicenses.filter(
+      (l) => l.isActive,
+    ).length;
+    return activeLocal + activeInter;
+  }
+
   ngOnInit(): void {
-    // جلب معرف السائق من الرابط
     this.route.queryParams
       .pipe(takeUntil(this.destroy$))
       .subscribe((params) => {
@@ -67,12 +63,8 @@ export class LicensesHistoryComponent implements OnInit, OnDestroy {
         if (this.id) this.getDriverData();
       });
 
-    // إعداد مراقب البحث (Filter)
     this.filter.valueChanges
-      .pipe(
-        debounceTime(300), // انتظر 300 مللي ثانية لتحسين الأداء
-        takeUntil(this.destroy$),
-      )
+      .pipe(debounceTime(300), takeUntil(this.destroy$))
       .subscribe((value) => {
         this.applyFilter(value);
       });
@@ -105,7 +97,7 @@ export class LicensesHistoryComponent implements OnInit, OnDestroy {
 
           this.loading.set(false);
         },
-        error: (err) => {
+        error: () => {
           this.noifyServ.showMessage({
             message: 'فشل في تحميل سجلات الرخص',
             status: 'failed',
@@ -118,7 +110,6 @@ export class LicensesHistoryComponent implements OnInit, OnDestroy {
   applyFilter(value: string) {
     const search = value.toLowerCase().trim();
 
-    // فلترة الرخص المحلية
     this.filteredLocalLicenses = this.localLicenses.filter(
       (l) =>
         l.licenseID.toString().includes(search) ||
@@ -126,7 +117,6 @@ export class LicensesHistoryComponent implements OnInit, OnDestroy {
         l.applicationID.toString().includes(search),
     );
 
-    // فلترة الرخص الدولية
     this.filteredInternationalLicenses = this.internationalLicenses.filter(
       (l) =>
         l.licenseID.toString().includes(search) ||

@@ -1,8 +1,20 @@
-<div class="backdrop">
-  <div class="dialog-box">
+<div class="backdrop" (click)="onClose()">
+  <!-- منع إغلاق النافذة عند الضغط بداخلها -->
+  <div class="dialog-box" (click)="$event.stopPropagation()">
     <header>
       <h2>{{ title }}</h2>
+      <button
+        type="button"
+        class="close-btn"
+        (click)="onClose()"
+        aria-label="إغلاق"
+      >
+        <i class="fa fa-times"></i>
+      </button>
     </header>
-    <ng-content></ng-content>
+
+    <div class="dialog-body">
+      <ng-content></ng-content>
+    </div>
   </div>
 </div>

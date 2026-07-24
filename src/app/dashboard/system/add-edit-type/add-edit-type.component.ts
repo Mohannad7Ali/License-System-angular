@@ -1,4 +1,4 @@
-import { Component, OnInit, inject, signal } from '@angular/core';
+import { Component, OnInit, inject } from '@angular/core';
 import { CommonModule, Location } from '@angular/common';
 import {
   FormBuilder,
@@ -6,12 +6,11 @@ import {
   Validators,
   ReactiveFormsModule,
 } from '@angular/forms';
-import { ActivatedRoute, Router, RouterLink } from '@angular/router';
+import { ActivatedRoute, RouterLink } from '@angular/router';
 import { ApplicationTypesService } from '../../../services/application-type.service';
 import { TestTypesService } from '../../../services/test-type.service';
 import { NotificationService } from '../../../services/notification.service';
 import { ApplicationType } from '../../../models/application-type.model';
-import { TestType } from '../../../models/test-type.model';
 
 @Component({
   selector: 'app-add-edit-type',
@@ -54,7 +53,7 @@ export class AddEditTypeComponent implements OnInit {
     this.type_form = this.fb.group({
       title: ['', [Validators.required, Validators.maxLength(100)]],
       fees: [0, [Validators.required, Validators.min(0)]],
-      description: [''], // الوصف مطلوب فقط في أنواع الاختبارات
+      description: [''],
     });
   }
 
@@ -72,7 +71,6 @@ export class AddEditTypeComponent implements OnInit {
     } else {
       this.testTypeService.get(this.id!).subscribe({
         next: (res: any) => {
-          // استخدمنا any هنا لأن مسميات TestType تختلف
           this.type_form.patchValue({
             title: res.testTypeTitle,
             fees: res.testTypeFees,
@@ -121,6 +119,10 @@ export class AddEditTypeComponent implements OnInit {
         error: (err: any) => this.handleError(err),
       });
     }
+  }
+
+  onCancel() {
+    this.location.back();
   }
 
   onSuccess() {

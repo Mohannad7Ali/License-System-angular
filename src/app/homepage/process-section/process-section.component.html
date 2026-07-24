@@ -1,66 +1,82 @@
-<!-- process.component.html -->
 <div dir="rtl" class="ov-process ov-fade-in-up" id="process">
   <!-- عنوان القسم -->
-  <p class="ov-section-tag">خطوات الإجراء</p>
-  <p class="ov-section-title">رخصة القيادة خطوة بخطوة</p>
+  <div class="ov-section-header">
+    <span class="ov-section-tag">خطوات الإجراء</span>
+    <h2 class="ov-section-title">رحلتك للحصول على الرخصة خطوة بخطوة</h2>
+  </div>
 
   <!-- شبكة الخطوات -->
   <div class="ov-steps-grid">
     <!-- الخطوة 1 -->
-    <div class="ov-step">
-      <div class="ov-step-header">
-        <img src="images/step1.jpg" alt="الخطوة 1" />
-        <span class="ov-step-number">الخطوة 1</span>
+    <div class="ov-step-card">
+      <div class="ov-step-badge">01</div>
+      <div class="ov-step-icon">
+        <i class="fa fa-file-text-o" aria-hidden="true"></i>
       </div>
+      <h3 class="ov-step-title">تقديم الطلب</h3>
       <p class="ov-step-desc">
-        تعبئة نموذج طلب رخصة القيادة إلكترونياً أو ورقياً.
+        تعبئة نموذج طلب رخصة القيادة إلكترونياً وتحديد الفئة المطلوبة بسهولة.
       </p>
     </div>
 
     <!-- الخطوة 2 -->
-    <div class="ov-step">
-      <div class="ov-step-header">
-        <img src="images/step1.jpg" alt="الخطوة 2" />
-        <span class="ov-step-number">الخطوة 2</span>
+    <div class="ov-step-card">
+      <div class="ov-step-badge">02</div>
+      <div class="ov-step-icon">
+        <i class="fa fa-credit-card" aria-hidden="true"></i>
       </div>
-      <p class="ov-step-desc">دفع الرسوم المقررة حسب فئة الرخصة المطلوبة.</p>
+      <h3 class="ov-step-title">دفع الرسوم</h3>
+      <p class="ov-step-desc">
+        سداد الرسوم المقررة عبر بوابة الدفع الإلكتروني الآمنة.
+      </p>
     </div>
 
     <!-- الخطوة 3 -->
-    <div class="ov-step">
-      <div class="ov-step-header">
-        <img src="images/step1.jpg" alt="الخطوة 3" />
-        <span class="ov-step-number">الخطوة 3</span>
+    <div class="ov-step-card">
+      <div class="ov-step-badge">03</div>
+      <div class="ov-step-icon">
+        <i class="fa fa-calendar-check-o" aria-hidden="true"></i>
       </div>
+      <h3 class="ov-step-title">حجز الاختبارات</h3>
       <p class="ov-step-desc">
-        حجز موعد للاختبارات (النظر، الكتابي، القيادة العملية).
+        حجز مواعيد الاختبارات (النظري، الطبي، والقيادة العملية) المتاحة.
       </p>
     </div>
 
     <!-- الخطوة 4 -->
-    <div class="ov-step">
-      <div class="ov-step-header">
-        <img src="images/step1.jpg" alt="الخطوة 4" />
-        <span class="ov-step-number">الخطوة 4</span>
+    <div class="ov-step-card">
+      <div class="ov-step-badge">04</div>
+      <div class="ov-step-icon">
+        <i class="fa fa-graduation-cap" aria-hidden="true"></i>
       </div>
+      <h3 class="ov-step-title">اجتياز الاختبارات</h3>
       <p class="ov-step-desc">
-        اجتياز كل اختبار بنجاح لحجز موعد الاختبار التالي.
+        خوض الاختبارات المقررة واجتيازها بنجاح للانتفال للمرحلة النهائية.
       </p>
     </div>
 
     <!-- الخطوة 5 -->
-    <div class="ov-step">
-      <div class="ov-step-header">
-        <img src="images/step1.jpg" alt="الخطوة 5" />
-        <span class="ov-step-number">الخطوة 5</span>
+    <div class="ov-step-card">
+      <div class="ov-step-badge">05</div>
+      <div class="ov-step-icon">
+        <i class="fa fa-id-card-o" aria-hidden="true"></i>
       </div>
-      <p class="ov-step-desc">استلام رخصة القيادة بعد إتمام جميع المتطلبات.</p>
+      <h3 class="ov-step-title">استلام الرخصة</h3>
+      <p class="ov-step-desc">
+        طباعة واستلام رخصة القيادة الرسمية بعد إتمام كافة الإجراءات بنجاح.
+      </p>
     </div>
   </div>
 
-  <!-- اقتباس شهادة (مترجم) -->
+  <!-- اقتباس شهادة -->
   <blockquote class="ov-testimonial">
-    "كانت العملية سهلة وسريعة جداً. حصلت على رخصتي دون أي عناء!"
+    <div class="quote-icon">
+      <i class="fa fa-quote-right" aria-hidden="true"></i>
+    </div>
+    <p class="quote-text">
+      "كانت الإجراءات واضحة والسلسة للغاية، واستطعت إنهاء كافة الاختبارات بمرونة
+      تامة!"
+    </p>
     <span class="ov-testimonial-author">- سارة ج.</span>
   </blockquote>
 </div>

@@ -1,3 +1,4 @@
+<!-- نافذة التأكيد -->
 <app-confirmation-dialog
   (confirmed)="onDialogResult($event)"
   [isVisible]="isDialogVisible()"
@@ -5,15 +6,13 @@
   message="هل أنت متأكد من حذف نوع الاختبار هذا؟ قد يؤثر ذلك على نتائج الاختبارات السابقة."
 ></app-confirmation-dialog>
 
+<!-- التنبيهات -->
 <app-notification />
 
 <div class="container" dir="rtl">
   <header class="page-header">
     <h2>
-      <i
-        class="fa fa-vial-circle-check"
-        style="color: var(--special-color)"
-      ></i>
+      <i class="fa fa-vial-circle-check"></i>
       إدارة أنواع الاختبارات
     </h2>
     <p class="subtitle">
@@ -21,14 +20,19 @@
     </p>
   </header>
 
+  <!-- البحث والإضافة -->
   <div class="table-controls">
     <div class="search-box">
       <i class="fa fa-search search-icon"></i>
-      <input [formControl]="filter" type="text" placeholder="بحث سريع..." />
+      <input
+        [formControl]="filter"
+        type="text"
+        placeholder="بحث باسم الاختبار أو ID..."
+      />
     </div>
 
     <button
-      class="button add-btn"
+      class="add-btn"
       routerLink="../add-edit-type"
       [queryParams]="{ mode: 'add', type: 'test' }"
     >
@@ -36,58 +40,58 @@
     </button>
   </div>
 
-  <div class="table-container">
-    <table>
-      <thead>
-        <tr>
-          <th style="width: 8%">ID</th>
-          <th style="width: 25%">اسم الاختبار</th>
-          <th style="width: 35%">الوصف</th>
-          <th style="width: 12%">الرسوم</th>
-          <th style="width: 20%; text-align: center">الإجراءات</th>
-        </tr>
-      </thead>
-      <tbody>
-        @for (type of displayedData; track type.id) {
-          <tr>
-            <td>
-              <span class="id-badge">{{ type.id }}</span>
-            </td>
-            <td style="font-weight: 600; color: var(--dark-color)">
-              {{ type.testTypeTitle }}
-            </td>
-            <td class="desc-cell">{{ type.testTypeDescription }}</td>
-            <td class="fee-cell">{{ type.testTypeFees | currency: "USD" }}</td>
-            <td>
-              <div class="actions">
-                <button
-                  class="btn-action edit"
-                  (click)="onEdit(type.id)"
-                  title="تعديل"
-                >
-                  <i class="fa fa-pen-to-square"></i> تعديل
-                </button>
-                <button
-                  class="btn-action delete"
-                  (click)="onDelete(type.id)"
-                  title="حذف"
-                >
-                  <i class="fa fa-trash-can"></i> حذف
-                </button>
-              </div>
-            </td>
-          </tr>
-        } @empty {
-          <tr>
-            <td colspan="5" class="empty-state">
-              لا يوجد أنواع اختبارات مسجلة
-            </td>
-          </tr>
-        }
-      </tbody>
-    </table>
+  <!-- شبكة البطاقات -->
+  <div class="cards-grid">
+    @for (type of displayedData; track type.id) {
+      <div class="test-card">
+        <div>
+          <div class="card-header-wrapper">
+            <div class="test-icon-wrapper">
+              <i class="fa fa-vial"></i>
+            </div>
+            <span class="id-badge">ID: #{{ type.id }}</span>
+          </div>
+
+          <div class="card-body-content" style="margin-top: 1.25rem">
+            <h3 class="card-title">{{ type.testTypeTitle }}</h3>
+            <p class="desc-cell" [title]="type.testTypeDescription">
+              {{ type.testTypeDescription || "لا يوجد وصف متاح" }}
+            </p>
+            <div class="card-fee-badge">
+              <span class="fee-label">الرسوم:</span>
+              <span class="fee-cell">{{
+                type.testTypeFees | currency: "USD" : "symbol" : "1.0-0"
+              }}</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="card-actions">
+          <button
+            class="btn-action edit"
+            (click)="onEdit(type.id)"
+            title="تعديل"
+          >
+            <i class="fa fa-pen-to-square"></i> تعديل
+          </button>
+          <button
+            class="btn-action delete"
+            (click)="onDelete(type.id)"
+            title="حذف"
+          >
+            <i class="fa fa-trash-can"></i> حذف
+          </button>
+        </div>
+      </div>
+    } @empty {
+      <div class="empty-state">
+        <i class="fa fa-folder-open"></i>
+        <p>لا يوجد أنواع اختبارات مسجلة حالياً</p>
+      </div>
+    }
   </div>
 
+  <!-- الترقيم -->
   <div class="pagination">
     <button class="p-btn" (click)="onPrevious()" [disabled]="currentPage === 1">
       السابق

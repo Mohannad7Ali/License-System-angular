@@ -1,42 +1,86 @@
-/* التنسيقات العامة */
+/* ===================================================
+   👑 Sovereign Cyber-Glossy ID Card Theme
+   =================================================== */
+
 .preview-wrapper {
-  padding: 20px;
+  padding: 30px 20px;
   display: flex;
   flex-direction: column;
   align-items: center;
+  justify-content: center;
+  font-family:
+    system-ui,
+    -apple-system,
+    BlinkMacSystemFont,
+    "Segoe UI",
+    Roboto,
+    sans-serif;
 }
 
+/* بطاقة الهوية الرسمية بتصميم ألكريليك داكن ومضيء */
 .gov-card {
-  width: 550px;
-  background: white;
-  border-radius: 15px;
-  border: 1px solid #e2e8f0;
-  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.05);
+  width: 560px;
+  background: linear-gradient(
+    135deg,
+    rgba(15, 23, 42, 0.95) 0%,
+    rgba(30, 41, 59, 0.98) 100%
+  );
+  border-radius: 20px;
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  box-shadow:
+    0 20px 50px rgba(0, 0, 0, 0.6),
+    0 0 30px rgba(99, 102, 241, 0.15);
   overflow: hidden;
   position: relative;
-  background: linear-gradient(135deg, #ffffff 0%, #f8fafc 100%);
+  color: #f8fafc;
+  backdrop-filter: blur(16px);
 }
 
-/* تكبير الشعار */
-.syria-logo-large {
-  width: 75px; /* تكبير الشعار */
-  height: auto;
-  filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.1));
+/* نمط الخلفية الأمنية المضيئة الدقيقة */
+.gov-card::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background-image:
+    radial-gradient(rgba(99, 102, 241, 0.15) 1px, transparent 0),
+    radial-gradient(rgba(6, 182, 212, 0.1) 1px, transparent 0);
+  background-size: 18px 18px;
+  background-position:
+    0 0,
+    9px 9px;
+  opacity: 0.6;
+  pointer-events: none;
 }
 
+/* الشريط العلوي المضيء */
+.card-header-stripe {
+  height: 4px;
+  background: linear-gradient(90deg, #7d0e1b 0%, #024d07 50%, #edece9 100%);
+  box-shadow: 0 0 12px rgba(99, 102, 241, 0.6);
+}
+
+/* هيدر البطاقة */
 .card-header {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 20px;
-  background: #f1f5f9;
-  border-bottom: 2px solid #0284c7;
+  padding: 20px 24px;
+  background: rgba(15, 23, 42, 0.6);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+  position: relative;
+  z-index: 2;
 }
 
 .brand {
   display: flex;
   align-items: center;
-  gap: 15px;
+  gap: 16px;
+}
+
+.syria-logo-large {
+  width: 65px;
+  height: auto;
+  filter: drop-shadow(0 0 10px rgba(255, 255, 255, 0.2));
 }
 
 .brand .text {
@@ -47,179 +91,302 @@
 .country {
   font-weight: 800;
   font-size: 1rem;
-  color: #1e293b;
+  color: #f8fafc;
+  letter-spacing: -0.2px;
 }
+
 .ministry {
-  font-size: 0.75rem;
-  color: #64748b;
+  font-size: 0.78rem;
+  color: #94a3b8;
   font-weight: 600;
-}
-.type {
-  color: #0284c7;
-  font-weight: 800;
-  font-size: 0.9rem;
   margin-top: 2px;
 }
 
+.type {
+  color: #38bdf8;
+  font-weight: 800;
+  font-size: 0.9rem;
+  margin-top: 4px;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  text-shadow: 0 0 10px rgba(56, 189, 248, 0.3);
+}
+
+/* شارة رقم الرخصة */
 .license-id-badge {
   text-align: center;
-  background: white;
-  padding: 5px 15px;
-  border-radius: 8px;
-  border: 1px solid #e2e8f0;
+  background: rgba(30, 41, 59, 0.8);
+  padding: 8px 16px;
+  border-radius: 12px;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  box-shadow: inset 0 0 10px rgba(0, 0, 0, 0.3);
 }
 
 .license-id-badge small {
   display: block;
-  font-size: 0.6rem;
+  font-size: 0.65rem;
   color: #94a3b8;
+  font-weight: 700;
 }
+
 .license-id-badge b {
-  color: #d63031;
-  font-size: 1.1rem;
+  color: #f87171;
+  font-size: 1.25rem;
+  font-family: monospace;
+  letter-spacing: 1px;
+  text-shadow: 0 0 8px rgba(248, 113, 113, 0.3);
 }
 
 /* جسم البطاقة */
 .card-body {
   display: flex;
-  padding: 20px;
-  gap: 25px;
+  padding: 24px;
+  gap: 24px;
+  position: relative;
+  z-index: 2;
+  align-items: center;
+}
+
+/* معالجة الصورة الشخصية كإطار أمني محترف */
+.photo-section {
+  position: relative;
+  flex-shrink: 0;
+}
+.avatar-wrapper {
+  position: relative;
+  /* 1. جعل الأبعاد متساوية للدائرة */
+  width: 130px;
+  height: 130px;
+  /* 2. ضبط الحواف لتكون دائرة كاملة */
+  border-radius: 50%;
+  padding: 3px;
+  background: linear-gradient(
+    135deg,
+    rgba(99, 102, 241, 0.8),
+    rgba(6, 182, 212, 0.3),
+    rgba(255, 255, 255, 0.1)
+  );
+  box-shadow:
+    0 8px 25px rgba(0, 0, 0, 0.5),
+    0 0 15px rgba(99, 102, 241, 0.2);
+  /* حماية الدائرة من أي بروز خارجي */
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .avatar {
-  width: 130px;
-  height: 150px;
+  /* 3. الصورة تأخذ 100% من حجم الحاوية */
+  width: 100%;
+  height: 100%;
   object-fit: cover;
-  border-radius: 10px;
-  border: 3px solid white;
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  /* 4. جعل الصورة دائرة متناسقة */
+  border-radius: 50%;
+  display: block;
+  background: #0f172a;
+}
+/* الختم الذهبي المضيء فوق الصورة */
+.security-seal {
+  position: absolute;
+  bottom: -8px;
+  right: -8px;
+  width: 36px;
+  height: 36px;
+  background: linear-gradient(135deg, #f59e0b, #d97706);
+  color: #ffffff;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.9rem;
+  border: 2px solid #0f172a;
+  box-shadow: 0 0 12px rgba(245, 158, 11, 0.5);
 }
 
+/* قسم البيانات */
 .data-section {
   flex: 1;
   display: flex;
   flex-direction: column;
-  gap: 12px;
-}
-.data-row label {
-  display: block;
-  font-size: 0.75rem;
-  color: #94a3b8;
-  font-weight: 600;
-}
-.data-row .val {
-  font-weight: 700;
-  color: #1e293b;
-  font-size: 1rem;
-}
-.flex-row {
-  display: flex;
-  gap: 20px;
-}
-.highlight {
-  color: #0284c7 !important;
+  gap: 14px;
 }
 
-/* التذييل */
+.data-row label {
+  font-size: 0.72rem;
+  color: #94a3b8;
+  font-weight: 600;
+  display: block;
+  margin-bottom: 2px;
+}
+
+.data-row .val {
+  font-weight: 800;
+  color: #f8fafc;
+  font-size: 1.05rem;
+}
+
+.data-row.main .val {
+  font-size: 1.2rem;
+  color: #ffffff;
+  text-shadow: 0 0 10px rgba(255, 255, 255, 0.15);
+}
+
+.flex-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+}
+
+.highlight-class {
+  display: inline-block;
+  background: rgba(99, 102, 241, 0.2);
+  color: #818cf8;
+  padding: 3px 12px;
+  border-radius: 8px;
+  border: 1px solid rgba(129, 140, 248, 0.3);
+  font-weight: 800;
+  box-shadow: 0 0 10px rgba(99, 102, 241, 0.15);
+}
+
+/* تذييل البطاقة */
 .card-footer {
-  padding: 15px 20px;
-  background: #f8fafc;
-  border-top: 1px dashed #e2e8f0;
+  padding: 16px 24px;
+  background: rgba(15, 23, 42, 0.7);
+  border-top: 1px solid rgba(255, 255, 255, 0.08);
   display: flex;
   justify-content: space-between;
   align-items: center;
+  position: relative;
+  z-index: 2;
 }
 
 .dates {
   display: flex;
-  gap: 25px;
-}
-.date-item .lbl {
-  display: block;
-  font-size: 0.65rem;
-  color: #94a3b8;
-}
-.date-item .val {
-  font-weight: 700;
-  font-size: 0.85rem;
-}
-.danger {
-  color: #ef4444;
+  gap: 28px;
 }
 
+.date-item .lbl {
+  display: block;
+  font-size: 0.68rem;
+  color: #94a3b8;
+  font-weight: 600;
+}
+
+.date-item .val {
+  font-weight: 800;
+  font-size: 0.9rem;
+  color: #cbd5e1;
+  font-family: monospace;
+}
+
+.val.danger {
+  color: #f87171;
+}
+
+/* مؤشر الحالة */
 .status-indicator {
-  padding: 5px 12px;
-  border-radius: 20px;
-  font-size: 0.75rem;
-  font-weight: 700;
-  background: #fee2e2;
-  color: #b91c1c;
+  padding: 6px 14px;
+  border-radius: 30px;
+  font-size: 0.78rem;
+  font-weight: 800;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  background: rgba(239, 68, 68, 0.15);
+  color: #f87171;
+  border: 1px solid rgba(248, 113, 113, 0.3);
 }
 
 .status-indicator.active {
-  background: #dcfce7;
-  color: #15803d;
+  background: rgba(16, 185, 129, 0.15);
+  color: #34d399;
+  border-color: rgba(52, 211, 153, 0.3);
+  box-shadow: 0 0 12px rgba(52, 211, 153, 0.2);
 }
 
-/* الأزرار */
+/* أزرار الإجراءات */
 .actions {
-  margin-top: 30px;
+  margin-top: 28px;
   display: flex;
-  gap: 15px;
+  gap: 16px;
 }
+
 .btn-print {
-  background: #0284c7;
+  background: #6366f1;
   color: white;
   border: none;
-  padding: 10px 25px;
-  border-radius: 8px;
+  padding: 12px 28px;
+  border-radius: 12px;
   cursor: pointer;
-  font-weight: 700;
+  font-weight: 800;
+  font-size: 0.9rem;
+  box-shadow: 0 0 20px rgba(99, 102, 241, 0.4);
+  transition: all 0.25s ease;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
 }
+
+.btn-print:hover {
+  background: #4f46e5;
+  transform: translateY(-2px);
+  box-shadow: 0 0 25px rgba(99, 102, 241, 0.6);
+}
+
 .btn-back {
-  background: #64748b;
-  color: white;
-  border: none;
-  padding: 10px 25px;
-  border-radius: 8px;
+  background: rgba(30, 41, 59, 0.8);
+  color: #94a3b8;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  padding: 12px 28px;
+  border-radius: 12px;
   cursor: pointer;
+  font-weight: 800;
+  font-size: 0.9rem;
+  transition: all 0.25s ease;
+}
+
+.btn-back:hover {
+  background: rgba(51, 65, 85, 0.8);
+  color: #f8fafc;
+}
+
+.loader-box {
+  padding: 60px;
+  text-align: center;
+  color: #94a3b8;
   font-weight: 700;
 }
 
 /* =========================================
-   تنسيقات الطباعة (Sercet Sauce) 
+   تنسيقات الطباعة (High-Quality Print)
    ========================================= */
 @media print {
-  /* إخفاء كل شيء في الصفحة */
   body * {
     visibility: hidden;
   }
 
-  /* إظهار منطقة البطاقة فقط */
   .printable-area,
   .printable-area * {
     visibility: visible;
   }
 
-  /* تحديد مكان البطاقة في الورقة المطبوعة */
   .printable-area {
     position: absolute;
     left: 50%;
-    top: 50px;
+    top: 40px;
     transform: translateX(-50%);
-    border: 1px solid #000; /* حدود واضحة للقص */
-    box-shadow: none;
+    box-shadow: none !important;
+    border: 1px solid #334155 !important;
   }
 
-  /* إخفاء الأزرار وأي عناصر تفاعلية */
   .no-print,
   .actions {
     display: none !important;
   }
 
-  /* إجبار المتصفح على طباعة الألوان والخلفيات */
   .gov-card {
-    -webkit-print-color-adjust: exact;
-    print-color-adjust: exact;
+    -webkit-print-color-adjust: exact !important;
+    print-color-adjust: exact !important;
   }
 }

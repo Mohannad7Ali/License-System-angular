@@ -73,7 +73,7 @@
 
       <!-- نتائج التجديد (تظهر فقط بعد النجاح) -->
       @if (newLicense()) {
-        <div class="rn-card rn-success-card animated bounceIn">
+        <div class="rn-card rn-success-card animated fadeIn">
           <div class="success-header">
             <i class="fa fa-check-circle"></i>
             <h4>تم التجديد بنجاح!</h4>
@@ -81,7 +81,7 @@
           <div class="rn-info-grid">
             <div class="rn-info-item">
               <label>رقم الرخصة الجديدة:</label>
-              <span class="rn-val highlight">{{ newLicense()?.id }}</span>
+              <span class="rn-val highlight">#{{ newLicense()?.id }}</span>
             </div>
             <div class="rn-info-item">
               <label>تاريخ الانتهاء الجديد:</label>

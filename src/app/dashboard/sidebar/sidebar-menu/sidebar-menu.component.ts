@@ -15,7 +15,7 @@ export class SidebarMenuComponent {
   private router = inject(Router);
   isDialogVisible = signal<boolean>(false);
 
-  // إغلاق كل القوائم وفتح واحدة فقط
+  // إغلاق كل القوائم وفتح واحدة فقط لتوفير مساحة وتجربة سلسة
   menuOpen: Record<MenuKeys, WritableSignal<boolean>> = {
     admin: signal(false),
     services: signal(false),
@@ -25,7 +25,6 @@ export class SidebarMenuComponent {
   };
 
   ontoggle(menu: MenuKeys) {
-    // إغلاق جميع القوائم الأخرى عند فتح قائمة جديدة (UX أفضل)
     Object.keys(this.menuOpen).forEach((key) => {
       if (key !== menu) {
         this.menuOpen[key as MenuKeys].set(false);

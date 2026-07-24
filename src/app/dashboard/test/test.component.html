@@ -1,28 +1,32 @@
-<!-- overview.component.html -->
 <div class="ov-wrapper ov-fade-in-up">
-  <!-- رأس الصفحة -->
+  <!-- رأس الصفحة (Hero Header) -->
   <div class="ov-header">
     <div class="ov-header-content">
-      <div>
-        <h1 class="ov-title">مرحباً في لوحة التحكم 👋</h1>
-        <p class="ov-subtitle">نظرة عامة على أداء النظام</p>
+      <div class="ov-brand-group">
+        <h1 class="ov-title">مرحباً بك في لوحة التحكم المركزية 👋</h1>
+        <p class="ov-subtitle">
+          نظرة عامة على أداء نظام التراخيص والميدان مباشرةً
+        </p>
       </div>
       <div class="ov-header-greeting">
-        <span class="ov-greeting-badge">📊 تحليلات اليوم</span>
+        <span class="ov-greeting-badge">
+          <i class="fa fa-chart-line"></i> تحليلات اليوم المباشرة
+        </span>
       </div>
     </div>
     <div class="ov-header-divider"></div>
   </div>
 
-  <!-- بطاقات الإحصائيات -->
+  <!-- بطاقات الإحصائيات السريعة -->
   <div class="ov-stats-grid">
+    <!-- 1. الطلبات -->
     <div class="ov-stat-card ov-stat-applications">
       <div class="ov-stat-icon-wrapper">
         <i class="fa fa-file-alt ov-stat-icon"></i>
       </div>
       <div class="ov-stat-content">
         <h2 class="ov-stat-value">{{ appsCount() }}</h2>
-        <p class="ov-stat-label">الطلبات</p>
+        <p class="ov-stat-label">إجمالي الطلبات</p>
       </div>
       <div class="ov-stat-trend up">
         <i class="fa fa-arrow-up"></i>
@@ -30,13 +34,14 @@
       </div>
     </div>
 
+    <!-- 2. الاختبارات -->
     <div class="ov-stat-card ov-stat-tests">
       <div class="ov-stat-icon-wrapper">
         <i class="fa fa-clipboard-check ov-stat-icon"></i>
       </div>
       <div class="ov-stat-content">
         <h2 class="ov-stat-value">{{ testCount() }}</h2>
-        <p class="ov-stat-label">الاختبارات</p>
+        <p class="ov-stat-label">الاختبارات المنفذة</p>
       </div>
       <div class="ov-stat-trend up">
         <i class="fa fa-arrow-up"></i>
@@ -44,13 +49,14 @@
       </div>
     </div>
 
+    <!-- 3. الرخص -->
     <div class="ov-stat-card ov-stat-licenses">
       <div class="ov-stat-icon-wrapper">
         <i class="fa fa-id-card ov-stat-icon"></i>
       </div>
       <div class="ov-stat-content">
         <h2 class="ov-stat-value">{{ licensesCount() }}</h2>
-        <p class="ov-stat-label">الرخص</p>
+        <p class="ov-stat-label">الرخص الصادرة</p>
       </div>
       <div class="ov-stat-trend up">
         <i class="fa fa-arrow-up"></i>
@@ -58,13 +64,14 @@
       </div>
     </div>
 
+    <!-- 4. السائقون -->
     <div class="ov-stat-card ov-stat-drivers">
       <div class="ov-stat-icon-wrapper">
         <i class="fa fa-users ov-stat-icon"></i>
       </div>
       <div class="ov-stat-content">
         <h2 class="ov-stat-value">{{ driversCount() }}</h2>
-        <p class="ov-stat-label">السائقون</p>
+        <p class="ov-stat-label">السائقون المسجلون</p>
       </div>
       <div class="ov-stat-trend up">
         <i class="fa fa-arrow-up"></i>
@@ -73,20 +80,24 @@
     </div>
   </div>
 
-  <!-- قسم التحليلات (الدوائر) -->
+  <!-- قسم التحليلات الدائرية النيون -->
   <div class="ov-analytics-grid">
+    <!-- تحليلات الأشخاص -->
     <div class="ov-analytics-card">
       <div class="ov-card-header">
-        <h3 class="ov-card-title">تحليلات الأشخاص</h3>
+        <h3 class="ov-card-title">
+          <i class="fa fa-user-friends title-icon"></i> التوزع الجنسي للأشخاص
+        </h3>
       </div>
       <div class="ov-circle-container">
+        <!-- ذكور -->
         <div class="ov-circle-item">
           <div
             class="ov-circle ov-circle-male"
             [style.background]="
-              'conic-gradient(#1e293b ' +
+              'conic-gradient(#00f0ff ' +
               malePercentage +
-              '%, #e2e8f0 ' +
+              '%, rgba(255, 255, 255, 0.05) ' +
               malePercentage +
               '%'
             "
@@ -99,13 +110,15 @@
             </div>
           </div>
         </div>
+
+        <!-- إناث -->
         <div class="ov-circle-item">
           <div
             class="ov-circle ov-circle-female"
             [style.background]="
-              'conic-gradient(#94a3b8 ' +
+              'conic-gradient(#ec4899 ' +
               femalePercentage +
-              '%, #e2e8f0 ' +
+              '%, rgba(255, 255, 255, 0.05) ' +
               femalePercentage +
               '%'
             "
@@ -121,18 +134,22 @@
       </div>
     </div>
 
+    <!-- تحليلات الاختبارات -->
     <div class="ov-analytics-card">
       <div class="ov-card-header">
-        <h3 class="ov-card-title">تحليلات الاختبارات</h3>
+        <h3 class="ov-card-title">
+          <i class="fa fa-chart-pie title-icon"></i> مؤشرات نتائج الاختبارات
+        </h3>
       </div>
       <div class="ov-circle-container">
+        <!-- ناجح -->
         <div class="ov-circle-item">
           <div
             class="ov-circle ov-circle-passed"
             [style.background]="
-              'conic-gradient(#16a34a ' +
+              'conic-gradient(#10b981 ' +
               passedTestsPercentage +
-              '%, #e2e8f0 ' +
+              '%, rgba(255, 255, 255, 0.05) ' +
               passedTestsPercentage +
               '%'
             "
@@ -145,13 +162,15 @@
             </div>
           </div>
         </div>
+
+        <!-- راسب -->
         <div class="ov-circle-item">
           <div
             class="ov-circle ov-circle-failed"
             [style.background]="
-              'conic-gradient(#dc2626 ' +
+              'conic-gradient(#f43f5e ' +
               failedTestPercentage +
-              '%, #e2e8f0 ' +
+              '%, rgba(255, 255, 255, 0.05) ' +
               failedTestPercentage +
               '%'
             "
@@ -168,10 +187,10 @@
     </div>
   </div>
 
-  <!-- تذييل -->
+  <!-- تذييل الواجهة -->
   <div class="ov-footer">
-    <span class="ov-footer-text"
-      >جميع الحقوق محفوظة © وزارة النقل - الجمهورية العربية السورية</span
-    >
+    <span class="ov-footer-text">
+      جميع الحقوق محفوظة © وزارة النقل - الجمهورية العربية السورية 2026
+    </span>
   </div>
 </div>

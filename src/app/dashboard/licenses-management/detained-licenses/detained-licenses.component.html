@@ -58,9 +58,9 @@
                 <span class="dli-id-tag">#{{ item.id }}</span>
               </td>
               <td>
-                <b>{{ item.licenseID }}</b>
+                <b style="color: #00f0ff">{{ item.licenseID }}</b>
               </td>
-              <td>{{ item.fullName }}</td>
+              <td class="dli-name">{{ item.fullName }}</td>
               <td>{{ item.detainDate | date: "dd/MM/yyyy" }}</td>
               <td class="dli-fine">{{ item.fineFees | currency }}</td>
               <td>
@@ -75,23 +75,20 @@
                 @if (!item.isReleased) {
                   <button
                     class="dli-op-btn release"
+                    title="فك الحجز"
                     (click)="onReleaseRequest(item.licenseID)"
                   >
                     <i class="fa fa-unlock-alt"></i>
                   </button>
                 }
-                <!-- <button
-                  class="dli-op-btn view"
-                  [routerLink]="['person-licenses-history']"
-                  [queryParams]="{ id: item.licenseID }"
-                >
-                  <i class="fa fa-id-card-o"></i>
-                </button> -->
               </td>
             </tr>
           } @empty {
             <tr>
-              <td colspan="7" class="dli-empty">لا يوجد سجلات</td>
+              <td colspan="7" class="dli-empty">
+                <i class="fa fa-folder-open-o"></i>
+                لا توجد سجلات محتجزة تطابق البحث
+              </td>
             </tr>
           }
         </tbody>

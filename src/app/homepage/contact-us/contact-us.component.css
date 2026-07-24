@@ -1,32 +1,61 @@
-/* ===== قسم اتصل بنا ===== */
-#contact-us {
-  padding: 40px 30px 50px;
-  background: var(--bg-light, #f8fafc);
-  border-radius: 40px 40px 0 0;
-  margin-top: 40px;
+/* ===== الحاوية العامة للقسم ===== */
+.ov-contact-us {
+  direction: rtl;
+  padding: 80px 24px;
+  background: transparent;
+  max-width: 1280px;
+  margin: 0 auto;
+  box-sizing: border-box;
 }
 
-#contact-us .section-title {
-  font-size: 16px;
+/* ===== أنيميشن الظهور ===== */
+@keyframes ovFadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(40px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.ov-fade-in-up {
+  animation: ovFadeInUp 0.7s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+/* ===== رأس القسم ===== */
+.ov-section-header {
+  margin-bottom: 50px;
+  text-align: right;
+}
+
+.ov-section-badge {
+  display: inline-block;
+  background: rgba(0, 240, 255, 0.1);
+  color: #00f0ff;
+  padding: 6px 20px;
+  border-radius: 30px;
+  font-size: 14px;
   font-weight: 700;
-  color: #94a3b8;
-  letter-spacing: 2px;
-  text-transform: uppercase;
-  margin-bottom: 4px;
+  letter-spacing: 1px;
+  margin-bottom: 12px;
+  border: 1px solid rgba(0, 240, 255, 0.25);
 }
 
-#contact-us .main-text {
-  font-size: 42px;
+.ov-main-text {
+  font-size: 40px;
   font-weight: 900;
-  color: #0f172a;
+  color: #f8fafc;
   margin: 0 0 8px 0;
+  line-height: 1.2;
 }
 
 .contact-subtitle {
-  font-size: 18px;
-  color: #475569;
-  font-weight: 500;
-  margin-bottom: 32px;
+  font-size: 17px;
+  color: #94a3b8;
+  font-weight: 400;
+  margin: 0;
 }
 
 /* ===== حاوية التواصل ===== */
@@ -43,70 +72,98 @@
   display: flex;
   flex-direction: column;
   align-items: flex-start;
-  gap: 16px;
-  font-size: 18px;
-  max-width: 420px;
+  gap: 20px;
   flex: 1;
-  padding: 20px 0;
+  padding: 10px 0;
 }
 
-.numbers p {
+.info-text {
+  color: #94a3b8;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 1.8;
   margin: 0;
-  line-height: 1.6;
 }
 
-.contact-email {
-  color: #0f172a;
-  font-weight: 700;
+.phone-card {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  background: rgba(20, 24, 44, 0.65);
+  backdrop-filter: blur(16px);
+  border: 1px solid rgba(0, 240, 255, 0.3);
+  padding: 16px 24px;
+  border-radius: 16px;
+  color: #00f0ff;
   font-size: 20px;
-  text-decoration: none;
-  transition: color 0.3s ease;
-  border-bottom: 2px solid #0f172a;
-  padding-bottom: 2px;
+  font-weight: 700;
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.2);
+  width: 100%;
+  box-sizing: border-box;
 }
 
-.contact-email:hover {
-  color: #3b82f6;
-  border-bottom-color: #3b82f6;
+.phone-card i {
+  font-size: 22px;
 }
 
 .contact-hours {
-  margin-top: 8px;
-  padding: 12px 16px;
-  background: #ffffff;
-  border-radius: 12px;
-  border: 1px solid #e2e8f0;
+  padding: 20px;
+  background: rgba(20, 24, 44, 0.65);
+  backdrop-filter: blur(16px);
+  border-radius: 16px;
+  border: 1px solid rgba(255, 255, 255, 0.08);
   font-size: 15px;
-  color: #475569;
+  color: #94a3b8;
   display: flex;
   flex-direction: column;
-  gap: 4px;
+  gap: 8px;
   width: 100%;
+  box-sizing: border-box;
 }
 
-.contact-hours span:first-child {
+.hours-header {
+  display: flex;
+  align-items: center;
+  gap: 8px;
   font-weight: 700;
-  color: #0f172a;
+  color: #f8fafc;
 }
 
-/* ===== جهة اليسار (النموذج) ===== */
+.hours-header i {
+  color: #00f0ff;
+}
+
+.hours-details {
+  color: #94a3b8;
+}
+
+/* ===== جهة اليسار (النموذج Glassmorphism) ===== */
 .contact-form {
   border-radius: 20px;
   display: flex;
   flex-direction: column;
-  justify-content: center;
-  gap: 14px;
+  gap: 18px;
   flex: 1.5;
-  background: #ffffff;
-  padding: 32px 28px;
-  box-shadow: 0 2px 12px rgba(15, 23, 42, 0.06);
-  border: 1px solid #e2e8f0;
+  background: rgba(20, 24, 44, 0.65);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  padding: 36px 30px;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.form-title {
+  text-align: right;
+  font-size: 22px;
+  color: #f8fafc;
+  font-weight: 800;
+  margin: 0 0 6px 0;
 }
 
 .control-row {
   width: 100%;
   display: flex;
-  gap: 14px;
+  gap: 16px;
 }
 
 .control {
@@ -114,16 +171,16 @@
   min-width: 0;
 }
 
-.control input,
+.contact-input,
 .contact-textarea {
   width: 100%;
   padding: 14px 18px;
-  border: 2px solid #e2e8f0;
+  border: 1px solid rgba(255, 255, 255, 0.12);
   border-radius: 12px;
-  font-size: 16px;
+  font-size: 15px;
   font-weight: 500;
-  color: #0f172a;
-  background: #f8fafc;
+  color: #f8fafc;
+  background: rgba(15, 20, 35, 0.6);
   transition: all 0.3s ease;
   box-sizing: border-box;
   font-family: inherit;
@@ -131,50 +188,50 @@
 
 .contact-textarea {
   resize: vertical;
-  min-height: 100px;
+  min-height: 110px;
 }
 
-.control input:focus,
+.contact-input:focus,
 .contact-textarea:focus {
   outline: none;
-  border-color: #0f172a;
-  background: #ffffff;
-  box-shadow: 0 0 0 4px rgba(15, 23, 42, 0.08);
+  border-color: #00f0ff;
+  background: rgba(15, 20, 35, 0.85);
+  box-shadow: 0 0 15px rgba(0, 240, 255, 0.25);
 }
 
-.control input::placeholder,
+.contact-input::placeholder,
 .contact-textarea::placeholder {
-  color: #94a3b8;
+  color: #64748b;
   font-weight: 400;
 }
 
-/* ===== زر الإرسال ===== */
+/* ===== زر الإرسال النيون ===== */
 .contact-submit {
   width: 100%;
   padding: 16px 32px;
-  background: #0f172a;
+  background: linear-gradient(135deg, #7000ff, #00f0ff);
   color: #ffffff;
   border: none;
-  border-radius: 60px;
-  font-size: 18px;
+  border-radius: 12px;
+  font-size: 16px;
   font-weight: 700;
   cursor: pointer;
   transition: all 0.3s ease;
-  box-shadow: 0 4px 16px rgba(15, 23, 42, 0.15);
-  margin-top: 4px;
+  box-shadow: 0 0 20px rgba(0, 240, 255, 0.3);
+  margin-top: 6px;
 }
 
 .contact-submit:hover {
-  background: #1e293b;
   transform: translateY(-2px);
-  box-shadow: 0 8px 24px rgba(15, 23, 42, 0.25);
+  box-shadow: 0 0 30px rgba(0, 240, 255, 0.5);
+  background: linear-gradient(135deg, #8010ff, #20f5ff);
 }
 
 .contact-submit:active {
   transform: translateY(0);
 }
 
-/* ===== استجابة للشاشات المختلفة ===== */
+/* ===== التجاوب للشاشات المختلفة ===== */
 @media (max-width: 992px) {
   .contact-box {
     flex-direction: column;
@@ -183,56 +240,43 @@
 
   .numbers {
     max-width: 100%;
-    padding: 0;
   }
 
-  .contact-form {
-    padding: 24px 20px;
-  }
-
-  #contact-us .main-text {
+  .ov-main-text {
     font-size: 32px;
   }
 }
 
 @media (max-width: 640px) {
-  #contact-us {
-    padding: 24px 16px 30px;
+  .ov-contact-us {
+    padding: 40px 16px;
   }
 
-  #contact-us .main-text {
+  .ov-main-text {
     font-size: 26px;
   }
 
   .contact-subtitle {
-    font-size: 16px;
+    font-size: 15px;
   }
 
   .control-row {
     flex-direction: column;
-    gap: 12px;
+    gap: 14px;
   }
 
   .contact-form {
-    padding: 20px 16px;
+    padding: 24px 18px;
   }
 
-  .control input,
+  .contact-input,
   .contact-textarea {
     padding: 12px 14px;
-    font-size: 15px;
+    font-size: 14px;
   }
 
   .contact-submit {
     padding: 14px 24px;
-    font-size: 16px;
-  }
-
-  .numbers {
-    font-size: 16px;
-  }
-
-  .contact-email {
-    font-size: 18px;
+    font-size: 15px;
   }
 }

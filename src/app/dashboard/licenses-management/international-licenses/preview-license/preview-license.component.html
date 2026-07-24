@@ -1,6 +1,6 @@
-<app-dialog-wrapper title="معاينة رخصة القيادة الدولية">
+<app-dialog-wrapper title="معاينة رخصة القيادة الدولية الرقمية">
   <div class="idl-page" dir="rtl">
-    <!-- 🔄 شاشة التحميل (تظهر أولاً) -->
+    <!-- 🔄 شاشة التحميل -->
     @if (loading()) {
       <div class="loading-overlay">
         <div class="spinner-box">
@@ -9,20 +9,23 @@
         </div>
       </div>
     } @else {
-      <!-- 🪪 بطاقة الرخصة (هذا الجزء فقط الذي سيطبع) -->
+      <!-- 🪪 بطاقة الرخصة -->
       <div id="license-to-print" class="idl-card animated-in">
+        <div class="card-header-stripe"></div>
+
         <div class="idl-header">
           <div class="gov-brand">
             <img
-              src="https://cdn-icons-png.flaticon.com/512/300/300218.png"
+              src="https://nihad.me/wp-content/uploads/2025/07/Coat_of_Arms_of_Syria_2025-1.png"
               class="eagle"
+              alt="الشعار الرسمي"
             />
             <div class="gov-titles">
               <span class="main-title">الجمهورية العربية السورية</span>
-              <span class="sub-title">وزارة النقل - إدارة المرور</span>
+              <span class="sub-title">وزارة النقل — إدارة المرور</span>
             </div>
           </div>
-          <div class="license-type">رخصة دولية</div>
+          <div class="license-type"><i class="fa fa-globe"></i> رخصة دولية</div>
         </div>
 
         <div class="idl-body">
@@ -45,14 +48,19 @@
           <div class="data-column">
             <div class="info-row large">
               <label>الاسم الكامل</label>
-              <span class="value"
-                >{{ person()?.firstName }} {{ person()?.lastName }}</span
-              >
+              <span class="value">
+                {{ person()?.firstName }} {{ person()?.lastName }}
+              </span>
             </div>
 
             <div class="info-row">
               <label>الرقم الوطني</label>
-              <span class="value">{{ person()?.nationalNumber }}</span>
+              <span
+                class="value"
+                style="font-family: monospace; letter-spacing: 0.5px"
+              >
+                {{ person()?.nationalNumber }}
+              </span>
             </div>
 
             <div class="grid-2">
@@ -81,6 +89,7 @@
           <div class="date-section">
             <div class="date-item">
               <label>تاريخ الإصدار</label>
+
               <span class="val">{{
                 license()?.issueDate | date: "dd/MM/yyyy"
               }}</span>
@@ -93,18 +102,23 @@
             </div>
           </div>
           <div class="status-indicator" [class.active]="license()?.isActive">
-            <i class="fa fa-certificate"></i>
+            <i
+              class="fa"
+              [ngClass]="
+                license()?.isActive ? 'fa-check-circle' : 'fa-times-circle'
+              "
+            ></i>
             {{ license()?.isActive ? "نشطة" : "ملغاة" }}
           </div>
         </div>
       </div>
 
-      <!-- 🔘 أزرار التحكم (لن تظهر في الطباعة) -->
+      <!-- 🔘 أزرار التحكم خارج البطاقة -->
       <div class="no-print actions-area">
         <button class="btn-print" (click)="onPrint()">
-          <i class="fa fa-print"></i> طـبـاعة الرخصة
+          <i class="fa fa-print"></i> طباعة الرخصة الرسمية
         </button>
-        <button class="btn-back" (click)="onBack()">إغلاق</button>
+        <button class="btn-back" (click)="onBack()">إغلاق المعاينة</button>
       </div>
     }
   </div>

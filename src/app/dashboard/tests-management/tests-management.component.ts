@@ -29,19 +29,19 @@ export class TestsManagementComponent implements OnInit {
   allTests = signal<Test[]>([]);
   isLoading = signal(true);
   currentPage = signal(1);
-  pageSize = signal(7);
+  pageSize = signal(6); // تم تغيير العدد إلى 6 ليناسب العرض الشبكي (3x2 أو 2x3)
   searchTerm = signal('');
 
   filterControl = new FormControl('', { nonNullable: true });
 
-  // 1. فلترة البيانات مع معالجة القيم التي قد تكون undefined
+  // 1. فلترة البيانات مع معالجة القيم غير المعرفة
   filteredTests = computed(() => {
     const term = this.searchTerm().toLowerCase();
     const tests = this.allTests();
     if (!term) return tests;
 
     return tests.filter((test) => {
-      const idStr = test.id?.toString() || ''; // حل مشكلة undefined
+      const idStr = test.id?.toString() || '';
       const appIdStr = test.appointmentID?.toString() || '';
       const notesStr = test.notes?.toLowerCase() || '';
 

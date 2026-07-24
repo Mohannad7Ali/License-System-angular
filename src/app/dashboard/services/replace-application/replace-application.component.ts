@@ -1,15 +1,7 @@
 import { Component, inject, signal, OnDestroy, OnInit } from '@angular/core';
 import { CommonModule, CurrencyPipe, DatePipe } from '@angular/common';
 import { FormControl, ReactiveFormsModule, Validators } from '@angular/forms';
-import {
-  Subject,
-  takeUntil,
-  tap,
-  switchMap,
-  catchError,
-  of,
-  forkJoin,
-} from 'rxjs';
+import { Subject, takeUntil, tap, switchMap, catchError, of } from 'rxjs';
 
 import { LicenseService } from '../../../services/license.service';
 import { DriverService } from '../../../services/driver.service';
@@ -46,7 +38,7 @@ export class ReplaceApplicationComponent implements OnInit, OnDestroy {
   applicantName = signal<string>('');
   isSubmitting = signal(false);
 
-  // رسوم الخدمات (قيم تقريبية، يفضل جلبها من الـ API)
+  // رسوم الخدمات
   readonly damagedFee = 5.0;
   readonly lostFee = 10.0;
 
@@ -100,7 +92,6 @@ export class ReplaceApplicationComponent implements OnInit, OnDestroy {
       const userId = this.userService.getCurrentUser()?.id || 1;
       const licenseId = this.oldLicense()!.id;
 
-      // اختيار الدالة المناسبة من الخدمة بناءً على الوضع المختSelected Mode
       const replacement$ =
         this.replaceMode.value === 'Damaged'
           ? this.licenseService.damageReplacement(licenseId, userId)

@@ -1,14 +1,18 @@
-<div class="dashboard">
-  <!-- Mobile overlay -->
+<div class="dashboard" dir="rtl">
+  <!-- خلفية ضبابية معتمة للموبايل -->
   <div #overlayElement class="mobile-overlay" (click)="closeMobileMenu()"></div>
 
-  <!-- Sidebar -->
+  <!-- الشريط الجانبي -->
   <app-sidebar #sidebarElement />
 
-  <!-- Main content area -->
+  <!-- منطقة المحتوى الرئيسية -->
   <div class="main-content">
     <app-header (mobileMenuToggle)="toggleMobileMenu()" />
     <app-notification></app-notification>
-    <router-outlet />
+
+    <!-- حاوية الصفحة لتطبيق البادينغ والمساحات بمرونة -->
+    <main class="page-wrapper">
+      <router-outlet />
+    </main>
   </div>
 </div>

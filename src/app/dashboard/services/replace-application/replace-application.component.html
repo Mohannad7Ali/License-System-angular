@@ -65,7 +65,7 @@
           </div>
           <div class="rp-info-item">
             <label>رقم الرخصة القديم:</label>
-            <span class="rp-val">{{ oldLicense()?.id }}</span>
+            <span class="rp-val">#{{ oldLicense()?.id }}</span>
           </div>
           <div class="rp-info-item">
             <label>تاريخ الانتهاء:</label>
@@ -78,7 +78,7 @@
 
       <!-- عرض الرخصة الجديدة عند النجاح -->
       @if (newLicense()) {
-        <div class="rp-card rp-success-card animated bounceIn">
+        <div class="rp-card rp-success-card animated fadeIn">
           <div class="success-header">
             <i class="fa fa-check-circle"></i>
             <h4>تمت العملية بنجاح!</h4>
@@ -86,13 +86,13 @@
           <div class="rp-info-grid">
             <div class="rp-info-item">
               <label>رقم الرخصة الجديدة:</label>
-              <span class="rp-val highlight">{{ newLicense()?.id }}</span>
+              <span class="rp-val highlight">#{{ newLicense()?.id }}</span>
             </div>
             <div class="rp-info-item">
               <label>رقم الطلب (Application):</label>
-              <span class="rp-val highlight">{{
-                newLicense()?.applicationID
-              }}</span>
+              <span class="rp-val highlight"
+                >#{{ newLicense()?.applicationID }}</span
+              >
             </div>
           </div>
         </div>

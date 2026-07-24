@@ -4,4 +4,30 @@
   display: block !important;
   width: 100% !important;
   box-sizing: border-box !important;
+  animation: app-fadeIn 0.4s cubic-bezier(0.16, 1, 0.3, 1) !important;
+}
+
+/* تنسيق الـ Wrapper والحاوية لتتناسب مع الطابع الداكن */
+app-dialog-wrapper {
+  display: block !important;
+  background: rgba(15, 20, 35, 0.65) !important;
+  backdrop-filter: blur(16px) !important;
+  -webkit-backdrop-filter: blur(16px) !important;
+  border-radius: 18px !important;
+  border: 1px solid rgba(255, 255, 255, 0.08) !important;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4) !important;
+  padding: 24px !important;
+  margin: 10px auto !important;
+  max-width: 950px !important;
+}
+
+@keyframes app-fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(15px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }

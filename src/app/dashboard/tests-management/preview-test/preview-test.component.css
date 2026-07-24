@@ -1,82 +1,147 @@
+/* ==========================================================================
+   Dark Neon Glossy / Glassmorphism Theme - Preview Test Component
+   ========================================================================== */
+
 .pt-container {
-  padding: 10px;
-  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  padding: 1.5rem;
+  max-width: 900px;
+  margin: 0 auto;
+  direction: rtl;
+  font-family:
+    "Segoe UI",
+    system-ui,
+    -apple-system,
+    sans-serif;
+  color: #f1f5f9;
 }
 
 .pt-loader {
   text-align: center;
-  padding: 50px;
-  color: #6c5ce7;
-  font-size: 1.2rem;
+  padding: 4rem 2rem;
+  color: #38bdf8;
+  font-size: 1.1rem;
+  background: rgba(30, 41, 59, 0.4);
+  backdrop-filter: blur(12px);
+  border-radius: 20px;
+  border: 1px dashed rgba(255, 255, 255, 0.15);
 }
 
-/* بطاقة النتيجة */
+.pt-loader i {
+  font-size: 2rem;
+  margin-bottom: 0.75rem;
+  display: block;
+}
+
+/* 🏆 بطاقة النتيجة العلوية المميزة */
 .pt-result-card {
   display: flex;
   align-items: center;
-  gap: 20px;
-  padding: 20px;
-  border-radius: 12px;
-  margin-bottom: 25px;
-  color: white;
+  gap: 1.5rem;
+  padding: 1.75rem 2rem;
+  border-radius: 20px;
+  margin-bottom: 2rem;
+  position: relative;
+  overflow: hidden;
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  transition: all 0.3s ease;
 }
 
 .pt-result-card.passed {
-  background: linear-gradient(135deg, #00b894, #00cec9);
-  box-shadow: 0 10px 20px rgba(0, 184, 148, 0.2);
+  background: linear-gradient(
+    135deg,
+    rgba(16, 185, 129, 0.2),
+    rgba(52, 211, 153, 0.05)
+  );
+  border: 1px solid rgba(52, 211, 153, 0.35);
+  box-shadow: 0 10px 30px -10px rgba(52, 211, 153, 0.25);
+  color: #34d399;
 }
 
 .pt-result-card.failed {
-  background: linear-gradient(135deg, #d63031, #ff7675);
-  box-shadow: 0 10px 20px rgba(214, 48, 49, 0.2);
+  background: linear-gradient(
+    135deg,
+    rgba(244, 63, 94, 0.2),
+    rgba(225, 29, 72, 0.05)
+  );
+  border: 1px solid rgba(244, 63, 94, 0.35);
+  box-shadow: 0 10px 30px -10px rgba(244, 63, 94, 0.25);
+  color: #f43f5e;
 }
 
 .pt-result-icon i {
-  font-size: 3.5rem;
+  font-size: 3.25rem;
+  filter: drop-shadow(0 0 12px currentColor);
 }
 
 .pt-result-text h4 {
-  margin: 0;
-  font-size: 0.9rem;
-  opacity: 0.9;
+  margin: 0 0 0.25rem 0;
+  font-size: 0.85rem;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  opacity: 0.8;
+  color: #cbd5e1;
 }
 
 .pt-result-text h1 {
   margin: 0;
-  font-size: 2rem;
+  font-size: 2.2rem;
   font-weight: 800;
+  color: #ffffff;
+  text-shadow: 0 0 15px currentColor;
 }
 
-/* التنسيق الشبكي */
+/* 🎴 الشبكة والحاويات Structure */
 .pt-grid {
   display: flex;
   flex-direction: column;
-  gap: 20px;
+  gap: 1.5rem;
 }
 
 .pt-fieldset {
-  border: 1px solid #edeff2;
-  border-radius: 8px;
-  padding: 15px 20px;
+  background: rgba(30, 41, 59, 0.5);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 18px;
+  padding: 1.5rem;
+  margin: 0;
+  box-shadow: 0 10px 25px -10px rgba(0, 0, 0, 0.3);
 }
 
 .pt-fieldset legend {
-  font-weight: bold;
-  color: #2d3436;
-  padding: 0 10px;
+  font-weight: 700;
+  color: #38bdf8;
+  padding: 0 0.75rem;
   font-size: 0.95rem;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  float: right;
+  width: auto;
+  margin-bottom: 0.5rem;
+}
+
+.pt-fieldset legend i {
+  font-size: 1rem;
 }
 
 .pt-row {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-  gap: 15px;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 1.25rem;
+  width: 100%;
+  clear: both;
 }
 
 .pt-item {
   display: flex;
   flex-direction: column;
-  gap: 5px;
+  gap: 0.4rem;
+  background: rgba(15, 23, 42, 0.3);
+  padding: 0.85rem 1rem;
+  border-radius: 12px;
+  border: 1px solid rgba(255, 255, 255, 0.04);
 }
 
 .pt-item.full-width {
@@ -84,66 +149,96 @@
 }
 
 .pt-item label {
-  font-size: 0.8rem;
-  color: #7f8c8d;
+  font-size: 0.75rem;
+  color: #64748b;
   font-weight: 600;
 }
 
 .pt-item span {
   font-weight: 700;
-  color: #2d3436;
+  color: #f1f5f9;
+  font-size: 0.95rem;
 }
 
 .pt-highlight {
-  color: #6c5ce7 !important;
+  color: #38bdf8 !important;
+  text-shadow: 0 0 8px rgba(56, 189, 248, 0.3);
 }
 
+/* 📝 صندوق الملاحظات */
 .pt-notes-box {
-  background: #f8f9fb;
-  padding: 12px;
-  border-radius: 6px;
-  border-right: 4px solid #dfe6e9;
-  font-style: italic;
-  color: #636e72;
+  background: rgba(15, 23, 42, 0.4);
+  padding: 1rem 1.25rem;
+  border-radius: 12px;
+  border-right: 4px solid #38bdf8;
+  border-top: 1px solid rgba(255, 255, 255, 0.04);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.04);
+  border-left: 1px solid rgba(255, 255, 255, 0.04);
+  color: #cbd5e1;
+  font-size: 0.9rem;
+  line-height: 1.6;
+  clear: both;
 }
 
-/* الأزرار */
+/* 🔘 الأزرار */
 .pt-actions {
-  margin-top: 25px;
+  margin-top: 2rem;
   display: flex;
   justify-content: flex-end;
 }
 
 .pt-btn-close {
-  background: #2d3436;
-  color: white;
-  border: none;
-  padding: 10px 25px;
-  border-radius: 8px;
+  background: rgba(56, 189, 248, 0.1);
+  border: 1px solid rgba(56, 189, 248, 0.3);
+  color: #38bdf8;
+  padding: 0.75rem 2rem;
+  border-radius: 12px;
   cursor: pointer;
-  font-weight: 600;
-  transition: 0.3s;
+  font-weight: 700;
+  font-size: 0.9rem;
+  transition: all 0.25s ease;
   display: flex;
   align-items: center;
-  gap: 10px;
+  gap: 0.75rem;
 }
 
 .pt-btn-close:hover {
-  background: #000;
-  transform: translateX(-5px);
+  background: rgba(56, 189, 248, 0.25);
+  color: #ffffff;
+  box-shadow: 0 0 20px rgba(56, 189, 248, 0.3);
+  transform: translateX(4px);
 }
 
 .animated {
-  animation-duration: 0.5s;
+  animation-duration: 0.4s;
 }
+
 @keyframes fadeIn {
   from {
     opacity: 0;
+    transform: translateY(8px);
   }
   to {
     opacity: 1;
+    transform: translateY(0);
   }
 }
+
 .fadeIn {
   animation-name: fadeIn;
+}
+
+@media (max-width: 640px) {
+  .pt-result-card {
+    flex-direction: column;
+    text-align: center;
+    gap: 1rem;
+  }
+  .pt-actions {
+    justify-content: center;
+  }
+  .pt-btn-close {
+    width: 100%;
+    justify-content: center;
+  }
 }

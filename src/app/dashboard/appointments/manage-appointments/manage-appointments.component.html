@@ -1,4 +1,3 @@
-<!-- استبدل محتوى الملف بهذا الكود الموحد -->
 <app-notification />
 <app-confirmation-dialog
   [isVisible]="isDeleteDialogVisible()"
@@ -126,7 +125,6 @@
   </div>
 
   <footer class="la-pagination-area">
-    <!-- ✅ تم التصحيح هنا: استخدام filteredAppointments() -->
     <div class="la-results-info">
       إجمالي النتائج: <b>{{ filteredAppointments().length }}</b>
     </div>
@@ -139,7 +137,6 @@
         السابق
       </button>
       <span class="la-page-num">صفحة {{ currentPage }}</span>
-      <!-- ✅ تم التصحيح هنا أيضاً -->
       <button
         class="la-nav-btn"
         (click)="onNext()"

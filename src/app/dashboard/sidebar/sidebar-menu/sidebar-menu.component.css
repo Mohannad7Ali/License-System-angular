@@ -1,127 +1,214 @@
-.sb-main {
-  padding: 15px;
+/* Host Element styling لضمان مرونة المكون بالكامل */
+:host {
   display: flex;
   flex-direction: column;
-  gap: 10px;
+  flex: 1;
+  min-height: 0;
+  height: 100%;
 }
 
+/* ===== الحاوية الرئيسية للقائمة (Dark Glass) ===== */
+.sb-main {
+  padding: 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  flex: 1;
+  min-height: 0; /* يمنع الحاوية من التمدد خارج الإطار */
+  overflow-y: auto !important; /* تفعيل التمرير أوتوماتيكياً عند الحاجة */
+  box-sizing: border-box;
+}
+
+/* التمرير المخصص والشاشات (Custom Scrollbar) */
+.sb-main::-webkit-scrollbar {
+  width: 5px;
+}
+
+.sb-main::-webkit-scrollbar-track {
+  background: rgba(15, 20, 35, 0.4);
+}
+
+.sb-main::-webkit-scrollbar-thumb {
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 10px;
+}
+
+.sb-main::-webkit-scrollbar-thumb:hover {
+  background: rgba(0, 240, 255, 0.3);
+}
+
+/* ===== الأقسام والعناوين الفرعية ===== */
 .sb-section {
   display: flex;
   flex-direction: column;
-  margin-bottom: 5px;
 }
 
 .sb-label {
   font-size: 11px;
-  color: #94a3b8;
-  font-weight: 700;
-  margin: 10px 10px 5px;
+  color: #64748b;
+  font-weight: 800;
+  margin: 14px 10px 6px;
   text-transform: uppercase;
-  letter-spacing: 0.5px;
+  letter-spacing: 0.8px;
 }
 
+/* ===== أزرار القائمة والروابط الرئيسية ===== */
 .sb-btn,
 .sb-link {
   width: 100%;
   display: flex;
   align-items: center;
-  padding: 12px 15px;
-  border: none;
+  padding: 11px 14px;
+  border: 1px solid transparent;
   background: transparent;
-  color: #334155;
+  color: #94a3b8;
   font-size: 0.9rem;
   font-weight: 600;
-  border-radius: 10px;
+  border-radius: 12px;
   cursor: pointer;
-  transition: all 0.2s ease;
+  transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
   text-decoration: none;
   gap: 12px;
+  box-sizing: border-box;
+  position: relative;
 }
 
 .sb-btn:hover,
 .sb-link:hover {
-  background-color: #f1f5f9;
-  color: #0f172a;
+  background: rgba(255, 255, 255, 0.05);
+  color: #f8fafc;
+  border-color: rgba(255, 255, 255, 0.08);
 }
 
-.sb-link.active {
-  background-color: #e0f2fe;
-  color: #0284c7 !important;
+.sb-link.active,
+.sb-btn.open {
+  background: rgba(0, 240, 255, 0.08);
+  color: #00f0ff !important;
+  border: 1px solid rgba(0, 240, 255, 0.2);
+  box-shadow: 0 0 15px rgba(0, 240, 255, 0.1);
 }
 
 .sb-icon {
   width: 20px;
   color: #64748b;
   font-size: 1.1rem;
+  transition: color 0.25s ease;
+  text-align: center;
 }
 
-.sb-link.active .sb-icon {
-  color: #0284c7;
+.sb-btn:hover .sb-icon,
+.sb-link:hover .sb-icon {
+  color: #00f0ff;
+}
+
+.sb-link.active .sb-icon,
+.sb-btn.open .sb-icon {
+  color: #00f0ff;
 }
 
 .arrow {
   margin-right: auto;
-  font-size: 10px;
-  transition: transform 0.3s ease;
+  font-size: 11px;
+  color: #64748b;
+  transition:
+    transform 0.3s cubic-bezier(0.4, 0, 0.2, 1),
+    color 0.25s ease;
 }
 
 .sb-btn.open .arrow {
-  transform: rotate(-90deg); /* تدوير السهم في RTL */
+  transform: rotate(-90deg);
+  color: #00f0ff;
 }
 
+/* ===== القوائم الفرعية ===== */
 .sb-submenu {
   margin-right: 20px;
-  border-right: 2px solid #e2e8f0;
-  padding-right: 15px;
+  border-right: 2px solid rgba(0, 240, 255, 0.2);
+  padding-right: 12px;
   display: flex;
   flex-direction: column;
-  gap: 5px;
-  margin-top: 5px;
-  animation: slideDown 0.3s ease-out;
+  gap: 4px;
+  margin-top: 6px;
+  margin-bottom: 6px;
+  animation: slideDown 0.3s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
 .sb-submenu a {
-  padding: 8px 10px;
+  padding: 9px 12px;
   font-size: 0.85rem;
-  color: #64748b;
+  color: #94a3b8;
   text-decoration: none;
-  border-radius: 6px;
-  transition: 0.2s;
+  border-radius: 8px;
+  transition: all 0.2s ease;
+  position: relative;
+  font-weight: 500;
 }
 
 .sb-submenu a:hover {
-  background-color: #f8fafc;
-  color: #0f172a;
+  background: rgba(255, 255, 255, 0.05);
+  color: #f8fafc;
+  padding-right: 16px;
 }
 
 .sb-submenu a.active {
-  color: #0284c7;
+  color: #00f0ff;
   font-weight: 700;
+  background: rgba(0, 240, 255, 0.1);
+  padding-right: 16px;
+}
+
+.sb-submenu a.active::before {
+  content: "";
+  position: absolute;
+  right: -14px;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 4px;
+  height: 16px;
+  background: #00f0ff;
+  border-radius: 4px;
+  box-shadow: 0 0 8px #00f0ff;
+}
+
+/* ===== زر تسجيل الخروج الأحمر ===== */
+.system-footer {
+  margin-top: auto;
+  padding-top: 16px;
+  padding-bottom: 24px; /* مسافة سفلية ممتازة لمنع القطع */
+  flex-shrink: 0;
 }
 
 .sb-logout {
-  color: #ef4444 !important;
-  margin-top: 15px;
+  color: #f87171 !important;
   width: 100%;
   display: flex;
   align-items: center;
   padding: 12px 15px;
-  border: none;
-  background: #fef2f2;
-  border-radius: 10px;
+  border: 1px solid rgba(239, 68, 68, 0.2);
+  background: rgba(239, 68, 68, 0.08);
+  border-radius: 12px;
   font-weight: 700;
   cursor: pointer;
   gap: 12px;
+  transition: all 0.3s ease;
+  font-size: 0.9rem;
 }
 
 .sb-logout:hover {
-  background: #fee2e2;
+  background: rgba(239, 68, 68, 0.2);
+  border-color: rgba(239, 68, 68, 0.4);
+  color: #ffffff !important;
+  box-shadow: 0 0 15px rgba(239, 68, 68, 0.2);
+}
+
+.sb-logout i {
+  font-size: 1.1rem;
 }
 
 @keyframes slideDown {
   from {
     opacity: 0;
-    transform: translateY(-10px);
+    transform: translateY(-8px);
   }
   to {
     opacity: 1;

@@ -1,48 +1,82 @@
-<div class="cont">
+<div class="cont" dir="rtl">
+  <!-- الجانب البصري / الصورة الزجاجية -->
   <div class="img-box">
-    <img src="images\Resume-Building-min-1.png" alt="" />
+    <div class="img-overlay"></div>
+    <div class="brand-badge">
+      <i class="fa fa-car" aria-hidden="true"></i>
+      <span>DVLD System</span>
+    </div>
+    <img src="images/Resume-Building-min-1.png" alt="DVLD Login" />
   </div>
+
+  <!-- صندوق النموذج الزجاجي -->
   <div class="container">
     <header>
-      <p class="main-text">سجل دخول إلى حسابك!</p>
+      <h2 class="main-text">سجّل الدخول إلى حسابك</h2>
+      <p class="sub-text">أدخل معلوماتك للوصول إلى لوحة التحكم</p>
     </header>
 
     <form [formGroup]="login_form" (ngSubmit)="onSubmit()">
+      <!-- حقل اسم المستخدم -->
       <div class="control">
         <label for="username">اسم المستخدم</label>
-        <input
-          type="text"
-          id="username"
-          [formControl]="login_form.controls.username"
-        />
+        <div class="input-wrapper">
+          <i class="fa fa-user input-icon" aria-hidden="true"></i>
+          <input
+            type="text"
+            id="username"
+            placeholder="أدخل اسم المستخدم"
+            [formControl]="login_form.controls.username"
+          />
+        </div>
       </div>
 
+      <!-- حقل كلمة المرور -->
       <div class="control">
         <label for="password">كلمة المرور</label>
-        <input type="password" id="password" formControlName="password" />
+        <div class="input-wrapper">
+          <i class="fa fa-lock input-icon" aria-hidden="true"></i>
+          <input
+            type="password"
+            id="password"
+            placeholder="أدخل كلمة المرور"
+            formControlName="password"
+          />
+        </div>
       </div>
 
-      <a href="#" style="pointer-events: none; text-decoration: none"
-        >هل نسيت كلمة المرور</a
-      >
-      <button type="submit" class="button homepage-button">
-        تسجيل الدخول &#8594;
-      </button>
-      <button routerLink="../" class="button homepage-button">
-        العودة إلى الموقع
+      <div class="form-actions">
+        <a href="javascript:void(0)" class="forgot-link"
+          >هل نسيت كلمة المرور؟</a
+        >
+      </div>
+
+      <!-- أزرار التحكم -->
+      <button type="submit" class="btn-submit" [disabled]="invalidForm">
+        <span>تسجيل الدخول</span>
+        <i class="fa fa-arrow-left" aria-hidden="true"></i>
       </button>
 
-      <!-- <p>Don't have an accunt? <a href="">Sign up</a></p> -->
+      <button type="button" routerLink="../" class="btn-back">
+        العودة إلى الموقع الرئيسي
+      </button>
 
-      @if (invalidPassword || isExist() == false) {
-        <p class="error">invalid username/password</p>
+      <!-- تنبيهات الأخطاء (بنفس المنطق تماماً) -->
+      @if (invalidPassword || isExist() === false) {
+        <div class="error-msg">
+          <i class="fa fa-exclamation-circle" aria-hidden="true"></i>
+          <span>اسم المستخدم أو كلمة المرور غير صحيحة</span>
+        </div>
       }
       @if (
         isExist() === true &&
         isActive() === false &&
         login_form.controls.username.value !== ""
       ) {
-        <p class="error">user {{ enteredUsername() }} is NOT active</p>
+        <div class="error-msg">
+          <i class="fa fa-ban" aria-hidden="true"></i>
+          <span>المستخدم {{ enteredUsername() }} غير مفعل</span>
+        </div>
       }
     </form>
   </div>

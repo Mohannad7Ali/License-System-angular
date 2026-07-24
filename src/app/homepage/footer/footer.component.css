@@ -1,52 +1,102 @@
-/* ===== تذييل الصفحة ===== */
-.homepage-container {
-  text-align: center; /* تغيير من left إلى center للتوافق مع RTL */
-  padding: 30px;
-  margin-bottom: 0;
-  border-top: 1px solid var(--bg-hover-color, #e2e8f0);
-  gap: 0;
-  direction: rtl; /* دعم RTL */
-  background: var(--bg-white, #ffffff);
+/* ===== تذييل الصفحة (Glassmorphic Footer) ===== */
+.ov-footer {
+  direction: rtl;
+  background: rgba(15, 20, 35, 0.8);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border-top: 1px solid rgba(255, 255, 255, 0.08);
+  padding: 40px 24px 24px;
+  position: relative;
+  overflow: hidden;
 }
 
-.homepage-container p {
-  text-align: center; /* تغيير من left إلى center */
-  color: #475569; /* لون رمادي محايد بدلاً من الأسود الصارخ */
-  margin: 4px 0;
-  font-weight: 500;
-  font-size: 15px;
+/* خط نيون علوي متوهج */
+.ov-footer::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 1px;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    #7000ff,
+    #00f0ff,
+    transparent
+  );
 }
 
-/* تحسين النص الأول (العنوان) */
-.homepage-container p:first-of-type {
-  color: #0f172a; /* لون داكن (Navy) للتمييز */
-  font-weight: 700;
-  font-size: 16px;
+.ov-footer-content {
+  max-width: 1280px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
 }
 
-/* تحسين النص الثاني (حقوق النشر) */
-.homepage-container p:last-of-type {
-  color: #94a3b8; /* لون رمادي فاتح للتباين */
+/* الشعار والوصف */
+.ov-footer-brand {
+  margin-bottom: 20px;
+}
+
+.ov-footer-logo {
+  font-size: 22px;
+  font-weight: 900;
+  background: linear-gradient(135deg, #ffffff, #00f0ff);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  display: inline-block;
+  margin-bottom: 8px;
+}
+
+.ov-footer-desc {
+  color: #94a3b8;
   font-size: 14px;
-  font-weight: 400;
+  max-width: 500px;
+  margin: 0 auto;
+  line-height: 1.6;
 }
 
-/* ===== إذا كان هناك خلفية معتمة ===== */
-.homepage-container.withbackground {
-  background: #f8fafc; /* خلفية رمادية فاتحة جداً */
-  border-top: 2px solid #e2e8f0;
-  padding: 24px 30px;
+/* فاصل نيون خفيف */
+.ov-footer-divider {
+  width: 100%;
+  max-width: 800px;
+  height: 1px;
+  background: rgba(255, 255, 255, 0.05);
+  margin: 24px 0 20px;
 }
 
-/* ===== استجابة للشاشات الصغيرة ===== */
+/* حقوق النشر */
+.ov-footer-bottom {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.copyright-text {
+  color: #64748b;
+  font-size: 13px;
+  font-weight: 500;
+  margin: 0;
+}
+
+/* ===== التجاوب للشاشات الصغيرة ===== */
 @media (max-width: 640px) {
-  .homepage-container {
-    padding: 20px 16px;
+  .ov-footer {
+    padding: 30px 16px 20px;
   }
-  .homepage-container p {
-    font-size: 14px;
+
+  .ov-footer-logo {
+    font-size: 18px;
   }
-  .homepage-container p:first-of-type {
-    font-size: 15px;
+
+  .ov-footer-desc {
+    font-size: 13px;
+  }
+
+  .copyright-text {
+    font-size: 12px;
   }
 }

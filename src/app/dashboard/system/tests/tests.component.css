@@ -1,146 +1,354 @@
+/* ==========================================================================
+   Dark Neon Glossy / Glassmorphism Theme - Test Types Grid
+   ========================================================================== */
+
 .container {
-  padding: 20px;
-  max-width: 1200px;
+  padding: 2rem;
+  max-width: 1280px;
   margin: 0 auto;
-}
-.page-header h2 {
-  color: #2d3748;
-  font-size: 1.4rem;
-  margin-bottom: 5px;
-  display: flex;
-  align-items: center;
-  gap: 10px;
-}
-.subtitle {
-  color: #718096;
-  font-size: 0.85rem;
-  margin-bottom: 25px;
+  direction: rtl;
+  font-family:
+    "Segoe UI",
+    system-ui,
+    -apple-system,
+    sans-serif;
+  color: #f1f5f9;
+  animation: fadeIn 0.4s ease-out;
 }
 
+/* 📌 الهيدر */
+.page-header {
+  margin-bottom: 2rem;
+}
+
+.page-header h2 {
+  color: #f8fafc;
+  font-size: 1.6rem;
+  font-weight: 800;
+  margin-bottom: 0.4rem;
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.page-header h2 i {
+  color: #38bdf8;
+  filter: drop-shadow(0 0 8px rgba(56, 189, 248, 0.4));
+}
+
+.subtitle {
+  color: #94a3b8;
+  font-size: 0.9rem;
+}
+
+/* 🔍 شريط التحكم والبحث */
 .table-controls {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  margin-bottom: 20px;
+  gap: 1.25rem;
+  margin-bottom: 2rem;
+  flex-wrap: wrap;
 }
+
 .search-box {
   position: relative;
-  width: 350px;
+  flex: 1;
+  max-width: 400px;
+  min-width: 260px;
 }
+
 .search-icon {
   position: absolute;
-  right: 12px;
+  right: 1rem;
   top: 50%;
   transform: translateY(-50%);
-  color: #a0aec0;
-  font-size: 0.9rem;
+  color: #64748b;
+  font-size: 0.95rem;
 }
+
 .search-box input {
   width: 100%;
-  padding: 10px 40px 10px 15px;
-  font-size: 0.9rem;
-  border: 1px solid #e2e8f0;
-  border-radius: 8px;
+  padding: 0.75rem 2.8rem 0.75rem 1.25rem;
+  font-size: 0.95rem;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 12px;
+  background: rgba(15, 23, 42, 0.6);
+  backdrop-filter: blur(12px);
+  color: #f1f5f9;
+  outline: none;
+  transition: all 0.25s ease;
+  box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+.search-box input:focus {
+  border-color: #38bdf8;
+  background: rgba(15, 23, 42, 0.85);
+  box-shadow:
+    0 0 0 3px rgba(56, 189, 248, 0.25),
+    0 0 15px rgba(56, 189, 248, 0.2);
 }
 
 .add-btn {
-  background-color: var(--dark-color);
+  background: linear-gradient(135deg, #0ea5e9, #0284c7);
   color: white;
-  padding: 9px 18px;
-  font-size: 0.85rem;
-  font-weight: 500;
-  border-radius: 8px;
-  font-weight: 500;
-  width: 20%;
-  border: none;
-  cursor: pointer;
+  padding: 0.75rem 1.5rem;
+  font-size: 0.9rem;
+  border-radius: 12px;
+  font-weight: 700;
   display: flex;
-  justify-content: center;
+  align-items: center;
+  gap: 0.6rem;
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  cursor: pointer;
+  text-decoration: none;
+  transition: all 0.25s ease;
+  box-shadow: 0 4px 15px rgba(14, 165, 233, 0.3);
 }
 
-.table-container {
-  background: white;
+.add-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(14, 165, 233, 0.5);
+  color: #fff;
+}
+
+/* 🎴 شبكة البطاقات Grid */
+.cards-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+  gap: 1.5rem;
+  margin-bottom: 2rem;
+}
+
+.test-card {
+  background: rgba(30, 41, 59, 0.5);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border-radius: 18px;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  padding: 1.5rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  gap: 1.25rem;
+  position: relative;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  box-shadow: 0 10px 25px -10px rgba(0, 0, 0, 0.4);
+}
+
+.test-card:hover {
+  transform: translateY(-5px);
+  border-color: rgba(56, 189, 248, 0.4);
+  box-shadow: 0 15px 35px -10px rgba(56, 189, 248, 0.25);
+  background: rgba(30, 41, 59, 0.7);
+}
+
+.card-header-wrapper {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.test-icon-wrapper {
+  width: 42px;
+  height: 42px;
   border-radius: 10px;
-  border: 1px solid #e2e8f0;
-  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
-  overflow: hidden;
+  background: rgba(56, 189, 248, 0.12);
+  border: 1px solid rgba(56, 189, 248, 0.25);
+  color: #38bdf8;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.1rem;
 }
-table {
-  width: 100%;
-  border-collapse: collapse;
-  font-size: 0.85rem;
+
+.id-badge {
+  background: rgba(255, 255, 255, 0.06);
+  color: #94a3b8;
+  padding: 0.25rem 0.75rem;
+  border-radius: 20px;
+  font-weight: 700;
+  font-size: 0.75rem;
+  border: 1px solid rgba(255, 255, 255, 0.08);
 }
-th {
-  background-color: #f7fafc;
-  color: #4a5568;
-  font-weight: 600;
-  padding: 12px 15px;
-  text-align: center;
-  border-bottom: 2px solid #edf2f7;
+
+.card-body-content {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
 }
-td {
-  padding: 12px 15px;
-  border-bottom: 1px solid #edf2f7;
-  vertical-align: middle;
-  color: #4a5568;
+
+.card-title {
+  color: #f8fafc;
+  font-size: 1.15rem;
+  font-weight: 700;
+  margin: 0;
+  line-height: 1.4;
 }
 
 .desc-cell {
-  color: #718096;
-  font-size: 0.8rem;
-  line-height: 1.4;
-}
-.fee-cell {
-  color: #38a169;
-  font-weight: 700;
-}
-.id-badge {
-  background: #edf2f7;
-  padding: 3px 8px;
-  border-radius: 5px;
-  font-weight: bold;
+  color: #94a3b8;
+  font-size: 0.85rem;
+  line-height: 1.5;
+  margin: 0;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  min-height: 2.55rem;
 }
 
-.actions {
-  display: flex;
-  gap: 8px;
-  justify-content: center;
+.card-fee-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  background: rgba(52, 211, 153, 0.1);
+  border: 1px solid rgba(52, 211, 153, 0.25);
+  padding: 0.4rem 0.85rem;
+  border-radius: 10px;
+  width: fit-content;
+  margin-top: 0.25rem;
 }
-.btn-action {
-  padding: 6px 12px;
+
+.fee-label {
   font-size: 0.75rem;
-  border-radius: 6px;
-  border: none;
+  color: #94a3b8;
+}
+
+.fee-cell {
+  color: #34d399;
+  font-weight: 800;
+  font-size: 1.1rem;
+  text-shadow: 0 0 10px rgba(52, 211, 153, 0.2);
+}
+
+/* ⚡ أزرار التحكم بالبطاقة */
+.card-actions {
+  display: flex;
+  gap: 0.75rem;
+  padding-top: 1rem;
+  border-top: 1px solid rgba(255, 255, 255, 0.06);
+}
+
+.btn-action {
+  flex: 1;
+  padding: 0.6rem;
+  font-size: 0.85rem;
+  border-radius: 10px;
+  border: 1px solid transparent;
   cursor: pointer;
+  font-weight: 600;
   display: flex;
   align-items: center;
-  gap: 5px;
-}
-.edit {
-  background-color: #ebf4ff;
-  color: #4c51bf;
-}
-.delete {
-  background-color: #fff5f5;
-  color: #c53030;
+  justify-content: center;
+  gap: 0.5rem;
+  transition: all 0.2s ease;
 }
 
+.edit {
+  background: rgba(56, 189, 248, 0.1);
+  color: #38bdf8;
+  border-color: rgba(56, 189, 248, 0.2);
+}
+
+.edit:hover {
+  background: rgba(56, 189, 248, 0.25);
+  color: #ffffff;
+}
+
+.delete {
+  background: rgba(244, 63, 94, 0.1);
+  color: #f43f5e;
+  border-color: rgba(244, 63, 94, 0.2);
+}
+
+.delete:hover {
+  background: rgba(244, 63, 94, 0.25);
+  color: #ffffff;
+}
+
+/* 📭 حالة القائمة الفارغة */
+.empty-state {
+  grid-column: 1 / -1;
+  background: rgba(30, 41, 59, 0.4);
+  backdrop-filter: blur(12px);
+  border: 1px dashed rgba(255, 255, 255, 0.15);
+  border-radius: 20px;
+  padding: 3.5rem 1.5rem;
+  text-align: center;
+  color: #94a3b8;
+}
+
+.empty-state i {
+  font-size: 2.5rem;
+  margin-bottom: 1rem;
+  color: #64748b;
+  display: block;
+}
+
+.empty-state p {
+  margin: 0;
+  font-size: 1rem;
+}
+
+/* 📄 الترقيم Pagination */
 .pagination {
   display: flex;
   justify-content: center;
   align-items: center;
-  margin-top: 20px;
-  gap: 12px;
+  gap: 1rem;
+  margin-top: 2rem;
 }
+
 .p-btn {
-  background: #fff;
-  border: 1px solid #e2e8f0;
-  padding: 6px 14px;
-  border-radius: 6px;
+  background: rgba(30, 41, 59, 0.6);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  padding: 0.6rem 1.25rem;
+  border-radius: 10px;
   font-size: 0.85rem;
+  color: #cbd5e1;
   cursor: pointer;
+  font-weight: 600;
+  transition: all 0.2s ease;
 }
+
+.p-btn:hover:not(:disabled) {
+  background: rgba(56, 189, 248, 0.15);
+  border-color: rgba(56, 189, 248, 0.3);
+  color: #38bdf8;
+}
+
 .p-btn:disabled {
-  opacity: 0.4;
+  opacity: 0.35;
   cursor: not-allowed;
+}
+
+.page-info {
+  font-size: 0.85rem;
+  color: #94a3b8;
+  font-weight: 600;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@media (max-width: 640px) {
+  .table-controls {
+    flex-direction: column;
+    align-items: stretch;
+  }
+  .search-box {
+    max-width: 100%;
+  }
+  .add-btn {
+    justify-content: center;
+  }
 }

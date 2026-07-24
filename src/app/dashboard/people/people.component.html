@@ -24,20 +24,20 @@
   <!-- قسم الفلترة والإضافة -->
   <div class="table-controls">
     <div class="search-wrapper">
-      <i class="fa fa-search search-icon"></i>
       <input
         type="text"
         [formControl]="filter"
         placeholder="ابحث بالاسم، الرقم الوطني، أو الهاتف..."
       />
+      <i class="fa fa-search search-icon"></i>
     </div>
-    <button class="button add-btn" (click)="onAddPerson()">
+    <button class="add-btn" (click)="onAddPerson()">
       <i class="fa fa-user-plus"></i> إضافة شخص جديد
     </button>
   </div>
 
-  <!-- جدول البيانات -->
-  <div class="card table-card">
+  <!-- جدول البيانات الداكن العصري -->
+  <div class="table-card">
     <table>
       <thead>
         <tr>
@@ -54,10 +54,10 @@
         @for (person of displayedData; track person.id) {
           <tr>
             <td>
-              <span class="id-badge">{{ person.id }}</span>
+              <span class="id-badge">#{{ person.id }}</span>
             </td>
             <td>
-              <strong>{{ person.nationalNumber }}</strong>
+              <strong class="national-num">{{ person.nationalNumber }}</strong>
             </td>
             <td>
               {{ person.firstName }} {{ person.secondName }}

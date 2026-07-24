@@ -31,7 +31,6 @@ export class PeopleComponent implements OnInit, OnDestroy {
   currentPage = 1;
   pageSize = 8;
 
-  // تعديل طريقة تعريف الـ FormControl لضمان استقرار القيمة البدئية
   filter = new FormControl<string>('');
   isDialogVisible = signal<boolean>(false);
   selectedPersonId: number | null = null;
@@ -45,7 +44,6 @@ export class PeopleComponent implements OnInit, OnDestroy {
   ngOnInit(): void {
     this.loadPeople();
 
-    // مراقبة التغيير مع حماية ضد القيم الفارغة أو الـ null
     const filterSub = this.filter.valueChanges
       .pipe(
         debounceTime(300),
@@ -59,8 +57,8 @@ export class PeopleComponent implements OnInit, OnDestroy {
   loadPeople() {
     const sub = this.personService.all().subscribe({
       next: (data) => {
-        this.people = data || []; // حماية في حال واجهة البرمجية أعادت null
-        this.applyFilter(this.filter.value || ''); // تطبيق الفلتر الحالي مباشرة لتحديث displayedData
+        this.people = data || [];
+        this.applyFilter(this.filter.value || '');
       },
       error: () =>
         this.notifyServ.showMessage({
@@ -77,8 +75,7 @@ export class PeopleComponent implements OnInit, OnDestroy {
 
     if (!search) {
       this.filteredData = this.people;
-    }
-    {
+    } else {
       this.filteredData = this.people.filter(
         (p) =>
           p.nationalNumber?.toLowerCase().includes(search) ||

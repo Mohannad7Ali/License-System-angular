@@ -1,26 +1,51 @@
-<!-- header.component.html -->
 <header dir="rtl" class="ov-header">
+  <!-- الشعار والاسم -->
   <div class="ov-header-brand">
-    <span class="ov-logo">🚗 DVLD</span>
-    <span class="ov-slogan">نظام رخص القيادة</span>
+    <div class="logo-icon-box">
+      <i class="fa fa-car" aria-hidden="true"></i>
+    </div>
+    <div class="brand-text">
+      <span class="ov-logo">DVLD</span>
+      <span class="ov-slogan">نظام ترخيص المركبات والسواقين</span>
+    </div>
   </div>
 
+  <!-- قائمة التنقل -->
   <nav class="ov-nav">
     <ul class="ov-nav-list">
-      <li><a routerLink="/" routerLinkActive="active">الرئيسية</a></li>
-      <li><a routerLink="/services" routerLinkActive="active">الخدمات</a></li>
-      <li><a routerLink="/process" routerLinkActive="active">الإجراءات</a></li>
-      <li><a routerLink="/about" routerLinkActive="active">عنا</a></li>
-      <li><a routerLink="/contact" routerLinkActive="active">اتصل بنا</a></li>
+      <li>
+        <a href="#hero" (click)="scrollToSection($event, 'hero')">
+          <i class="fa fa-home"></i> الرئيسية
+        </a>
+      </li>
+      <li>
+        <a href="#services" (click)="scrollToSection($event, 'services')">
+          <i class="fa fa-cubes"></i> الخدمات
+        </a>
+      </li>
+      <li>
+        <a href="#process" (click)="scrollToSection($event, 'process')">
+          <i class="fa fa-tasks"></i> الإجراءات
+        </a>
+      </li>
+      <li>
+        <a href="#about-us" (click)="scrollToSection($event, 'about-us')">
+          <i class="fa fa-info-circle"></i> عن النظام
+        </a>
+      </li>
+      <li>
+        <a href="#contact-us" (click)="scrollToSection($event, 'contact-us')">
+          <i class="fa fa-envelope"></i> تواصل معنا
+        </a>
+      </li>
     </ul>
   </nav>
 
-  <button
-    routerLink="../login"
-    routerLinkActive="router-link-active"
-    class="ov-btn ov-btn-login"
-  >
-    <i class="fa fa-sign-in" aria-hidden="true"></i>
-    تسجيل الدخول
-  </button>
+  <!-- زر تسجيل الدخول -->
+  <div class="ov-header-actions">
+    <button routerLink="/login" class="ov-btn-login">
+      <i class="fa fa-sign-in" aria-hidden="true"></i>
+      <span>تسجيل الدخول</span>
+    </button>
+  </div>
 </header>

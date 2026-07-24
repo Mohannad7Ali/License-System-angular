@@ -1,154 +1,319 @@
+/* ==========================================================================
+   Dark Neon Glossy / Glassmorphism Theme - Replace Application Component
+   ========================================================================== */
+
 .rp-container {
   max-width: 900px;
-  margin: 20px auto;
-  padding: 0 20px;
+  margin: 2rem auto;
+  padding: 0 1.5rem;
+  direction: rtl;
+  font-family:
+    "Segoe UI",
+    system-ui,
+    -apple-system,
+    sans-serif;
+  color: #f1f5f9;
+  animation: fadeIn 0.4s ease-out;
 }
 
+/* 📌 الهيدر */
 .rp-header h2 {
-  color: #2c3e50;
-  border-right: 5px solid #3498db;
-  padding-right: 15px;
-  margin-bottom: 25px;
+  color: #f8fafc;
+  border-right: 5px solid #38bdf8;
+  padding-right: 1rem;
+  margin-bottom: 2rem;
+  font-size: 1.5rem;
+  font-weight: 800;
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
 }
 
+.rp-header h2 i {
+  color: #38bdf8;
+  filter: drop-shadow(0 0 8px rgba(56, 189, 248, 0.4));
+}
+
+/* 🎴 البطاقات الزجاجية Glassmorphism Cards */
 .rp-card {
-  background: #fff;
-  border-radius: 12px;
-  padding: 20px;
-  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
-  margin-bottom: 20px;
-  border: 1px solid #f1f2f6;
+  background: rgba(30, 41, 59, 0.5);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border-radius: 20px;
+  padding: 1.75rem;
+  box-shadow: 0 10px 30px -10px rgba(0, 0, 0, 0.5);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  margin-bottom: 1.5rem;
 }
 
-/* Selector for Damaged/Lost */
+.rp-card h3 {
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: #f8fafc;
+  margin-top: 0;
+  margin-bottom: 1.25rem;
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  padding-bottom: 0.75rem;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.rp-card h3 i {
+  color: #38bdf8;
+}
+
+/* 🔘 محدد نوع البدل (Lost / Damaged Selector) */
 .rp-mode-selector {
   display: flex;
-  gap: 30px;
+  gap: 2.5rem;
   justify-content: center;
-  background: #f8f9fa;
+  background: rgba(15, 23, 42, 0.6);
+  border: 1px solid rgba(255, 255, 255, 0.08);
 }
 
 .rp-radio {
   cursor: pointer;
   display: flex;
   align-items: center;
-  gap: 10px;
-  font-weight: 600;
-  color: #34495e;
+  gap: 0.6rem;
+  font-weight: 700;
+  color: #cbd5e1;
+  padding: 0.6rem 1.2rem;
+  border-radius: 12px;
+  transition: all 0.25s ease;
+}
+
+.rp-radio:hover {
+  background: rgba(255, 255, 255, 0.05);
+  color: #f8fafc;
 }
 
 .rp-radio input[type="radio"] {
-  width: 20px;
-  height: 20px;
-  accent-color: #3498db;
+  width: 18px;
+  height: 18px;
+  accent-color: #38bdf8;
+  cursor: pointer;
 }
 
+/* 🔍 قسم البحث */
 .rp-search-group {
   display: flex;
   flex-direction: column;
-  gap: 10px;
+  gap: 0.6rem;
+}
+
+.rp-search-group label {
+  font-size: 0.9rem;
+  font-weight: 700;
+  color: #cbd5e1;
 }
 
 .rp-input-wrapper {
   display: flex;
-  gap: 10px;
+  gap: 0.75rem;
 }
 
 .rp-input-wrapper input {
   flex: 1;
-  padding: 12px;
-  border: 2px solid #eee;
-  border-radius: 8px;
+  padding: 0.85rem 1.25rem;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 12px;
+  font-size: 1rem;
+  background: rgba(15, 23, 42, 0.6);
+  color: #f1f5f9;
   outline: none;
+  transition: all 0.25s ease;
+  box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+.rp-input-wrapper input:focus {
+  border-color: #38bdf8;
+  background: rgba(15, 23, 42, 0.85);
+  box-shadow:
+    0 0 0 3px rgba(56, 189, 248, 0.25),
+    0 0 15px rgba(56, 189, 248, 0.2);
 }
 
 .rp-btn-search {
-  padding: 0 25px;
-  background: #2c3e50;
+  padding: 0 2rem;
+  background: linear-gradient(135deg, #0ea5e9, #0284c7);
   color: white;
-  border: none;
-  border-radius: 8px;
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  border-radius: 12px;
   cursor: pointer;
+  font-weight: 700;
+  transition: all 0.25s ease;
+  box-shadow: 0 4px 15px rgba(14, 165, 233, 0.3);
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
 }
 
+.rp-btn-search:hover:not([disabled]) {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(14, 165, 233, 0.5);
+}
+
+.rp-btn-search:disabled {
+  opacity: 0.4;
+  cursor: not-allowed;
+  box-shadow: none;
+}
+
+/* 📊 شبكة البيانات */
 .rp-info-grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-  gap: 20px;
+  gap: 1.25rem;
+  background: rgba(15, 23, 42, 0.5);
+  padding: 1.25rem;
+  border-radius: 14px;
+  border: 1px solid rgba(255, 255, 255, 0.05);
 }
 
 .rp-info-item label {
   display: block;
-  font-size: 0.85rem;
-  color: #7f8c8d;
-  margin-bottom: 5px;
+  font-size: 0.8rem;
+  color: #94a3b8;
+  margin-bottom: 0.4rem;
+  font-weight: 600;
 }
 
 .rp-val {
   font-weight: 700;
-  color: #2d3436;
+  color: #f1f5f9;
+  font-size: 1rem;
 }
 
 .total .rp-val {
   font-size: 1.3rem;
+  font-weight: 800;
 }
 
+/* ✅ بطاقة النجاح */
 .rp-success-card {
-  background: #ebf5fb;
-  border: 2px dashed #3498db;
+  background: rgba(56, 189, 248, 0.08);
+  border: 1px dashed rgba(56, 189, 248, 0.4);
+  box-shadow: 0 0 25px rgba(56, 189, 248, 0.15);
 }
 
 .success-header {
   display: flex;
   align-items: center;
-  gap: 10px;
-  color: #2980b9;
-  margin-bottom: 15px;
+  gap: 0.75rem;
+  color: #38bdf8;
+  margin-bottom: 1rem;
 }
 
+.success-header h4 {
+  margin: 0;
+  font-size: 1.2rem;
+  font-weight: 800;
+}
+
+.success-header i {
+  font-size: 1.5rem;
+}
+
+/* ⚡ الأزرار والإجراءات */
 .rp-actions {
   display: flex;
   justify-content: flex-end;
-  gap: 15px;
+  gap: 1rem;
+  margin-top: 1.75rem;
 }
 
 .rp-btn-replace {
-  background: #3498db;
+  background: linear-gradient(135deg, #0284c7, #0369a1);
   color: white;
-  padding: 12px 35px;
-  border: none;
-  border-radius: 8px;
-  font-weight: bold;
+  padding: 0.85rem 2.2rem;
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  border-radius: 12px;
+  font-weight: 700;
   cursor: pointer;
+  transition: all 0.25s ease;
+  box-shadow: 0 4px 20px rgba(2, 132, 199, 0.35);
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.rp-btn-replace:hover:not([disabled]) {
+  background: linear-gradient(135deg, #0ea5e9, #0284c7);
+  transform: translateY(-2px);
+  box-shadow: 0 6px 25px rgba(14, 165, 233, 0.5);
+}
+
+.rp-btn-replace:disabled {
+  opacity: 0.4;
+  cursor: not-allowed;
+  box-shadow: none;
 }
 
 .rp-btn-reset {
-  background: #dfe6e9;
-  color: #2c3e50;
-  padding: 12px 25px;
-  border: none;
-  border-radius: 8px;
+  background: rgba(30, 41, 59, 0.6);
+  color: #cbd5e1;
+  padding: 0.85rem 1.8rem;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 12px;
   cursor: pointer;
+  font-weight: 600;
+  transition: all 0.25s ease;
 }
 
+.rp-btn-reset:hover {
+  background: rgba(255, 255, 255, 0.05);
+  color: #ffffff;
+}
+
+/* 🎨 ألوان ورموز التمييز */
 .highlight {
-  color: #e67e22;
-}
-.text-success {
-  color: #27ae60;
+  color: #f59e0b;
+  font-weight: 800;
 }
 
-.animated {
-  animation-duration: 0.6s;
+.text-success {
+  color: #34d399;
+  text-shadow: 0 0 10px rgba(52, 211, 153, 0.3);
 }
+
+/* 🎬 الحركة */
+.animated {
+  animation-duration: 0.35s;
+  animation-fill-mode: forwards;
+}
+
 @keyframes fadeIn {
   from {
     opacity: 0;
+    transform: translateY(10px);
   }
   to {
     opacity: 1;
+    transform: translateY(0);
   }
 }
+
 .fadeIn {
   animation-name: fadeIn;
+}
+
+@media (max-width: 640px) {
+  .rp-mode-selector {
+    flex-direction: column;
+    gap: 1rem;
+    align-items: flex-start;
+  }
+  .rp-input-wrapper {
+    flex-direction: column;
+  }
+  .rp-actions {
+    flex-direction: column-reverse;
+  }
+  .rp-btn-replace,
+  .rp-btn-reset {
+    width: 100%;
+    justify-content: center;
+  }
 }

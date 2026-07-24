@@ -1,151 +1,287 @@
+/* ==========================================================================
+   Dark Neon Glossy / Glassmorphism Theme - Release License Application
+   ========================================================================== */
+
 .ra-container {
   max-width: 1000px;
-  margin: 20px auto;
-  padding: 0 15px;
-  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  margin: 2rem auto;
+  padding: 0 1.5rem;
+  direction: rtl;
+  font-family:
+    "Segoe UI",
+    system-ui,
+    -apple-system,
+    sans-serif;
+  color: #f1f5f9;
+  animation: fadeIn 0.4s ease-out;
 }
 
+/* 📌 الهيدر */
 .ra-header h2 {
-  color: #2d3436;
-  border-right: 5px solid #0984e3;
-  padding-right: 15px;
-  margin-bottom: 30px;
+  color: #f8fafc;
+  border-right: 5px solid #38bdf8;
+  padding-right: 1rem;
+  margin-bottom: 2rem;
+  font-size: 1.5rem;
+  font-weight: 800;
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
 }
 
+.ra-header h2 i {
+  color: #38bdf8;
+  filter: drop-shadow(0 0 8px rgba(56, 189, 248, 0.4));
+}
+
+/* 🎴 البطاقات الزجاجية Glassmorphism Cards */
 .ra-card {
-  background: #fff;
-  border-radius: 12px;
-  padding: 20px;
-  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
-  margin-bottom: 20px;
+  background: rgba(30, 41, 59, 0.5);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border-radius: 20px;
+  padding: 1.75rem;
+  box-shadow: 0 10px 30px -10px rgba(0, 0, 0, 0.5);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  margin-bottom: 1.5rem;
 }
 
+.ra-card h3 {
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: #f8fafc;
+  margin-top: 0;
+  margin-bottom: 1.25rem;
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  padding-bottom: 0.75rem;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.ra-card h3 i {
+  color: #38bdf8;
+}
+
+/* 🔍 حقل البحث */
 .ra-search-group {
   display: flex;
   flex-direction: column;
-  gap: 10px;
+  gap: 0.6rem;
+}
+
+.ra-search-group label {
+  font-size: 0.9rem;
+  font-weight: 700;
+  color: #cbd5e1;
 }
 
 .ra-input-wrapper {
   display: flex;
-  gap: 10px;
+  gap: 0.75rem;
 }
 
 .ra-input-wrapper input {
   flex: 1;
-  padding: 12px;
-  border: 2px solid #eee;
-  border-radius: 8px;
+  padding: 0.85rem 1.25rem;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 12px;
   font-size: 1rem;
-  transition: 0.3s;
+  background: rgba(15, 23, 42, 0.6);
+  color: #f1f5f9;
+  outline: none;
+  transition: all 0.25s ease;
+  box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.2);
 }
 
 .ra-input-wrapper input:focus {
-  border-color: #0984e3;
-  outline: none;
+  border-color: #38bdf8;
+  background: rgba(15, 23, 42, 0.85);
+  box-shadow:
+    0 0 0 3px rgba(56, 189, 248, 0.25),
+    0 0 15px rgba(56, 189, 248, 0.2);
 }
 
 .ra-btn-search {
-  padding: 0 25px;
-  background: #0984e3;
+  padding: 0 2rem;
+  background: linear-gradient(135deg, #0ea5e9, #0284c7);
   color: white;
-  border: none;
-  border-radius: 8px;
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  border-radius: 12px;
   cursor: pointer;
-  font-weight: bold;
+  font-weight: 700;
+  transition: all 0.25s ease;
+  box-shadow: 0 4px 15px rgba(14, 165, 233, 0.3);
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
 }
 
+.ra-btn-search:hover:not([disabled]) {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(14, 165, 233, 0.5);
+  background: linear-gradient(135deg, #38bdf8, #0ea5e9);
+}
+
+.ra-btn-search:disabled {
+  opacity: 0.4;
+  cursor: not-allowed;
+  box-shadow: none;
+}
+
+/* 📊 شبكة المعلومات */
 .ra-info-grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-  gap: 20px;
-  margin-top: 15px;
+  gap: 1.25rem;
+  background: rgba(15, 23, 42, 0.5);
+  padding: 1.25rem;
+  border-radius: 14px;
+  border: 1px solid rgba(255, 255, 255, 0.05);
 }
 
 .ra-info-item {
   display: flex;
   flex-direction: column;
-  gap: 5px;
+  gap: 0.3rem;
 }
 
 .ra-info-item label {
-  font-size: 0.85rem;
-  color: #636e72;
+  font-size: 0.8rem;
+  color: #94a3b8;
   font-weight: 600;
 }
 
 .ra-val {
-  font-weight: bold;
-  color: #2d3436;
+  font-weight: 700;
+  color: #f1f5f9;
+  font-size: 1rem;
 }
 
 .ra-val.highlight {
-  color: #d63031;
+  color: #fb7185;
+  text-shadow: 0 0 10px rgba(251, 113, 133, 0.2);
 }
 
 .total .ra-val {
-  color: #00b894;
-  font-size: 1.2rem;
+  color: #4ade80;
+  font-size: 1.3rem;
+  font-weight: 800;
+  text-shadow: 0 0 12px rgba(74, 222, 128, 0.3);
 }
 
+/* 🏷️ الشارات (Badges) */
 .ra-badge {
-  display: inline-block;
-  padding: 4px 12px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.35rem 0.85rem;
   border-radius: 20px;
   font-size: 0.8rem;
-  background: #dfe6e9;
+  font-weight: 700;
+  background: rgba(52, 211, 153, 0.15);
+  color: #34d399;
+  border: 1px solid rgba(52, 211, 153, 0.3);
   width: fit-content;
 }
 
 .ra-badge.detained {
-  background: #ff7675;
-  color: white;
+  background: rgba(244, 63, 94, 0.15);
+  color: #fb7185;
+  border-color: rgba(244, 63, 94, 0.3);
 }
 
+/* ⚡ أزرار التحكم */
 .ra-actions {
   display: flex;
   justify-content: flex-end;
-  gap: 15px;
-  margin-top: 20px;
+  gap: 1rem;
+  margin-top: 1.75rem;
 }
 
 .ra-btn-release {
-  background: #00b894;
+  background: linear-gradient(135deg, #10b981, #059669);
   color: white;
-  border: none;
-  padding: 12px 30px;
-  border-radius: 8px;
-  font-weight: bold;
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  padding: 0.85rem 2.2rem;
+  border-radius: 12px;
+  font-weight: 700;
   cursor: pointer;
-  transition: 0.3s;
+  transition: all 0.25s ease;
+  box-shadow: 0 4px 20px rgba(16, 185, 129, 0.35);
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.ra-btn-release:hover:not([disabled]) {
+  background: linear-gradient(135deg, #34d399, #10b981);
+  transform: translateY(-2px);
+  box-shadow: 0 6px 25px rgba(16, 185, 129, 0.5);
 }
 
 .ra-btn-release:disabled {
-  background: #b2bec3;
+  opacity: 0.4;
+  cursor: not-allowed;
+  box-shadow: none;
 }
 
 .ra-btn-reset {
-  background: #fab1a0;
-  color: #2d3436;
-  border: none;
-  padding: 12px 30px;
-  border-radius: 8px;
+  background: rgba(30, 41, 59, 0.6);
+  color: #cbd5e1;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  padding: 0.85rem 1.8rem;
+  border-radius: 12px;
   cursor: pointer;
+  font-weight: 600;
+  transition: all 0.25s ease;
 }
 
-.animated {
-  animation-duration: 0.5s;
+.ra-btn-reset:hover {
+  background: rgba(255, 255, 255, 0.05);
+  color: #ffffff;
+  border-color: rgba(255, 255, 255, 0.2);
 }
+
+/* 🎬 الحركة */
+.animated {
+  animation-duration: 0.35s;
+  animation-fill-mode: both;
+}
+
 @keyframes fadeIn {
   from {
     opacity: 0;
-    transform: translateY(10px);
+    transform: translateY(12px);
   }
   to {
     opacity: 1;
     transform: translateY(0);
   }
 }
+
 .fadeIn {
   animation-name: fadeIn;
+}
+
+/* 📱 الشاشات الصغيرة */
+@media (max-width: 640px) {
+  .ra-input-wrapper {
+    flex-direction: column;
+  }
+
+  .ra-btn-search {
+    padding: 0.85rem;
+    justify-content: center;
+  }
+
+  .ra-actions {
+    flex-direction: column-reverse;
+  }
+
+  .ra-btn-release,
+  .ra-btn-reset {
+    width: 100%;
+    justify-content: center;
+  }
 }

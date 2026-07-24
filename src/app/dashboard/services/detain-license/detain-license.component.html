@@ -40,7 +40,7 @@
       </section>
 
       @if (licenseData()) {
-        <section class="dn-card dn-form-section animated slideInUp">
+        <section class="dn-card dn-form-section slideInUp">
           <h3 class="dn-card-title">
             <i class="fa fa-gavel"></i> تفاصيل القيد المالي
           </h3>
@@ -96,7 +96,7 @@
     <!-- عمود معلومات السائق (اليسار) -->
     <div class="dn-col-side">
       @if (licenseData()) {
-        <section class="dn-card dn-user-card animated fadeIn">
+        <section class="dn-card dn-user-card fadeIn">
           <div class="dn-user-header">
             <img src="images/user (4).png" alt="Driver" class="dn-user-img" />
             <h4>{{ applicantName() }}</h4>
@@ -109,7 +109,7 @@
             </div>
             <div class="dn-detail">
               <label>تاريخ الانتهاء:</label>
-              <span [class.text-danger]="true">{{
+              <span class="text-danger">{{
                 licenseData()?.expDate | date: "dd/MM/yyyy"
               }}</span>
             </div>

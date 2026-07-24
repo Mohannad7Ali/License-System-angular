@@ -1,163 +1,221 @@
+/* ==========================================================================
+   Dark Neon Glossy / Glassmorphism Theme - User Account Component
+   ========================================================================== */
+
 .uc-container {
-  padding: 30px;
-  max-width: 1000px;
+  padding: 2rem;
+  max-width: 1100px;
   margin: 0 auto;
+  direction: rtl;
+  font-family:
+    "Segoe UI",
+    system-ui,
+    -apple-system,
+    sans-serif;
+  color: #f1f5f9;
 }
 
-/* الهيدر العلوي */
+/* ⏳ التحميل Loading */
+.uc-loading {
+  text-align: center;
+  padding: 4rem 2rem;
+  color: #38bdf8;
+  font-size: 1.1rem;
+  background: rgba(30, 41, 59, 0.4);
+  backdrop-filter: blur(12px);
+  border-radius: 20px;
+  border: 1px dashed rgba(255, 255, 255, 0.15);
+}
+
+.uc-loading i {
+  font-size: 2.2rem;
+  margin-bottom: 0.75rem;
+  display: block;
+}
+
+/* 📌 الهيدر العلوي Header */
 .uc-header {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  margin-bottom: 30px;
-  background: #ffffff;
-  padding: 20px 30px;
-  border-radius: 12px;
-  border: 1px solid #e2e8f0;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.02);
+  margin-bottom: 2rem;
+  background: rgba(30, 41, 59, 0.5);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  padding: 1.5rem 2rem;
+  border-radius: 20px;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  box-shadow: 0 10px 25px -10px rgba(0, 0, 0, 0.3);
+  gap: 1.5rem;
 }
 
 .uc-title-group {
   display: flex;
   align-items: center;
-  gap: 20px;
+  gap: 1.25rem;
 }
 
 .uc-main-icon {
   font-size: 2.5rem;
-  color: #0284c7;
+  color: #38bdf8;
+  filter: drop-shadow(0 0 10px rgba(56, 189, 248, 0.4));
 }
 
 .uc-title-group h1 {
   margin: 0;
-  font-size: 1.5rem;
-  color: #1e293b;
+  font-size: 1.6rem;
+  font-weight: 800;
+  color: #f8fafc;
 }
 
 .uc-title-group p {
-  margin: 5px 0 0;
-  color: #64748b;
+  margin: 0.25rem 0 0;
+  color: #94a3b8;
   font-size: 0.9rem;
 }
 
-/* الشبكة والكروت */
+/* 🔘 زر تغيير كلمة المرور */
+.uc-btn-password {
+  background: rgba(56, 189, 248, 0.1);
+  color: #38bdf8;
+  border: 1px solid rgba(56, 189, 248, 0.3);
+  padding: 0.75rem 1.5rem;
+  border-radius: 12px;
+  font-weight: 700;
+  font-size: 0.9rem;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  transition: all 0.25s ease;
+  text-decoration: none;
+}
+
+.uc-btn-password:hover {
+  background: rgba(56, 189, 248, 0.25);
+  color: #ffffff;
+  box-shadow: 0 0 20px rgba(56, 189, 248, 0.3);
+  transform: translateY(-2px);
+}
+
+/* 🎴 الشبكة والبطاقات Grid & Cards */
 .uc-grid {
   display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 25px;
+  grid-template-columns: repeat(auto-fit, minmax(340px, 1fr));
+  gap: 1.75rem;
 }
 
 .uc-card {
-  background: white;
-  padding: 25px;
-  border-radius: 12px;
-  border: 1px solid #e2e8f0;
-  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
+  background: rgba(30, 41, 59, 0.5);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  padding: 1.75rem;
+  border-radius: 20px;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  box-shadow: 0 10px 25px -10px rgba(0, 0, 0, 0.3);
+  transition: all 0.3s ease;
+}
+
+.uc-card:hover {
+  border-color: rgba(56, 189, 248, 0.3);
+  box-shadow: 0 15px 30px -10px rgba(56, 189, 248, 0.15);
 }
 
 .uc-card-title {
   font-size: 1.1rem;
-  color: #334155;
-  margin-bottom: 20px;
-  padding-bottom: 12px;
-  border-bottom: 2px solid #f1f5f9;
+  color: #38bdf8;
+  margin: 0 0 1.25rem 0;
+  padding-bottom: 0.75rem;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
   font-weight: 700;
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
 }
 
-/* قائمة المعلومات */
+/* 📝 صفوف البيانات Info List */
 .uc-info-list {
   display: flex;
   flex-direction: column;
-  gap: 15px;
+  gap: 1rem;
 }
 
 .uc-info-row {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 5px 0;
+  background: rgba(15, 23, 42, 0.3);
+  padding: 0.85rem 1.1rem;
+  border-radius: 12px;
+  border: 1px solid rgba(255, 255, 255, 0.04);
 }
 
 .uc-label {
-  color: #64748b;
+  color: #94a3b8;
   font-weight: 600;
-  font-size: 0.9rem;
+  font-size: 0.85rem;
 }
 
 .uc-value {
-  color: #1e293b;
+  color: #f1f5f9;
   font-weight: 700;
-  font-size: 1rem;
+  font-size: 0.95rem;
 }
 
-/* الأزرار والحالات */
-.uc-btn-password {
-  background: #0f172a;
-  color: white;
-  border: none;
-  padding: 12px 24px;
-  border-radius: 8px;
-  font-weight: 600;
-  cursor: pointer;
-  display: flex;
-  align-items: center;
-  gap: 10px;
-  transition: 0.3s;
+.uc-highlight {
+  color: #38bdf8 !important;
+  text-shadow: 0 0 8px rgba(56, 189, 248, 0.3);
 }
 
-.uc-btn-password:hover {
-  background: #334155;
-  transform: translateY(-2px);
-}
-
+/* 🏷️ شارات الحالة Badges */
 .uc-status {
-  padding: 4px 12px;
+  padding: 0.35rem 0.85rem;
   border-radius: 20px;
   font-size: 0.8rem;
-  font-weight: bold;
-  background: #fee2e2;
-  color: #b91c1c;
+  font-weight: 700;
+  background: rgba(244, 63, 94, 0.15);
+  color: #f43f5e;
+  border: 1px solid rgba(244, 63, 94, 0.3);
 }
 
 .uc-status.active {
-  background: #dcfce7;
-  color: #15803d;
+  background: rgba(52, 211, 153, 0.15);
+  color: #34d399;
+  border: 1px solid rgba(52, 211, 153, 0.3);
+  box-shadow: 0 0 10px rgba(52, 211, 153, 0.2);
 }
 
-.uc-loading {
-  text-align: center;
-  padding: 50px;
-  color: #64748b;
-}
-
-/* تحسين الاستجابة */
+/* 📱 تجاوب الشاشات Responsive */
 @media (max-width: 768px) {
-  .uc-grid {
-    grid-template-columns: 1fr;
-  }
   .uc-header {
     flex-direction: column;
-    gap: 20px;
     text-align: center;
+    align-items: center;
   }
   .uc-title-group {
     flex-direction: column;
   }
+  .uc-btn-password {
+    width: 100%;
+    justify-content: center;
+  }
 }
 
 .animated {
-  animation-duration: 0.5s;
+  animation-duration: 0.4s;
 }
+
 @keyframes fadeIn {
   from {
     opacity: 0;
-    transform: translateY(10px);
+    transform: translateY(8px);
   }
   to {
     opacity: 1;
     transform: translateY(0);
   }
 }
+
 .fadeIn {
   animation-name: fadeIn;
 }

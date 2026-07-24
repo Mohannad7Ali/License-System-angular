@@ -47,18 +47,40 @@ export class PreviewTestComponent implements OnInit {
   testId = signal<number | null>(null);
   testData = signal<Test | null>(null);
   appointmentData = signal<Appointment_View | null>(null);
-  testTypesArr = signal<TestType[]>([]); // تغيير الاسم ليتوافق مع رغبتك
+  testTypesArr = signal<TestType[]>([]);
   isLoading = signal(true);
 
-  // جلب اسم نوع الاختبار بناءً على حقل testType في الموديل
+  // 🛠️ حساب عنوان نوع الاختبار مع دعم حماية كافية لأسماء الخصائص وأنواع البيانات
   testTypeTitle = computed(() => {
-    const app = this.appointmentData();
-    const types = this.testTypesArr();
-    if (!app || types.length === 0) return '---';
+    const app = this.appointmentData() as any;
+    const types = this.testTypesArr() as any[];
 
-    // ✅ التصحيح: الموديل يستخدم testType
-    const type = types.find((t) => t.id === app.testType);
-    return type ? type.testTypeTitle : 'غير معروف';
+    if (!app || !types || types.length === 0) return '---';
+
+    // التأكد من جلب الرقم بوضوح سواء كان الحقل testType أو testTypeID
+    const targetTypeId = Number(
+      app.testType ?? app.testTypeID ?? app.testTypeId,
+    );
+
+    if (isNaN(targetTypeId)) return 'غير معروف';
+
+    const foundType = types.find((t) => {
+      const typeId = Number(t.id ?? t.testTypeID ?? t.testTypeId);
+      return typeId === targetTypeId;
+    });
+
+    return foundType
+      ? foundType.testTypeTitle || foundType.title || 'غير معروف'
+      : 'غير معروف';
+  });
+
+  // 🛠️ حساب تاريخ الموعد من مختلف المسميات القادمة من الـ API
+  appointmentDateValue = computed(() => {
+    const app = this.appointmentData() as any;
+    if (!app) return null;
+    return (
+      app.date ?? app.appointmentDate ?? app.Date ?? app.AppointmentDate ?? null
+    );
   });
 
   ngOnInit(): void {
@@ -83,7 +105,6 @@ export class PreviewTestComponent implements OnInit {
         tap((test) => this.testData.set(test)),
         switchMap((test) =>
           forkJoin({
-            // جلب بيانات العرض للموعد
             appointment: this.appointmentService.readView(test.appointmentID),
             types: this.testTypeService.all(),
           }),

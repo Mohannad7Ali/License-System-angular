@@ -44,9 +44,11 @@
         @for (driver of displayedData; track driver.id) {
           <tr>
             <td>
-              <span class="la-id-badge">{{ driver.id }}</span>
+              <span class="la-id-badge">#{{ driver.id }}</span>
             </td>
-            <td>{{ driver.personID }}</td>
+            <td>
+              <span style="font-family: monospace">{{ driver.personID }}</span>
+            </td>
             <td>
               <span class="la-national-no">{{ driver.nationalID }}</span>
             </td>
@@ -87,8 +89,8 @@
               <p>
                 {{
                   isLoading()
-                    ? "جاري التحميل..."
-                    : "لم يتم العثور على أي سائقين"
+                    ? "جاري جلب البيانات..."
+                    : "لم يتم العثور على أي سائقين مطبقين للبحث"
                 }}
               </p>
             </td>

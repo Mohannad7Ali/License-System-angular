@@ -1,55 +1,67 @@
-/* header.component.css */
-:root {
-  --ov-primary: #0f172a; /* Navy */
-  --ov-primary-light: #1e293b;
-  --ov-accent: #3b82f6; /* أزرق فاتح */
-  --ov-white: #ffffff;
-  --ov-bg-header: #ffffff;
-  --ov-shadow: 0 2px 12px rgba(15, 23, 42, 0.08);
-  --ov-radius: 30px;
-  --ov-transition: 0.3s ease;
-}
-
+/* ===== الهيدر الرئيسي (Glassmorphic Sticky Header) ===== */
 .ov-header {
+  position: sticky;
+  top: 0;
+  z-index: 1000;
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 12px 32px;
-  background: var(--ov-bg-header);
-  box-shadow: var(--ov-shadow);
-  direction: rtl; /* RTL أساسي */
-  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
-  flex-wrap: wrap;
-  gap: 12px;
+  padding: 14px 40px;
+  background: rgba(20, 24, 44, 0.75);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+  direction: rtl;
+  box-sizing: border-box;
+  transition: all 0.3s ease;
 }
 
-/* القسم الأيسر (الشعار) */
+/* ===== الشعار والهوية البصرية ===== */
 .ov-header-brand {
   display: flex;
   align-items: center;
-  gap: 8px;
-}
-.ov-logo {
-  font-size: 24px;
-  font-weight: 900;
-  color: var(--ov-primary);
-  letter-spacing: -0.5px;
-}
-.ov-slogan {
-  font-size: 14px;
-  font-weight: 500;
-  color: #64748b;
-  border-right: 2px solid #e2e8f0;
-  padding-right: 12px;
-  line-height: 1.4;
+  gap: 12px;
 }
 
-/* قائمة الروابط */
-.ov-nav {
-  flex: 1;
+.logo-icon-box {
+  width: 42px;
+  height: 42px;
+  background: linear-gradient(135deg, #7000ff, #00f0ff);
+  border-radius: 12px;
   display: flex;
+  align-items: center;
   justify-content: center;
+  color: #ffffff;
+  font-size: 20px;
+  box-shadow: 0 0 15px rgba(0, 240, 255, 0.4);
 }
+
+.brand-text {
+  display: flex;
+  flex-direction: column;
+}
+
+.ov-logo {
+  font-size: 22px;
+  font-weight: 900;
+  color: #f8fafc;
+  letter-spacing: 1px;
+  line-height: 1.1;
+}
+
+.ov-slogan {
+  font-size: 12px;
+  font-weight: 500;
+  color: #00f0ff;
+  opacity: 0.9;
+}
+
+/* ===== قائمة التنقل (Navigation) ===== */
+.ov-nav {
+  display: flex;
+  align-items: center;
+}
+
 .ov-nav-list {
   display: flex;
   list-style: none;
@@ -58,72 +70,96 @@
   gap: 8px;
   align-items: center;
 }
+
 .ov-nav-list li a {
-  display: block;
-  padding: 10px 18px;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 10px 20px;
   font-size: 15px;
   font-weight: 600;
-  color: #334155;
+  color: #94a3b8;
   text-decoration: none;
-  border-radius: var(--ov-radius);
-  transition: all var(--ov-transition);
-  white-space: nowrap;
-}
-.ov-nav-list li a:hover,
-.ov-nav-list li a.active {
-  background: var(--ov-primary);
-  color: var(--ov-white);
-  box-shadow: 0 4px 12px rgba(15, 23, 42, 0.15);
+  border-radius: 30px;
+  transition: all 0.3s ease;
+  border: 1px solid transparent;
 }
 
-/* زر تسجيل الدخول */
+.ov-nav-list li a i {
+  font-size: 14px;
+  transition: color 0.3s ease;
+}
+
+.ov-nav-list li a:hover {
+  color: #00f0ff;
+  background: rgba(255, 255, 255, 0.05);
+  border-color: rgba(0, 240, 255, 0.2);
+}
+
+.ov-nav-list li a.active {
+  color: #ffffff;
+  background: rgba(112, 0, 255, 0.25);
+  border-color: rgba(112, 0, 255, 0.5);
+  box-shadow: 0 0 15px rgba(112, 0, 255, 0.3);
+}
+
+.ov-nav-list li a.active i {
+  color: #00f0ff;
+}
+
+/* ===== زر تسجيل الدخول (Glowing Action Button) ===== */
+.ov-header-actions {
+  display: flex;
+  align-items: center;
+}
+
 .ov-btn-login {
-  background: var(--ov-primary);
-  color: var(--ov-white);
+  background: linear-gradient(90deg, #7000ff, #00f0ff);
+  color: #ffffff;
   border: none;
-  padding: 10px 28px;
-  border-radius: var(--ov-radius);
+  padding: 10px 26px;
+  border-radius: 30px;
   font-size: 15px;
   font-weight: 700;
   display: inline-flex;
   align-items: center;
   gap: 10px;
   cursor: pointer;
-  transition: all var(--ov-transition);
-  box-shadow: 0 4px 12px rgba(15, 23, 42, 0.15);
-  white-space: nowrap;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  box-shadow: 0 0 20px rgba(112, 0, 255, 0.4);
 }
+
 .ov-btn-login:hover {
-  background: var(--ov-primary-light);
   transform: translateY(-2px);
-  box-shadow: 0 6px 20px rgba(15, 23, 42, 0.25);
+  box-shadow: 0 0 30px rgba(0, 240, 255, 0.6);
 }
+
 .ov-btn-login i {
   font-size: 16px;
 }
 
-/* ===== استجابة للشاشات الصغيرة ===== */
+/* ===== التجاوب للأنظمة والشاشات الصغرى (Responsive) ===== */
 @media (max-width: 992px) {
   .ov-header {
     padding: 12px 20px;
     flex-wrap: wrap;
-    justify-content: center;
+    gap: 12px;
   }
+
   .ov-nav {
     order: 3;
     width: 100%;
     justify-content: center;
   }
+
   .ov-nav-list {
     flex-wrap: wrap;
     justify-content: center;
+    gap: 6px;
   }
+
   .ov-nav-list li a {
     padding: 8px 14px;
-    font-size: 14px;
-  }
-  .ov-btn-login {
-    padding: 8px 20px;
     font-size: 14px;
   }
 }
@@ -132,23 +168,27 @@
   .ov-header {
     flex-direction: column;
     align-items: stretch;
-    gap: 8px;
+    gap: 14px;
   }
+
   .ov-header-brand {
     justify-content: center;
   }
+
   .ov-nav-list {
     flex-direction: column;
     align-items: stretch;
-    gap: 4px;
+    gap: 6px;
   }
+
   .ov-nav-list li a {
-    text-align: center;
-    padding: 12px;
-    border-radius: 12px;
-  }
-  .ov-btn-login {
     justify-content: center;
+    padding: 10px;
+    border-radius: 14px;
+  }
+
+  .ov-btn-login {
     width: 100%;
+    justify-content: center;
   }
 }

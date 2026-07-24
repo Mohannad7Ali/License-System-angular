@@ -1,48 +1,56 @@
-<!-- homepage.component.html -->
-<div dir="rtl" class="ov-homepage ov-fade-in-up">
-  <!-- النص الرئيسي -->
-  <p class="ov-main-text">قد بأمان، قد بذكاء</p>
-  <p class="ov-sub-text">
-    نسهل لك الحصول على رخصة القيادة بخطوات بسيطة وسريعة.
-  </p>
+<section dir="rtl" class="landing-container" id="hero">
+  <!-- عناصر الإضاءة الخلفية (Glow Orbs) -->
+  <div class="glow-orb orb-primary"></div>
+  <div class="glow-orb orb-secondary"></div>
 
-  <!-- زر التقديم -->
-  <button
-    class="ov-btn ov-btn-apply"
-    routerLink="../add-new-app"
-    [queryParams]="{ mode: 'add', with_cancelation: true }"
-    routerLinkActive="router-link-active"
-  >
-    <i class="fa fa-file-text-o" aria-hidden="true"></i>
-    تقديم طلب رخصة
-    <i class="fa fa-arrow-left" aria-hidden="true"></i>
-  </button>
+  <div class="landing-content fade-in-up">
+    <!-- Badge علوي -->
+    <div class="hero-badge">
+      <span class="badge-dot"></span>
+      نظام إدارة ترخيص السواقين والمركبات (DVLD)
+    </div>
 
-  <!-- بطاقات الميزات -->
-  <div class="ov-cards">
-    <div class="ov-card">
-      <img src="images/feature1.jpg" alt="ميزة 1" />
-      <div class="ov-card-overlay">
-        <span>سهولة التسجيل</span>
-      </div>
+    <!-- العناوين الرئيسية -->
+    <h1 class="hero-title">
+      قد بأمان، انطلق نحو <span class="gradient-text">المستقبل بذكاء</span>
+    </h1>
+
+    <p class="hero-subtitle">
+      المنصة الرقمية الموحدة لإصدار وتجديد رخص القيادة. نسهل لك جميع الإجراءات
+      والاختبارات بخطوات شفافة وسريعة.
+    </p>
+
+    <!-- أزرار التفاعل -->
+    <div class="hero-actions">
+      <button
+        class="btn-primary-glow"
+        routerLink="../add-new-app"
+        [queryParams]="{ mode: 'add', with_cancelation: true }"
+        routerLinkActive="router-link-active"
+      >
+        <i class="fa fa-file-text-o" aria-hidden="true"></i>
+        <span>تقديم طلب رخصة جديد</span>
+        <i class="fa fa-arrow-left arrow-icon" aria-hidden="true"></i>
+      </button>
+
+      <a href="#services" class="btn-secondary-glass">
+        <i class="fa fa-compass" aria-hidden="true"></i>
+        استكشف الخدمات
+      </a>
     </div>
-    <div class="ov-card">
-      <img src="images/feature2.jpg" alt="ميزة 2" />
-      <div class="ov-card-overlay">
-        <span>متابعة الطلب</span>
-      </div>
-    </div>
-    <div class="ov-card">
-      <img src="images/feature3.jpg" alt="ميزة 3" />
-      <div class="ov-card-overlay">
-        <span>اختبارات محاكاة</span>
-      </div>
-    </div>
-    <div class="ov-card">
-      <img src="images/feature4.jpg" alt="ميزة 4" />
-      <div class="ov-card-overlay">
-        <span>استلام الرخصة</span>
+
+    <!-- بطاقات الميزات التفاعلية (بدلاً من الصور الثابتة) -->
+    <div class="features-grid">
+      <div class="feature-card glass-panel" *ngFor="let item of features">
+        <div class="card-icon-wrapper">
+          <i class="fa {{ item.icon }}" aria-hidden="true"></i>
+        </div>
+        <div class="card-info">
+          <h3>{{ item.title }}</h3>
+          <p>{{ item.desc }}</p>
+        </div>
+        <div class="card-glow-effect"></div>
       </div>
     </div>
   </div>
-</div>
+</section>

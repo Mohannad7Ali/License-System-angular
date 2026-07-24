@@ -35,14 +35,14 @@ export class ApplicationTypesComponent implements OnInit {
   filteredTypes: ApplicationType[] = [];
   displayedData: ApplicationType[] = [];
 
-  // التحكم في الجدول والترقيم
+  // التحكم في الشبكة والترقيم (تم تحديث pageSize إلى 8 للتوافق مع Grid 2x4 أو 4x2)
   currentPage = 1;
-  pageSize = 7;
+  pageSize = 8;
   filter = new FormControl('', { nonNullable: true });
 
-  // التحكم في الحذف (الـ ID والـ Dialog)
+  // التحكم في الحذف
   isDialogVisible = signal<boolean>(false);
-  selectedTypeId: number | null = null; // توحيد اسم المتغير هنا
+  selectedTypeId: number | null = null;
 
   ngOnInit(): void {
     this.loadData();
@@ -103,15 +103,13 @@ export class ApplicationTypesComponent implements OnInit {
     }
   }
 
-  // دالة الضغط على زر الحذف في الجدول
   onDelete(id: number) {
-    this.selectedTypeId = id; // تخزين الـ ID المطلوب حذفه
-    this.isDialogVisible.set(true); // إظهار نافذة التأكيد
+    this.selectedTypeId = id;
+    this.isDialogVisible.set(true);
   }
 
-  // دالة استقبال النتيجة من نافذة التأكيد
   onDialogResult(confirm: boolean) {
-    this.isDialogVisible.set(false); // إغلاق النافذة دائماً
+    this.isDialogVisible.set(false);
 
     if (confirm && this.selectedTypeId !== null) {
       this.typeService.delete(this.selectedTypeId).subscribe({
@@ -120,10 +118,10 @@ export class ApplicationTypesComponent implements OnInit {
             message: 'تم حذف نوع الطلب بنجاح',
             status: 'success',
           });
-          this.loadData(); // إعادة تحميل الجدول
-          this.selectedTypeId = null; // تصفير الـ ID
+          this.loadData();
+          this.selectedTypeId = null;
         },
-        error: (err) => {
+        error: () => {
           this.notify.showMessage({
             message: 'لا يمكن حذف هذا العنصر لأنه مرتبط بطلبات أخرى في النظام',
             status: 'failed',

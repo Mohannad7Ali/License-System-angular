@@ -3,6 +3,7 @@ import {
   NotificationBox,
   NotificationService,
 } from '../../services/notification.service';
+
 @Component({
   selector: 'app-notification',
   standalone: true,
@@ -15,7 +16,7 @@ export class NotificationComponent {
 
   constructor(private notificationService: NotificationService) {
     this.notificationService.messageBox$.subscribe((messageBoxServ) =>
-      this.messageBox.set(messageBoxServ)
+      this.messageBox.set(messageBoxServ),
     );
   }
 

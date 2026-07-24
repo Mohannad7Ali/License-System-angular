@@ -1,240 +1,440 @@
+/* ===================================================
+   👑 Royal Cyber-Glossy International ID Card Theme
+   =================================================== */
+
+:host {
+  --primary-glow: #6366f1;
+  --secondary-glow: #06b6d4;
+  --accent-gold: #f59e0b;
+  --bg-dark: #0f172a;
+}
+
 .idl-page {
-  padding: 30px;
+  padding: 30px 20px;
   display: flex;
   flex-direction: column;
   align-items: center;
+  justify-content: center;
+  font-family:
+    system-ui,
+    -apple-system,
+    BlinkMacSystemFont,
+    "Segoe UI",
+    Roboto,
+    sans-serif;
 }
 
-/* 🔄 التنسيق الخاص باللودر */
+/* 🔄 التنسيق الخاص باللودر الاحترافي */
 .loading-overlay {
-  height: 300px;
+  height: 320px;
   display: flex;
   justify-content: center;
   align-items: center;
 }
+
 .spinner-box {
   text-align: center;
-  color: var(--dark-color);
+  color: #818cf8;
 }
+
 .spinner-box i {
   font-size: 3rem;
-  margin-bottom: 15px;
-}
-.spinner-box p {
-  font-weight: 600;
-  font-size: 1rem;
+  margin-bottom: 16px;
+  filter: drop-shadow(0 0 10px rgba(99, 102, 241, 0.5));
 }
 
-/* 🪪 تصميم كرت الرخصة */
+.spinner-box p {
+  font-weight: 700;
+  font-size: 1rem;
+  color: #94a3b8;
+}
+
+/* 🪪 تصميم كرت الرخصة المتقدم */
 .idl-card {
   width: 100%;
-  max-width: 550px;
-  background: #fff;
+  max-width: 580px;
+  background: linear-gradient(
+    135deg,
+    rgba(15, 23, 42, 0.95) 0%,
+    rgba(30, 41, 59, 0.98) 100%
+  );
   border-radius: 20px;
-  padding: 30px;
-  border: 1px solid #e2e8f0;
-  position: relative;
-  box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  box-shadow:
+    0 20px 50px rgba(0, 0, 0, 0.6),
+    0 0 30px rgba(99, 102, 241, 0.15);
   overflow: hidden;
+  position: relative;
+  color: #f8fafc;
+  backdrop-filter: blur(16px);
 }
 
+/* نمط الخلفية الأمنية المضيئة الدقيقة */
+.idl-card::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background-image:
+    radial-gradient(rgba(99, 102, 241, 0.15) 1px, transparent 0),
+    radial-gradient(rgba(6, 182, 212, 0.1) 1px, transparent 0);
+  background-size: 18px 18px;
+  background-position:
+    0 0,
+    9px 9px;
+  opacity: 0.6;
+  pointer-events: none;
+}
+
+/* الشريط العلوي المضيء */
+.card-header-stripe {
+  height: 4px;
+  background: linear-gradient(90deg, #6366f1 0%, #06b6d4 50%, #f59e0b 100%);
+  box-shadow: 0 0 12px rgba(99, 102, 241, 0.6);
+}
+
+/* هيدر البطاقة */
 .idl-header {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  margin-bottom: 25px;
-  border-bottom: 2px solid #1e293b;
-  padding-bottom: 15px;
+  padding: 20px 24px;
+  background: rgba(15, 23, 42, 0.6);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+  position: relative;
+  z-index: 2;
 }
 
 .gov-brand {
   display: flex;
   align-items: center;
-  gap: 15px;
+  gap: 16px;
 }
+
 .eagle {
-  width: 45px;
+  width: 50px;
+  height: auto;
+  filter: drop-shadow(0 0 10px rgba(255, 255, 255, 0.2));
 }
+
 .gov-titles {
   display: flex;
   flex-direction: column;
 }
+
 .main-title {
   font-weight: 800;
-  font-size: 0.95rem;
-  color: #1e293b;
+  font-size: 1rem;
+  color: #f8fafc;
+  letter-spacing: -0.2px;
 }
+
 .sub-title {
-  font-size: 0.75rem;
-  color: #64748b;
+  font-size: 0.78rem;
+  color: #94a3b8;
+  font-weight: 600;
+  margin-top: 2px;
 }
 
 .license-type {
-  background: #1e293b;
-  color: #fff;
-  padding: 5px 15px;
-  border-radius: 6px;
-  font-size: 0.75rem;
-  font-weight: 700;
+  background: linear-gradient(
+    135deg,
+    rgba(99, 102, 241, 0.2),
+    rgba(6, 182, 212, 0.2)
+  );
+  color: #38bdf8;
+  border: 1px solid rgba(56, 189, 248, 0.3);
+  padding: 6px 16px;
+  border-radius: 30px;
+  font-size: 0.8rem;
+  font-weight: 800;
+  text-shadow: 0 0 10px rgba(56, 189, 248, 0.3);
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
 }
 
+/* جسم البطاقة */
 .idl-body {
   display: flex;
-  gap: 30px;
+  padding: 24px;
+  gap: 24px;
+  position: relative;
+  z-index: 2;
+  align-items: center;
 }
+
+.photo-column {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  flex-shrink: 0;
+}
+
 .photo-frame {
   width: 130px;
-  height: 160px;
-  border-radius: 12px;
-  border: 1px solid #cbd5e1;
-  overflow: hidden;
-  margin-bottom: 10px;
+  height: 130px; /* دائرة مثالية */
+  border-radius: 50%;
+  padding: 3px;
+  background: linear-gradient(
+    135deg,
+    rgba(99, 102, 241, 0.8),
+    rgba(6, 182, 212, 0.3),
+    rgba(255, 255, 255, 0.1)
+  );
+  box-shadow:
+    0 8px 25px rgba(0, 0, 0, 0.5),
+    0 0 15px rgba(99, 102, 241, 0.2);
+  position: relative;
+  margin-bottom: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
+
 .photo-frame img {
   width: 100%;
   height: 100%;
   object-fit: cover;
+  border-radius: 50%;
+  display: block;
+  background: #0f172a;
 }
 
 .security-seal {
-  display: flex;
+  display: inline-flex;
   align-items: center;
   justify-content: center;
-  gap: 5px;
-  color: #94a3b8;
-  font-size: 0.7rem;
-  font-weight: bold;
+  gap: 6px;
+  background: rgba(30, 41, 59, 0.8);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  padding: 4px 12px;
+  border-radius: 20px;
+  color: #38bdf8;
+  font-size: 0.72rem;
+  font-weight: 700;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
 }
 
+/* عمود البيانات */
 .data-column {
   flex: 1;
   display: flex;
   flex-direction: column;
-  gap: 12px;
+  gap: 14px;
 }
+
 .info-row label {
   display: block;
-  font-size: 0.7rem;
+  font-size: 0.72rem;
   color: #94a3b8;
-  font-weight: 700;
+  font-weight: 600;
   margin-bottom: 2px;
 }
+
 .info-row .value {
-  font-size: 0.95rem;
-  font-weight: 700;
-  color: #334155;
+  font-size: 1.05rem;
+  font-weight: 800;
+  color: #f8fafc;
 }
+
 .info-row.large .value {
-  font-size: 1.15rem;
-  color: #1e293b;
+  font-size: 1.25rem;
+  color: #ffffff;
+  text-shadow: 0 0 10px rgba(255, 255, 255, 0.15);
 }
+
 .highlight-box {
-  background: #f8fafc;
-  padding: 10px;
-  border-radius: 8px;
-  border-right: 4px solid var(--special-color);
+  background: rgba(30, 41, 59, 0.8);
+  padding: 10px 14px;
+  border-radius: 12px;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-right: 4px solid #6366f1;
+  box-shadow: inset 0 0 10px rgba(0, 0, 0, 0.3);
+}
+
+.highlight-box .value {
+  color: #f87171;
+  font-family: monospace;
+  font-size: 1.15rem;
+  letter-spacing: 1px;
 }
 
 .grid-2 {
   display: grid;
   grid-template-columns: 1fr 1fr;
-  gap: 15px;
+  gap: 16px;
 }
 
+/* تذييل البطاقة */
 .idl-footer {
-  margin-top: 25px;
-  padding-top: 20px;
-  border-top: 1px solid #f1f5f9;
+  padding: 16px 24px;
+  background: rgba(15, 23, 42, 0.7);
+  border-top: 1px solid rgba(255, 255, 255, 0.08);
   display: flex;
   justify-content: space-between;
   align-items: center;
-}
-.date-section {
-  display: flex;
-  gap: 30px;
-}
-.val.danger {
-  color: #ef4444;
+  position: relative;
+  z-index: 2;
 }
 
-.status-indicator {
+.date-section {
   display: flex;
-  align-items: center;
-  gap: 8px;
+  gap: 28px;
+}
+
+.date-item label {
+  display: block;
+  font-size: 0.68rem;
+  color: #94a3b8;
+  font-weight: 600;
+}
+
+.date-item .val {
   font-weight: 800;
-  font-size: 0.8rem;
-  color: #10b981;
+  font-size: 0.9rem;
+  color: #cbd5e1;
+  font-family: monospace;
+}
+
+.val.danger {
+  color: #f87171;
+}
+
+/* حالة البطاقة */
+.status-indicator {
+  padding: 6px 14px;
+  border-radius: 30px;
+  font-size: 0.78rem;
+  font-weight: 800;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  background: rgba(239, 68, 68, 0.15);
+  color: #f87171;
+  border: 1px solid rgba(248, 113, 113, 0.3);
+}
+
+.status-indicator.active {
+  background: rgba(16, 185, 129, 0.15);
+  color: #34d399;
+  border-color: rgba(52, 211, 153, 0.3);
+  box-shadow: 0 0 12px rgba(52, 211, 153, 0.2);
 }
 
 /* 🔘 الأزرار */
 .actions-area {
   display: flex;
-  gap: 15px;
-  margin-top: 35px;
+  gap: 16px;
+  margin-top: 28px;
 }
+
 .btn-print {
-  background: #2dce89;
+  background: #6366f1;
   color: white;
   border: none;
-  padding: 12px 35px;
+  padding: 12px 32px;
   border-radius: 12px;
-  font-weight: 700;
+  font-weight: 800;
+  font-size: 0.9rem;
   cursor: pointer;
-  transition: 0.3s;
-  display: flex;
+  box-shadow: 0 0 20px rgba(99, 102, 241, 0.4);
+  transition: all 0.25s ease;
+  display: inline-flex;
   align-items: center;
-  gap: 10px;
+  gap: 8px;
 }
+
 .btn-print:hover {
-  background: #24b374;
+  background: #4f46e5;
   transform: translateY(-2px);
-  box-shadow: 0 10px 15px rgba(45, 206, 137, 0.3);
+  box-shadow: 0 0 25px rgba(99, 102, 241, 0.6);
 }
 
 .btn-back {
-  background: #1e293b;
-  color: white;
-  border: none;
-  padding: 12px 30px;
+  background: rgba(30, 41, 59, 0.8);
+  color: #94a3b8;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  padding: 12px 28px;
   border-radius: 12px;
-  font-weight: 600;
+  font-weight: 800;
+  font-size: 0.9rem;
   cursor: pointer;
+  transition: all 0.25s ease;
 }
 
-/* 🖨️ إعدادات الطباعة */
+.btn-back:hover {
+  background: rgba(51, 65, 85, 0.8);
+  color: #f8fafc;
+}
+
+/* 🖨️ إعدادات الطباعة الاحترافية للكرت */
 @media print {
-  .no-print,
-  app-header,
-  app-sidebar,
-  .page-actions,
-  .actions-area,
-  app-dialog-wrapper header {
-    display: none !important;
-  }
-  .idl-page {
-    padding: 0;
-  }
-  .idl-card {
-    box-shadow: none;
-    border: 1px solid #000;
-    width: 100%;
+  @page {
+    size: A4 portrait;
     margin: 0;
   }
-  body {
-    background: white;
+
+  /* إجبار المتصفح على طباعة الخلفيات والألوان والتدرجات بدقة */
+  * {
+    -webkit-print-color-adjust: exact !important;
+    print-color-adjust: exact !important;
+    color-adjust: exact !important;
+  }
+
+  /* إخفاء كافة عناصر الصفحة وواجهات التطبيق الافتراضية */
+  body,
+  html {
+    background: #ffffff !important;
+    height: 100%;
+    margin: 0;
+  }
+
+  app-dialog-wrapper,
+  .idl-page,
+  body > * {
+    visibility: hidden !important;
+  }
+
+  /* إظهار بطاقة الرخصة فقط وعزلها في منتصف صفحة الطباعة */
+  #license-to-print,
+  #license-to-print * {
+    visibility: visible !important;
+  }
+
+  #license-to-print {
+    position: fixed !important;
+    left: 50% !important;
+    top: 50% !important;
+    transform: translate(-50%, -50%) !important;
+    width: 550px !important;
+    max-width: 100% !important;
+    box-shadow: none !important;
+    border: 1px solid #475569 !important;
+    background: #0f172a !important; /* الحفاظ على الخلفية الداكنة الفاخرة للكرت */
+    z-index: 999999 !important;
+    page-break-inside: avoid;
+  }
+
+  /* إخفاء الأزرار وأية أجزاء خاصة بالتحكم أو هيدر الحوار */
+  .no-print,
+  .actions-area,
+  app-dialog-wrapper header,
+  app-dialog-wrapper .dialog-header {
+    display: none !important;
   }
 }
 
 @keyframes fadeIn {
   from {
     opacity: 0;
-    transform: translateY(10px);
+    transform: translateY(12px);
   }
   to {
     opacity: 1;
     transform: translateY(0);
   }
 }
+
 .animated-in {
   animation: fadeIn 0.5s ease-out;
 }

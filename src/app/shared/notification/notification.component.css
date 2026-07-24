@@ -1,75 +1,107 @@
-/* الحاوية الكلية */
+/* ===== الحاوية الكلية ===== */
 .notification-wrapper {
   position: fixed;
   top: 0;
   left: 0;
-  width: 100%;
-  height: 100%;
+  width: 100vw;
+  height: 100vh;
   display: flex;
   justify-content: center;
   align-items: center;
-  z-index: 10001; /* أعلى من الـ Dialog */
+  z-index: 10001; /* أعلى من الـ Dialogs */
 }
 
-/* الخلفية المظلمة */
+/* ===== الخلفية المعتمة والضبابية ===== */
 .backdrop {
   position: absolute;
   width: 100%;
   height: 100%;
-  background-color: rgba(0, 0, 0, 0.4);
-  backdrop-filter: blur(2px);
-  animation: fadeIn 0.2s ease;
+  background-color: rgba(5, 8, 18, 0.75);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  animation: fadeIn 0.2s ease-out;
 }
 
-/* بطاقة التنبيه */
+/* ===== بطاقة التنبيه الزجاجية ===== */
 .notification-card {
   position: relative;
-  background: white;
+  background: rgba(15, 20, 35, 0.92);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
   width: 90%;
-  max-width: 400px;
-  border-radius: 16px;
-  box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+  max-width: 420px;
+  border-radius: 20px;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  box-shadow: 0 25px 50px rgba(0, 0, 0, 0.6);
   overflow: hidden;
   z-index: 10002;
-  animation: bounceIn 0.4s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+  animation: bounceIn 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+  color: #f8fafc;
 }
 
-/* شريط الحالة الملون */
+/* ===== شريط الحالة الملون المتوهج ===== */
 .status-bar {
-  height: 5px;
+  height: 4px;
   width: 100%;
 }
 
 [data-status="success"] .status-bar {
-  background-color: #10b981;
-}
-[data-status="failed"] .status-bar {
-  background-color: #ef4444;
-}
-[data-status="notification"] .status-bar {
-  background-color: #3b82f6;
+  background: #10b981;
+  box-shadow: 0 0 12px #10b981;
 }
 
-/* التصميم الداخلي */
+[data-status="failed"] .status-bar {
+  background: #f43f5e;
+  box-shadow: 0 0 12px #f43f5e;
+}
+
+[data-status="notification"] .status-bar,
+[data-status="info"] .status-bar {
+  background: #00f0ff;
+  box-shadow: 0 0 12px #00f0ff;
+}
+
+/* تخصيص إطار البطاقة حسب الحالة */
+.notification-card[data-status="success"] {
+  border-color: rgba(16, 185, 129, 0.3);
+}
+
+.notification-card[data-status="failed"] {
+  border-color: rgba(244, 63, 94, 0.3);
+}
+
+.notification-card[data-status="notification"] {
+  border-color: rgba(0, 240, 255, 0.3);
+}
+
+/* ===== التخطيط الداخلي ===== */
 .content-layout {
   display: flex;
-  padding: 25px;
-  gap: 20px;
+  padding: 24px;
+  gap: 18px;
   align-items: flex-start;
 }
 
 .icon-section {
-  font-size: 2.5rem;
+  font-size: 2.2rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .success-icon {
   color: #10b981;
+  filter: drop-shadow(0 0 8px rgba(16, 185, 129, 0.4));
 }
+
 .failed-icon {
-  color: #ef4444;
+  color: #f43f5e;
+  filter: drop-shadow(0 0 8px rgba(244, 63, 94, 0.4));
 }
+
 .info-icon {
-  color: #3b82f6;
+  color: #00f0ff;
+  filter: drop-shadow(0 0 8px rgba(0, 240, 255, 0.4));
 }
 
 .text-section {
@@ -79,42 +111,48 @@
 .status-title {
   font-weight: 800;
   font-size: 1.1rem;
-  color: #1e293b;
-  margin-bottom: 5px;
+  color: #f8fafc;
+  margin-bottom: 6px;
+  letter-spacing: -0.2px;
 }
 
 .message-text {
-  color: #64748b;
-  font-size: 0.95rem;
+  color: #94a3b8;
+  font-size: 0.92rem;
   line-height: 1.5;
   margin: 0;
 }
 
-/* الزر السفلي */
+/* ===== الزر السفلي ===== */
 .action-footer {
-  padding: 15px 25px;
-  background-color: #f8fafc;
+  padding: 14px 24px;
+  background-color: rgba(255, 255, 255, 0.02);
+  border-top: 1px solid rgba(255, 255, 255, 0.05);
   display: flex;
   justify-content: flex-end;
 }
 
 .btn-ok {
-  background-color: #1e293b;
-  color: white;
-  border: none;
-  padding: 8px 25px;
-  border-radius: 8px;
-  font-weight: 600;
+  background: rgba(255, 255, 255, 0.08);
+  color: #f8fafc;
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  padding: 8px 24px;
+  border-radius: 10px;
+  font-weight: 700;
+  font-size: 0.88rem;
   cursor: pointer;
-  transition: 0.2s;
+  transition: all 0.2s ease;
 }
 
 .btn-ok:hover {
-  background-color: #334155;
-  transform: scale(1.05);
+  background: rgba(0, 240, 255, 0.2);
+  border-color: rgba(0, 240, 255, 0.4);
+  color: #ffffff;
+  box-shadow: 0 0 15px rgba(0, 240, 255, 0.2);
+  transform: translateY(-1px);
 }
 
-/* Animations */
+/* ===== Animations ===== */
 @keyframes fadeIn {
   from {
     opacity: 0;
@@ -125,12 +163,12 @@
 }
 
 @keyframes bounceIn {
-  0% {
-    transform: scale(0.8);
+  from {
+    transform: scale(0.9) translateY(10px);
     opacity: 0;
   }
-  100% {
-    transform: scale(1);
+  to {
+    transform: scale(1) translateY(0);
     opacity: 1;
   }
 }

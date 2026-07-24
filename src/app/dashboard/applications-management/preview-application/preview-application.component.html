@@ -123,7 +123,13 @@
           </div>
         </div>
 
-        <hr style="border: 0; border-top: 1px solid #edf2f7; margin: 20px 0" />
+        <hr
+          style="
+            border: 0;
+            border-top: 1px solid rgba(255, 255, 255, 0.08);
+            margin: 20px 0;
+          "
+        />
 
         <div class="pa-detail-item pa-license-reference">
           <span class="pa-label">رقم الرخصة المصدرة المرتبطة بهذا الطلب:</span>
@@ -144,7 +150,7 @@
     <div class="pa-preview-footer">
       <a
         class="pa-link-edit"
-        routerLink="../add-edit-application"
+        routerLink="/dashboard/services/new-application/local"
         [queryParams]="{
           mode: 'edit',
           application_id: application_id,

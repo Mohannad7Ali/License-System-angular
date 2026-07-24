@@ -1,4 +1,4 @@
-import { Component, OnInit, inject, signal, Input } from '@angular/core'; // ✅ أضفنا Input هنا
+import { Component, OnInit, inject, signal, Input } from '@angular/core';
 import { CommonModule, Location } from '@angular/common';
 import {
   FormBuilder,
@@ -36,7 +36,6 @@ import { NotificationComponent } from '../../../shared/notification/notification
   styleUrl: './new-local-application.component.css',
 })
 export class NewLocalApplicationComponent implements OnInit {
-  // ✅ أضفنا هذه الأسطر لحل مشكلة التوافق مع المكون الأب
   @Input() application_id: number | null = null;
   @Input() person_id: number | null = null;
 
@@ -228,11 +227,12 @@ export class NewLocalApplicationComponent implements OnInit {
   }
 }
 
+// تصدير الدالة المفقودة لحل مشكلة TS2305 مع الـ Routes
 export const canDeactivate: CanDeactivateFn<NewLocalApplicationComponent> = (
   comp,
 ) => {
   if (
-    (comp.newPersonForm.dirty || comp.licenseClassControl.dirty) &&
+    (comp.newPersonForm?.dirty || comp.licenseClassControl?.dirty) &&
     !comp.isSubmitting()
   ) {
     return window.confirm('هل تريد المغادرة؟ لم يتم حفظ البيانات.');

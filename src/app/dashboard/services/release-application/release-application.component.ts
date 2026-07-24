@@ -19,7 +19,7 @@ import { DetainedLicense } from '../../../models/detained-license.model';
   styleUrl: './release-application.component.css',
 })
 export class ReleaseApplicationComponent implements OnDestroy {
-  // استخدام inject للطريقة الحديثة
+  // الخدمات
   private licenseService = inject(LicenseService);
   private detainedService = inject(DetainedLicenseService);
   private driverService = inject(DriverService);
@@ -36,8 +36,8 @@ export class ReleaseApplicationComponent implements OnDestroy {
   applicantName = signal<string>('');
   isSubmitting = signal(false);
 
-  // ثوابت الرسوم (يمكن جلبها من API أنواع الطلبات لاحقاً)
-  readonly releaseApplicationFee = 15; // رسوم طلب فك الحجز الثابتة
+  // ثوابت الرسوم
+  readonly releaseApplicationFee = 15;
 
   private destroy$ = new Subject<void>();
 

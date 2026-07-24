@@ -3,7 +3,7 @@
     <div class="backdrop" (click)="closeNotification()"></div>
 
     <div class="notification-card" [attr.data-status]="messageBox()?.status">
-      <!-- شريط علوي ملون حسب الحالة -->
+      <!-- شريط علوي ملون متوهج حسب الحالة -->
       <div class="status-bar"></div>
 
       <div class="content-layout">
@@ -23,8 +23,8 @@
               messageBox()?.status === "success"
                 ? "تمت العملية بنجاح"
                 : messageBox()?.status === "failed"
-                  ? "حدث خطأ ما"
-                  : "تنبيه من النظام"
+                  ? "حدث خطأ في النظام"
+                  : "تنبيه هام"
             }}
           </header>
           <p class="message-text">{{ messageBox()?.message }}</p>

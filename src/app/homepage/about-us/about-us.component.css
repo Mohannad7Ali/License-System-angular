@@ -1,183 +1,199 @@
-/* ===== قسم من نحن ===== */
-#about-us {
-  padding: 50px 30px 60px;
-  background: var(--bg-white, #ffffff);
-  border-radius: 0;
-  margin-top: 0;
+/* ===== الحاوية العامة للقسم ===== */
+.ov-about-us {
+  direction: rtl;
+  padding: 80px 24px;
+  background: transparent;
+  max-width: 1280px;
+  margin: 0 auto;
+  box-sizing: border-box;
 }
 
-#about-us .section-title {
-  font-size: 16px;
+/* ===== أنيميشن الظهور ===== */
+@keyframes ovFadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(40px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.ov-fade-in-up {
+  animation: ovFadeInUp 0.7s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+/* ===== رأس القسم ===== */
+.ov-section-header {
+  margin-bottom: 50px;
+  text-align: right;
+}
+
+.ov-section-badge {
+  display: inline-block;
+  background: rgba(0, 240, 255, 0.1);
+  color: #00f0ff;
+  padding: 6px 20px;
+  border-radius: 30px;
+  font-size: 14px;
   font-weight: 700;
-  color: #94a3b8;
-  letter-spacing: 2px;
-  text-transform: uppercase;
-  margin-bottom: 4px;
-  text-align: right; /* RTL */
+  letter-spacing: 1px;
+  margin-bottom: 12px;
+  border: 1px solid rgba(0, 240, 255, 0.25);
 }
 
-#about-us .main-text {
-  font-size: 42px;
+.ov-main-text {
+  font-size: 40px;
   font-weight: 900;
-  color: #0f172a;
-  margin: 0 0 8px 0;
-  text-align: right; /* RTL */
+  color: #f8fafc;
+  margin: 0;
+  line-height: 1.2;
 }
 
 /* ===== حاوية المحتوى ===== */
 .content {
   display: flex;
-  align-items: flex-start; /* تغيير من baseline لتحسين المحاذاة */
-  gap: 70px;
-  direction: rtl;
+  align-items: stretch;
+  gap: 50px;
   margin-top: 20px;
 }
 
-/* ===== النص التعريفي ===== */
-.content div {
-  max-width: 600px;
-  margin-top: 15px;
-  flex: 1.5;
+/* ===== النص التعريفي (Dark Glass Box) ===== */
+.about-text-box {
+  flex: 1.4;
+  background: rgba(20, 24, 44, 0.65);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 20px;
+  padding: 40px;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
 }
 
-.content div p {
-  color: #475569;
-  font-size: 18px;
+.about-text-box p {
+  color: #94a3b8;
+  font-size: 17px;
   line-height: 1.9;
-  margin: 16px 0;
-  font-weight: 500;
+  margin-bottom: 20px;
+  font-weight: 400;
 }
 
-.content div p:first-child {
-  margin-top: 0;
-}
-
-.content div p:last-child {
+.about-text-box p:last-child {
   margin-bottom: 0;
 }
 
-.content div strong {
-  color: #0f172a;
+.highlight-text {
+  color: #00f0ff;
   font-weight: 800;
-  font-size: 20px;
   position: relative;
 }
 
-.content div strong::after {
-  content: "";
-  position: absolute;
-  bottom: -2px;
-  right: 0;
-  width: 100%;
-  height: 3px;
-  background: #0f172a;
-  border-radius: 2px;
+/* ===== القائمة الجانبية للمميزات ===== */
+.about-features-box {
+  flex: 1;
+  background: rgba(20, 24, 44, 0.65);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid rgba(112, 0, 255, 0.3);
+  border-radius: 20px;
+  padding: 36px 30px;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+  display: flex;
+  flex-direction: column;
 }
 
-/* ===== القائمة الجانبية (المميزات) ===== */
-.content ul {
-  flex: 1;
-  text-align: right; /* RTL */
-  font-size: 18px;
-  color: #0f172a;
-  line-height: 1.8;
+.features-title {
+  font-size: 20px;
+  font-weight: 800;
+  color: #f8fafc;
+  margin: 0 0 24px 0;
+  padding-bottom: 12px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.about-features-box ul {
   list-style: none;
   padding: 0;
-  margin: 15px 0 0 0;
-  background: #f8fafc;
-  border-radius: 20px;
-  padding: 28px 24px;
-  border: 1px solid #e2e8f0;
-  box-shadow: 0 2px 8px rgba(15, 23, 42, 0.04);
+  margin: 0;
 }
 
-.content ul li {
+.about-features-box ul li {
   display: flex;
   align-items: center;
-  gap: 12px;
-  padding: 12px 0;
-  border-bottom: 1px solid #f1f5f9;
+  gap: 16px;
+  padding: 14px 0;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.05);
   font-weight: 600;
-  color: #0f172a;
+  color: #f8fafc;
+  font-size: 16px;
+  transition: all 0.3s ease;
 }
 
-.content ul li:last-child {
+.about-features-box ul li:last-child {
   border-bottom: none;
   padding-bottom: 0;
 }
 
-.content ul li:first-child {
+.about-features-box ul li:first-child {
   padding-top: 0;
 }
 
-.content ul li span {
-  font-size: 1.6rem;
-  color: #0f172a;
-  margin-left: 10px; /* RTL adjustment */
-  font-weight: 900;
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
+/* أيقونة صح النيون */
+.check-icon {
   width: 32px;
   height: 32px;
-  background: #0f172a;
+  background: linear-gradient(135deg, #7000ff, #00f0ff);
   color: #ffffff;
   border-radius: 50%;
-  font-size: 16px;
+  font-size: 14px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   flex-shrink: 0;
+  box-shadow: 0 0 12px rgba(0, 240, 255, 0.4);
+  transition: transform 0.3s ease;
 }
 
-/* ===== استجابة للشاشات المختلفة ===== */
+.about-features-box ul li:hover .check-icon {
+  transform: scale(1.15) rotate(10deg);
+}
+
+.about-features-box ul li:hover {
+  color: #00f0ff;
+}
+
+/* ===== التجاوب للشاشات المختلفة ===== */
 @media (max-width: 992px) {
   .content {
     flex-direction: column;
     gap: 30px;
   }
 
-  .content div {
-    max-width: 100%;
-  }
-
-  #about-us .main-text {
+  .ov-main-text {
     font-size: 32px;
   }
 
-  .content ul {
-    width: 100%;
+  .about-text-box,
+  .about-features-box {
+    padding: 30px 24px;
   }
 }
 
 @media (max-width: 640px) {
-  #about-us {
-    padding: 30px 16px 40px;
+  .ov-about-us {
+    padding: 40px 16px;
   }
 
-  #about-us .main-text {
+  .ov-main-text {
     font-size: 26px;
   }
 
-  .content div p {
-    font-size: 16px;
-    line-height: 1.8;
+  .about-text-box p {
+    font-size: 15px;
   }
 
-  .content div strong {
-    font-size: 18px;
-  }
-
-  .content ul {
-    font-size: 16px;
-    padding: 20px 16px;
-  }
-
-  .content ul li {
-    padding: 10px 0;
-  }
-
-  .content ul li span {
-    width: 28px;
-    height: 28px;
+  .about-features-box ul li {
     font-size: 14px;
-    margin-left: 8px;
   }
 }

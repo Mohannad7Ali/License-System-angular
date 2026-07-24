@@ -1,81 +1,180 @@
+/* ==========================================================================
+   Dark Neon Glossy / Glassmorphism Theme - Add/Edit Type Component
+   ========================================================================== */
+
+.container {
+  padding: 2rem;
+  max-width: 650px;
+  margin: 0 auto;
+  direction: rtl;
+  font-family:
+    "Segoe UI",
+    system-ui,
+    -apple-system,
+    sans-serif;
+  color: #f1f5f9;
+  animation: fadeIn 0.4s ease-out;
+}
+
+/* 📌 الهيدر */
+.page-header {
+  margin-bottom: 2rem;
+}
+
+.page-header h2 {
+  color: #f8fafc;
+  font-size: 1.5rem;
+  font-weight: 800;
+  margin: 0;
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.page-header h2 i {
+  color: #38bdf8;
+  filter: drop-shadow(0 0 8px rgba(56, 189, 248, 0.4));
+}
+
+/* 🎴 النموذج الزجاجي Glassmorphism Form */
 .compact-form {
-  max-width: 550px;
-  margin: 20px 0;
-  padding: 25px;
-  background: white;
-  border-radius: 12px;
-  border: 1px solid #e2e8f0;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+  background: rgba(30, 41, 59, 0.5);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border-radius: 20px;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  padding: 2rem;
+  box-shadow: 0 15px 35px -10px rgba(0, 0, 0, 0.5);
 }
 
 .control-row {
-  margin-bottom: 18px;
+  margin-bottom: 1.5rem;
 }
 
 .control label {
   display: block;
   font-size: 0.85rem;
-  font-weight: 600;
-  color: #4a5568;
-  margin-bottom: 6px;
+  font-weight: 700;
+  color: #cbd5e1;
+  margin-bottom: 0.5rem;
 }
 
-.control input, .control textarea {
+.control input,
+.control textarea {
   width: 100%;
-  padding: 10px 12px;
-  border: 1px solid #e2e8f0;
-  border-radius: 8px;
-  font-size: 0.9rem;
-  transition: border 0.3s;
+  padding: 0.85rem 1.25rem;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 12px;
+  font-size: 0.95rem;
+  background: rgba(15, 23, 42, 0.6);
+  color: #f1f5f9;
+  outline: none;
+  transition: all 0.25s ease;
+  box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.2);
+  box-sizing: border-box;
+  font-family: inherit;
 }
 
-.control input:focus, .control textarea:focus {
-  border-color: var(--dark-color);
-  outline: none;
+.control input:focus,
+.control textarea:focus {
+  border-color: #38bdf8;
+  background: rgba(15, 23, 42, 0.85);
+  box-shadow:
+    0 0 0 3px rgba(56, 189, 248, 0.25),
+    0 0 15px rgba(56, 189, 248, 0.2);
 }
 
 .disabled-input {
-  background-color: #f7fafc;
-  color: #a0aec0;
+  background: rgba(15, 23, 42, 0.3) !important;
+  color: #64748b !important;
+  border-color: rgba(255, 255, 255, 0.04) !important;
   cursor: not-allowed;
+  box-shadow: none !important;
 }
 
 .error-text {
-  color: #e53e3e;
-  font-size: 0.75rem;
-  margin-top: 4px;
+  color: #f43f5e;
+  font-size: 0.78rem;
+  margin-top: 0.4rem;
+  display: flex;
+  align-items: center;
+  gap: 0.3rem;
+  font-weight: 600;
 }
 
+/* ⚡ أزرار النموذج */
 .form-actions {
   display: flex;
   justify-content: flex-end;
-  gap: 12px;
-  margin-top: 25px;
-  padding-top: 15px;
-  border-top: 1px solid #edf2f7;
+  gap: 1rem;
+  margin-top: 2rem;
+  padding-top: 1.5rem;
+  border-top: 1px solid rgba(255, 255, 255, 0.08);
 }
 
 .btn-action {
-  padding: 10px 24px;
-  border-radius: 8px;
-  font-size: 0.85rem;
-  font-weight: 600;
+  padding: 0.8rem 1.8rem;
+  border-radius: 12px;
+  font-size: 0.9rem;
+  font-weight: 700;
   cursor: pointer;
-  border: none;
+  border: 1px solid transparent;
   display: flex;
   align-items: center;
-  gap: 8px;
-  transition: 0.2s;
+  gap: 0.6rem;
+  transition: all 0.25s ease;
 }
 
-.save { background-color: var(--dark-color); color: white; }
-.save:hover { opacity: 0.9; transform: translateY(-1px); }
+.save {
+  background: linear-gradient(135deg, #0ea5e9, #0284c7);
+  color: white;
+  border-color: rgba(255, 255, 255, 0.15);
+  box-shadow: 0 4px 15px rgba(14, 165, 233, 0.3);
+}
 
-.cancel { background-color: #f7fafc; color: #4a5568; border: 1px solid #e2e8f0; }
-.cancel:hover { background-color: #edf2f7; }
+.save:hover:not(:disabled) {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(14, 165, 233, 0.5);
+}
+
+.cancel {
+  background: rgba(30, 41, 59, 0.6);
+  color: #cbd5e1;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.cancel:hover {
+  background: rgba(255, 255, 255, 0.05);
+  color: #ffffff;
+}
 
 .btn-action:disabled {
-  background-color: #cbd5e0;
+  opacity: 0.4;
   cursor: not-allowed;
+  box-shadow: none;
   transform: none;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@media (max-width: 640px) {
+  .container {
+    padding: 1rem;
+  }
+  .form-actions {
+    flex-direction: column-reverse;
+  }
+  .btn-action {
+    width: 100%;
+    justify-content: center;
+  }
 }

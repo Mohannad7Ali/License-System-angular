@@ -2,10 +2,10 @@
   <!-- هيدر الصفحة -->
   <header class="uc-header">
     <div class="uc-title-group">
-      <i class="fa fa-vcard-o uc-main-icon"></i>
+      <i class="fa fa-vcard uc-main-icon"></i>
       <div>
         <h1>ملف المستخدم</h1>
-        <p>البيانات الشخصية وإعدادات الأمان للحساب</p>
+        <p>البيانات الشخصية وإعدادات الأمان للحساب الحالي</p>
       </div>
     </div>
     <button class="uc-btn-password" routerLink="change-password">
@@ -15,27 +15,36 @@
 
   @if (isLoading()) {
     <div class="uc-loading">
-      <i class="fa fa-refresh fa-spin"></i> جاري تحميل البيانات...
+      <i class="fa fa-circle-notch fa-spin"></i>
+      <p>جاري تحميل بيانات الحساب...</p>
     </div>
   } @else {
     <div class="uc-grid animated fadeIn">
       <!-- كرت المعلومات الوظيفية -->
       <section class="uc-card">
-        <h3 class="uc-card-title">بيانات الحساب الوظيفي</h3>
+        <h3 class="uc-card-title">
+          <i class="fa fa-user-gear"></i> بيانات الحساب
+        </h3>
         <div class="uc-info-list">
           <div class="uc-info-row">
-            <span class="uc-label">اسم المستخدمة:</span>
-            <!-- تم تصحيح الـ @ هنا لتجنب خطأ الكومبايلر -->
-            <span class="uc-value">&#64;{{ user()?.username }}</span>
+            <span class="uc-label">اسم المستخدم:</span>
+            <span class="uc-value uc-highlight"
+              >&#64;{{ usernameDisplay() }}</span
+            >
           </div>
           <div class="uc-info-row">
-            <span class="uc-label">رقم المستخدمة (ID):</span>
-            <span class="uc-value">{{ user()?.id }}</span>
+            <span class="uc-label">رقم المستخدم (ID):</span>
+            <span class="uc-value">#{{ userIdDisplay() }}</span>
           </div>
           <div class="uc-info-row">
             <span class="uc-label">حالة الحساب:</span>
-            <span class="uc-status" [class.active]="user()?.isActive">
-              {{ user()?.isActive ? "نشطة" : "غير نشطة" }}
+            <span class="uc-status" [class.active]="isUserActive()">
+              <i
+                class="fa"
+                [class.fa-check-circle]="isUserActive()"
+                [class.fa-times-circle]="!isUserActive()"
+              ></i>
+              {{ isUserActive() ? "نشط" : "غير نشط" }}
             </span>
           </div>
         </div>
@@ -43,33 +52,29 @@
 
       <!-- كرت المعلومات الشخصية -->
       <section class="uc-card">
-        <h3 class="uc-card-title">المعلومات الشخصية</h3>
+        <h3 class="uc-card-title">
+          <i class="fa fa-id-card"></i> المعلومات الشخصية
+        </h3>
         <div class="uc-info-list">
           <div class="uc-info-row">
             <span class="uc-label">الاسم الكامل:</span>
-            <span class="uc-value"
-              >{{ person()?.firstName }} {{ person()?.lastName }}</span
-            >
+            <span class="uc-value">{{ fullNameDisplay() }}</span>
           </div>
           <div class="uc-info-row">
             <span class="uc-label">الرقم الوطني:</span>
-            <span class="uc-value">{{ person()?.nationalNumber }}</span>
+            <span class="uc-value">{{ nationalNoDisplay() }}</span>
           </div>
           <div class="uc-info-row">
             <span class="uc-label">الجنس:</span>
-            <span class="uc-value">
-              {{ person()?.gender === "Male" ? "ذكر" : "أنثى" }}
-            </span>
+            <span class="uc-value">{{ genderDisplay() }}</span>
           </div>
           <div class="uc-info-row">
             <span class="uc-label">البريد الإلكتروني:</span>
-            <span class="uc-value">{{ person()?.email || "غير متوفر" }}</span>
+            <span class="uc-value">{{ emailDisplay() }}</span>
           </div>
           <div class="uc-info-row">
             <span class="uc-label">رقم الهاتف:</span>
-            <span class="uc-value">{{
-              person()?.phoneNumber || "غير متوفر"
-            }}</span>
+            <span class="uc-value">{{ phoneDisplay() }}</span>
           </div>
         </div>
       </section>

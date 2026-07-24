@@ -1,37 +1,57 @@
+/* ===== المتغيرات الرئيسية وخلفية التطبيق الداكنة ===== */
 :root {
-  --bg-primary: #f8fafc;
-  --bg-secondary: #f1f5f9;
-  --text-primary: #0f172a;
-  --border-color: #e2e8f0;
+  --bg-dark-base: #0a0d18;
+  --bg-dark-card: rgba(15, 20, 35, 0.7);
+  --neon-cyan: #00f0ff;
+  --neon-purple: #7000ff;
+  --border-glass: rgba(255, 255, 255, 0.08);
 }
 
 * {
-  direction: rtl;
   box-sizing: border-box;
 }
 
+/* الحاوية الكلية للوحة التحكم */
 .dashboard {
   display: flex;
   height: 100vh;
   width: 100vw;
   overflow: hidden;
-  background-color: var(--bg-primary);
-  font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+  background-color: var(--bg-dark-base);
+  background-image:
+    radial-gradient(
+      circle at 10% 20%,
+      rgba(112, 0, 255, 0.12) 0%,
+      transparent 40%
+    ),
+    radial-gradient(
+      circle at 90% 80%,
+      rgba(0, 240, 255, 0.08) 0%,
+      transparent 40%
+    );
+  font-family:
+    "Segoe UI",
+    system-ui,
+    -apple-system,
+    sans-serif;
   position: relative;
+  color: #f8fafc;
 }
 
+/* ===== طبقة التغشية للهواتف (Mobile Overlay) ===== */
 .mobile-overlay {
   position: fixed;
   top: 0;
   right: 0;
   bottom: 0;
   left: 0;
-  background-color: rgba(15,23,42,0.5);
-  backdrop-filter: blur(4px);
+  background-color: rgba(5, 8, 18, 0.75);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
   z-index: 999;
   opacity: 0;
   visibility: hidden;
-  transition: all 0.3s ease;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .mobile-overlay.active {
@@ -39,6 +59,7 @@
   visibility: visible;
 }
 
+/* ===== منطقة المحتوى الرئيسية (Main Content Area) ===== */
 .main-content {
   flex: 1;
   display: flex;
@@ -47,11 +68,30 @@
   overflow-y: auto;
   overflow-x: hidden;
   position: relative;
+  padding-inline-start: 280px; /* ترك مجال للسايدبار المفهوم بـ RTL */
   transition: padding-inline-start 0.3s ease;
-  padding-inline-start: 280px;
 }
 
-.main-content > :last-child {
+/* تخصيص شريط التمرير (Scrollbar) للمحتوى الرئيسي */
+.main-content::-webkit-scrollbar {
+  width: 6px;
+}
+
+.main-content::-webkit-scrollbar-track {
+  background: rgba(10, 13, 24, 0.5);
+}
+
+.main-content::-webkit-scrollbar-thumb {
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 10px;
+}
+
+.main-content::-webkit-scrollbar-thumb:hover {
+  background: rgba(0, 240, 255, 0.3);
+}
+
+/* حاوية صفحات الـ Router Outlet */
+.page-wrapper {
   flex: 1;
   padding: 28px;
   box-sizing: border-box;
@@ -60,29 +100,36 @@
   margin: 0 auto;
 }
 
-/* Medium screens (tablets) */
+/* ===== تحسينات التجاوب (Responsive Breakpoints) ===== */
+
+/* الشاشات المتوسطة (الأجهزة اللوحية) */
 @media (max-width: 992px) {
   .main-content {
-    padding-inline-start: 260px;
+    padding-inline-start: 250px;
   }
-  .main-content > :last-child {
+  .page-wrapper {
     padding: 22px;
   }
 }
 
-/* Small screens (mobile) */
+/* الشاشات الصغيرة والموبايل */
 @media (max-width: 768px) {
   .main-content {
-    padding-inline-start: 0;
+    padding-inline-start: 0; /* الشاشة كاملة لأن السايدبار يصبح Overlay */
   }
-  .main-content > :last-child {
-    padding: 18px;
+  .page-wrapper {
+    padding: 16px;
+  }
+
+  /* الشاشة كاملة للسايدبار في الموبايل عند الفتح */
+  app-sidebar.mobile-open {
+    transform: translateX(0) !important;
   }
 }
 
-/* Extra small screens */
+/* الشاشات الصغيرة جداً */
 @media (max-width: 480px) {
-  .main-content > :last-child {
-    padding: 14px;
+  .page-wrapper {
+    padding: 12px;
   }
 }

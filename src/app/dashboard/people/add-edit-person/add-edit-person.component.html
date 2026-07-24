@@ -1,4 +1,4 @@
-<div class="container withbackground" dir="rtl">
+<div class="container" dir="rtl">
   <header class="page-header">
     <h2>
       <i class="fa fa-user-circle"></i>
@@ -18,12 +18,11 @@
     </div>
   }
 
-  <form [formGroup]="personForm" (ngSubmit)="onSave()" class="card person-form">
+  <form [formGroup]="personForm" (ngSubmit)="onSave()" class="person-form">
     <div class="form-body">
       <!-- قسم رفع الصورة -->
       <div class="photo-section">
         <div class="avatar-wrapper" (click)="fileInput.click()">
-          <!-- تم ربط الرابط الافتراضي المباشر هنا في حال لم توجد معاينة -->
           <img
             [src]="
               imagePreview() ||
@@ -53,24 +52,44 @@
       <div class="inputs-grid">
         <div class="control">
           <label>الاسم الأول *</label>
-          <input type="text" formControlName="firstName" />
+          <input
+            type="text"
+            formControlName="firstName"
+            placeholder="مثال: محمد"
+          />
         </div>
         <div class="control">
           <label>الاسم الثاني *</label>
-          <input type="text" formControlName="secondName" />
+          <input
+            type="text"
+            formControlName="secondName"
+            placeholder="مثال: أحمد"
+          />
         </div>
         <div class="control">
           <label>الاسم الثالث *</label>
-          <input type="text" formControlName="thirdName" />
+          <input
+            type="text"
+            formControlName="thirdName"
+            placeholder="مثال: محمود"
+          />
         </div>
         <div class="control">
           <label>الكنية *</label>
-          <input type="text" formControlName="lastName" />
+          <input
+            type="text"
+            formControlName="lastName"
+            placeholder="مثال: العلي"
+          />
         </div>
 
         <div class="control">
           <label>الرقم الوطني *</label>
-          <input type="text" formControlName="nationalNumber" />
+          <input
+            type="text"
+            formControlName="nationalNumber"
+            placeholder="أدخل الرقم الوطني"
+          />
           @if (personForm.get("nationalNumber")?.errors?.["notUnique"]) {
             <small class="text-danger">الرقم الوطني مسجل مسبقاً</small>
           }
@@ -107,17 +126,29 @@
 
         <div class="control">
           <label>الهاتف *</label>
-          <input type="tel" formControlName="phoneNumber" />
+          <input
+            type="tel"
+            formControlName="phoneNumber"
+            placeholder="05XXXXXXXX"
+          />
         </div>
 
         <div class="control">
           <label>البريد الإلكتروني *</label>
-          <input type="email" formControlName="email" />
+          <input
+            type="email"
+            formControlName="email"
+            placeholder="example@domain.com"
+          />
         </div>
 
         <div class="control full-width">
           <label>العنوان السكني *</label>
-          <textarea formControlName="address" rows="2"></textarea>
+          <textarea
+            formControlName="address"
+            rows="2"
+            placeholder="أدخل التفاصيل المكانية للسكن..."
+          ></textarea>
         </div>
       </div>
     </div>

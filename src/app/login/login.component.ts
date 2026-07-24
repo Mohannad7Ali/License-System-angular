@@ -19,6 +19,7 @@ import { concatMap, debounceTime, switchMap, tap } from 'rxjs';
 import { Router, RouterLink } from '@angular/router';
 import { CurrentUserService } from '../services/current-user.service';
 import { isPlatformBrowser } from '@angular/common';
+
 @Component({
   selector: 'app-login',
   standalone: true,
@@ -36,6 +37,7 @@ export class LoginComponent implements OnInit {
   private userService = inject(UserService);
   private router = inject(Router);
   private loginService = inject(LoginService);
+
   login_form = new FormGroup({
     username: new FormControl('', {
       validators: [Validators.required],
@@ -47,13 +49,13 @@ export class LoginComponent implements OnInit {
 
   constructor(
     private currentUserService: CurrentUserService,
-    @Inject(PLATFORM_ID) private platformId: Object
+    @Inject(PLATFORM_ID) private platformId: Object,
   ) {
     this.currentUserService.clearCurrentUser();
   }
+
   ngOnInit(): void {
     if (isPlatformBrowser(this.platformId)) {
-      //get latest login credintioal from local storage
       const savedItem = window.localStorage.getItem('saved-login');
       if (savedItem) {
         const loadedData = JSON.parse(savedItem);
@@ -65,7 +67,7 @@ export class LoginComponent implements OnInit {
           password: savedPassword,
         });
       }
-      // save login creditional to local storage
+
       const subscription = this.login_form.valueChanges
         .pipe(debounceTime(500))
         .subscribe({
@@ -75,7 +77,7 @@ export class LoginComponent implements OnInit {
               JSON.stringify({
                 username: val.username,
                 password: val.password,
-              })
+              }),
             );
           },
         });
@@ -121,7 +123,7 @@ export class LoginComponent implements OnInit {
           }
           return this.loginService.isActive(
             this.enteredUsername(),
-            this.enteredPassword()
+            this.enteredPassword(),
           );
         }),
         tap((isActiveValue) => this.isActive.set(isActiveValue)),
@@ -131,20 +133,14 @@ export class LoginComponent implements OnInit {
           }
           return this.userService.readUser(this.enteredUsername());
         }),
-        // Changed to concatMap to wait for saveLogin to complete
         concatMap((fullUser) => {
-          //save current user in local storage
           window.localStorage.setItem('current-user', JSON.stringify(fullUser));
-          // saveLogin returns an observable
           return this.loginService.saveLogin(fullUser.id);
-        })
+        }),
       )
       .subscribe({
-        next: () => {
-          //which will only be executed after the entire observable chain completes successfully.
-        },
+        next: () => {},
         complete: () => {
-          //will work as expected, but only if the entire observable chain completes successfully (i.e., no errors were thrown
           this.router.navigate(['/dashboard']);
         },
         error: (err) => {

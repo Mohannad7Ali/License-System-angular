@@ -1,7 +1,11 @@
 <header class="hd-main" dir="rtl">
   <!-- اليمين: زر الموبايل والعنوان الرسمي -->
   <div class="hd-right-section">
-    <button class="hd-mobile-btn" (click)="toggleMobileMenu()">
+    <button
+      class="hd-mobile-btn"
+      (click)="toggleMobileMenu()"
+      aria-label="القائمة"
+    >
       <i class="fa fa-bars"></i>
     </button>
 
@@ -31,7 +35,7 @@
         }}</span>
         <span class="hd-role">مسؤول نظام</span>
       </div>
-      <img src="images/user (4).png" alt="User" class="hd-avatar" />
+      <img src="images/user (4).png" alt="User Avatar" class="hd-avatar" />
     </button>
 
     <!-- زر تسجيل الخروج -->

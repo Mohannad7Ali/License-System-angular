@@ -4,7 +4,7 @@ import {
   CurrencyPipe,
   DatePipe,
   Location,
-} from '@angular/common'; // أضفنا Location
+} from '@angular/common';
 import { FormControl, ReactiveFormsModule, Validators } from '@angular/forms';
 import { Subject, takeUntil, tap, switchMap, catchError, of } from 'rxjs';
 
@@ -28,7 +28,7 @@ export class DetainLicenseComponent implements OnDestroy {
   private driverService = inject(DriverService);
   private notify = inject(NotificationService);
   private userService = inject(CurrentUserService);
-  private location = inject(Location); // للرجوع للخلف
+  private location = inject(Location);
 
   searchControl = new FormControl<number | null>(null, [
     Validators.required,

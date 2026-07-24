@@ -41,14 +41,26 @@
     </button>
     @if (menuOpen["services"]()) {
       <div class="sb-submenu">
-        <a routerLink="services/new-application/local">طلب رخصة محلية</a>
-        <a routerLink="services/new-application/international"
+        <a routerLink="services/new-application/local" routerLinkActive="active"
+          >طلب رخصة محلية</a
+        >
+        <a
+          routerLink="services/new-application/international"
+          routerLinkActive="active"
           >طلب رخصة دولية</a
         >
-        <a routerLink="services/renew-local-app">تجديد رخصة منتهية</a>
-        <a routerLink="services/replace-app">بدل تالف / فاقد</a>
-        <a routerLink="services/detain-license">حجز رخصة (قيد)</a>
-        <a routerLink="services/release-app">فك حجز (إطلاق سراح)</a>
+        <a routerLink="services/renew-local-app" routerLinkActive="active"
+          >تجديد رخصة منتهية</a
+        >
+        <a routerLink="services/replace-app" routerLinkActive="active"
+          >بدل تالف / فاقد</a
+        >
+        <a routerLink="services/detain-license" routerLinkActive="active"
+          >حجز رخصة (قيد)</a
+        >
+        <a routerLink="services/release-app" routerLinkActive="active"
+          >فك حجز (إطلاق سراح)</a
+        >
       </div>
     }
   </div>
@@ -67,11 +79,19 @@
     </button>
     @if (menuOpen["operations"]()) {
       <div class="sb-submenu">
-        <a routerLink="applications-management/local-applications"
+        <a
+          routerLink="applications-management/local-applications"
+          routerLinkActive="active"
           >طلبات الفحص الحالية</a
         >
-        <a routerLink="appointments/manage-appointments">جدول المواعيد</a>
-        <a routerLink="manage-tests/tests">سجل نتائج الاختبارات</a>
+        <a
+          routerLink="appointments/manage-appointments"
+          routerLinkActive="active"
+          >جدول المواعيد</a
+        >
+        <a routerLink="manage-tests/tests" routerLinkActive="active"
+          >سجل نتائج الاختبارات</a
+        >
       </div>
     }
   </div>
@@ -90,11 +110,19 @@
     </button>
     @if (menuOpen["archives"]()) {
       <div class="sb-submenu">
-        <a routerLink="licenses-management/drivers">سجل السائقين</a>
-        <a routerLink="licenses-management/international-licenses"
+        <a routerLink="licenses-management/drivers" routerLinkActive="active"
+          >سجل السائقين</a
+        >
+        <a
+          routerLink="licenses-management/international-licenses"
+          routerLinkActive="active"
           >أرشيف الرخص الدولية</a
         >
-        <a routerLink="licenses-management/detaiend-licenses">سجل المحجوزات</a>
+        <a
+          routerLink="licenses-management/detaiend-licenses"
+          routerLinkActive="active"
+          >سجل المحجوزات</a
+        >
       </div>
     }
   </div>

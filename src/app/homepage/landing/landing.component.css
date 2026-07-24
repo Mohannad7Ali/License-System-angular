@@ -1,181 +1,298 @@
-/* homepage.component.css */
-:root {
-  --ov-primary: #0f172a; /* Navy */
-  --ov-primary-light: #1e293b;
-  --ov-accent: #3b82f6;
-  --ov-white: #ffffff;
-  --ov-bg-light: #f8fafc;
-  --ov-shadow: 0 8px 30px rgba(15, 23, 42, 0.1);
-  --ov-shadow-hover: 0 12px 40px rgba(15, 23, 42, 0.18);
-  --ov-radius: 20px;
-  --ov-transition: 0.3s ease;
-}
-
 /* ===== أنيميشن الدخول ===== */
-@keyframes ovFadeInUp {
+@keyframes fadeInUp {
   from {
     opacity: 0;
-    transform: translateY(40px);
+    transform: translateY(30px);
   }
   to {
     opacity: 1;
     transform: translateY(0);
   }
 }
-.ov-fade-in-up {
-  animation: ovFadeInUp 0.7s ease-out forwards;
+
+.fade-in-up {
+  animation: fadeInUp 0.8s ease-out forwards;
 }
 
-/* ===== الحاوية العامة ===== */
-.ov-homepage {
-  direction: rtl;
-  text-align: center;
-  padding: 40px 24px 60px;
-  background: var(--ov-bg-light);
+/* ===== الحاوية العامة (Landing Container) ===== */
+.landing-container {
+  position: relative;
   min-height: 100vh;
+  background-color: #070913;
+  color: #f8fafc;
+  padding: 120px 24px 60px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
   box-sizing: border-box;
+}
+
+/* ===== كرات الإضاءة الخلفية (Glow Orbs) ===== */
+.glow-orb {
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(120px);
+  z-index: 1;
+  pointer-events: none;
+  opacity: 0.45;
+}
+
+.glow-orb.orb-primary {
+  width: 450px;
+  height: 450px;
+  background: #7000ff;
+  top: -10%;
+  right: -5%;
+}
+
+.glow-orb.orb-secondary {
+  width: 400px;
+  height: 400px;
+  background: #00f0ff;
+  bottom: -10%;
+  left: -5%;
+}
+
+/* ===== المحتوى الرئيسي ===== */
+.landing-content {
+  position: relative;
+  z-index: 2;
+  max-width: 1100px;
+  width: 100%;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+
+/* ===== Badge العلوي ===== */
+.hero-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: rgba(112, 0, 255, 0.15);
+  border: 1px solid rgba(112, 0, 255, 0.4);
+  color: #00f0ff;
+  padding: 8px 18px;
+  border-radius: 30px;
+  font-size: 14px;
+  font-weight: 600;
+  margin-bottom: 24px;
+  backdrop-filter: blur(8px);
+}
+
+.hero-badge .badge-dot {
+  width: 8px;
+  height: 8px;
+  background-color: #00f0ff;
+  border-radius: 50%;
+  box-shadow: 0 0 10px #00f0ff;
+}
+
+/* ===== العناوين ===== */
+.hero-title {
+  font-size: 54px;
+  font-weight: 900;
+  line-height: 1.25;
+  margin: 0 0 16px 0;
+  letter-spacing: -1px;
+}
+
+.hero-title .gradient-text {
+  background: linear-gradient(135deg, #00f0ff 0%, #7000ff 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.hero-subtitle {
+  font-size: 20px;
+  color: #94a3b8;
+  max-width: 680px;
+  line-height: 1.7;
+  margin: 0 0 40px 0;
+  font-weight: 400;
+}
+
+/* ===== أزرار التفاعل ===== */
+.hero-actions {
+  display: flex;
+  gap: 20px;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 60px;
+  flex-wrap: wrap;
+}
+
+.btn-primary-glow {
+  background: linear-gradient(90deg, #7000ff, #00f0ff);
+  color: #ffffff;
+  border: none;
+  padding: 16px 36px;
+  border-radius: 50px;
+  font-size: 18px;
+  font-weight: 700;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  box-shadow: 0 0 25px rgba(112, 0, 255, 0.4);
+}
+
+.btn-primary-glow .arrow-icon {
+  transition: transform 0.3s ease;
+}
+
+.btn-primary-glow:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 0 35px rgba(0, 240, 255, 0.6);
+}
+
+.btn-primary-glow:hover .arrow-icon {
+  transform: translateX(-5px);
+}
+
+.btn-secondary-glass {
+  background: rgba(20, 24, 44, 0.55);
+  color: #f8fafc;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  padding: 16px 32px;
+  border-radius: 50px;
+  font-size: 18px;
+  font-weight: 600;
+  text-decoration: none;
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  backdrop-filter: blur(12px);
+  transition: all 0.3s ease;
+}
+
+.btn-secondary-glass:hover {
+  background: rgba(255, 255, 255, 0.1);
+  border-color: rgba(255, 255, 255, 0.2);
+  color: #00f0ff;
+  transform: translateY(-3px);
+}
+
+/* ===== شبكة الميزات (Features Grid) ===== */
+.features-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+  gap: 24px;
+  width: 100%;
+}
+
+.glass-panel {
+  background: rgba(20, 24, 44, 0.55);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 24px;
+  padding: 28px 20px;
+  position: relative;
+  overflow: hidden;
+  transition: all 0.4s ease;
   display: flex;
   flex-direction: column;
   align-items: center;
 }
 
-/* ===== النصوص ===== */
-.ov-main-text {
-  font-size: 52px;
-  font-weight: 900;
-  color: var(--ov-primary);
-  margin: 0 0 8px 0;
-  line-height: 1.2;
-  letter-spacing: -0.5px;
-}
-.ov-sub-text {
-  font-size: 20px;
-  font-weight: 500;
-  color: #475569;
-  margin: 0 0 32px 0;
-  max-width: 600px;
-  line-height: 1.6;
-}
-
-/* ===== زر التقديم ===== */
-.ov-btn-apply {
-  background: var(--ov-primary);
-  color: var(--ov-white);
-  border: none;
-  padding: 16px 40px;
-  border-radius: 60px;
-  font-size: 20px;
-  font-weight: 700;
-  display: inline-flex;
-  align-items: center;
-  gap: 14px;
-  cursor: pointer;
-  transition: all var(--ov-transition);
-  box-shadow: 0 6px 20px rgba(15, 23, 42, 0.2);
-  margin-bottom: 40px;
-}
-.ov-btn-apply:hover {
-  background: var(--ov-primary-light);
-  transform: translateY(-4px);
-  box-shadow: var(--ov-shadow-hover);
-}
-.ov-btn-apply i {
-  font-size: 18px;
-}
-
-/* ===== بطاقات الميزات ===== */
-.ov-cards {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-  gap: 28px;
-  width: 100%;
-  max-width: 1100px;
-}
-
-.ov-card {
-  position: relative;
-  border-radius: var(--ov-radius);
-  overflow: hidden;
-  box-shadow: var(--ov-shadow);
-  transition: all var(--ov-transition);
-  aspect-ratio: 4 / 3;
-  background: var(--ov-white);
-}
-.ov-card:hover {
+.glass-panel:hover {
   transform: translateY(-8px);
-  box-shadow: var(--ov-shadow-hover);
-}
-.ov-card img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  display: block;
-  transition: transform 0.5s ease;
-}
-.ov-card:hover img {
-  transform: scale(1.05);
+  border-color: rgba(0, 240, 255, 0.3);
+  box-shadow: 0 12px 40px rgba(0, 0, 0, 0.5);
 }
 
-/* طبقة التسمية فوق الصورة */
-.ov-card-overlay {
+.glass-panel:hover .card-icon-wrapper {
+  background: linear-gradient(135deg, #7000ff, #00f0ff);
+  color: #ffffff;
+  transform: scale(1.1);
+}
+
+.glass-panel:hover .card-glow-effect {
+  opacity: 1;
+}
+
+.card-icon-wrapper {
+  width: 56px;
+  height: 56px;
+  border-radius: 16px;
+  background: rgba(255, 255, 255, 0.05);
+  color: #00f0ff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 24px;
+  margin-bottom: 16px;
+  transition: all 0.3s ease;
+}
+
+.card-info h3 {
+  font-size: 18px;
+  font-weight: 700;
+  margin: 0 0 6px 0;
+  color: #f8fafc;
+}
+
+.card-info p {
+  font-size: 14px;
+  color: #94a3b8;
+  margin: 0;
+  line-height: 1.5;
+}
+
+.card-glow-effect {
   position: absolute;
-  bottom: 0;
+  top: 0;
   left: 0;
   right: 0;
-  padding: 16px 12px;
-  background: linear-gradient(to top, rgba(15, 23, 42, 0.85), transparent);
-  color: var(--ov-white);
-  font-size: 18px;
-  font-weight: 700;
-  text-align: center;
-  backdrop-filter: blur(2px);
-}
-.ov-card-overlay span {
-  display: block;
-  text-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+  height: 2px;
+  background: linear-gradient(90deg, transparent, #00f0ff, transparent);
+  opacity: 0;
+  transition: opacity 0.3s ease;
 }
 
-/* ===== استجابة للشاشات الصغيرة ===== */
+/* ===== الاستجابة للشاشات (Responsive) ===== */
 @media (max-width: 768px) {
-  .ov-homepage {
-    padding: 30px 16px 40px;
+  .landing-container {
+    padding: 100px 16px 40px;
   }
-  .ov-main-text {
-    font-size: 38px;
+
+  .hero-title {
+    font-size: 36px;
   }
-  .ov-sub-text {
-    font-size: 17px;
+
+  .hero-subtitle {
+    font-size: 16px;
   }
-  .ov-btn-apply {
-    padding: 14px 28px;
-    font-size: 17px;
-    gap: 10px;
+
+  .hero-actions {
+    flex-direction: column;
+    width: 100%;
   }
-  .ov-cards {
-    grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
-    gap: 20px;
+
+  .hero-actions .btn-primary-glow,
+  .hero-actions .btn-secondary-glass {
+    width: 100%;
+    justify-content: center;
+    box-sizing: border-box;
+  }
+
+  .features-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 16px;
   }
 }
 
 @media (max-width: 480px) {
-  .ov-main-text {
+  .hero-title {
     font-size: 28px;
   }
-  .ov-sub-text {
-    font-size: 15px;
-  }
-  .ov-btn-apply {
-    width: 100%;
-    justify-content: center;
-    padding: 14px 20px;
-    font-size: 16px;
-  }
-  .ov-cards {
-    grid-template-columns: 1fr 1fr;
-    gap: 14px;
-  }
-  .ov-card-overlay {
-    font-size: 14px;
-    padding: 10px 8px;
+
+  .features-grid {
+    grid-template-columns: 1fr;
   }
 }

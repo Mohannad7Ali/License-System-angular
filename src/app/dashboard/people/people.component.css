@@ -1,13 +1,22 @@
-/* الحاوية الرئيسية */
+/* ==========================================================================
+   Dark Neon Glossy / Glassmorphism Theme - People Component
+   ========================================================================== */
+
+/* 🌌 الحاوية الرئيسية */
 .container {
-  max-width: 1200px;
+  max-width: 1280px;
   margin: 2rem auto;
   padding: 0 1.5rem;
   direction: rtl;
-  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  font-family:
+    "Segoe UI",
+    system-ui,
+    -apple-system,
+    sans-serif;
+  color: #f1f5f9;
 }
 
-/* الترويسة (Header) */
+/* 📌 الترويسة الرئيسية */
 .page-header {
   margin-bottom: 2rem;
 }
@@ -15,106 +24,129 @@
 .title-section {
   display: flex;
   align-items: center;
-  gap: 0.75rem;
+  gap: 0.85rem;
   margin-bottom: 0.5rem;
 }
 
 .page-icon {
-  font-size: 1.75rem;
-  color: #2563eb;
+  font-size: 2rem;
+  background: linear-gradient(135deg, #a855f7, #6366f1);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  filter: drop-shadow(0 0 12px rgba(168, 85, 247, 0.4));
 }
 
 .page-header h2 {
-  font-size: 1.75rem;
-  color: #1e293b;
+  font-size: 1.85rem;
+  color: #f8fafc;
   margin: 0;
-  font-weight: 700;
+  font-weight: 800;
+  letter-spacing: -0.02em;
 }
 
 .subtitle {
-  color: #64748b;
+  color: #94a3b8;
   font-size: 0.95rem;
   margin: 0;
 }
 
-/* 🛠️ قسم الفلترة والإضافة - مصلح وذكي */
+/* 🛠️ أدوات التحكم (البحث والإضافة) */
 .table-controls {
   display: flex;
-  justify-content: flex-start; /* ترتيب العناصر لتبدأ من اليمين بدلاً من التباعد المفرط */
+  justify-content: space-between;
   align-items: center;
-  gap: 1rem; /* مسافة منطقية بين البحث والزر */
-  margin-bottom: 1.5rem;
+  gap: 1.25rem;
+  margin-bottom: 1.75rem;
 }
 
-/* حقل البحث: أقصى عرض منطقي له هو 450px ليبقى أنيقاً */
 .search-wrapper {
   position: relative;
   width: 100%;
-  max-width: 450px;
+  max-width: 480px;
 }
 
 .search-icon {
   position: absolute;
   top: 50%;
-  right: 1rem;
+  right: 1.25rem;
   transform: translateY(-50%);
-  color: #94a3b8;
-  font-size: 0.95rem;
+  color: #64748b;
+  font-size: 1rem;
+  transition: color 0.2s ease;
 }
 
 .search-wrapper input {
   width: 100%;
-  padding: 0.75rem 2.5rem 0.75rem 1rem;
+  padding: 0.85rem 2.8rem 0.85rem 1.25rem;
   font-size: 0.95rem;
-  border: 1.5px solid #e2e8f0;
-  border-radius: 10px;
-  background-color: #ffffff;
-  color: #334155;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 12px;
+  background: rgba(15, 23, 42, 0.6);
+  backdrop-filter: blur(12px);
+  color: #f1f5f9;
   outline: none;
-  transition: all 0.2s ease;
+  transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+  box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+.search-wrapper input::placeholder {
+  color: #64748b;
 }
 
 .search-wrapper input:focus {
-  border-color: #3b82f6;
-  box-shadow: 0 0 0 4px rgba(59, 130, 246, 0.1);
+  border-color: #6366f1;
+  background: rgba(15, 23, 42, 0.85);
+  box-shadow:
+    0 0 0 3px rgba(99, 102, 241, 0.25),
+    0 0 15px rgba(99, 102, 241, 0.2);
 }
 
-/* 🛠️ زر إضافة شخص جديد: تم قفل حجمه تماماً ليتناسب مع محتواه */
+.search-wrapper input:focus + .search-icon {
+  color: #818cf8;
+}
+
+/* ➕ زر إضافة شخص جديد */
 .add-btn {
   display: inline-flex;
   align-items: center;
-  gap: 0.5rem;
-  padding: 0.75rem 1.25rem;
-  background: linear-gradient(135deg, #3b82f6, #2563eb);
+  gap: 0.6rem;
+  padding: 0.85rem 1.5rem;
+  background: linear-gradient(135deg, #6366f1 0%, #4f46e5 50%, #4338ca 100%);
   color: #ffffff;
-  border: none;
-  border-radius: 10px;
-  font-weight: 600;
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  border-radius: 12px;
+  font-weight: 700;
   font-size: 0.95rem;
   cursor: pointer;
-  transition: all 0.2s ease;
-  box-shadow: 0 4px 10px rgba(37, 99, 235, 0.15);
-  white-space: nowrap; /* يمنع النص من الانقسام لسطرين */
-  flex-shrink: 0; /* يمنع المتصفح من ضغط الزر */
-  width: auto; /* يعتمد على حجم النص بداخله فقط */
+  transition: all 0.25s ease;
+  box-shadow: 0 4px 20px rgba(79, 70, 229, 0.35);
+  white-space: nowrap;
+  flex-shrink: 0;
 }
 
 .add-btn:hover {
-  background: linear-gradient(135deg, #2563eb, #1d4ed8);
-  transform: translateY(-1px);
-  box-shadow: 0 6px 14px rgba(37, 99, 235, 0.25);
+  background: linear-gradient(135deg, #818cf8 0%, #6366f1 50%, #4f46e5 100%);
+  transform: translateY(-2px);
+  box-shadow: 0 6px 25px rgba(99, 102, 241, 0.5);
+  border-color: rgba(255, 255, 255, 0.3);
 }
 
-/* بطاقة الجدول (Table Card) */
+.add-btn:active {
+  transform: translateY(0);
+}
+
+/* 💳 بطاقة الجدول (Glassmorphism Table) */
 .table-card {
-  background: #ffffff;
-  border-radius: 14px;
-  border: 1px solid #e2e8f0;
+  background: rgba(30, 41, 59, 0.5);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border-radius: 16px;
+  border: 1px solid rgba(255, 255, 255, 0.08);
   box-shadow:
-    0 4px 6px -1px rgba(0, 0, 0, 0.02),
-    0 2px 4px -1px rgba(0, 0, 0, 0.02);
+    0 10px 30px -10px rgba(0, 0, 0, 0.5),
+    0 0 20px rgba(99, 102, 241, 0.05);
   overflow: hidden;
-  margin-bottom: 1.5rem;
+  margin-bottom: 1.75rem;
 }
 
 table {
@@ -124,19 +156,22 @@ table {
 }
 
 th {
-  background-color: #f8fafc;
-  color: #475569;
-  font-weight: 600;
-  font-size: 0.9rem;
-  padding: 1rem 1.25rem;
-  border-bottom: 1.5px solid #e2e8f0;
+  background: rgba(15, 23, 42, 0.8);
+  color: #94a3b8;
+  font-weight: 700;
+  font-size: 0.85rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  padding: 1.1rem 1.25rem;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
 }
 
 td {
-  padding: 1rem 1.25rem;
-  color: #334155;
+  padding: 1.1rem 1.25rem;
+  color: #e2e8f0;
   font-size: 0.95rem;
-  border-bottom: 1px solid #f1f5f9;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.04);
+  transition: background-color 0.2s ease;
 }
 
 tr:last-child td {
@@ -144,98 +179,121 @@ tr:last-child td {
 }
 
 tr:hover td {
-  background-color: #f8fafc;
+  background-color: rgba(255, 255, 255, 0.03);
 }
 
-/* شارات المعرف والرقم الوطني (Badges) */
+/* 🏷️ الشارات والمعرفات (Badges) */
 .id-badge {
-  background-color: #f1f5f9;
-  color: #64748b;
-  padding: 0.25rem 0.6rem;
-  border-radius: 6px;
-  font-weight: 600;
+  background: rgba(148, 163, 184, 0.1);
+  color: #cbd5e1;
+  padding: 0.3rem 0.65rem;
+  border-radius: 8px;
+  font-weight: 700;
   font-size: 0.85rem;
+  border: 1px solid rgba(255, 255, 255, 0.05);
+  font-family: monospace;
 }
 
-/* شارات الجنس (Gender Badges) */
+.national-num {
+  color: #38bdf8;
+  font-weight: 600;
+  letter-spacing: 0.03em;
+}
+
+/* 🚻 شارات الجنس */
 .gender-male,
 .gender-female {
   display: inline-flex;
   align-items: center;
-  gap: 0.4rem;
-  padding: 0.35rem 0.75rem;
+  gap: 0.45rem;
+  padding: 0.35rem 0.85rem;
   border-radius: 20px;
   font-size: 0.85rem;
   font-weight: 600;
+  backdrop-filter: blur(4px);
 }
 
 .gender-male {
-  background-color: #eff6ff;
-  color: #2563eb;
+  background: rgba(59, 130, 246, 0.12);
+  color: #60a5fa;
+  border: 1px solid rgba(59, 130, 246, 0.25);
+  box-shadow: 0 0 10px rgba(59, 130, 246, 0.1);
 }
 
 .gender-female {
-  background-color: #fdf2f8;
-  color: #db2777;
+  background: rgba(236, 72, 153, 0.12);
+  color: #f472b6;
+  border: 1px solid rgba(236, 72, 153, 0.25);
+  box-shadow: 0 0 10px rgba(236, 72, 153, 0.1);
 }
 
-/* أزرار العمليات (Actions) */
+/* ⚡ أزرار الإجراءات */
 .actions {
   display: flex;
-  gap: 0.5rem;
+  gap: 0.6rem;
 }
 
 .btn-action {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  width: 34px;
-  height: 34px;
-  border: none;
-  border-radius: 8px;
+  width: 36px;
+  height: 36px;
+  border: 1px solid transparent;
+  border-radius: 10px;
   cursor: pointer;
-  transition: all 0.2s ease;
+  transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
   font-size: 0.95rem;
 }
 
 .edit-btn {
-  background-color: #f0fdf4;
-  color: #16a34a;
+  background: rgba(16, 185, 129, 0.1);
+  color: #34d399;
+  border-color: rgba(16, 185, 129, 0.2);
 }
 
 .edit-btn:hover {
-  background-color: #16a34a;
+  background: #10b981;
   color: #ffffff;
+  box-shadow: 0 0 15px rgba(16, 185, 129, 0.4);
+  transform: translateY(-2px);
 }
 
 .delete-btn {
-  background-color: #fef2f2;
-  color: #dc2626;
+  background: rgba(239, 68, 68, 0.1);
+  color: #f87171;
+  border-color: rgba(239, 68, 68, 0.2);
 }
 
 .delete-btn:hover {
-  background-color: #dc2626;
+  background: #ef4444;
   color: #ffffff;
+  box-shadow: 0 0 15px rgba(239, 68, 68, 0.4);
+  transform: translateY(-2px);
 }
 
-/* الأسطر الفارغة (Empty State) */
+/* 📭 الحالة الفارغة */
 .empty-row {
   text-align: center;
-  padding: 3rem 1rem !important;
-  color: #94a3b8;
+  padding: 4rem 1rem !important;
+  color: #64748b;
 }
 
 .empty-row i {
-  font-size: 2.5rem;
-  margin-bottom: 0.75rem;
+  font-size: 3rem;
+  margin-bottom: 1rem;
+  background: linear-gradient(135deg, #64748b, #475569);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
 }
 
 .empty-row p {
   margin: 0;
-  font-size: 1rem;
+  font-size: 1.05rem;
+  color: #94a3b8;
 }
 
-/* التحكم بالصفحات (Pagination) */
+/* 📄 الترقيم (Pagination) */
 .pagination-section {
   display: flex;
   justify-content: space-between;
@@ -244,12 +302,13 @@ tr:hover td {
 }
 
 .results-count {
-  color: #64748b;
+  color: #94a3b8;
   font-size: 0.9rem;
 }
 
 .results-count b {
-  color: #1e293b;
+  color: #38bdf8;
+  font-weight: 700;
 }
 
 .pagination-btns {
@@ -261,36 +320,43 @@ tr:hover td {
 .p-btn {
   display: inline-flex;
   align-items: center;
-  gap: 0.4rem;
-  padding: 0.5rem 1rem;
-  background-color: #ffffff;
-  border: 1.5px solid #e2e8f0;
-  border-radius: 8px;
-  color: #475569;
+  gap: 0.5rem;
+  padding: 0.55rem 1.1rem;
+  background: rgba(30, 41, 59, 0.6);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 10px;
+  color: #e2e8f0;
   font-size: 0.9rem;
   font-weight: 600;
   cursor: pointer;
   transition: all 0.2s ease;
+  backdrop-filter: blur(8px);
 }
 
 .p-btn:hover:not([disabled]) {
-  border-color: #cbd5e1;
-  background-color: #f8fafc;
-  color: #1e293b;
+  border-color: #6366f1;
+  background: rgba(99, 102, 241, 0.15);
+  color: #ffffff;
+  box-shadow: 0 0 12px rgba(99, 102, 241, 0.2);
 }
 
 .p-btn:disabled {
-  opacity: 0.5;
+  opacity: 0.35;
   cursor: not-allowed;
+  border-color: transparent;
 }
 
 .page-indicator {
-  color: #334155;
+  color: #cbd5e1;
   font-size: 0.9rem;
   font-weight: 600;
+  padding: 0.4rem 0.8rem;
+  background: rgba(15, 23, 42, 0.5);
+  border-radius: 8px;
+  border: 1px solid rgba(255, 255, 255, 0.04);
 }
 
-/* شاشات الهواتف والأجهزة الصغيرة (Responsive) */
+/* 📱 التجاوب مع الشاشات الصغيرة */
 @media (max-width: 768px) {
   .table-controls {
     flex-direction: column;
@@ -311,7 +377,7 @@ tr:hover td {
 
   .pagination-section {
     flex-direction: column;
-    gap: 1rem;
+    gap: 1.25rem;
     text-align: center;
   }
 }

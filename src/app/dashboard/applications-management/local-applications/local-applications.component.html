@@ -30,10 +30,11 @@
         placeholder="ابحث بالاسم، الرقم الوطني، أو المعرف..."
       />
     </div>
+
+    <!-- تم تعديل الرابط هنا لينقلك مباشرة إلى الصفحة المطلوبة -->
     <button
       class="la-btn-primary"
-      routerLink="../add-edit-application"
-      [queryParams]="{ mode: 'add', application_id: 0, with_cancelation: true }"
+      routerLink="/dashboard/services/new-application/local"
     >
       <i class="fa fa-plus"></i> تقديم طلب جديد
     </button>

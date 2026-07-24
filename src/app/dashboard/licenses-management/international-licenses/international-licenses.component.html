@@ -1,13 +1,16 @@
 <app-notification />
 
 <div class="la-container" dir="rtl">
+  <!-- هيدر الصفحة المطور -->
   <header class="la-page-header">
     <div class="la-title-section">
-      <div class="la-icon-circle"><i class="fa fa-globe"></i></div>
+      <div class="la-icon-circle">
+        <i class="fa fa-globe"></i>
+      </div>
       <div>
         <h2>إدارة رخص القيادة الدولية</h2>
         <p class="la-subtitle">
-          عرض وتدقيق كافة الرخص الدولية الصادرة عن النظام
+          عرض وتدقيق كافة الرخص الدولية الصادرة عن النظام الموحد
         </p>
       </div>
     </div>
@@ -21,6 +24,7 @@
         type="text"
         [formControl]="filter"
         placeholder="ابحث برقم الرخصة الدولية أو المحلية..."
+        aria-label="بحث في الرخص الدولية"
       />
     </div>
     <button
@@ -31,7 +35,7 @@
     </button>
   </div>
 
-  <!-- الجدول الاحترافي -->
+  <!-- الجدول الاحترافي العصرى -->
   <div class="la-table-card">
     <table class="la-modern-table">
       <thead>
@@ -59,20 +63,25 @@
             </td>
             <td>{{ item.issueDate | date: "dd/MM/yyyy" }}</td>
             <td>
-              <span [class.text-danger]="!item.isActive">{{
-                item.expirationDate | date: "dd/MM/yyyy"
-              }}</span>
+              <span [class.text-danger]="!item.isActive">
+                {{ item.expirationDate | date: "dd/MM/yyyy" }}
+              </span>
             </td>
             <td>
               <span
                 class="la-status-badge"
                 [attr.data-status]="item.isActive ? 'Active' : 'Locked'"
               >
+                <i
+                  class="fa"
+                  [ngClass]="
+                    item.isActive ? 'fa-check-circle' : 'fa-times-circle'
+                  "
+                ></i>
                 {{ item.isActive ? "نشطة" : "منتهية" }}
               </span>
             </td>
             <td class="la-actions">
-              <!-- 🎯 إصلاح الرابط هنا ليرسل المعرف (id) لصفحة المعاينة -->
               <button
                 class="la-btn-icon view"
                 title="عرض التفاصيل"
@@ -86,7 +95,9 @@
         } @empty {
           <tr>
             <td colspan="6" class="la-empty-state">
-              <i class="fa fa-folder-open"></i>
+              <div class="empty-icon-wrapper">
+                <i class="fa fa-folder-open-o"></i>
+              </div>
               <p>لا توجد رخص دولية مسجلة حالياً</p>
             </td>
           </tr>
@@ -106,7 +117,7 @@
         (click)="onPrevious()"
         [disabled]="currentPage === 1"
       >
-        السابق
+        <i class="fa fa-chevron-right"></i> السابق
       </button>
       <span class="la-page-num">صفحة {{ currentPage }}</span>
       <button
@@ -114,7 +125,7 @@
         (click)="onNext()"
         [disabled]="currentPage * pageSize >= filteredData.length"
       >
-        التالي
+        التالي <i class="fa fa-chevron-left"></i>
       </button>
     </div>
   </footer>

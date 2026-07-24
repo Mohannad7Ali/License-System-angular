@@ -33,19 +33,20 @@ export class TestsComponent implements OnInit {
   displayedData: any[] = [];
 
   currentPage = 1;
-  pageSize = 5;
+  pageSize = 6; // تم تعديل العدد ليتناسب مع الشبكة (3x2 أو 2x3)
   filter = new FormControl('', { nonNullable: true });
   isDialogVisible = signal<boolean>(false);
   selectedTestId: number | null = null;
 
   ngOnInit(): void {
     this.loadData();
-    this.filter.valueChanges
+    const filterSub = this.filter.valueChanges
       .pipe(
         debounceTime(300),
         tap((val) => this.applyFilter(val)),
       )
       .subscribe();
+    this.destroyRef.onDestroy(() => filterSub.unsubscribe());
   }
 
   loadData() {
@@ -86,6 +87,7 @@ export class TestsComponent implements OnInit {
       this.updateDisplayedData();
     }
   }
+
   onPrevious() {
     if (this.currentPage > 1) {
       this.currentPage--;

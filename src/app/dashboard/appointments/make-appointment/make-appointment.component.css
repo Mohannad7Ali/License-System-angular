@@ -1,22 +1,29 @@
+/* src/modules/make-appointment/make-appointment.component.css */
+
+/* الصفحة الرئيسية والتنسيق العام */
 .appointment-page {
   max-width: 1000px;
   margin: 0 auto;
   padding: 20px;
   animation: fadeIn 0.5s ease-out;
+  color: #f8fafc;
 }
 
-/* الكروت */
+/* الكروت والتصميم الزجاجي (Glassmorphism) */
 .card {
-  background: #ffffff;
+  background: rgba(15, 20, 35, 0.65);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
   border-radius: 16px;
   padding: 25px;
   margin-bottom: 20px;
-  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.04);
-  border: 1px solid #edf2f7;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
+  border: 1px solid rgba(255, 255, 255, 0.08);
 }
 
 .highlight-border {
-  border-right: 5px solid var(--special-color);
+  border-right: 4px solid #00f0ff;
+  box-shadow: -5px 0 20px rgba(0, 240, 255, 0.15);
 }
 
 /* الهيدر داخل الكرت */
@@ -28,27 +35,32 @@
 }
 
 .icon-badge {
-  width: 40px;
-  height: 40px;
-  background: #f1f5f9;
-  color: var(--dark-color);
-  border-radius: 10px;
+  width: 42px;
+  height: 42px;
+  background: rgba(0, 240, 255, 0.1);
+  color: #00f0ff;
+  border-radius: 12px;
   display: flex;
   align-items: center;
   justify-content: center;
   font-size: 1.1rem;
+  border: 1px solid rgba(0, 240, 255, 0.2);
+  box-shadow: 0 0 12px rgba(0, 240, 255, 0.15);
 }
 
 .icon-badge.special {
-  background: #fffaf0;
-  color: var(--special-color);
+  background: rgba(112, 0, 255, 0.15);
+  color: #a855f7;
+  border: 1px solid rgba(112, 0, 255, 0.3);
+  box-shadow: 0 0 12px rgba(112, 0, 255, 0.2);
 }
 
 .section-header h3 {
   margin: 0;
   font-size: 1.1rem;
-  color: #2d3748;
+  color: #f8fafc;
   font-weight: 700;
+  letter-spacing: 0.5px;
 }
 
 /* قسم البحث */
@@ -61,32 +73,48 @@
 .search-input-group input {
   flex: 1;
   padding: 12px 18px;
-  border: 1px solid #e2e8f0;
+  background: rgba(10, 15, 30, 0.6);
+  border: 1px solid rgba(255, 255, 255, 0.1);
   border-radius: 10px;
   font-size: 0.95rem;
-  transition: 0.3s;
+  color: #f8fafc;
+  transition: all 0.3s ease;
 }
 
 .search-input-group input:focus {
-  border-color: var(--dark-color);
+  border-color: #00f0ff;
   outline: none;
-  box-shadow: 0 0 0 3px rgba(90, 103, 186, 0.1);
+  box-shadow: 0 0 15px rgba(0, 240, 255, 0.25);
+}
+
+.search-input-group input[readonly] {
+  background: rgba(255, 255, 255, 0.03);
+  color: #64748b;
+  cursor: not-allowed;
+  border-color: rgba(255, 255, 255, 0.05);
 }
 
 .btn-search {
-  background-color: var(--dark-color);
+  background: linear-gradient(135deg, #7000ff, #00f0ff);
   color: white;
   border: none;
   padding: 0 25px;
   border-radius: 10px;
   cursor: pointer;
-  font-weight: 600;
-  transition: 0.3s;
+  font-weight: 700;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 12px rgba(112, 0, 255, 0.3);
 }
 
-.btn-search:hover {
-  opacity: 0.9;
-  transform: translateY(-1px);
+.btn-search:hover:not(:disabled) {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 18px rgba(0, 240, 255, 0.4);
+}
+
+.btn-search:disabled {
+  opacity: 0.4;
+  cursor: not-allowed;
+  box-shadow: none;
 }
 
 /* شبكة المعلومات */
@@ -105,57 +133,73 @@
 
 .info-item label {
   font-size: 0.8rem;
-  color: #718096;
+  color: #94a3b8;
   font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
 }
 
 .info-item p {
   margin: 0;
-  padding: 10px 15px;
-  background: #f8fafc;
+  padding: 12px 15px;
+  background: rgba(10, 15, 30, 0.6);
   border-radius: 8px;
-  color: #1a202c;
+  color: #e2e8f0;
   font-weight: 500;
-  font-size: 0.9rem;
-  border: 1px solid #f1f5f9;
+  font-size: 0.95rem;
+  border: 1px solid rgba(255, 255, 255, 0.05);
 }
 
 /* تمييز خاص للحقول */
 .count-badge {
-  color: #4e73df !important;
-  font-weight: bold !important;
+  color: #00f0ff !important;
+  font-weight: 700 !important;
+  font-family: "Fira Code", monospace, sans-serif;
 }
+
 .status-text {
-  color: #2dce89 !important;
-  font-weight: bold !important;
+  color: #34d399 !important;
+  font-weight: 700 !important;
 }
+
 .fee-display {
-  color: #38a169 !important;
+  color: #10b981 !important;
   font-size: 1.1rem !important;
   font-weight: 700 !important;
 }
+
 .test-type-display {
-  color: var(--dark-color) !important;
+  color: #a7f3d0 !important;
   font-weight: 700 !important;
 }
 
 /* مدخل التاريخ */
 .date-picker {
-  padding: 10px 15px;
-  border: 1px solid #e2e8f0;
+  padding: 11px 15px;
+  background: rgba(10, 15, 30, 0.6);
+  border: 1px solid rgba(255, 255, 255, 0.1);
   border-radius: 8px;
   font-family: inherit;
   font-size: 0.9rem;
+  color: #f8fafc;
+  transition: all 0.3s ease;
+  color-scheme: dark;
 }
 
-/* الأزرار */
+.date-picker:focus {
+  border-color: #00f0ff;
+  outline: none;
+  box-shadow: 0 0 12px rgba(0, 240, 255, 0.25);
+}
+
+/* الأزرار والإجراءات */
 .form-actions {
   display: flex;
   justify-content: space-between;
   align-items: center;
   margin-top: 35px;
   padding-top: 20px;
-  border-top: 1px solid #edf2f7;
+  border-top: 1px solid rgba(255, 255, 255, 0.08);
 }
 
 .main-actions {
@@ -164,34 +208,51 @@
 }
 
 .btn-primary {
-  background-color: var(--dark-color);
+  background: linear-gradient(135deg, #7000ff, #00f0ff);
   color: white;
   border: none;
   padding: 12px 30px;
   border-radius: 10px;
   font-weight: 700;
   cursor: pointer;
-  transition: 0.3s;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 15px rgba(112, 0, 255, 0.3);
 }
 
 .btn-primary:hover:not(:disabled) {
   transform: translateY(-2px);
-  box-shadow: 0 4px 12px rgba(90, 103, 186, 0.2);
+  box-shadow: 0 6px 20px rgba(0, 240, 255, 0.4);
+}
+
+.btn-primary:disabled {
+  background: rgba(255, 255, 255, 0.05);
+  color: #64748b;
+  cursor: not-allowed;
+  box-shadow: none;
+  border: 1px solid rgba(255, 255, 255, 0.05);
 }
 
 .btn-reset,
 .btn-cancel {
-  background: #f1f5f9;
-  border: none;
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.08);
   padding: 12px 20px;
   border-radius: 10px;
-  color: #4a5568;
+  color: #cbd5e1;
   font-weight: 600;
   cursor: pointer;
+  transition: all 0.2s ease;
 }
 
-.btn-primary:disabled {
-  background: #cbd5e0;
+.btn-reset:hover:not(:disabled),
+.btn-cancel:hover {
+  background: rgba(255, 255, 255, 0.1);
+  color: #f8fafc;
+  border-color: rgba(255, 255, 255, 0.2);
+}
+
+.btn-reset:disabled {
+  opacity: 0.3;
   cursor: not-allowed;
 }
 

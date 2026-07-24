@@ -1,51 +1,140 @@
+/* ===== الحركة العامة ===== */
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.ov-fade-in-up {
+  animation: fadeInUp 0.4s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+.accounts-container {
+  width: 100%;
+  box-sizing: border-box;
+}
+
+/* ===== ترويسة الصفحة (Header) ===== */
+.page-header {
+  margin-bottom: 24px;
+}
+
+.header-title-group {
+  border-right: 4px solid #00f0ff;
+  padding-right: 16px;
+}
+
 .page-header h2 {
-  color: var(--dark-color);
-  margin-bottom: 20px;
-  border-right: 5px solid var(--special-color);
-  padding-right: 15px;
+  color: #f8fafc;
+  margin: 0 0 6px 0;
+  font-size: 1.5rem;
+  font-weight: 800;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.title-icon {
+  color: #00f0ff;
+  font-size: 1.4rem;
+}
+
+.header-subtitle {
+  color: #94a3b8;
+  font-size: 0.88rem;
+  margin: 0;
+}
+
+/* ===== أشرطة الفلترة والبحث ===== */
+.filteration {
+  margin-bottom: 22px;
 }
 
 .flex-container {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  margin-bottom: 20px;
-  gap: 15px;
+  gap: 16px;
+  flex-wrap: wrap;
 }
 
 .search-box {
   position: relative;
   flex: 1;
+  min-width: 280px;
 }
 
 .search-icon {
   position: absolute;
-  right: 15px;
+  right: 18px;
   top: 50%;
   transform: translateY(-50%);
-  color: #888;
+  color: #00f0ff;
+  font-size: 0.95rem;
+  pointer-events: none;
 }
 
 .search-box input {
   width: 100%;
-  padding: 12px 45px 12px 15px;
-  border: 1px solid #ddd;
-  border-radius: 25px;
-  background: white;
+  padding: 12px 48px 12px 18px;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 14px;
+  background: rgba(15, 20, 35, 0.7);
+  backdrop-filter: blur(12px);
+  color: #f8fafc;
+  font-size: 0.9rem;
+  outline: none;
+  transition: all 0.25s ease;
+  box-sizing: border-box;
 }
 
+.search-box input::placeholder {
+  color: #64748b;
+}
+
+.search-box input:focus {
+  border-color: rgba(0, 240, 255, 0.5);
+  box-shadow: 0 0 20px rgba(0, 240, 255, 0.15);
+  background: rgba(15, 20, 35, 0.9);
+}
+
+/* زر إضافة مستخدم */
 .add-user-btn {
-  background-color: var(--dark-color);
-  border-radius: 25px;
-  padding: 10px 25px;
+  background: linear-gradient(135deg, #7000ff, #00f0ff);
+  color: #ffffff;
+  border: none;
+  border-radius: 12px;
+  padding: 12px 24px;
+  font-size: 0.9rem;
+  font-weight: 700;
+  cursor: pointer;
   white-space: nowrap;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  transition: all 0.25s ease;
+  box-shadow: 0 4px 15px rgba(112, 0, 255, 0.3);
 }
 
+.add-user-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(0, 240, 255, 0.4);
+}
+
+/* ===== الجدول (Table) ===== */
 .table-container {
-  background: white;
-  border-radius: 12px;
-  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
-  overflow: hidden;
+  background: rgba(15, 20, 35, 0.65);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border-radius: 18px;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
+  overflow-x: auto;
 }
 
 table {
@@ -54,96 +143,231 @@ table {
 }
 
 th {
-  background-color: #f8f9fc;
-  color: #4e73df;
-  padding: 15px;
-  text-align: center;
-  border-bottom: 2px solid #eaecf4;
+  background: rgba(255, 255, 255, 0.03);
+  color: #00f0ff;
+  padding: 16px 18px;
+  font-size: 0.88rem;
+  font-weight: 700;
+  text-align: right;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+  white-space: nowrap;
 }
 
 td {
-  padding: 12px 15px;
-  border-bottom: 1px solid #f0f0f0;
-  color: #444;
-  text-align: center;
+  padding: 14px 18px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.04);
+  color: #cbd5e1;
+  font-size: 0.9rem;
+  text-align: right;
+  vertical-align: middle;
+}
+
+tr:last-child td {
+  border-bottom: none;
+}
+
+tr:hover td {
+  background: rgba(255, 255, 255, 0.02);
+}
+
+/* المعرف واسم المستخدم */
+.user-id-tag {
+  color: #00f0ff;
+  font-weight: 800;
+  font-family: monospace;
+  font-size: 0.95rem;
 }
 
 .user-info-cell {
   display: flex;
   align-items: center;
-  gap: 10px;
+  gap: 12px;
+}
+
+.user-avatar-wrapper {
+  width: 34px;
+  height: 34px;
+  border-radius: 50%;
+  background: rgba(0, 240, 255, 0.1);
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .user-avatar-icon {
-  font-size: 1.5rem;
-  color: #d1d3e2;
+  font-size: 1.2rem;
+  color: #00f0ff;
+}
+
+.username-text {
+  font-weight: 700;
+  color: #f8fafc;
 }
 
 .badge-id {
-  background: #f1f3f9;
-  padding: 3px 10px;
-  border-radius: 5px;
-  font-weight: bold;
+  background: rgba(255, 255, 255, 0.06);
+  color: #94a3b8;
+  padding: 4px 12px;
+  border-radius: 8px;
+  font-weight: 600;
+  font-size: 0.82rem;
+  border: 1px solid rgba(255, 255, 255, 0.08);
 }
 
-/* حالة المستخدم */
+/* حالات المستخدم */
+.status-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 5px 12px;
+  border-radius: 20px;
+  font-size: 0.8rem;
+  font-weight: 700;
+}
+
 .active-status {
-  color: #1cc88a;
-  font-weight: bold;
-}
-.inactive-status {
-  color: #e74a3b;
-}
-.status-dot {
-  height: 8px;
-  width: 8px;
-  border-radius: 50%;
-  display: inline-block;
-  margin-left: 5px;
-  background-color: currentColor;
+  background: rgba(16, 185, 129, 0.12);
+  color: #34d399;
+  border: 1px solid rgba(16, 185, 129, 0.3);
 }
 
-/* الأزرار */
+.inactive-status {
+  background: rgba(244, 63, 94, 0.12);
+  color: #f87171;
+  border: 1px solid rgba(244, 63, 94, 0.3);
+}
+
+.status-dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background-color: currentColor;
+  box-shadow: 0 0 8px currentColor;
+}
+
+/* الأزرار داخل الجدول */
 .actions-wrapper {
   display: flex;
-  gap: 10px;
+  gap: 8px;
   justify-content: center;
 }
 
 .btn-action {
   border: none;
-  padding: 6px 12px;
-  border-radius: 6px;
+  padding: 7px 14px;
+  border-radius: 8px;
   cursor: pointer;
   font-size: 0.8rem;
-  color: white;
+  font-weight: 700;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  transition: all 0.2s ease;
 }
 
 .edit-btn {
-  background-color: #4e73df;
-}
-.delete-btn {
-  background-color: #e74a3b;
+  background: rgba(0, 240, 255, 0.12);
+  color: #00f0ff;
+  border: 1px solid rgba(0, 240, 255, 0.3);
 }
 
+.edit-btn:hover {
+  background: rgba(0, 240, 255, 0.25);
+  box-shadow: 0 0 12px rgba(0, 240, 255, 0.3);
+  transform: translateY(-1px);
+}
+
+.delete-btn {
+  background: rgba(244, 63, 94, 0.12);
+  color: #f87171;
+  border: 1px solid rgba(244, 63, 94, 0.3);
+}
+
+.delete-btn:hover {
+  background: rgba(244, 63, 94, 0.25);
+  box-shadow: 0 0 12px rgba(244, 63, 94, 0.3);
+  transform: translateY(-1px);
+}
+
+/* الحالة الفارغة (Empty State) */
+.empty-state {
+  text-align: center;
+  padding: 48px !important;
+}
+
+.empty-state-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 12px;
+  color: #64748b;
+}
+
+.empty-icon {
+  font-size: 2.5rem;
+  color: rgba(255, 255, 255, 0.15);
+}
+
+.empty-state-content p {
+  margin: 0;
+  font-size: 0.95rem;
+  font-weight: 600;
+}
+
+/* ===== عناصر الترقيم (Pagination) ===== */
 .pagination {
   display: flex;
   justify-content: center;
   align-items: center;
   margin-top: 25px;
-  gap: 15px;
+  gap: 16px;
 }
 
 .p-btn {
-  background: white;
-  border: 1px solid #ddd;
-  padding: 6px 15px;
+  background: rgba(15, 20, 35, 0.7);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  color: #f8fafc;
+  padding: 8px 18px;
   border-radius: 20px;
   cursor: pointer;
+  font-size: 0.85rem;
+  font-weight: 700;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  transition: all 0.2s ease;
 }
 
-.empty-state {
-  text-align: center;
-  padding: 40px !important;
-  color: #ccc;
+.p-btn:hover:not(:disabled) {
+  background: rgba(0, 240, 255, 0.15);
+  border-color: rgba(0, 240, 255, 0.4);
+  color: #00f0ff;
+  box-shadow: 0 0 12px rgba(0, 240, 255, 0.2);
+}
+
+.p-btn:disabled {
+  opacity: 0.4;
+  cursor: not-allowed;
+}
+
+.page-info {
+  color: #94a3b8;
+  font-size: 0.9rem;
+}
+
+.page-number {
+  color: #00f0ff;
+  font-weight: 800;
+}
+
+/* ===== الاستجابة (Responsive) ===== */
+@media (max-width: 768px) {
+  .flex-container {
+    flex-direction: column;
+    align-items: stretch;
+  }
+  .add-user-btn {
+    width: 100%;
+    justify-content: center;
+  }
 }

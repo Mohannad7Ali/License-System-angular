@@ -2,96 +2,99 @@
   <header class="tm-header">
     <div class="tm-title-box">
       <h2><i class="fa fa-flask"></i> إدارة نتائج الاختبارات</h2>
-      <p>عرض ومتابعة كافة نتائج اختبارات القيادة المقدمة</p>
+      <p>عرض ومتابعة كافة نتائج اختبارات القيادة المقدمة بالنظام</p>
     </div>
     <div class="tm-stats">
-      <span class="tm-badge-info"
-        >إجمالي الاختبارات: {{ filteredTests().length }}</span
-      >
+      <span class="tm-badge-info">
+        إجمالي الاختبارات: {{ filteredTests().length }}
+      </span>
     </div>
   </header>
 
+  <!-- البحث -->
   <div class="tm-search-section">
     <div class="tm-input-group">
       <i class="fa fa-search"></i>
       <input
         type="text"
         [formControl]="filterControl"
-        placeholder="ابحث برقم الاختبار، رقم الموعد أو الملاحظات..."
+        placeholder="ابحث برقم الاختبار، الموعد أو الملاحظات..."
       />
     </div>
   </div>
 
-  <div class="tm-card">
-    @if (isLoading()) {
-      <div class="tm-loading">
-        <i class="fa fa-circle-o-notch fa-spin"></i> جاري جلب السجلات...
-      </div>
-    } @else {
-      <table class="tm-table">
-        <thead>
-          <tr>
-            <th>ID الاختبار</th>
-            <th>رقم الموعد</th>
-            <th>النتيجة</th>
-            <th>الملاحظات</th>
-            <th>الإجراءات</th>
-          </tr>
-        </thead>
-        <tbody>
-          @for (test of paginatedTests(); track test.id) {
-            <tr class="tm-row animated fadeIn">
-              <td>
-                <span class="tm-id">#{{ test.id }}</span>
-              </td>
-              <td>{{ test.appointmentID }}</td>
-              <td>
-                <span
-                  class="tm-result-badge"
-                  [class.passed]="test.result"
-                  [class.failed]="!test.result"
-                >
-                  <i
-                    class="fa"
-                    [class.fa-check]="test.result"
-                    [class.fa-times]="!test.result"
-                  ></i>
-                  {{ test.result ? "ناجح" : "راسب" }}
-                </span>
-              </td>
-              <td class="tm-notes">{{ test.notes || "---" }}</td>
-              <td>
-                <button
-                  class="tm-btn-view"
-                  [routerLink]="['../preview-test']"
-                  [queryParams]="{ id: test.id }"
-                >
-                  <i class="fa fa-eye"></i> معاينة
-                </button>
-              </td>
-            </tr>
-          } @empty {
-            <tr>
-              <td colspan="5" class="tm-empty">
-                لا توجد سجلات اختبار تطابق بحثك.
-              </td>
-            </tr>
-          }
-        </tbody>
-      </table>
+  <!-- شبكة البطاقات -->
+  @if (isLoading()) {
+    <div class="tm-loading">
+      <i class="fa fa-circle-notch fa-spin"></i>
+      <p>جاري جلب سجلات الاختبارات...</p>
+    </div>
+  } @else {
+    <div class="tm-cards-grid">
+      @for (test of paginatedTests(); track test.id) {
+        <div class="tm-card-item">
+          <!-- هيدر البطاقة -->
+          <div class="tm-card-header">
+            <span class="tm-id-badge">ID: #{{ test.id }}</span>
+            <div class="tm-appointment-info">
+              <i class="fa fa-calendar-check"></i>
+              <span>موعد: #{{ test.appointmentID }}</span>
+            </div>
+          </div>
 
-      <!-- تم الإصلاح هنا: إضافة الأقواس () لـ totalPages -->
-      <div class="tm-pagination">
-        <button (click)="prevPage()" [disabled]="currentPage() === 1">
-          <i class="fa fa-chevron-right"></i> السابق
-        </button>
-        <span class="tm-page-info"
-          >صفحة {{ currentPage() }} من {{ totalPages() }}</span
-        >
-        <button (click)="nextPage()" [disabled]="currentPage() >= totalPages()">
-          التالي <i class="fa fa-chevron-left"></i>
-        </button>
-      </div>
-    }
-  </div>
+          <!-- محتوى البطاقة -->
+          <div class="tm-card-body">
+            <div
+              class="tm-result-badge"
+              [class.passed]="test.result"
+              [class.failed]="!test.result"
+            >
+              <i
+                class="fa"
+                [class.fa-circle-check]="test.result"
+                [class.fa-circle-xmark]="!test.result"
+              ></i>
+              {{ test.result ? "ناجح" : "راسب" }}
+            </div>
+
+            <div class="tm-notes-box">
+              <span class="tm-notes-label">الملاحظات:</span>
+              <p class="tm-notes" [title]="test.notes || 'لا توجد ملاحظات'">
+                {{ test.notes || "لا توجد ملاحظات مدونة." }}
+              </p>
+            </div>
+          </div>
+
+          <!-- زر المعاينة -->
+          <div class="tm-card-footer">
+            <button
+              class="tm-btn-view"
+              [routerLink]="['../preview-test']"
+              [queryParams]="{ id: test.id }"
+            >
+              <i class="fa fa-eye"></i> معاينة التفاصيل
+            </button>
+          </div>
+        </div>
+      } @empty {
+        <div class="tm-empty">
+          <i class="fa fa-folder-open"></i>
+          <p>لا توجد سجلات اختبار تطابق بحثك الحالي</p>
+        </div>
+      }
+    </div>
+
+    <!-- الترقيم Pagination -->
+    <div class="tm-pagination">
+      <button (click)="prevPage()" [disabled]="currentPage() === 1">
+        <i class="fa fa-chevron-right"></i> السابق
+      </button>
+      <span class="tm-page-info">
+        صفحة {{ currentPage() }} من {{ totalPages() }}
+      </span>
+      <button (click)="nextPage()" [disabled]="currentPage() >= totalPages()">
+        التالي <i class="fa fa-chevron-left"></i>
+      </button>
+    </div>
+  }
 </div>

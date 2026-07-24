@@ -31,12 +31,13 @@ export class TestComponent implements OnInit, OnDestroy {
   passedTestsPercentage = 0;
   failedTestPercentage = 0;
   private destroy$ = new Subject<void>();
+
   constructor(
     private testService: TestService,
     private driverService: DriverService,
     private licenseService: LicenseService,
     private applicationService: ApplicationService,
-    private personService: PersonService
+    private personService: PersonService,
   ) {}
 
   private animateCount(target: number, signal: any, delay: number = 50) {
@@ -60,22 +61,22 @@ export class TestComponent implements OnInit, OnDestroy {
             switchMap(() => {
               return this.licenseService.count().pipe(
                 tap((licensesCount) =>
-                  this.animateCount(licensesCount, this.licensesCount)
+                  this.animateCount(licensesCount, this.licensesCount),
                 ),
                 switchMap(() => {
                   return this.applicationService
                     .count()
                     .pipe(
                       tap((appsCount) =>
-                        this.animateCount(appsCount, this.appsCount)
-                      )
+                        this.animateCount(appsCount, this.appsCount),
+                      ),
                     );
-                })
+                }),
               );
-            })
+            }),
           );
         }),
-        takeUntil(this.destroy$)
+        takeUntil(this.destroy$),
       )
       .subscribe();
 
@@ -103,7 +104,7 @@ export class TestComponent implements OnInit, OnDestroy {
         this.femalePercentage = femaleCount;
         this.passedTestsPercentage = passedTestsPercentage;
         this.failedTestPercentage = failedTestPercentage;
-      }
+      },
     );
   }
 

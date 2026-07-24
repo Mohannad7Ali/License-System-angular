@@ -1,37 +1,59 @@
-/* استخدام التنسيقات الموحدة la- لضمان الجمالية */
+/* src/modules/drivers/drivers.component.css */
+
 .la-container {
   padding: 30px;
-  animation: fadeIn 0.5s ease-out;
-  background-color: #f8fafc;
+  animation: fadeIn 0.4s ease-out;
+  background-color: #0b0f19;
   min-height: 100vh;
+  color: #f8fafc;
 }
 
+/* رأس الصفحة */
 .la-page-header {
-  margin-bottom: 35px;
+  margin-bottom: 30px;
 }
+
 .la-title-section {
   display: flex;
   align-items: center;
   gap: 20px;
+  background: rgba(15, 20, 35, 0.65);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  padding: 20px 25px;
+  border-radius: 16px;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
+}
+
+.la-title-section h2 {
+  margin: 0;
+  font-size: 1.5rem;
+  color: #f8fafc;
+  font-weight: 700;
 }
 
 .la-icon-circle {
   width: 55px;
   height: 55px;
-  background: #eef2ff;
+  background: rgba(0, 240, 255, 0.1);
   border-radius: 15px;
   display: flex;
   align-items: center;
   justify-content: center;
-  color: #5a67ba;
+  color: #00f0ff;
   font-size: 1.5rem;
+  border: 1px solid rgba(0, 240, 255, 0.25);
+  box-shadow: 0 0 15px rgba(0, 240, 255, 0.15);
 }
 
 .la-subtitle {
-  color: #8898aa;
+  color: #94a3b8;
   font-size: 0.9rem;
+  margin: 5px 0 0 0;
 }
 
+/* شريط البحث والتحكم */
 .la-action-bar {
   display: flex;
   justify-content: space-between;
@@ -41,74 +63,111 @@
 
 .la-search-box {
   position: relative;
-  width: 400px;
+  width: 450px;
 }
+
 .la-search-box i {
   position: absolute;
   right: 15px;
   top: 50%;
   transform: translateY(-50%);
-  color: #adb5bd;
+  color: #64748b;
 }
+
 .la-search-box input {
   width: 100%;
   padding: 12px 45px 12px 15px;
   border-radius: 12px;
-  border: 1px solid #dee2e6;
-  background: #fff;
-  transition: 0.3s;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  background: rgba(15, 20, 35, 0.6);
+  color: #f8fafc;
+  outline: none;
+  transition: all 0.3s ease;
+  backdrop-filter: blur(10px);
 }
 
+.la-search-box input:focus {
+  border-color: #00f0ff;
+  box-shadow: 0 0 15px rgba(0, 240, 255, 0.25);
+}
+
+/* الجدول والكرت المحيط */
 .la-table-card {
-  background: #fff;
+  background: rgba(15, 20, 35, 0.65);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
   border-radius: 16px;
-  box-shadow: 0 10px 25px rgba(50, 50, 93, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
   overflow: hidden;
-  border: 1px solid #e9ecef;
 }
 
 .la-modern-table {
   width: 100%;
   border-collapse: collapse;
 }
+
 .la-modern-table th {
-  background: #f8f9fe;
-  padding: 15px 20px;
-  color: #4e73df;
+  background: rgba(255, 255, 255, 0.03);
+  padding: 16px 20px;
+  color: #00f0ff;
   font-size: 0.75rem;
+  font-weight: 700;
+  text-transform: uppercase;
   text-align: center;
-  border-bottom: 2px solid #eaecf4;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+  letter-spacing: 0.5px;
 }
+
 .la-modern-table td {
-  padding: 18px 20px;
-  border-bottom: 1px solid #f0f0f0;
-  color: #32325d;
+  padding: 16px 20px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+  color: #e2e8f0;
   font-size: 0.9rem;
+  text-align: center;
+  vertical-align: middle;
+}
+
+.la-modern-table tbody tr {
+  transition: background-color 0.2s ease;
+}
+
+.la-modern-table tbody tr:hover {
+  background-color: rgba(255, 255, 255, 0.03);
 }
 
 .la-id-badge {
-  background: #f0f2f6;
-  padding: 5px 10px;
-  border-radius: 8px;
-  font-weight: bold;
-  color: #525f7f;
+  background: rgba(0, 240, 255, 0.1);
+  padding: 4px 10px;
+  border-radius: 6px;
+  font-weight: 700;
+  color: #00f0ff;
+  font-family: "Fira Code", monospace, sans-serif;
+  border: 1px solid rgba(0, 240, 255, 0.2);
 }
+
 .la-national-no {
-  font-family: monospace;
+  font-family: "Fira Code", monospace, sans-serif;
   font-weight: 600;
+  color: #a855f7;
 }
+
 .la-name-cell {
   font-weight: 600;
-  color: #1e293b;
+  color: #f8fafc;
 }
 
 .active-lic-badge {
-  background-color: #dcfce7;
-  color: #15803d;
-  padding: 4px 12px;
+  background-color: rgba(16, 185, 129, 0.12);
+  color: #34d399;
+  border: 1px solid rgba(16, 185, 129, 0.3);
+  padding: 5px 14px;
   border-radius: 20px;
   font-size: 0.75rem;
   font-weight: bold;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
 }
 
 .la-actions {
@@ -118,43 +177,107 @@
 }
 
 .la-btn-icon {
-  width: 32px;
-  height: 32px;
+  width: 36px;
+  height: 36px;
   border-radius: 8px;
-  border: none;
+  border: 1px solid rgba(255, 255, 255, 0.08);
   display: flex;
   align-items: center;
   justify-content: center;
   cursor: pointer;
-  transition: 0.2s;
-  background: #f1f5f9;
+  transition: all 0.2s ease;
+  background: rgba(255, 255, 255, 0.03);
+  font-size: 1.1rem;
 }
 
 .la-btn-icon.view {
-  color: #5e72e4;
+  color: #00f0ff;
+  border-color: rgba(0, 240, 255, 0.2);
 }
+
+.la-btn-icon.view:hover {
+  background: rgba(0, 240, 255, 0.2);
+  transform: scale(1.1);
+  box-shadow: 0 0 12px rgba(0, 240, 255, 0.3);
+}
+
 .la-btn-icon.history {
   color: #f59e0b;
-} /* لون برتقالي للسجل */
-
-.la-btn-icon:hover {
-  transform: scale(1.1);
-  background: #eef2ff;
+  border-color: rgba(245, 158, 11, 0.2);
 }
 
+.la-btn-icon.history:hover {
+  background: rgba(245, 158, 11, 0.2);
+  transform: scale(1.1);
+  box-shadow: 0 0 12px rgba(245, 158, 11, 0.3);
+}
+
+.la-empty-state {
+  padding: 60px !important;
+  text-align: center;
+  color: #64748b;
+}
+
+.la-empty-state i {
+  font-size: 3rem;
+  margin-bottom: 10px;
+  display: block;
+}
+
+/* منطقة الترقيم */
 .la-pagination-area {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  margin-top: 30px;
+  margin-top: 25px;
+  background: rgba(15, 20, 35, 0.65);
+  backdrop-filter: blur(16px);
+  padding: 15px 25px;
+  border-radius: 12px;
+  border: 1px solid rgba(255, 255, 255, 0.08);
 }
+
+.la-results-info {
+  color: #94a3b8;
+  font-size: 0.9rem;
+}
+
+.la-results-info b {
+  color: #00f0ff;
+}
+
+.la-nav-btns {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+}
+
 .la-nav-btn {
-  background: white;
-  border: 1px solid #dee2e6;
+  background: rgba(15, 20, 35, 0.6);
+  border: 1px solid rgba(255, 255, 255, 0.1);
   padding: 8px 20px;
-  border-radius: 10px;
+  border-radius: 8px;
   cursor: pointer;
-  color: #525f7f;
+  color: #cbd5e1;
+  font-weight: 600;
+  transition: all 0.2s ease;
+}
+
+.la-nav-btn:hover:not(:disabled) {
+  border-color: #00f0ff;
+  color: #00f0ff;
+  box-shadow: 0 0 10px rgba(0, 240, 255, 0.2);
+}
+
+.la-nav-btn:disabled {
+  opacity: 0.4;
+  cursor: not-allowed;
+}
+
+.la-page-num {
+  font-weight: 700;
+  color: #f8fafc;
+  font-size: 0.9rem;
 }
 
 @keyframes fadeIn {
@@ -165,5 +288,19 @@
   to {
     opacity: 1;
     transform: translateY(0);
+  }
+}
+
+@media (max-width: 768px) {
+  .la-action-bar {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+  .la-search-box {
+    width: 100%;
+  }
+  .la-pagination-area {
+    flex-direction: column;
+    gap: 15px;
   }
 }

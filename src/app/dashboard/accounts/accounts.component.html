@@ -7,9 +7,16 @@
 
 <app-notification />
 
-<div class="container" dir="rtl">
+<div class="accounts-container ov-fade-in-up" dir="rtl">
   <header class="page-header">
-    <h2><i class="fa fa-users-cog"></i> إدارة حسابات المستخدمين</h2>
+    <div class="header-title-group">
+      <h2>
+        <i class="fa fa-users-cog title-icon"></i> إدارة حسابات المستخدمين
+      </h2>
+      <p class="header-subtitle">
+        التحكم في صلاحيات الوصول والحسابات المسجلة في المنظومة
+      </p>
+    </div>
   </header>
 
   <form class="filteration">
@@ -22,33 +29,37 @@
           placeholder="بحث سريع (باسم المستخدم، المعرف...)"
         />
       </div>
-      <div class="add-btn">
-        <button type="button" class="button add-user-btn" (click)="onAddUser()">
+      <div class="add-btn-wrapper">
+        <button type="button" class="add-user-btn" (click)="onAddUser()">
           <i class="fa fa-plus-circle"></i> إضافة مستخدم جديد
         </button>
       </div>
     </div>
   </form>
 
-  <div class="table-container card">
+  <div class="table-container">
     <table>
       <thead>
         <tr>
-          <th style="width: 10%">المعرف</th>
-          <th style="width: 30%">اسم المستخدم</th>
-          <th style="width: 25%">معرف الشخص</th>
-          <th style="width: 15%">الحالة</th>
+          <th style="width: 12%">المعرف</th>
+          <th style="width: 32%">اسم المستخدم</th>
+          <th style="width: 20%">معرف الشخص</th>
+          <th style="width: 16%">الحالة</th>
           <th style="width: 20%; text-align: center">الإجراءات</th>
         </tr>
       </thead>
       <tbody>
         @for (user of displayedData; track user.id) {
           <tr>
-            <td class="bold-text">{{ user.id }}</td>
+            <td>
+              <span class="user-id-tag">#{{ user.id }}</span>
+            </td>
             <td>
               <div class="user-info-cell">
-                <i class="fa fa-user-circle user-avatar-icon"></i>
-                <span>{{ user.username }}</span>
+                <div class="user-avatar-wrapper">
+                  <i class="fa fa-user-circle user-avatar-icon"></i>
+                </div>
+                <span class="username-text">{{ user.username }}</span>
               </div>
             </td>
             <td>
@@ -56,6 +67,7 @@
             </td>
             <td>
               <span
+                class="status-badge"
                 [class.active-status]="user.isActive"
                 [class.inactive-status]="!user.isActive"
               >
@@ -69,6 +81,7 @@
                   type="button"
                   class="btn-action edit-btn"
                   (click)="onEditUser(user.id)"
+                  title="تعديل المستخدم"
                 >
                   <i class="fa fa-edit"></i> تعديل
                 </button>
@@ -76,6 +89,7 @@
                   type="button"
                   class="btn-action delete-btn"
                   (click)="onDelete(user.id)"
+                  title="حذف المستخدم"
                 >
                   <i class="fa fa-trash"></i> حذف
                 </button>
@@ -85,8 +99,10 @@
         } @empty {
           <tr>
             <td colspan="5" class="empty-state">
-              <i class="fa fa-folder-open empty-icon"></i>
-              <p>لم يتم العثور على أي مستخدمين مسجلين</p>
+              <div class="empty-state-content">
+                <i class="fa fa-folder-open empty-icon"></i>
+                <p>لم يتم العثور على أي مستخدمين مسجلين</p>
+              </div>
             </td>
           </tr>
         }
@@ -104,7 +120,7 @@
       <i class="fa fa-chevron-right"></i> السابق
     </button>
     <span class="page-info"
-      >الصفحة <b>{{ currentPage }}</b></span
+      >الصفحة <b class="page-number">{{ currentPage }}</b></span
     >
     <button
       type="button"

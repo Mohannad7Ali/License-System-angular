@@ -1,166 +1,325 @@
+/* ==========================================================================
+   Dark Neon Glossy / Glassmorphism Theme - Local License Application
+   ========================================================================== */
+
 .la-container {
-  padding: 30px;
+  padding: 2.5rem 1.5rem;
   max-width: 900px;
   margin: 0 auto;
+  direction: rtl;
+  font-family:
+    "Segoe UI",
+    system-ui,
+    -apple-system,
+    sans-serif;
+  color: #f1f5f9;
+  animation: fadeIn 0.4s ease-out;
 }
+
 .la-card {
-  background: white;
-  border-radius: 16px;
-  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+  background: rgba(30, 41, 59, 0.5);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border-radius: 20px;
+  box-shadow: 0 10px 30px -10px rgba(0, 0, 0, 0.5);
+  border: 1px solid rgba(255, 255, 255, 0.08);
   overflow: hidden;
 }
+
+/* 📌 الهيدر */
 .la-header {
-  background: #0f172a;
-  color: white;
-  padding: 25px 30px;
+  background: linear-gradient(
+    135deg,
+    rgba(15, 23, 42, 0.8),
+    rgba(30, 41, 59, 0.8)
+  );
+  padding: 1.75rem 2rem;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
 }
+
 .la-header-title {
   display: flex;
   align-items: center;
-  gap: 20px;
+  gap: 1.25rem;
 }
+
 .main-icon {
-  font-size: 2.5rem;
-  opacity: 0.8;
+  font-size: 2.2rem;
+  color: #38bdf8;
+  filter: drop-shadow(0 0 8px rgba(56, 189, 248, 0.4));
 }
+
+.la-header-title h2 {
+  font-size: 1.4rem;
+  margin: 0;
+  color: #f8fafc;
+  font-weight: 800;
+}
+
+.la-header-title p {
+  font-size: 0.85rem;
+  color: #94a3b8;
+  margin: 0.2rem 0 0;
+}
+
+/* 📑 التبويبات Tabs */
 .la-tabs {
   display: flex;
-  background: #f1f5f9;
-  padding: 5px;
+  background: rgba(15, 23, 42, 0.6);
+  padding: 6px;
+  gap: 6px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.05);
 }
+
 .la-tabs button {
   flex: 1;
-  padding: 15px;
-  border: none;
+  padding: 12px 18px;
+  border: 1px solid transparent;
   background: transparent;
   font-weight: 700;
-  color: #64748b;
+  color: #94a3b8;
   cursor: pointer;
-  border-radius: 10px;
-  transition: 0.3s;
-}
-.la-tabs button.active {
-  background: white;
-  color: #0f172a;
-  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
-}
-.la-tab-content {
-  padding: 30px;
-}
-.la-search-box {
-  background: #f8fafc;
-  padding: 20px;
   border-radius: 12px;
-  margin-bottom: 20px;
+  transition: all 0.25s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  font-size: 0.92rem;
 }
+
+.la-tabs button.active {
+  background: rgba(30, 41, 59, 0.85);
+  color: #38bdf8;
+  border-color: rgba(56, 189, 248, 0.25);
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.25);
+}
+
+/* 📦 محتوى التبويبات */
+.la-tab-content {
+  padding: 2rem;
+}
+
+/* 🔍 منطقة البحث عن شخص مسجل */
+.la-search-box {
+  background: rgba(15, 23, 42, 0.5);
+  padding: 1.25rem;
+  border-radius: 14px;
+  margin-bottom: 1.5rem;
+  border: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.la-search-box label {
+  font-size: 0.88rem;
+  font-weight: 700;
+  color: #cbd5e1;
+}
+
 .la-input-group {
   display: flex;
-  gap: 10px;
-  margin-top: 10px;
+  gap: 0.75rem;
+  margin-top: 0.5rem;
 }
+
 .la-input-group input {
   flex: 1;
-  padding: 12px 15px;
-  border: 1px solid #e2e8f0;
-  border-radius: 8px;
+  padding: 0.8rem 1.2rem;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 12px;
+  background: rgba(15, 23, 42, 0.6);
+  color: #f1f5f9;
   outline: none;
+  transition: all 0.25s ease;
 }
+
+.la-input-group input:focus {
+  border-color: #38bdf8;
+  box-shadow: 0 0 0 3px rgba(56, 189, 248, 0.25);
+}
+
 .la-input-group button {
-  background: #0f172a;
+  background: linear-gradient(135deg, #0ea5e9, #0284c7);
   color: white;
-  border: none;
-  padding: 0 25px;
-  border-radius: 8px;
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  padding: 0 1.75rem;
+  border-radius: 12px;
   cursor: pointer;
+  font-weight: 700;
+  transition: all 0.25s ease;
+  box-shadow: 0 4px 15px rgba(14, 165, 233, 0.3);
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
 }
+
+.la-input-group button:hover:not([disabled]) {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(14, 165, 233, 0.5);
+}
+
+/* 🟢 بطاقة إثبات الشخصية المحققة */
 .la-person-summary {
   display: grid;
   grid-template-columns: 1fr 1fr;
-  gap: 15px;
-  background: #f0fdf4;
-  border: 1px solid #bbf7d0;
-  padding: 20px;
-  border-radius: 12px;
+  gap: 1.25rem;
+  background: rgba(16, 185, 129, 0.08);
+  border: 1px solid rgba(16, 185, 129, 0.25);
+  padding: 1.25rem;
+  border-radius: 14px;
 }
+
 .summary-item label {
   display: block;
   font-size: 0.8rem;
-  color: #166534;
+  color: #a7f3d0;
 }
+
 .summary-item span {
   font-weight: 700;
-  color: #14532d;
+  color: #34d399;
+  font-size: 1rem;
 }
+
 .summary-status {
-  grid-column: 1/-1;
-  color: #16a34a;
+  grid-column: 1 / -1;
+  color: #34d399;
   font-weight: bold;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding-top: 0.5rem;
+  border-top: 1px solid rgba(16, 185, 129, 0.15);
 }
+
+/* 📝 نموذج شخص جديد */
 .la-form-grid {
   display: grid;
   grid-template-columns: 1fr 1fr;
-  gap: 20px;
+  gap: 1.25rem;
 }
+
 .la-field {
   display: flex;
   flex-direction: column;
-  gap: 8px;
+  gap: 0.5rem;
 }
+
 .la-field.la-full {
   grid-column: 1 / -1;
 }
+
 .la-field label {
   font-size: 0.85rem;
   font-weight: 700;
-  color: #475569;
+  color: #cbd5e1;
 }
+
 .la-field input,
 .la-field select {
-  padding: 12px;
-  border: 1px solid #e2e8f0;
-  border-radius: 8px;
-  background: #f8fafc;
+  padding: 0.8rem 1rem;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 12px;
+  background: rgba(15, 23, 42, 0.6);
+  color: #f1f5f9;
   outline: none;
+  transition: all 0.25s ease;
 }
+
+.la-field input:focus,
+.la-field select:focus {
+  border-color: #38bdf8;
+  box-shadow: 0 0 0 3px rgba(56, 189, 248, 0.2);
+}
+
 .la-select-gold {
   border-right: 4px solid #f59e0b !important;
   font-weight: 700;
+  color: #fef08a !important;
 }
+
+.la-select-gold option {
+  background: #0f172a;
+  color: #f1f5f9;
+}
+
 .la-divider {
-  margin: 30px 0;
+  margin: 2rem 0;
   border: 0;
-  border-top: 1px solid #f1f5f9;
+  border-top: 1px solid rgba(255, 255, 255, 0.08);
 }
+
+/* ⚡ الأزرار السفليّة */
 .la-footer {
   display: flex;
   justify-content: flex-end;
-  gap: 15px;
-  margin-top: 30px;
+  gap: 1rem;
+  margin-top: 2rem;
 }
+
 .btn-submit {
-  background: #0f172a;
+  background: linear-gradient(135deg, #10b981, #059669);
   color: white;
-  padding: 14px 40px;
-  border: none;
-  border-radius: 10px;
+  padding: 0.8rem 2.2rem;
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  border-radius: 12px;
   font-weight: 700;
   cursor: pointer;
+  transition: all 0.25s ease;
+  box-shadow: 0 4px 20px rgba(16, 185, 129, 0.35);
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
 }
+
+.btn-submit:hover:not([disabled]) {
+  background: linear-gradient(135deg, #34d399, #10b981);
+  transform: translateY(-2px);
+  box-shadow: 0 6px 25px rgba(16, 185, 129, 0.5);
+}
+
+.btn-submit:disabled {
+  opacity: 0.4;
+  cursor: not-allowed;
+  box-shadow: none;
+}
+
 .btn-back {
-  background: #f1f5f9;
-  padding: 14px 30px;
-  border: none;
-  border-radius: 10px;
+  background: rgba(30, 41, 59, 0.6);
+  color: #cbd5e1;
+  padding: 0.8rem 1.8rem;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 12px;
   cursor: pointer;
+  font-weight: 600;
+  transition: all 0.25s ease;
 }
-.animated {
-  animation-duration: 0.4s;
+
+.btn-back:hover {
+  background: rgba(255, 255, 255, 0.05);
+  color: #ffffff;
 }
+
 @keyframes fadeIn {
   from {
     opacity: 0;
+    transform: translateY(8px);
   }
   to {
     opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.animated {
+  animation: fadeIn 0.35s ease-out forwards;
+}
+
+@media (max-width: 640px) {
+  .la-form-grid,
+  .la-person-summary {
+    grid-template-columns: 1fr;
+  }
+  .la-input-group {
+    flex-direction: column;
   }
 }

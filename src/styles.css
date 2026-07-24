@@ -1,582 +1,242 @@
-/* You can add global styles to this file, and also import other style files */
+/* ===== المتغيرات العامة (Dark Neon Glassmorphism Theme) ===== */
+:root {
+  --bg-dark: #070913;
+  --bg-panel: rgba(20, 24, 44, 0.65);
+  --bg-card: rgba(255, 255, 255, 0.03);
+
+  --primary-cyan: #00f0ff;
+  --primary-purple: #7000ff;
+  --accent-blue: #3b82f6;
+
+  --text-main: #f8fafc;
+  --text-muted: #94a3b8;
+  --text-dark: #1e293b;
+
+  --glass-border: rgba(255, 255, 255, 0.08);
+  --glass-border-hover: rgba(0, 240, 255, 0.3);
+  --glass-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
+
+  --error-color: #ff4d4d;
+  --success-color: #00e676;
+  --border-radius: 16px;
+}
+
+/* ===== التصفير وإعدادات الصفحة العامة ===== */
 * {
   box-sizing: border-box;
   padding: 0;
   margin: 0;
 }
 
-body {
-  font-family: "Poppins", "Cairo", sans-serif;
-  text-align: right;
-  background-color: #fff;
-  font-size: 0.8rem;
-  color: var(--text-color);
-}
 html {
   scroll-behavior: smooth;
+  background-color: var(--bg-dark);
 }
-:root {
-  --text-color: #7c7c7c;
-  --text-color-light: #ffffff;
-  --dark-color: #5a67ba;
-  --light-color: #f1f2f7;
-  --hover-color: #707fdd;
-  --bg-hover-color: #e4e7f6;
-  --bg-light-color: #f8f9fa;
-  --special-color: #f99c30;
-  --secondary-special-color: #2fbfde;
-  --border-radius: 8px;
-  --font-size: 1.2rem;
-  --box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
-  --circle-size: 120px; /* تحسينات عامة على الصفحة */
-  * {
-    box-sizing: border-box;
-    padding: 0;
-    margin: 0;
-  }
 
-  :root {
-    --text-color: #5c5c5c;
-    --text-color-light: #ffffff;
-    --dark-color: #5a67ba;
-    --light-color: #f1f2f7;
-    --hover-color: #707fdd;
-    --bg-hover-color: #e4e7f6;
-    --bg-light-color: #f8f9fa;
-    --special-color: #f99c30;
-    --secondary-special-color: #2fbfde;
-    --border-radius: 12px;
-    --font-size: 1rem;
-    --box-shadow: 0 10px 25px rgba(90, 103, 186, 0.15);
-    --button-bg-color: #f5f5fa;
-    --button-color: #5a67ba;
-    --error-color: #f84e2c;
-  }
-
-  body {
-    font-family: "Cairo", "Poppins", sans-serif;
-    text-align: right;
-    background: linear-gradient(135deg, #f5f7fa 0%, #e4e8f0 100%);
-    min-height: 100vh;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    color: var(--text-color);
-  }
-
-  /* الحاوية الرئيسية الكبرى التي تجمع الصورة والفورم */
-  .cont {
-    display: flex;
-    background: #ffffff;
-    border-radius: 20px;
-    box-shadow: var(--box-shadow);
-    overflow: hidden;
-    max-width: 900px;
-    width: 90%;
-    margin: 20px auto;
-    direction: rtl; /* لضمان الترتيب الصحيح من اليمين لليسار */
-  }
-
-  /* صندوق الصورة المطور */
-  .img-box {
-    flex: 1;
-    background-color: var(--bg-hover-color);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    padding: 40px;
-  }
-
-  .img-box img {
-    max-width: 100%;
-    height: auto;
-    object-fit: contain;
-  }
-
-  /* حاوية الفورم */
-  .container {
-    flex: 1;
-    padding: 40px;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    gap: 24px;
-    background-color: #ffffff;
-  }
-
-  /* تحسينات النصوص */
-  header .main-text {
-    font-size: 1.8rem;
-    color: #2d3748;
-    font-weight: 700;
-    margin-bottom: 8px;
-    position: relative;
-  }
-
-  header .main-text::after {
-    content: "";
-    display: block;
-    width: 50px;
-    height: 4px;
-    background-color: var(--dark-color);
-    margin-top: 8px;
-    border-radius: 2px;
-  }
-
-  /* تنسيق قطاعات الإدخال */
-  form {
-    display: flex;
-    flex-direction: column;
-    gap: 20px;
-    background: transparent;
-    padding: 0;
-    margin: 0;
-  }
-
-  .control {
-    display: flex;
-    flex-direction: column;
-    gap: 8px;
-    min-width: unset;
-  }
-
-  .control label {
-    font-size: 0.9rem;
-    font-weight: 600;
-    color: #4a5568;
-  }
-
-  .control input {
-    width: 100%;
-    padding: 12px 16px;
-    border: 1px solid #cbd5e0;
-    background-color: #f7fafc;
-    color: #2d3748;
-    font-size: 0.95rem;
-    border-radius: var(--border-radius);
-    transition: all 0.3s ease;
-  }
-
-  .control input:focus {
-    border-color: var(--dark-color) !important;
-    background-color: #ffffff;
-    box-shadow: 0 0 0 3px rgba(90, 103, 186, 0.15);
-    outline: none !important;
-  }
-
-  /* رابط نسيت كلمة المرور */
-  form a {
-    align-self: flex-start;
-    font-size: 0.85rem;
-    color: var(--dark-color);
-    font-weight: 600;
-    transition: color 0.2s;
-  }
-
-  form a:hover {
-    color: var(--hover-color);
-  }
-
-  /* الأزرار المطورة */
-  .button {
-    padding: 12px 24px;
-    border: none;
-    border-radius: var(--border-radius);
-    font-size: 1rem;
-    font-weight: 600;
-    cursor: pointer;
-    transition: all 0.3s ease;
-    width: 100%;
-    text-align: center;
-  }
-
-  .button[type="submit"] {
-    background-color: var(--dark-color);
-    color: #ffffff;
-    margin-top: 10px;
-    box-shadow: 0 4px 12px rgba(90, 103, 186, 0.25);
-  }
-
-  .button[type="submit"]:hover {
-    background-color: var(--hover-color);
-    transform: translateY(-1px);
-  }
-
-  .homepage-button {
-    background-color: var(--button-bg-color);
-    color: var(--button-color);
-    border: 1px solid rgba(90, 103, 186, 0.1);
-  }
-
-  .homepage-button:hover {
-    background-color: var(--bg-hover-color);
-    color: var(--dark-color);
-  }
-
-  button:disabled {
-    cursor: not-allowed !important;
-    background-color: #e2e8f0 !important;
-    color: #a0aec0 !important;
-    box-shadow: none !important;
-    transform: none !important;
-  }
-
-  /* تنسيق رسائل الخطأ */
-  p.error {
-    color: var(--error-color);
-    background-color: #fff5f5;
-    padding: 10px 14px;
-    border-right: 4px solid var(--error-color);
-    border-radius: 6px;
-    font-size: 0.85rem;
-    font-weight: 500;
-    margin-top: 5px;
-  }
-
-  /* الـ Validation الخاص بـ Angular */
-  input.ng-invalid.ng-touched.ng-dirty {
-    background-color: #fff5f5;
-    border-color: var(--error-color);
-  }
-
-  .control:has(.ng-invalid.ng-touched.ng-dirty) label {
-    color: var(--error-color);
-  }
-
-  /* متجاوب مع الشاشات الصغيرة (الهواتف) */
-  @media (max-width: 768px) {
-    .cont {
-      flex-direction: column;
-      max-width: 450px;
-    }
-
-    .img-box {
-      display: none; /* إخفاء الصورة في الهواتف لتركيز المستخدم على تسجيل الدخول */
-    }
-
-    .container {
-      padding: 30px 20px;
-    }
-  }
-  --stroke-width: 10px;
-  --button-bg-color: #f5f5fa;
-  --button-color: #7878ab;
+body {
+  font-family: "Cairo", "Poppins", sans-serif;
+  text-align: right;
+  background-color: var(--bg-dark);
+  color: var(--text-main);
+  min-height: 100vh;
+  line-height: 1.6;
+  overflow-x: hidden;
 }
+
+/* ===== تحسين السكرول بار (Custom Scrollbar) ===== */
 ::-webkit-scrollbar {
-  width: 5px;
+  width: 8px;
 }
 
 ::-webkit-scrollbar-track {
-  background: #f0f0f0;
+  background: var(--bg-dark);
 }
 
 ::-webkit-scrollbar-thumb {
-  background: #888;
+  background: rgba(255, 255, 255, 0.15);
+  border-radius: 4px;
 }
-.container {
-  padding: 10px;
-  margin: 15px;
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--primary-cyan);
+}
+
+/* ===== الجداول العامة (Dark Glass Tables) ===== */
+table {
+  width: 100%;
+  border-collapse: collapse;
+  background: var(--bg-panel);
+  backdrop-filter: blur(12px);
+  border-radius: var(--border-radius);
+  overflow: hidden;
+  border: 1px solid var(--glass-border);
+  color: var(--text-main);
+  margin: 20px 0;
+}
+
+th,
+td {
+  padding: 16px;
+  text-align: center;
+  border-bottom: 1px solid var(--glass-border);
+}
+
+th {
+  background: rgba(112, 0, 255, 0.2);
+  color: var(--primary-cyan);
+  font-weight: 700;
+  font-size: 0.95rem;
+}
+
+td {
+  color: var(--text-main);
+  font-size: 0.9rem;
+}
+
+tbody tr {
+  transition: background 0.3s ease;
+}
+
+tbody tr:nth-child(even) {
+  background-color: rgba(255, 255, 255, 0.02);
+}
+
+tbody tr:hover {
+  background-color: rgba(0, 240, 255, 0.05);
+}
+
+/* ===== النماذج وحقول المدخلات (Dark Glass Forms & Inputs) ===== */
+form {
+  background: var(--bg-panel);
+  backdrop-filter: blur(16px);
+  border: 1px solid var(--glass-border);
+  border-radius: var(--border-radius);
+  padding: 30px;
+}
+
+.control {
   display: flex;
   flex-direction: column;
-  align-items: left;
-  gap: 40px;
-  background-color: var(--bg-light-color);
+  gap: 8px;
+  margin-bottom: 20px;
 }
-.homepage-container {
-  display: flex;
-  flex-direction: column;
+
+.control label {
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: var(--text-muted);
+}
+
+.control input,
+.control select,
+.control textarea {
+  width: 100%;
+  padding: 12px 16px;
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid var(--glass-border);
+  color: var(--text-main);
+  font-size: 0.95rem;
+  border-radius: 10px;
+  transition: all 0.3s ease;
+  font-family: inherit;
+}
+
+.control input:focus,
+.control select:focus,
+.control textarea:focus {
+  border-color: var(--primary-cyan) !important;
+  background: rgba(255, 255, 255, 0.08);
+  box-shadow: 0 0 15px rgba(0, 240, 255, 0.2);
+  outline: none !important;
+}
+
+/* ===== التحقق من صحة المدخلات (Angular Validation) ===== */
+input.ng-invalid.ng-touched.ng-dirty,
+select.ng-invalid.ng-touched.ng-dirty {
+  background-color: rgba(255, 77, 77, 0.1);
+  border-color: var(--error-color) !important;
+}
+
+p.error,
+.error-message {
+  color: var(--error-color);
+  font-size: 0.8rem;
+  margin-top: 4px;
+}
+
+/* ===== الأزرار الموحدة (Global Neon Buttons) ===== */
+.button,
+.btn-main {
+  padding: 12px 28px;
+  border: none;
+  border-radius: 30px;
+  font-size: 0.95rem;
+  font-weight: 700;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  display: inline-flex;
   align-items: center;
   justify-content: center;
-  gap: 15px;
-  margin: 50px auto;
-
-  .section-title {
-    text-transform: uppercase;
-    color: var(--dark-color);
-    font-size: 16px;
-  }
-  .main-text {
-    font-size: 45px;
-    color: black;
-    font-weight: bold;
-  }
-}
-.withbackground {
-  background: linear-gradient(to left, #f8f9fa, #f5f5fa);
-  padding: 50px;
-  /* background: linear-gradient(to left, #f8f9fa, var(--bg-hover-color)); */
-  /* background: linear-gradient(to left, #f8f9fa, #f1f2f7); */
-  /* background-color: var(--bg-light-color); */
-}
-p.error {
-  color: #f84e2c;
+  gap: 8px;
+  background: linear-gradient(
+    90deg,
+    var(--primary-purple),
+    var(--primary-cyan)
+  );
+  color: #ffffff;
+  box-shadow: 0 0 20px rgba(112, 0, 255, 0.3);
 }
 
-p.inline-error {
-  color: #f84e2c;
-  font-size: 0.5rem;
+.button:hover,
+.btn-main:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 0 30px rgba(0, 240, 255, 0.5);
 }
 
+.button-secondary {
+  background: rgba(255, 255, 255, 0.05);
+  color: var(--text-main);
+  border: 1px solid var(--glass-border);
+  box-shadow: none;
+}
+
+.button-secondary:hover {
+  background: rgba(255, 255, 255, 0.1);
+  border-color: var(--primary-cyan);
+  color: var(--primary-cyan);
+}
+
+button:disabled {
+  cursor: not-allowed !important;
+  opacity: 0.4 !important;
+  box-shadow: none !important;
+  transform: none !important;
+}
+
+/* ===== النوافذ المنبثقة (Modals & Backdrops) ===== */
 .backdrop {
   position: fixed;
   top: 0;
   left: 0;
   width: 100%;
   height: 100%;
-  background-color: rgba(0, 0, 0, 0.5);
+  background-color: rgba(7, 9, 19, 0.8);
+  backdrop-filter: blur(8px);
   display: flex;
   justify-content: center;
   align-items: center;
-  z-index: 100;
+  z-index: 2000;
 }
-.backdrop .dialog-box,
+
+.dialog-box,
 .notification-box {
-  background: slategray;
-  color: var(--text-color-light);
-  padding: 20px;
+  background: var(--bg-panel);
+  backdrop-filter: blur(20px);
+  border: 1px solid var(--glass-border);
+  color: var(--text-main);
+  padding: 30px;
   border-radius: var(--border-radius);
-  box-shadow: var(--box-shadow);
-  text-align: left;
-  font-size: var(--font-size);
-  header {
-    font-size: 0.7rem;
-    text-align: left;
-    text-transform: uppercase;
-  }
-}
-.dialog-box.light {
-  background-color: var(--light-color);
-  color: var(--text-color);
-  font-size: small;
-  padding: 0;
-
-  header {
-    text-align: left;
-    color: var(--light-color);
-    text-transform: capitalize;
-  }
-}
-.button {
-  padding: 8px 16px;
-  border: none;
-  border-radius: var(--border-radius);
-  font-size: 1rem;
-  cursor: pointer !important;
-  background-color: var(--special-color);
-  color: var(--bg-light-color);
-  margin-top: 10px;
-  transition: background 0.3s ease;
-  -webkit-border-radius: var(--border-radius);
-  -moz-border-radius: var(--border-radius);
-  -ms-border-radius: var(--border-radius);
-  -o-border-radius: var(--border-radius);
-  -webkit-transition: background 0.3s ease;
-  -moz-transition: background 0.3s ease;
-  -ms-transition: background 0.3s ease;
-  -o-transition: background 0.3s ease;
-}
-.homepage-button {
-  font-weight: bold;
-  background-color: var(--button-bg-color);
-  color: var(--button-color);
-  border-radius: 30px;
-  -webkit-border-radius: 30px;
-  -moz-border-radius: 30px;
-  -ms-border-radius: 30px;
-  -o-border-radius: 30px;
-}
-.button-secondary {
-  background-color: #f8f9fa;
-  color: var(--hover-color);
-}
-.edit-btn {
-  background-color: var(--text-color);
-}
-.cancel-btn {
-  background-color: red;
-}
-.button:hover {
-  opacity: 0.8;
-}
-button:disabled {
-  cursor: not-allowed !important;
-  background-color: #ccc !important;
-}
-
-.flex {
-  display: flex;
-  justify-content: flex-start;
-  align-items: center;
-  gap: 10px;
-}
-form input {
-  flex: 1;
-  width: 100%;
-  padding: 8px 16px;
-  border: 1px solid #758a8a;
-  border-radius: 5px;
-  -webkit-border-radius: 5px;
-  -moz-border-radius: 5px;
-  -ms-border-radius: 5px;
-  -o-border-radius: 5px;
-}
-.add-btn {
-  display: flex;
-  justify-content: flex-end;
-  button {
-    margin: 0;
-    background-color: var(--dark-color);
-  }
-}
-table {
-  border-collapse: collapse;
-}
-th,
-td {
-  padding: 10px;
-  border-bottom: 1px solid #ddd;
-}
-th {
-  text-align: center;
-}
-td {
-  text-align: center;
-  vertical-align: center;
-  color: black;
-}
-.actions {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  gap: 4px;
-}
-tbody tr:nth-child(even) {
-  background-color: #f2f2f2;
-}
-tbody tr:hover {
-  background-color: var(--bg-hover-color);
-}
-
-.pagination {
-  margin-top: 10px;
-  text-align: center;
-}
-
-.prev-btn,
-.next-btn {
-  background-color: #007bff;
-  color: white;
-  border: none;
-  padding: 5px 20px;
-  margin: 0 5px;
-  border-radius: 8px;
-  font-size: 1rem;
-  cursor: pointer;
-  transition: background-color 0.3s ease;
-  -webkit-border-radius: 8px;
-  -moz-border-radius: 8px;
-  -ms-border-radius: 8px;
-  -o-border-radius: 8px;
-}
-
-.prev-btn:hover,
-.next-btn:hover {
-  background-color: #0056b3;
-}
-
-input:focus {
-  border: 1px solid var(--special-color) !important;
-  outline: none !important;
-}
-
-[formgroupname].ng-invalid.ng-touched.ng-dirty input,
-input.ng-invalid.ng-touched.ng-dirty {
-  background-color: #fbdcd6;
-  border-color: #f84e2c;
-}
-
-[formgroupname].ng-invalid.ng-touched.ng-dirty label,
-.control:has(.ng-invalid.ng-touched.ng-dirty) label {
-  color: #f98b75;
-}
-.is-invalid {
-  border: 2px solid red;
-  border-radius: 4px;
-}
-
-.error-message {
-  color: red;
-  font-size: 0.9em;
-  margin-top: 4px;
-}
-
-form {
-  background: var(--bg-light-color);
-  margin: 10px;
-}
-form.filteration {
-  padding: 0;
-  margin: 0;
-}
-form,
-fieldset {
-  padding: 20px;
-}
-fieldset {
-  border: 2px solid var(--light-color);
-}
-
-.control-row {
-  display: flex;
-  justify-content: flex-start;
-  align-items: center;
-  gap: 20px;
-  margin-bottom: 20px;
-}
-.control {
-  margin-bottom: 0;
-  flex: 1;
-  min-width: 300px;
-}
-.control p,
-select,
-input {
-  background-color: var(--light-color);
-  color: black;
-  flex: auto;
-  padding: 10px;
-  border-radius: 5px;
-  width: 100%;
-}
-
-.control label {
-  display: block;
-  font-size: 0.6rem;
-  margin-bottom: 3px;
-}
-
-.control p,
-input,
-select {
-  width: 100%;
-  padding: 10px;
-  font-weight: normal;
-  border: 1px solid #758a8a;
-  border-radius: 5px;
-  -webkit-border-radius: 5px;
-  -moz-border-radius: 5px;
-  -ms-border-radius: 5px;
-  -o-border-radius: 5px;
-}
-
-.new .control label {
-  color: var(--dark-color);
-}
-
-.border-color .control label {
-  color: #f84e2c;
-}
-.actions {
-  display: flex;
-  justify-content: flex-end;
+  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.6);
+  max-width: 500px;
+  width: 90%;
 }
